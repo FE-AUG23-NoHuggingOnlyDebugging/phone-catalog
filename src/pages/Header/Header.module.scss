@@ -1,0 +1,10 @@
+@import '../../appScss/index.scss';
+
+.header {
+  background-color: rgb(162, 162, 212);
+
+  &__title {
+    // color: red;
+    color: $color__for_test;
+  }
+}
