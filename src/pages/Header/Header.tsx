@@ -1,5 +1,6 @@
 'use strict';
 
+import { NavLink } from 'react-router-dom';
 import {
   useAppDispatch, //for instance,
   useAppSelector,
@@ -23,6 +24,10 @@ export const Header = () => {
   return (
     <div className={styles.header}>
       <h1 className={styles.header__title}>Header</h1>
+      <nav>
+        <NavLink	to={'/'}>home_</NavLink>
+        <NavLink	to={'/phones'}>_phone</NavLink>
+      </nav>
       <span>Favorites count:</span>
       <span>{count}</span>
       <button
