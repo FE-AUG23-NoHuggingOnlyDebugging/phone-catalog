@@ -22,7 +22,7 @@ export const Header = () => {
 
   return (
     <div className={styles.header}>
-      <h1 className={styles.header__title}>Hedaer</h1>
+      <h1 className={styles.header__title}>Header</h1>
       <span>Favorites count:</span>
       <span>{count}</span>
       <button
