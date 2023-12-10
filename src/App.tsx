@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.scss';
 import { Route, Routes } from 'react-router-dom';
 import { Header } from './pages/Header/Header';
@@ -15,17 +14,17 @@ function App() {
     <>
       <Header />
       <main>
-        <h1 className="color">hello</h1>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="phones" element={<ProductPage />} />
-          <Route path="tablets" element={<ProductPage />} />
-          <Route path="accessories" element={<ProductPage />} />
+          <Route path="/phones" element={<ProductPage />} />
+          <Route path="/tablets" element={<ProductPage />} />
+          <Route path="/accessories" element={<ProductPage />} />
 
           <Route path="/cart" element={<CartPage />} />
           <Route path="/favourites" element={<FavouritesPage />} />
 
           <Route path="product/:productId" element={<ProductDetailsPage />} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

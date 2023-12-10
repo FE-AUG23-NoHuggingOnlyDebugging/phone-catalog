@@ -42,7 +42,7 @@
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/semi": ["error"],
 
-    "react/jsx-max-props-per-line": [2, { "maximum": 2 }],
+    "react/jsx-max-props-per-line": [1, { "maximum": 3 }],
     "react/jsx-indent-props": [2, 2],
     "react/jsx-first-prop-new-line": [2, "multiline"]
   }
