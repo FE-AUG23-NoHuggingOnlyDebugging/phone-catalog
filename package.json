@@ -29,7 +29,6 @@
     "format": "prettier . --ignore-path .gitignore --write",
     "lint": "eslint . --ignore-path .gitignore --fix",
     "fix-style": "npm run format & npm run lint",
-    "prepare": "husky install",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
