@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/phone-catalog/static/css/main.f44a0fc0.css",
+    "main.js": "/phone-catalog/static/js/main.b1e981bf.js",
+    "index.html": "/phone-catalog/index.html",
+    "main.f44a0fc0.css.map": "/phone-catalog/static/css/main.f44a0fc0.css.map",
+    "main.b1e981bf.js.map": "/phone-catalog/static/js/main.b1e981bf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f44a0fc0.css",
+    "static/js/main.b1e981bf.js"
+  ]
+}
