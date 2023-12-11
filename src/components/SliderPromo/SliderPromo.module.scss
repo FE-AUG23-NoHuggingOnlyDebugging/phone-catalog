@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel {
+    display: flex;
+    height: 420px;
+    position: relative;
+}
+
+.slide {
+    width: 1040px;
+    opacity: 1;
+    transition: all .3s ease-in-out;
+}
+
+.slide_hidden {
+    display: none;
+}
+
+.btn {
+    background-color: white;
+    border: 1px solid #B4BDC3;
+    margin: 0 16px 0 16px;
+    cursor: pointer;
+    animation: slideAnimation 0.5s ease infinite;
+}
+
+.indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.indicator {
+    width: 14px;
+    height: 4px;
+    background: #E2E6E9;
+    border: 1px solid #E2E6E9;
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+.indicator_active {
+    background: #313237;
+    border: 1px solid #313237;
+}
