@@ -1,50 +1,105 @@
+@import '../../appScss/colors.scss';
+@import '../../appScss/typography.scss';
+
+@mixin onDesktop {
+  @media (min-width: 1200px) {
+    @content;
+}
+}
+
+@mixin onTable {
+  @media (min-width: 640px) {
+    @content;
+}
+}
+
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  @include onTable {
+    margin: 0 24px;
+  }
+  @include onDesktop {
+    margin: 0px 152px 0 152px;
+  }
+  &__title {
+    @include mob-h1;
+    text-align: center;
+    color: var(--primary-color);
+    margin: 24px 16px 0 16px;
+    @include onTable {
+      @include default-h1;
+      text-align: left;
+      margin: 32px 24px 0 32px;
+    }
+    @include onDesktop {
+      margin-top: 56px;
+    }
+  }
 }
 
 .carousel {
-    display: flex;
-    height: 420px;
-    position: relative;
-}
+  display: flex;
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+  @include onTable {
+    height: 189px;
+    margin-top: 32px;
+  }
 
-.slide {
-    width: 1040px;
-    opacity: 1;
-    transition: all .3s ease-in-out;
-}
+  @include onDesktop {
+    height: 400px;
+    margin-top: 56px;
+  }
 
-.slide_hidden {
+  &__btn {
     display: none;
-}
+    @include onTable {
+      display: block;
+      background-color: var(--white-color);
+      border: 1px solid var(--icons-color);
+      cursor: pointer;
+    }
+  }
 
-.btn {
-    background-color: white;
-    border: 1px solid #B4BDC3;
-    margin: 0 16px 0 16px;
-    cursor: pointer;
-    animation: slideAnimation 0.5s ease infinite;
+  &__slide {
+      width: 100%;
+      object-fit: cover;
+      object-position: 70% 50%;
+      margin-top: 24px;
+   
+    @include onTable {
+      margin: 0 19px 0 19px;
+      overflow: visible;
+      object-position: top;
+
+    }
+    @include onDesktop {
+      margin: 0 16px 0 16px;
+      overflow: visible;
+    }
+
+    &_hidden {
+      display: none;
+    }
+  }
 }
 
 .indicators {
-    display: flex;
-    justify-content: center;
-    margin-top: 8px;
-}
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+  gap: 14px;
 
-.indicator {
+  &__indicator {
     width: 14px;
     height: 4px;
-    background: #E2E6E9;
-    border: 1px solid #E2E6E9;
-    margin-right: 4px;
+    border: none;
+    background: var(--elements-color);
     cursor: pointer;
-}
 
-.indicator_active {
-    background: #313237;
-    border: 1px solid #313237;
+    &_active {
+      background: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+  }
 }

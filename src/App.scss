@@ -1,6 +1,10 @@
 /* import app scss style here */
 @import './appScss/index.scss';
 
+body {
+  margin: 0;
+}
+
 .color {
   color: $color__for_test;
 }

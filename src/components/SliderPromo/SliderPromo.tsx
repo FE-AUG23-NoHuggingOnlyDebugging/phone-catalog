@@ -13,7 +13,7 @@ export const SliderPromo = () => {
     key: data[slide].id,
     from: { opacity: 0 },
     enter: { opacity: 1 },
-    leave: { opacity: 1 },
+    leave: { opacity: 1},
   });
 
   const goForward = useCallback(() => {
@@ -32,11 +32,9 @@ export const SliderPromo = () => {
 
   return (
     <div className={styles.container}>
+      <h1 className={styles.container__title}>Welcome to Nice Gadgets store!</h1>
       <div className={styles.carousel}>
-        <button
-          className={styles.btn}
-          onClick={goBack}
-        >
+        <button className={styles.carousel__btn} onClick={goBack}>
           <IoIosArrowBack />
         </button>
         {transitions((style, item) => (
@@ -47,30 +45,27 @@ export const SliderPromo = () => {
             style={{ ...style }}
             className={
               slide === item.id ?
-                styles.slide :
-                styles.slide_hidden
+                styles.carousel__slide :
+                styles.carousel__slide_hidden
             }
           />
         ))}
-        <button
-          className={styles.btn}
-          onClick={goForward}
-        >
+        <button className={styles.carousel__btn} onClick={goForward}>
           <IoIosArrowForward />
         </button>
       </div>
       <span className={styles.indicators}>
-        {data.map(data => (
+        {data.map((data) => (
           <button
             key={data.id}
-            className={
-              slide === data.id ?
-                styles.indicator && styles.indicator_active
-                : styles.indicator
+            className= {
+              slide === data.id
+                ? styles.indicators__indicator
+                && styles.indicators__indicator_active
+                : styles.indicators__indicator
             }
             onClick={() => setSlide(data.id)}
-          >
-          </button>
+          ></button>
         ))}
       </span>
     </div>
