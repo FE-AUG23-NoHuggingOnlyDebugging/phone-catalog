@@ -1,0 +1,129 @@
+import cn from 'classnames';
+import { Link } from 'react-router-dom';
+import style from './Features.module.scss';
+import React from 'react';
+import { ProductDetails } from '../../../../types/ProductDetails';
+
+type Props = {
+  product: ProductDetails;
+  productId: string | undefined;
+  activeMemory: string | null;
+  activeColor: string | null;
+  setActiveMemory: (value: string | null) => void;
+  setActiveColor: (value: string | null) => void;
+};
+
+export const Features: React.FC<Props> = ({
+  product,
+  productId,
+  activeColor,
+  activeMemory,
+  setActiveColor,
+  setActiveMemory,
+}) => {
+  return (
+    <div className={style.features}>
+      <div className={style.features__colors}>
+        <p className={style.features__colorsText}>Available colors</p>
+        <div className={style.features__colorsBlock}>
+          {product?.colorsAvailable.map((color) => {
+            return (
+              <Link
+                to={`/products/${product.namespaceId}-${activeMemory}-${color}`}
+                key={color}
+                className={cn(
+                  style.colorItemWrapper,
+                  { [style.activeColor] : productId?.includes(color) }
+                )}
+                onClick={() => {
+                  setActiveColor(color);
+                }}
+              >
+                <div
+                  style={{ backgroundColor: color }}
+                  className={style.colorItem}
+                />
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className={style.features__memory}>
+        <p>Select capacity</p>
+        <div className={style.features__memoryBlock}>
+          {product?.capacityAvailable.map((capacity) => {
+            const lowerCCapacity = capacity.toLocaleLowerCase();
+
+            return (
+              <Link
+                to={`/products/${product.namespaceId}-${lowerCCapacity}-${activeColor}`}
+                key={capacity}
+                onClick={() => setActiveMemory(lowerCCapacity)}
+                className={cn(
+                  style.features__memoryItem,
+                  {[style.activeMemory]: productId?.includes(lowerCCapacity)}
+                )}
+              >
+                {capacity}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className={style.features__priceBlock}>
+        <div className={style.features__price}>
+          {product?.priceDiscount ? (
+            <>
+              <p className={style.features__productionPrice}>
+                ${product?.priceDiscount}
+              </p>
+              <p className={style.features__crossedOutPrice}>
+                ${product?.priceRegular}
+              </p>
+            </>
+          ) : (
+            <p className={style.features__productionPrice}>
+              ${product?.priceRegular}
+            </p>
+          )}
+        </div>
+
+        <div className={style.features__cartBlock}>
+          <div className={style.features__cart}>Add to cart</div>
+          <div className={style.features__fav}>
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                '/icons/Favourites(HeartLike).svg'
+              }
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div className={style.features__briefInfBlock}>
+          <div>
+            <p>Screen</p>
+            <p>Resolution</p>
+            <p>Processor</p>
+            <p>RAM</p>
+          </div>
+          <div>
+            <p className={style.features__specValue}>
+              {product?.screen}
+            </p>
+            <p className={style.features__specValue}>
+              {product?.resolution}
+            </p>
+            <p className={style.features__specValue}>
+              {product?.processor}
+            </p>
+            <p className={style.features__specValue}>{product?.ram}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -1,0 +1,62 @@
+@import '../../ProductDetails-mixins.scss';
+@import '../../ProductDetails-variables.scss';
+
+.galleryBlock {
+  display: flex;
+  gap: 16px;
+
+  @include ProductDetails-OnPhones {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  &__leftSide {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include ProductDetails-OnPhones {
+      flex-direction: row;
+      gap: 8px;
+    }
+
+    &_img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border: 1px solid #c4c4c4;
+      padding: 7px;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      @include ProductDetails-OnTablet {
+        padding: 3px;
+        width: 35px;
+        height: 35px;
+      }
+
+      @include ProductDetails-OnPhones {
+        width: 51px;
+        height: 51px;
+        padding: 4px;
+      }
+    }
+  }
+
+  &__rightSide {
+    &_img {
+      width: 464px;
+      height: 464px;
+      object-fit: contain;
+
+      @include ProductDetails-OnTablet {
+        width: 287px;
+        height: 287px;
+      }
+    }
+  }
+}
+
+.activeImage {
+  border: 2px solid $productDetails-title-color !important;
+}

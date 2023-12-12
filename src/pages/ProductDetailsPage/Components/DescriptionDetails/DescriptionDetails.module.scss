@@ -1,0 +1,84 @@
+@import '../../ProductDetails-mixins.scss';
+@import '../../ProductDetails-variables.scss';
+
+.productDescription {
+  margin-top: 80px;
+  display: flex;
+  gap: 64px;
+
+  @include ProductDetails-OnTablet {
+    flex-direction: column;
+    margin-top: 64px;
+  }
+
+  @include ProductDetails-OnPhones {
+    margin-top: 56px;
+  }
+
+  &__descriptionBlock {
+    width: 559px;
+    box-sizing: border-box;
+    
+    @include ProductDetails-OnTablet {
+      max-width: 670px;
+      width: 100%;
+    }
+  }
+
+  &__specsBlock {
+    width: 512px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+
+    @include ProductDetails-OnTablet {
+      max-width: 670px;
+      width: 100%;
+    }
+  }
+
+  &__title {
+    color: $productDetails-title-color;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 140%;
+
+    @include ProductDetails-PseudoElement {
+      margin-top: 16px;
+    }
+  }
+
+  &__article {
+    &__subTitle {
+      color: $productDetails-title-color;
+      font-size: 20px;
+      margin: 32px 0 16px 0;
+
+      @include ProductDetails-OnPhones {
+        font-size: 16px;
+      }
+    }
+
+    &__text {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+      margin: 0;
+    }
+  }
+
+  &__specName {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+  }
+
+  &__specValue {
+    color: $productDetails-title-color;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+  }
+}

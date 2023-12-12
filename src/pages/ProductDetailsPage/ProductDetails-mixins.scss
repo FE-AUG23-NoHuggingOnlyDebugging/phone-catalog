@@ -1,0 +1,22 @@
+@mixin ProductDetails-OnTablet {
+  @media (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin ProductDetails-OnPhones {
+  @media (max-width: 639px) {
+    @content;
+  }
+}
+
+@mixin ProductDetails-PseudoElement {
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #e2e6e9;
+    @content;
+  }
+}
