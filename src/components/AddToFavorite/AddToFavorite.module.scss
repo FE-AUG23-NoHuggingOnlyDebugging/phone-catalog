@@ -6,6 +6,7 @@
   height: 16px;
   box-sizing: content-box;
   transition: border 0.3s;
+  z-index: 1;
 
   &:hover {
     border: 1px solid #313237;

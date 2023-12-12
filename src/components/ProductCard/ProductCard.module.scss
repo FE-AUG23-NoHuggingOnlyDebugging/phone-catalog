@@ -1,13 +1,19 @@
 @import '../../appScss/text';
 @import '../../appScss/typography';
+@import '../../appScss/link';
 
 .product_item {
   display: flex;
   align-items: center;
   flex-flow: row wrap;
+  position: relative;
   flex: 1 0 calc(25% - 62px);
   padding: 24px;
   border: 1px solid #e2e6e9;
+
+  &:hover &__image {
+    transform: scale(1.1);
+  }
 
   &__info {
     width: 100%;
@@ -21,6 +27,8 @@
     margin-inline: auto;
     margin-bottom: 24px;
     object-fit: contain;
+    transition: transform 0.3s;
+    z-index: -1;
   }
 
   &__title {

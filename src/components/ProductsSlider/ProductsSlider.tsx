@@ -1,8 +1,8 @@
 import styles from './ProductsSlider.module.scss';
 
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { Product } from '../../types/Product';
-import Products from '../Products/Products';
+import ProductList from '../ProductList/ProductList';
 import cn from 'classnames';
 
 type Props = {
@@ -11,8 +11,32 @@ type Props = {
 };
 
 const ProductsSlider: React.FC<Props> = ({ title, products }) => {
+  const parentRef = useRef<HTMLDivElement>(null);
+  const [parentWidth, setParentWidth] = useState(0);
   const [translateX, setTranslateX] = useState(0);
-  const blockWidth = 25.35;
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (parentRef.current) {
+        const newWidth = parentRef.current.offsetWidth;
+
+        if (parentWidth !== newWidth) {
+          setParentWidth(newWidth);
+          setTranslateX(0);
+        }
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [parentRef, parentWidth]);
+
+  const blockWidth = ((parentWidth - 16 * 3) / 4 + 16) / parentWidth * 100;
   const maxTranslateX = -blockWidth * (products.length - 4);
 
   const handleBack = () => {
@@ -30,14 +54,16 @@ const ProductsSlider: React.FC<Props> = ({ title, products }) => {
   };
 
   return (
-    <section className={styles.product_slider}>
+    <section className={styles.product_slider} ref={parentRef}>
       <div className={styles.product_slider__header}>
         <h2 className={styles.product_slider__title}>{title}</h2>
 
         <div className={styles.swiper}>
           <button
             type="button"
-            className={cn(styles.swiper__button, {[styles.swiper__disabled]: translateX === 0})}
+            className={cn(styles.swiper__button, {
+              [styles.swiper__disabled]: translateX === 0,
+            })}
             onClick={handleBack}
             disabled={translateX === 0}
           >
@@ -50,7 +76,9 @@ const ProductsSlider: React.FC<Props> = ({ title, products }) => {
 
           <button
             type="button"
-            className={cn(styles.swiper__button, {[styles.swiper__disabled]: translateX === maxTranslateX})}
+            className={cn(styles.swiper__button, {
+              [styles.swiper__disabled]: translateX === maxTranslateX,
+            })}
             onClick={handleNext}
             disabled={translateX === maxTranslateX}
           >
@@ -63,7 +91,7 @@ const ProductsSlider: React.FC<Props> = ({ title, products }) => {
         </div>
       </div>
 
-      <Products products={products} type="slider" translateX={translateX} />
+      <ProductList products={products} type="slider" translateX={translateX} />
     </section>
   );
 };

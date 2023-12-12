@@ -1,4 +1,4 @@
-import styles from './ProductItem.module.scss';
+import styles from './ProductCard.module.scss';
 import React from 'react';
 import cn from 'classnames';
 import { Product } from '../../types/Product';
@@ -7,12 +7,13 @@ import AddToFavorite from '../AddToFavorite/AddToFavorite';
 import { useAppSelector } from '../../store/hooks';
 import { selectFavoritesProducts } from '../../store/favoriteSlice';
 import { selectCartProducts } from '../../store/cartSlice';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
 };
 
-const ProductItem: React.FC<Props> = ({ product }) => {
+const ProductCard: React.FC<Props> = ({ product }) => {
   const favoritesStorageList = useAppSelector(selectFavoritesProducts);
   const cartStorageList = useAppSelector(selectCartProducts);
   const withDiscount = (price: number, discount: number) => {
@@ -28,6 +29,11 @@ const ProductItem: React.FC<Props> = ({ product }) => {
 
   return (
     <div className={styles.product_item}>
+      <Link
+        to={'/product' + product.phoneId}
+        className={styles.link__cover}
+      ></Link>
+
       <img
         src={product.image}
         className={styles.product_item__image}
@@ -69,13 +75,13 @@ const ProductItem: React.FC<Props> = ({ product }) => {
         </ul>
         <div className={styles.product_item__buttons}>
           <AddToCard
-            added={cartStorageList.includes(product.id)}
-            id={product.id}
+            added={cartStorageList.includes(product.phoneId)}
+            id={product.phoneId}
           />
 
           <AddToFavorite
-            added={favoritesStorageList.includes(product.id)}
-            id={product.id}
+            added={favoritesStorageList.includes(product.phoneId)}
+            id={product.phoneId}
           />
         </div>
       </div>
@@ -83,4 +89,4 @@ const ProductItem: React.FC<Props> = ({ product }) => {
   );
 };
 
-export default ProductItem;
+export default ProductCard;
