@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import favoriteSlice from './favoriteSlice';
+import cartSlice from './cartSlice';
 
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -12,10 +13,17 @@ const persistConfigFavorite = {
   storage,
 };
 
+const persistConfigCart = {
+  //add
+  key: 'cart',
+  storage,
+};
+
 const rootReducer = combineReducers({
   //user slice
   //cart slice
   favorite: persistReducer(persistConfigFavorite, favoriteSlice),
+  cart: persistReducer(persistConfigCart, cartSlice),
   //any slice
 });
 

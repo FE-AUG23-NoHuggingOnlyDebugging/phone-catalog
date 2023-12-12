@@ -1,0 +1,20 @@
+.arrow {
+  width: 16px;
+  height: 16px;
+
+  &__top {
+    rotate: -90deg;
+  }
+
+  &__bottom {
+    rotate: 90deg;
+  }
+
+  &__left {
+    rotate: 180deg;
+  }
+
+  &__opcaity {
+    opacity: 0.5;
+  }
+}

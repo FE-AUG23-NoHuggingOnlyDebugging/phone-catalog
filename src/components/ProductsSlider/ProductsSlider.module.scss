@@ -1,0 +1,20 @@
+@import '../../appScss/swiper';
+@import '../../appScss/arrow';
+@import '../../appScss/typography';
+
+.product_slider {
+  margin-bottom: 80px;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 700;
+  }
+}
