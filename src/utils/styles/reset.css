@@ -1,0 +1,33 @@
+html,
+body,
+div,
+h1,
+h2,
+h3,
+p,
+a,
+img,
+form,
+article,
+footer,
+header,
+menu,
+section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+article,
+footer,
+header,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}

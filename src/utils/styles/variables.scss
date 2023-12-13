@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Mont';
+  src: url('../../fonts/Mont-Bold.otf') format('opentype');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('../../fonts/Mont-SemiBold.otf') format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('../../fonts/Mont-Regular.otf') format('opentype');
+  font-weight: 500;
+}
+
+$light-theme--primary: rgba(49, 50, 55, 1);
+$light-theme--secondary: rgba(137, 147, 154, 1);
+$light-theme--icons: rgba(180, 189, 195, 1);
+$light-theme--elements: rgba(226, 230, 233, 1);
+$light-theme--white: rgba(255, 255, 255, 1);
+$light-theme--green: rgba(39, 174, 96, 1);
+$light-theme--red: rgba(235, 87, 87, 1);
+
+$font-main: 'Mont', sans-serif;
+$font-bold: 800;
+$font-semi-bold: 700;
+$font-regular: 500;

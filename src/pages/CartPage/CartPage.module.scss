@@ -1,7 +1,146 @@
-.footer {
-  background-color: rgb(137, 137, 137);
+@import "../../utils/styles/reset.css";
+@import "../../utils/styles/mixins.scss";
+@import "../../utils/styles/variables.scss";
 
-  &__title {
-    color: red;
+.page {
+  width: max-content;
+  margin: 40px auto 80px;
+
+  font-family: $font-main;
+  font-weight: $font-bold;
+
+  @include OnTablet {
+    margin-bottom: 64px;
+  }
+
+  @include OnPhone {
+    margin-block: 24px 56px;
+  }
+}
+
+.cart_info {
+  margin-bottom: 32px;
+}
+
+.link {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  color: $light-theme--primary;
+}
+
+.text {
+  margin-left: 4px;
+  font-weight: $font-semi-bold;
+  font-size: 12px;
+  color: $light-theme--secondary;
+  line-height: 15px;
+
+  &:hover {
+    color: $light-theme--primary;
+    transition: color 0.3s;
+  }
+}
+
+.title {
+  font-size: 48px;
+  font-weight: $font-bold;
+  line-height: 56px;
+
+  color: $light-theme--primary;
+}
+
+// .empty_cart_message {
+//   font-size: 20px;
+//   font-weight: $font-semi-bold;
+//   line-height: 26px;
+//   text-align: left;
+// }
+
+.cart_content {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+
+  @include OnTablet {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+
+.total_price {
+  box-sizing: border-box;
+  max-height: 206px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  align-items: center;
+  border: 1px solid $light-theme--elements;
+}
+
+.price {
+  font-size: 32px;
+  font-weight: $font-bold;
+  line-height: 41px;
+  color: $light-theme--primary;
+}
+
+.price_text {
+  margin-bottom: 48px;
+  font-weight: $font-regular;
+  font-size: 14px;
+  line-height: 21px;
+  color: $light-theme--secondary;
+}
+
+.checkout_button {
+  box-sizing: border-box;
+  position: relative;
+  width: 320px;
+
+  font-size: 14px;
+  font-weight: $font-semi-bold;
+  text-decoration: none;
+  text-align: center;
+  line-height: 48px;
+
+  border: 1px solid transparent;
+  color: $light-theme--white;
+  background-color: $light-theme--primary;
+
+  @include OnTablet {
+    width: 544px;
+  }
+
+  @include OnPhone {
+    width: 240px;
+  }
+
+  &:hover {
+    box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
+    transition: box-shadow 0.3s;
+  }
+
+  &:active {
+    color: $light-theme--green;
+    border-color: $light-theme--elements;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    height: 1px;
+    background-color: $light-theme--elements;
   }
 }
