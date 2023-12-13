@@ -1,7 +1,6 @@
 @import './ProductDetails-mixins.scss';
 @import './ProductDetails-variables.scss';
 
-
 .product {
   margin: 0 auto;
   max-width: 1136px;
@@ -26,14 +25,12 @@
   p {
     margin: 0 0 8px 0;
   }
-
 }
 
 .productOverview {
   display: flex;
-  gap: 75px;
+  gap: 65px;
   margin-top: 40px;
-
 
   @include ProductDetails-OnTablet {
     gap: 17px;

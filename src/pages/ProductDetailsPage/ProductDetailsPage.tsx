@@ -71,7 +71,7 @@ export const ProductDetailsPage = () => {
               />
             </article>
 
-            <Description specs={specs} descriptions={product?.description}/>
+            <Description specs={specs} descriptions={product?.description} />
           </div>
         </section>
       )}

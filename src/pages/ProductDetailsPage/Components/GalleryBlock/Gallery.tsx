@@ -9,7 +9,11 @@ type Props = {
   setMainImage: (value: string | undefined) => void;
 };
 
-export const Gallery: React.FC<Props> = ({ mainImage, product, setMainImage}) => {
+export const Gallery: React.FC<Props> = ({
+  mainImage,
+  product,
+  setMainImage,
+}) => {
   return (
     <div className={style.galleryBlock}>
       <div className={style.galleryBlock__leftSide}>
@@ -18,10 +22,9 @@ export const Gallery: React.FC<Props> = ({ mainImage, product, setMainImage}) =>
             src={image}
             key={image}
             alt="iphone"
-            className={cn(
-              style.galleryBlock__leftSide_img,
-              { [style.activeImage] : mainImage === image }
-            )}
+            className={cn(style.galleryBlock__leftSide_img, {
+              [style.activeImage]: mainImage === image,
+            })}
             onClick={(event) => {
               const target = event.target as HTMLImageElement;
               setMainImage(target.src);
@@ -32,7 +35,8 @@ export const Gallery: React.FC<Props> = ({ mainImage, product, setMainImage}) =>
       <div className={style.galleryBlock__rightSide}>
         <img
           className={style.galleryBlock__rightSide_img}
-          src={mainImage} alt="iphone"
+          src={mainImage}
+          alt="iphone"
         />
       </div>
     </div>

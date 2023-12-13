@@ -12,12 +12,11 @@ type spec = {
 };
 
 type Props = {
-  descriptions: description[] | undefined,
-  specs: spec[] | undefined,
+  descriptions: description[] | undefined;
+  specs: spec[] | undefined;
 };
 
-export const Description: React.FC<Props> = ({descriptions, specs}) => {
-
+export const Description: React.FC<Props> = ({ descriptions, specs }) => {
   return (
     <article className={style.productDescription}>
       <div className={style.productDescription__descriptionBlock}>

@@ -25,8 +25,8 @@ export const Header = () => {
     <div className={styles.header}>
       <h1 className={styles.header__title}>Header</h1>
       <nav>
-        <NavLink	to={'/'}>home_</NavLink>
-        <NavLink	to={'/phones'}>_phone</NavLink>
+        <NavLink to={'/'}>home_</NavLink>
+        <NavLink to={'/phones'}>_phone</NavLink>
       </nav>
       <span>Favorites count:</span>
       <span>{count}</span>

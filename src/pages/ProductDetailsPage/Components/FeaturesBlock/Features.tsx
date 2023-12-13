@@ -31,10 +31,9 @@ export const Features: React.FC<Props> = ({
               <Link
                 to={`/products/${product.namespaceId}-${activeMemory}-${color}`}
                 key={color}
-                className={cn(
-                  style.colorItemWrapper,
-                  { [style.activeColor] : productId?.includes(color) }
-                )}
+                className={cn(style.colorItemWrapper, {
+                  [style.activeColor]: productId?.includes(color),
+                })}
                 onClick={() => {
                   setActiveColor(color);
                 }}
@@ -60,10 +59,9 @@ export const Features: React.FC<Props> = ({
                 to={`/products/${product.namespaceId}-${lowerCCapacity}-${activeColor}`}
                 key={capacity}
                 onClick={() => setActiveMemory(lowerCCapacity)}
-                className={cn(
-                  style.features__memoryItem,
-                  {[style.activeMemory]: productId?.includes(lowerCCapacity)}
-                )}
+                className={cn(style.features__memoryItem, {
+                  [style.activeMemory]: productId?.includes(lowerCCapacity),
+                })}
               >
                 {capacity}
               </Link>
@@ -94,10 +92,7 @@ export const Features: React.FC<Props> = ({
           <div className={style.features__cart}>Add to cart</div>
           <div className={style.features__fav}>
             <img
-              src={
-                process.env.PUBLIC_URL +
-                '/icons/Favourites(HeartLike).svg'
-              }
+              src={process.env.PUBLIC_URL + '/icons/Favourites(HeartLike).svg'}
               alt=""
             />
           </div>
@@ -111,15 +106,9 @@ export const Features: React.FC<Props> = ({
             <p>RAM</p>
           </div>
           <div>
-            <p className={style.features__specValue}>
-              {product?.screen}
-            </p>
-            <p className={style.features__specValue}>
-              {product?.resolution}
-            </p>
-            <p className={style.features__specValue}>
-              {product?.processor}
-            </p>
+            <p className={style.features__specValue}>{product?.screen}</p>
+            <p className={style.features__specValue}>{product?.resolution}</p>
+            <p className={style.features__specValue}>{product?.processor}</p>
             <p className={style.features__specValue}>{product?.ram}</p>
           </div>
         </div>
