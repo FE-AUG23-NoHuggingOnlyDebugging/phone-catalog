@@ -1,10 +1,97 @@
 @import '../../appScss/index.scss';
 
-.header {
-  background-color: rgb(12, 236, 60);
-
-  &__title {
-    // color: red;
-    color: $color__for_test;
+@mixin onTablet {
+  @media (min-width: 640px) {
+    @content;
   }
 }
+
+@mixin onDesktop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+.header {
+  background-color: #fff;
+
+  &__title {
+    color: $color__for_test;
+  }
+
+}
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    display: flex;
+    @include onDesktop {
+      gap: 64px;
+    }
+    @include onTablet() {
+      gap: 32px;
+    }
+  }
+
+  &__item {
+    display: inline-block;
+    color: #89939A;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 11px;
+    letter-spacing: 0.48px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-top: 27px;
+    padding-bottom: 24px;
+    border-bottom: 3px solid transparent;
+  }
+
+  &__utility {
+    display: flex;
+  }
+
+  &__utilities {
+    width: 16px;
+    height: 16px;
+    padding: 24px;
+    padding-bottom: 21px;
+    border-left: 1px solid #E2E6E9;
+    border-bottom: 3px solid transparent;
+  }
+
+  &__highlight {
+    color: #313237;
+    border-bottom: 3px solid #313237;
+  }
+
+  &__search {
+    display: flex;
+    width: 327px;
+
+    &_input {
+      width: 100%;
+      border: none;
+      font-size: 14px;
+      font-family: Mont, sans-serif;
+      padding-left: 24px;
+      border-left: 1px solid #E2E6E9;
+    }
+
+    &_icon {
+      width: 16px;
+      height: 16px;
+      padding: 24px;
+    }
+  }
+}
+
+
