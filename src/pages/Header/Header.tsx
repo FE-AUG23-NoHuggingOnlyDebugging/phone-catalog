@@ -47,6 +47,8 @@ export const Header = () => {
               ram: '2GB',
               year: 2016,
               image: 'img/phones/apple-iphone-7/black/00.jpg',
+              createdAt: '',
+              updatedAt: '',
             }),
           )
         }

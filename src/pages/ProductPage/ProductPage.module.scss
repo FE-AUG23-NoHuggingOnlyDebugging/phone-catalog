@@ -1,7 +1,82 @@
-.footer {
-  background-color: rgb(137, 137, 137);
+$tablet-min-width: 640px;
+$desktop-min-width: 1200px;
+$grayIcons: #B4bdc3;
+$grayPrimary: #313237;
+$graySecondary: #89939a;
 
-  &__title {
-    color: red;
+
+@mixin onTablet {
+  @media (min-width: $tablet-min-width) {
+    @content;
   }
 }
+
+@mixin onDesktop {
+  @media (min-width: $desktop-min-width) {
+    @content;
+  }
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('./fonts/Mont-Regular.otf') format('opentype'),
+  url('./fonts/Mont-SemiBold.otf') format('opentype'),
+  url('./fonts/Mont-Bold.otf') format('opentype');
+  }
+
+  html {
+    font-family: Mont, sans-serif;
+    font-weight: 600;
+    color: #313237;
+  }
+
+.wrapper {
+  max-width: 1136px;
+  min-width: 320px;
+  min-height: calc(100vh - 165px);
+  margin: 0 auto;
+}
+
+.catalog {
+  font-family: Mont, sans-serif;
+
+    &__info {
+    margin-bottom: 40px;
+  }
+
+  &__title {
+    font-family: 'Mont';
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.32px;
+  }
+
+    &__filters {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+
+    &_title {
+      color: $graySecondary;
+    }
+  }
+    &__modelCount {
+      color: $graySecondary;
+    }
+  
+
+  &__products {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 40px;
+    column-gap: 16px;
+    @include onTablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include onDesktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+  }
+}
+

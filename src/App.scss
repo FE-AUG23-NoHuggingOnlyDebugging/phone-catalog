@@ -1,6 +1,23 @@
 /* import app scss style here */
 @import './appScss/index.scss';
 
+@font-face {
+  font-family: 'Mont';
+  src: url('fonts/Mont-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('fonts/Mont-Bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+html {
+  font-family: Mont, sans-serif;
+  font-weight: 600;
+  color: #313237;
+}
 .color {
   color: $color__for_test;
 }
