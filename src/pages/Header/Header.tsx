@@ -13,23 +13,18 @@ const Header = () => {
 
     window.addEventListener('resize', handleResize);
 
-    return () => {
-    };
+    return () => {};
   }, [window.innerWidth]);
 
   let componentToRender;
 
   if (windowWidth < 320) {
-    componentToRender = <NavMobile/>;
+    componentToRender = <NavMobile />;
   } else {
-    componentToRender =  <NavDesktop/>;
+    componentToRender = <NavDesktop />;
   }
 
-  return (
-    <header className={styles.header}>
-      {componentToRender}
-    </header>
-  );
+  return <header className={styles.header}>{componentToRender}</header>;
 };
 
 export default Header;
