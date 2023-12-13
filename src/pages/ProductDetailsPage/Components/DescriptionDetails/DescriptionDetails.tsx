@@ -28,23 +28,17 @@ export const Description: React.FC<Props> = ({ descriptions, specs }) => {
               {title}
             </h3>
 
-            {Array.isArray(text) ? (
-              text.map((paragraph, i) => (
-                <>
-                  <p
-                    key={paragraph}
-                    className={style.productDescription__article__text}
-                  >
-                    {paragraph}
-                  </p>
-                  {i + 1 !== text.length && <br />}
-                </>
-              ))
-            ) : (
-              <p key={text} className={style.productDescription__article__text}>
-                {text}
-              </p>
-            )}
+            {text.map((paragraph, i) => (
+              <div key={paragraph}>
+                <p
+                  className={style.productDescription__article__text}
+                >
+                  {paragraph}
+                </p>
+                {i + 1 !== text.length && <br />}
+              </div>
+            ))}
+
           </div>
         ))}
       </div>
