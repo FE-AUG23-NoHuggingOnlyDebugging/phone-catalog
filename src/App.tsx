@@ -8,6 +8,7 @@ import { ProductPage } from './pages/ProductPage/ProductPage';
 import { CartPage } from './pages/CartPage/CartPage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage/ProductDetailsPage';
+import { AuthRoot } from './components/auth/AuthRoot';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           <Route path="/favourites" element={<FavouritesPage />} />
 
           <Route path="product/:productId" element={<ProductDetailsPage />} />
+
+          <Route path="/login" element={<AuthRoot />} />
+          <Route path="/register" element={<AuthRoot />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
