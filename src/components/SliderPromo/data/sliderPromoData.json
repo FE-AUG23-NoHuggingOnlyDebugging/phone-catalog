@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "src": "/img/01.png",
+      "alt": "iPhone 15"
+    },
+    {
+      "id": 1,
+      "src": "/img/02.png",
+      "alt": "iPhone 14"
+    },
+    {
+      "id": 2,
+      "src": "/img/03.png",
+      "alt": "Galaxy Tab A7 Lite"
+    }
+  ]
+}

@@ -1,7 +1,259 @@
-.footer {
-  background-color: rgb(137, 137, 137);
+@mixin NotFoundPage-onTablet {
+  @media (max-width: 979px) {
+    @content;
+  }
+}
+
+@mixin NotFoundPage-onPhone {
+  @media (max-width: 674px) {
+    @content;
+  }
+}
+
+
+.iphoneX {
+  position: relative;
+  width: 360px;
+  height: 780px;
+  background-color: #313237;
+  // background-image: linear-gradient(60deg, #7371ee 1%,#a1d9d6 100%);
+  border-radius: 40px;
+  box-shadow: 0px 0px 0px 11px #1f1f1f, 0px 0px 0px 13px #191919, 0px 0px 0px 20px #111;
+
+  @include NotFoundPage-onTablet {
+    width: 260px;
+    height: 580px;
+  }
+
+  &:before,
+  &:after{
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  // home button indicator
+  &:after {
+    bottom: 7px;
+    width: 140px;
+    height: 4px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+
+    @include NotFoundPage-onTablet {
+      width: 120px;
+    }
+  }
+
+  // frontal camera/speaker frame
+  &:before {
+    top: 0px;
+    width: 56%;
+    height: 30px;
+    background-color: #1f1f1f;
+    border-radius: 0px 0px 40px 40px;
+  }
+
+  i,
+  b,
+  s,
+  span {
+    position: absolute;
+    display: block;
+    color: transparent;
+  }
+
+  // speaker
+  i {
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 6px);
+    height: 8px;
+    width: 15%;
+    background-color: #101010;
+    border-radius: 8px;
+    box-shadow: inset 0px -3px 3px 0px rgba(256, 256, 256, 0.2);
+  }
+
+  // camera
+  b {
+    left: 10%;
+    top: 0px;
+    transform: translate(180px, 4px);
+    width: 12px;
+    height: 12px;
+    background-color: #101010;
+    border-radius: 12px;
+    box-shadow: inset 0px -3px 2px 0px rgba(256, 256, 256, 0.2);
+
+    @include NotFoundPage-onTablet {
+      transform: translate(140px, 4px);
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      background-color: #2d4d76;
+      width: 6px;
+      height: 6px;
+      top: 2px;
+      left: 2px;
+      top: 3px;
+      left: 3px;
+      display: block;
+      border-radius: 4px;
+      box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  // time
+  s {
+    top: 50px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    font-size: 70px;
+    font-weight: 700;
+    padding-top: 60px;
+
+    @include NotFoundPage-onTablet {
+      font-size: 40px;
+    }
+
+    @include NotFoundPage-onPhone {
+      top: 10px;
+      font-size: 30px;
+    }
+  }
+
+  // action buttons
+  span {
+    bottom: 50px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    left: 30px;
+
+    & + span {
+      left: auto;
+      right: 30px;
+    }
+  }
+}
+
+#Error {
+  top: 135px ;
+  left: 5px ;
+
+  @include NotFoundPage-onPhone {
+    top: 50px;
+  }
+}
+
+#PageNotFound {
+  top: 220px ;
+  left: 3px;
+
+  @include NotFoundPage-onPhone {
+    top: 90px;
+    font-size: 25px;
+  }
+}
+.ErrorContainer {
+  margin: 0 auto;
+  max-width: 1136px;
+  box-sizing: border-box;
+  padding: 0px 20px 0 40px;
+  
+
+  @include NotFoundPage-onTablet{
+    padding: 20px;
+  }
+}
+
+.ErrorWrapper {
+  display: flex;
+  justify-content: space-between;
+
+
+  @include NotFoundPage-onTablet {
+    justify-content: space-around;
+    padding: 0;
+  }
+
+  @include NotFoundPage-onPhone {
+    position: relative;
+    width: 260px;
+    margin: 0 auto;
+  }
+
+}
+
+.ErrorMessage {
+  color: #313237;
+
+  @include NotFoundPage-onPhone {
+    position: absolute;
+    color: #fff;
+    top: 180px;
+    right: 45px;
+  }
 
   &__title {
-    color: red;
+    font-size: 70px;
+
+    @include NotFoundPage-onTablet {
+      font-size: 50px;
+    }
+
+    @include NotFoundPage-onPhone {
+      font-size: 30px;
+    }
+  }
+
+  &__text {
+    font-size: 50px;
+    width: 500px;
+
+    @include NotFoundPage-onTablet {
+      font-size: 30px;
+
+      width: 300px;
+    }
+
+    @include NotFoundPage-onPhone {
+      width: 200px;
+      font-size: 20px;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #F1F2F9;
+  }
+}
+
+.button {
+  margin-top: 30px;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #313237;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #111;
+    color: #fff;
+  }
+
+  @include NotFoundPage-onPhone {
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    border-radius: 5px;
   }
 }

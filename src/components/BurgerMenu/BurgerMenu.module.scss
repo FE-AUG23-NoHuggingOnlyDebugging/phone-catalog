@@ -1,0 +1,44 @@
+.burgerMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+
+  &_icon {
+    cursor: pointer;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.menu.open {
+  max-height: 568px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+  margin: 5px 0;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu a:hover {
+  color: #007bff;
+}

@@ -1,19 +1,20 @@
 import styles from './ProductsSlider.module.scss';
 
-import React, {useEffect, useRef, useState} from 'react';
-import { Product } from '../../types/Product';
+import React, { useEffect, useRef, useState } from 'react';
 import ProductList from '../ProductList/ProductList';
 import cn from 'classnames';
+import { useAppSelector } from '../../store/hooks';
+import { selectProducts } from '../../store/productsSlice';
 
 type Props = {
   title: string;
-  products: Product[];
 };
 
-const ProductsSlider: React.FC<Props> = ({ title, products }) => {
+const ProductsSlider: React.FC<Props> = ({ title }) => {
   const parentRef = useRef<HTMLDivElement>(null);
   const [parentWidth, setParentWidth] = useState(0);
   const [translateX, setTranslateX] = useState(0);
+  const products = useAppSelector(selectProducts);
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,8 +37,9 @@ const ProductsSlider: React.FC<Props> = ({ title, products }) => {
     };
   }, [parentRef, parentWidth]);
 
-  const blockWidth = ((parentWidth - 16 * 3) / 4 + 16) / parentWidth * 100;
-  const maxTranslateX = -blockWidth * (products.length - 4);
+  // const blockWidth = (((parentWidth - 16 * 3) / 4 + 16) / parentWidth) * 100;
+  const blockWidth = ((parentWidth + 16) / parentWidth) * 100;
+  const maxTranslateX = (-blockWidth * (products.length - 4)) / 4;
 
   const handleBack = () => {
     setTranslateX((prevTranslateX) => {
