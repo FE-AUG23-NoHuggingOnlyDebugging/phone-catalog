@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const BASE_URL = 'http://localhost:3001/';
+// const BASE_URL = 'http://localhost:3001/';
+const BASE_URL = 'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com';
 
 // To have autocompletion and avoid mistypes
 type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
@@ -10,7 +11,7 @@ function request<T>(
   data: any = null, // we can send any data to the server
 ): Promise<T> {
   const options: RequestInit = { method };
-  options.credentials = 'include';
+  // options.credentials = 'include';
 
   if (data) {
     // We add body and Content-Type only for the requests with data

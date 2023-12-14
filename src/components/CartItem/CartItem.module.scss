@@ -1,6 +1,6 @@
-@import "../../utils/styles/reset.css";
-@import "../../utils/styles/mixins.scss";
-@import "../../utils/styles/variables.scss";
+@import '../../utils/styles/reset.css';
+@import '../../utils/styles/mixins.scss';
+@import '../../utils/styles/variables.scss';
 
 .card {
   box-sizing: border-box;
@@ -39,6 +39,16 @@
 
   @include OnPhone {
     justify-content: space-between;
+  }
+}
+
+.photo_container {
+  width: 76px;
+  display: flex;
+  justify-content: center;
+
+  &__image {
+    max-height: 66px;
   }
 }
 
@@ -102,6 +112,7 @@
 }
 
 .price {
+  box-sizing: border-box;
   width: 80px;
 
   &_number {
@@ -110,6 +121,6 @@
     line-height: 32px;
     text-align: right;
 
-    color: $light-theme--primary
+    color: $light-theme--primary;
   }
 }

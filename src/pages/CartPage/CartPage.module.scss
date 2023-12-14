@@ -1,6 +1,23 @@
-@import "../../utils/styles/reset.css";
-@import "../../utils/styles/mixins.scss";
-@import "../../utils/styles/variables.scss";
+@import '../../utils/styles/reset.css';
+@import '../../utils/styles/mixins.scss';
+@import '../../utils/styles/variables.scss';
+
+.empty_cart_page {
+  // display: flex;
+  // flex-direction: column;
+  margin: 40px auto 80px;
+
+  font-family: $font-main;
+  font-weight: $font-bold;
+
+  @include OnTablet {
+    margin-bottom: 64px;
+  }
+
+  @include OnPhone {
+    margin-block: 24px 56px;
+  }
+}
 
 .page {
   width: max-content;
@@ -16,6 +33,11 @@
   @include OnPhone {
     margin-block: 24px 56px;
   }
+}
+
+.empty_cart_info {
+  margin-left: 40px;
+  margin-bottom: 32px;
 }
 
 .cart_info {
@@ -56,12 +78,12 @@
   color: $light-theme--primary;
 }
 
-// .empty_cart_message {
-//   font-size: 20px;
-//   font-weight: $font-semi-bold;
-//   line-height: 26px;
-//   text-align: left;
-// }
+.empty_cart_message {
+  font-size: 20px;
+  font-weight: $font-semi-bold;
+  line-height: 26px;
+  text-align: center;
+}
 
 .cart_content {
   display: flex;
@@ -135,7 +157,7 @@
   }
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: -50%;
