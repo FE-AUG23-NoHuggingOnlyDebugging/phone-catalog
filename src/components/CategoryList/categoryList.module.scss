@@ -1,0 +1,20 @@
+.category_list {
+  margin-bottom: 80px;
+
+  &__title {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.32px;
+    margin-bottom: 24px;
+  }
+
+  &__content {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+  }
+
+  &__item {
+    width: calc(100% / 3);
+  }
+}

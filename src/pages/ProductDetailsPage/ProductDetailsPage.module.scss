@@ -1,7 +1,53 @@
-.footer {
-  background-color: rgb(137, 137, 137);
+@import './ProductDetails-mixins.scss';
+@import './ProductDetails-variables.scss';
 
-  &__title {
-    color: red;
+.product {
+  margin: 0 auto;
+  max-width: 1136px;
+  color: $productDetails-text-color;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  box-sizing: border-box;
+
+  @include ProductDetails-OnTablet {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
+
+  @include ProductDetails-OnPhones {
+    padding: 0 17px;
+  }
+
+  p {
+    margin: 0 0 8px 0;
+  }
+}
+
+.productOverview {
+  display: flex;
+  gap: 65px;
+  margin-top: 40px;
+
+  @include ProductDetails-OnTablet {
+    gap: 17px;
+    justify-content: center;
+  }
+
+  @include ProductDetails-OnPhones {
+    flex-direction: column;
+  }
+}
+
+.mainTitle {
+  color: $productDetails-title-color;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 41px;
+  letter-spacing: -0.32px;
+  margin: 16px 0 0 0;
 }

@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'Mont';
+  src:
+    url('./fonts/Mont-Regular.otf') format('opentype'),
+    url('./fonts/Mont-SemiBold.otf') format('opentype'),
+    url('./fonts/Mont-Bold.otf') format('opentype');
+}
+
+.dropdown {
+  font-family: Mont, sans-serif;
+  position: relative;
+
+  &__title {
+    font-family: Mont, sans-serif;
+    font-size: 12px;
+    color: #89939a;
+    margin-bottom: 4px;
+  }
+
+  &__button {
+    font-family: Mont, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 176px;
+    padding: 12px;
+    border: 1px solid #e2e6e9;
+    box-sizing: border-box;
+    background-color: white;
+  }
+
+  &__current {
+    font-size: 14px;
+  }
+
+  &__list {
+    font-family: Mont, sans-serif;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 176px;
+    margin-top: 4px;
+    border: 1px solid #e2e6e9;
+    box-sizing: border-box;
+    padding-block: 8px;
+    z-index: 1;
+    background-color: white;
+  }
+
+  &__item {
+    padding-inline: 12px;
+    padding-block: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    color: #89939a;
+    cursor: pointer;
+
+    &:hover {
+      background: #fafbfc;
+      color: #313237;
+    }
+  }
+
+  &__visible {
+    display: initial;
+  }
+}

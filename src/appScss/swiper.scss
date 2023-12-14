@@ -1,0 +1,15 @@
+.swiper {
+  display: flex;
+  gap: 16px;
+
+  &__button {
+    background: transparent;
+    border: 1px solid #b4bdc3;
+    padding: 8px;
+  }
+
+  &__disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}

@@ -1,0 +1,87 @@
+@import '../../appScss/colors.scss';
+@import '../../appScss/typography.scss';
+@import '../../appScss/mixins.scss';
+
+.container {
+  &__title {
+    @include mob-h1;
+    text-align: center;
+    color: var(--primary-color);
+    margin: 24px 16px 0 16px;
+    @include onTable {
+      @include default-h1;
+      text-align: left;
+      margin: 32px 24px 0 32px;
+    }
+    @include onDesktop {
+      margin-top: 56px;
+    }
+  }
+}
+
+.carousel {
+  display: flex;
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+  @include onTable {
+    height: 189px;
+    margin-top: 32px;
+  }
+
+  @include onDesktop {
+    height: 400px;
+    margin-top: 56px;
+  }
+
+  &__btn {
+    display: none;
+    @include onTable {
+      display: block;
+      background-color: var(--white-color);
+      border: 1px solid var(--icons-color);
+      cursor: pointer;
+    }
+  }
+
+  &__slide {
+    width: 100%;
+    object-fit: cover;
+    object-position: 70% 50%;
+    margin-top: 24px;
+
+    @include onTable {
+      margin: 0 19px 0 19px;
+      overflow: visible;
+      object-position: top;
+    }
+    @include onDesktop {
+      margin: 0 16px 0 16px;
+      overflow: visible;
+    }
+
+    &_hidden {
+      display: none;
+    }
+  }
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+  gap: 14px;
+
+  &__indicator {
+    width: 14px;
+    height: 4px;
+    border: none;
+    background: var(--elements-color);
+    cursor: pointer;
+
+    &_active {
+      background: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+  }
+}

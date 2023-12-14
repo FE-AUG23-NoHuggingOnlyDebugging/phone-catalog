@@ -1,0 +1,197 @@
+// <---------all styles--------->
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all .5s;
+}
+
+// <---------typography--------->
+
+$font-name: 'Mont';
+
+@font-face {
+  font-family: $font-name;
+  src: url('../../../fonts/Mont-Bold.otf') format('opentype');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: $font-name;
+  src: url('../../../fonts/Mont-SemiBold.otf') format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: $font-name;
+  src: url('../../../fonts/Mont-Regular.otf') format('opentype');
+  font-weight: 500;
+}
+
+@mixin typography ($font-size,
+  $line-height,
+  $letter-spacing,
+  $font-weight,
+  $text-tarnsform: none) {
+  font-family: $font-name;
+  font-size: $font-size;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  font-weight: $font-weight;
+  text-transform: $text-tarnsform;
+}
+
+// <---------Typography (Desktop/Tablet)--------->
+
+@mixin default-h1 {
+  @include typography(48px, 56px, -0.01em, 800)
+}
+
+@mixin default-h2 {
+  @include typography(32px, 41px, -0.01em, 800)
+}
+
+@mixin default-h3 {
+  @include typography(22px, 31px, 0, 800)
+}
+
+@mixin default-h4 {
+  @include typography(20px, 26px, 0, 700)
+}
+
+@mixin uppercase {
+  @include typography(12px, 11px, 0.04em, 800, uppercase)
+}
+
+@mixin btns {
+  @include typography(14px, 21px, 0, 700)
+}
+
+@mixin bodyText {
+  @include typography(14px, 21px, 0, 500)
+}
+
+@mixin smallText {
+  @include typography(12px, 15px, 0, 700)
+}
+
+// <---------Typography (Mobile)--------->
+
+@mixin mob-h1 {
+  @include typography(32px, 41px, -0.01em, 800)
+}
+
+@mixin mob-h2 {
+  @include typography(22px, 31px, 0, 800)
+}
+
+@mixin mob-h3 {
+  @include typography(20px, 26px, 0, 700)
+}
+
+@mixin mob-h4 {
+  @include typography(16px, 20px, 0, 700)
+}
+
+// <---------LoginForm.module.scss styles--------->
+
+.form {
+  width: 400px;
+  padding: 30px 40px;
+
+  border: 2px solid rgba(12, 12, 12, 0.171);
+
+  color: #000;
+  box-shadow: 10px 10px 8px 1px rgba(30, 30, 37, 0.192);
+
+  &__title {
+    @include default-h2;
+    text-align: center;
+  }
+
+  .login_box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+
+    &__field:focus {
+      border: 2px solid #000;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.233), rgba(0, 0, 0, 0.178));
+    }
+
+    &__field {
+      width: 100%;
+      height: 100%;
+      padding: 23px 45px 20px 20px;
+
+      outline: 0;
+      border: 2px solid #eeeeeeef;
+
+      background: transparent;
+      color: #000;
+
+      @include uppercase;
+
+      &_error {
+        border: 2px solid #cc1212cb;
+        background: linear-gradient(to right, rgba(245, 244, 244, 0.233), rgba(255, 60, 60, 0.178));
+      }
+
+      &_error:focus {
+        border: 2px solid #cc1212cb;
+        background: linear-gradient(to right, rgba(245, 244, 244, 0.233), rgba(255, 60, 60, 0.178));
+      }
+    }
+
+    &__field::placeholder {
+      color: #00000056;
+    }
+
+    &__icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &_error {
+        color: #cc1212cb;
+      }
+    }
+  }
+
+  .error_message {
+    margin-top: 8px;
+    @include smallText;
+    color: #cc1212cb;
+  }
+
+  .btn {
+    width: 100%;
+    height: 50px;
+    margin: 24px 0;
+
+    border: 2px solid #f0f0f0;
+
+    background-color: #000;
+    color: #fff;
+
+    cursor: pointer;
+    @include btns;
+  }
+
+  .register_field {
+    text-align: center;
+    @include bodyText;
+
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}

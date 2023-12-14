@@ -1,0 +1,99 @@
+@import '../../appScss/text';
+@import '../../appScss/typography';
+@import '../../appScss/link';
+
+.product_card {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  max-width: 272px;
+  position: relative;
+  width: calc(25% - (16px * 0.75));
+  padding: 24px;
+  border: 1px solid #e2e6e9;
+  box-sizing: border-box;
+
+  &_slide {
+    flex: 1 0 calc(25% - 62px);
+    box-sizing: initial;
+  }
+
+  &:hover &__image {
+    transform: scale(1.1);
+  }
+
+  &__info {
+    width: 100%;
+  }
+
+  &__image {
+    box-sizing: border-box;
+    width: 208px;
+    height: 208px;
+    padding-inline: 12px;
+    margin-inline: auto;
+    margin-bottom: 24px;
+    object-fit: contain;
+    transition: transform 0.3s;
+    z-index: -1;
+  }
+
+  &__title {
+    height: 42px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    margin-bottom: 6.5px;
+  }
+
+  &__price {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 140%;
+    margin-bottom: 8px;
+
+    &::before {
+      content: '$';
+    }
+  }
+
+  &__fullPrice {
+    font-size: 22px;
+    font-weight: 500;
+    text-decoration: line-through;
+    margin-left: 8px;
+    color: #89939a;
+
+    &::before {
+      content: '$';
+    }
+  }
+
+  &__features {
+    display: flex;
+    gap: 8px 0;
+    flex-flow: column nowrap;
+    padding-top: 16px;
+    border-top: 1px solid #e2e6e9;
+  }
+
+  &__feature {
+    display: flex;
+    justify-content: space-between;
+
+    &_title {
+      font-size: 12px;
+      color: #89939a;
+    }
+
+    &_value {
+      font-size: 12px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    margin-top: 16px;
+    gap: 0 8px;
+  }
+}

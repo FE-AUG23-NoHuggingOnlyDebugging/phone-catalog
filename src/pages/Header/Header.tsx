@@ -1,60 +1,30 @@
-'use strict';
-
-import { NavLink } from 'react-router-dom';
-import {
-  useAppDispatch, //for instance,
-  useAppSelector,
-} from '../../store/hooks';
-import {
-  addToFavorites,
-  selectFavoritesCount,
-  // selectFavoritesGoods, //for instance,
-  // addToFavorites, //for instance, function to act with store (and local store in this case)
-  // removeFromFavorites, //for instance, function to act with store (and local store in this case)
-} from '../../store/favoriteSlice';
-
+import { useState, useEffect } from 'react';
 import styles from './Header.module.scss';
-import { SupperButton } from '../../components/SupperButton';
+import NavMobile from './NavMobile';
+import NavDesktop from './NavDesktop';
 
-export const Header = () => {
-  const count = useAppSelector(selectFavoritesCount);
-  //const favoriteGoods = useAppSelector(selectFavoritesGoods); //for instance
-  const dispatch = useAppDispatch(); //for instance, how to import reducers ''trigger''
+const Header = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  return (
-    <div className={styles.header}>
-      <h1 className={styles.header__title}>Header</h1>
-      <nav>
-        <NavLink	to={'/'}>home_</NavLink>
-        <NavLink	to={'/phones'}>_phone</NavLink>
-      </nav>
-      <span>Favorites count:</span>
-      <span>{count}</span>
-      <button
-        onClick={() =>
-          dispatch(
-            addToFavorites({
-              id: '1',
-              category: 'phones',
-              phoneId: 'apple-iphone-7-32gb-black',
-              itemId: 'apple-iphone-7-32gb-black',
-              name: 'Apple iPhone 7 32GB Black',
-              fullPrice: 400,
-              price: 375,
-              screen: '4.7 IPS',
-              capacity: '32GB',
-              color: 'black',
-              ram: '2GB',
-              year: 2016,
-              image: 'img/phones/apple-iphone-7/black/00.jpg',
-            }),
-          )
-        }
-      >
-        addGoods
-      </button>
-      {process.env.BASE_URL}
-      <SupperButton />
-    </div>
-  );
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {};
+  }, [window.innerWidth]);
+
+  let componentToRender;
+
+  if (windowWidth < 320) {
+    componentToRender = <NavMobile />;
+  } else {
+    componentToRender = <NavDesktop />;
+  }
+
+  return <header className={styles.header}>{componentToRender}</header>;
 };
+
+export default Header;

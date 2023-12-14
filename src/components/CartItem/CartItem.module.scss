@@ -1,0 +1,156 @@
+@import '../../appScss/reset';
+@import '../../appScss/mixins.scss';
+
+@font-face {
+  font-family: 'Mont';
+  src: url('../../fonts/Mont-Bold.otf') format('opentype');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('../../fonts/Mont-SemiBold.otf') format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('../../fonts/Mont-Regular.otf') format('opentype');
+  font-weight: 500;
+}
+
+$light-theme--primary: rgba(49, 50, 55, 1);
+$light-theme--secondary: rgba(137, 147, 154, 1);
+$light-theme--icons: rgba(180, 189, 195, 1);
+$light-theme--elements: rgba(226, 230, 233, 1);
+$light-theme--white: rgba(255, 255, 255, 1);
+$light-theme--green: rgba(39, 174, 96, 1);
+$light-theme--red: rgba(235, 87, 87, 1);
+
+$font-main: 'Mont', sans-serif;
+$font-bold: 800;
+$font-semi-bold: 700;
+$font-regular: 500;
+
+.card {
+  box-sizing: border-box;
+  display: flex;
+  padding: 24px;
+  gap: 24px;
+  border: 1px solid $light-theme--elements;
+
+  font-family: $font-main;
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  @include OnPhone {
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+.first_part {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  @include OnPhone {
+    gap: 16px;
+  }
+}
+
+.second_part {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  @include OnPhone {
+    justify-content: space-between;
+  }
+}
+
+.photo_container {
+  width: 76px;
+  display: flex;
+  justify-content: center;
+
+  &__image {
+    max-height: 66px;
+  }
+}
+
+.name {
+  width: 336px;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+
+  color: $light-theme--primary;
+
+  @include OnTablet {
+    width: 176px;
+  }
+
+  @include OnPhone {
+    width: 128px;
+  }
+}
+
+.device_count {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+
+  &__border {
+    padding: 8px;
+    border: 1px solid $light-theme--icons;
+    color: $light-theme--primary;
+
+    &:hover {
+      border-color: $light-theme--primary;
+    }
+  }
+
+  &_disabled {
+    padding: 8px;
+    border: 1px solid $light-theme--elements;
+    color: $light-theme--icons;
+  }
+
+  &:hover {
+    color: $light-theme--primary;
+    transition: color 0.3s;
+  }
+}
+
+.number {
+  min-width: 32px;
+
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+
+  color: rgba(0, 0, 0, 1);
+}
+
+.price {
+  box-sizing: border-box;
+  width: 80px;
+
+  &_number {
+    font-size: 22px;
+    font-weight: $font-bold;
+    line-height: 32px;
+    text-align: right;
+
+    color: $light-theme--primary;
+  }
+}
