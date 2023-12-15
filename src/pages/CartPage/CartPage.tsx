@@ -71,7 +71,7 @@ export const CartPage = () => {
         })}
       >
         <button
-          type='button'
+          type="button"
           className={styles.button}
           onClick={() => window.history.back()}
         >
@@ -88,31 +88,32 @@ export const CartPage = () => {
 
       {isLoading && <p className={styles.loading_message}>Loading</p>}
 
-      {isError &&
-        <p className={styles.error_message}>An error occured while recieving data</p>
-      }
+      {isError && (
+        <p className={styles.error_message}>
+          An error occured while recieving data
+        </p>
+      )}
 
-      {(products.length > 0 && !isLoading && !isError) &&
-        (
-          <div className={styles.cart_content}>
-            <div className={styles.cards}>
-              {products.map((product) => (
-                <CartItem product={product} key={product.id} />
-              ))}
-            </div>
-
-            <div className={styles.total_price}>
-              <h2 className={styles.price}>{`$${totalSum}`}</h2>
-              <p
-                className={styles.price_text}
-              >{`Total for ${productsCount} items`}</p>
-              <a href="#" className={styles.checkout_button}>
-                Checkout
-              </a>
-            </div>
+      {products.length > 0 && !isLoading && !isError && (
+        <div className={styles.cart_content}>
+          <div className={styles.cards}>
+            {products.map((product) => (
+              <CartItem product={product} key={product.id} />
+            ))}
           </div>
-        )}
-      {(!products.length && !isLoading && !isError) && (
+
+          <div className={styles.total_price}>
+            <h2 className={styles.price}>{`$${totalSum}`}</h2>
+            <p
+              className={styles.price_text}
+            >{`Total for ${productsCount} items`}</p>
+            <a href="#" className={styles.checkout_button}>
+              Checkout
+            </a>
+          </div>
+        </div>
+      )}
+      {!products.length && !isLoading && !isError && (
         <p className={styles.empty_cart_message}>Your cart is empty</p>
       )}
     </div>

@@ -42,7 +42,7 @@ export const CartItem: React.FC<Props> = ({ product }) => {
       <article className={styles.card}>
         <div className={styles.first_part}>
           <button
-            type='button'
+            type="button"
             onClick={handleClickRemove}
             className={styles.button}
           >
@@ -67,7 +67,7 @@ export const CartItem: React.FC<Props> = ({ product }) => {
         <div className={styles.second_part}>
           <div className={styles.device_count}>
             <button
-              type='button'
+              type="button"
               className={cn(styles.button, {
                 [styles.button__border]: count > 1,
                 [styles.button__border__disabled]: count <= 1,
@@ -85,7 +85,7 @@ export const CartItem: React.FC<Props> = ({ product }) => {
             <span className={styles.number}>{count}</span>
 
             <button
-              type='button'
+              type="button"
               className={`${styles.button} ${styles.button__border}`}
               onClick={handleClickAdd}
             >

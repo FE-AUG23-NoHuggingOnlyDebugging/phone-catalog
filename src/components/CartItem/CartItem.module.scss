@@ -6,38 +6,40 @@
 .card {
   box-sizing: border-box;
   display: flex;
-  padding: 24px;
-  gap: 24px;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
   border: 1px solid var(--elements-color);
 
   &:not(:last-child) {
     margin-bottom: 16px;
   }
 
-  @include OnPhone {
-    flex-direction: column;
-    padding: 16px;
-    gap: 16px;
+  @include onTablet {
+    flex-direction: row;
+    padding: 24px;
+    gap: 24px;
   }
 }
 
 .first_part {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 
-  @include OnPhone {
-    gap: 16px;
+  @include onTablet {
+    gap: 24px;
   }
 }
 
 .second_part {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 24px;
 
-  @include OnPhone {
-    justify-content: space-between;
+  @include onTablet {
+    justify-content: center;
   }
 }
 
@@ -52,19 +54,18 @@
 }
 
 .name {
-  width: 336px;
+  width: 128px;
 
   @include bodyText;
-  font-weight: 600;
 
   color: var(--primary-color);
 
-  @include OnTablet {
+  @include onTablet {
     width: 176px;
   }
 
-  @include OnPhone {
-    width: 128px;
+  @include onDesktop {
+    width: 336px;
   }
 }
 
