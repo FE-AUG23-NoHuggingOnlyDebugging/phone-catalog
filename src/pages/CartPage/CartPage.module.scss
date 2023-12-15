@@ -75,7 +75,9 @@
   color: var(--primary-color);
 }
 
-.empty_cart_message {
+.empty_cart_message,
+.loading_message,
+.error_message {
   @include default-h4;
 
   @include mob-h4;

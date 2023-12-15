@@ -11,6 +11,8 @@ import axios from 'axios';
 
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const cartStorageList = useAppSelector(selectCartProducts);
 
@@ -30,6 +32,9 @@ export const CartPage = () => {
         setProducts(updatedProducts);
       } catch (error) {
         console.error('Сталася помилка при отриманні даних:', error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -77,25 +82,33 @@ export const CartPage = () => {
         <h1 className={styles.title}>Cart</h1>
       </div>
 
-      {products.length > 0 ? (
-        <div className={styles.cart_content}>
-          <div className={styles.cards}>
-            {products.map((product) => (
-              <CartItem product={product} key={product.id} />
-            ))}
-          </div>
+      {isLoading && <p className={styles.loading_message}>Loading</p>}
 
-          <div className={styles.total_price}>
-            <h2 className={styles.price}>{`$${totalSum}`}</h2>
-            <p
-              className={styles.price_text}
-            >{`Total for ${productsCount} items`}</p>
-            <a href="#" className={styles.checkout_button}>
-              Checkout
-            </a>
+      {isError &&
+        <p className={styles.error_message}>An error occured while recieving data</p>
+      }
+
+      {(products.length > 0 && !isLoading && !isError) &&
+        (
+          <div className={styles.cart_content}>
+            <div className={styles.cards}>
+              {products.map((product) => (
+                <CartItem product={product} key={product.id} />
+              ))}
+            </div>
+
+            <div className={styles.total_price}>
+              <h2 className={styles.price}>{`$${totalSum}`}</h2>
+              <p
+                className={styles.price_text}
+              >{`Total for ${productsCount} items`}</p>
+              <a href="#" className={styles.checkout_button}>
+                Checkout
+              </a>
+            </div>
           </div>
-        </div>
-      ) : (
+        )}
+      {(!products.length && !isLoading && !isError) && (
         <p className={styles.empty_cart_message}>Your cart is empty</p>
       )}
     </div>
