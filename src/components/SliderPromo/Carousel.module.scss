@@ -1,0 +1,52 @@
+@import '../../appScss/colors.scss';
+@import '../../appScss/mixins.scss';
+
+.carousel {
+    display: flex;
+    height: 320px;
+    position: relative;
+    overflow: hidden;
+
+    @include onTable {
+        height: 189px;
+        margin-top: 32px;
+    }
+
+    @include onDesktop {
+        height: 400px;
+        margin-top: 56px;
+    }
+
+    &__btn {
+        display: none;
+
+        @include onTable {
+            display: block;
+            background-color: var(--white-color);
+            border: 1px solid var(--icons-color);
+            cursor: pointer;
+        }
+    }
+
+    &__slide {
+        width: 100%;
+        object-fit: cover;
+        object-position: 70% 50%;
+        margin-top: 24px;
+
+        @include onTable {
+            margin: 0 19px 0 19px;
+            overflow: visible;
+            object-position: top;
+        }
+
+        @include onDesktop {
+            margin: 0 16px 0 16px;
+            overflow: visible;
+        }
+
+        &_hidden {
+            display: none;
+        }
+    }
+}

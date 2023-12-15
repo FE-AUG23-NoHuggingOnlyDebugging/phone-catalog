@@ -1,0 +1,21 @@
+@import '../../appScss/colors.scss';
+
+.indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+    gap: 14px;
+
+    &__indicator {
+        width: 14px;
+        height: 4px;
+        border: none;
+        background: var(--elements-color);
+        cursor: pointer;
+
+        &_active {
+            background: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+    }
+}

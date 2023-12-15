@@ -2,7 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { useTransition, animated } from 'react-spring';
 
-import styles from '../SliderPromo/SliderPromo.module.scss';
+import styles from './Container.module.scss';
+
 import sliderPromoData from './data/sliderPromoData.json';
 
 export const SliderPromo = () => {
