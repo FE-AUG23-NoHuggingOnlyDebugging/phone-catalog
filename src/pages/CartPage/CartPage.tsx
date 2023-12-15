@@ -70,14 +70,18 @@ export const CartPage = () => {
           [styles.empty_cart_info]: products.length === 0,
         })}
       >
-        <a href="#" className={styles.link}>
+        <button
+          type='button'
+          className={styles.button}
+          onClick={() => window.history.back()}
+        >
           <img
             src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-            alt="Left arrow"
+            alt="left arrow"
             className={cn(styles.icon, styles.arrow__left)}
           />
           <span className={styles.text}>Back</span>
-        </a>
+        </button>
 
         <h1 className={styles.title}>Cart</h1>
       </div>

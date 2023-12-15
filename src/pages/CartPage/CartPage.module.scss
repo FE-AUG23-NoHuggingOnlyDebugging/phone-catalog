@@ -40,11 +40,13 @@
   margin-bottom: 32px;
 }
 
-.link {
+.button {
   margin-bottom: 16px;
   display: flex;
   align-items: center;
-  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .icon {
@@ -58,6 +60,8 @@
   color: var(--secondary-color);
 
   @include smallText;
+
+  line-height: 16px;
 
   &:hover {
     color: var(--primary-color);
