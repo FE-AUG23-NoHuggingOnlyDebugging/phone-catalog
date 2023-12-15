@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import style from './Features.module.scss';
 import React from 'react';
 import { ProductDetails } from '../../../../types/ProductDetails';
+import { colors } from './Colors';
 
 type Props = {
   product: ProductDetails;
@@ -27,9 +28,11 @@ export const Features: React.FC<Props> = ({
         <p className={style.features__colorsText}>Available colors</p>
         <div className={style.features__colorsBlock}>
           {product?.colorsAvailable.map((color) => {
+
+            const objectColor = colors.find(colorItem => colorItem.name === color);
             return (
               <Link
-                to={`/products/${product.namespaceId}-${activeMemory}-${color}`}
+                to={`/product/${product.namespaceId}-${activeMemory}-${color}`}
                 key={color}
                 className={cn(style.colorItemWrapper, {
                   [style.activeColor]: productId?.includes(color),
@@ -39,7 +42,7 @@ export const Features: React.FC<Props> = ({
                 }}
               >
                 <div
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: objectColor?.hash }}
                   className={style.colorItem}
                 />
               </Link>
@@ -56,7 +59,7 @@ export const Features: React.FC<Props> = ({
 
             return (
               <Link
-                to={`/products/${product.namespaceId}-${lowerCCapacity}-${activeColor}`}
+                to={`/product/${product.namespaceId}-${lowerCCapacity}-${activeColor}`}
                 key={capacity}
                 onClick={() => setActiveMemory(lowerCCapacity)}
                 className={cn(style.features__memoryItem, {
