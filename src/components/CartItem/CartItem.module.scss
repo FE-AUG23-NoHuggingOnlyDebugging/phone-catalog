@@ -1,45 +1,14 @@
 @import '../../appScss/reset';
 @import '../../appScss/mixins.scss';
-
-@font-face {
-  font-family: 'Mont';
-  src: url('../../fonts/Mont-Bold.otf') format('opentype');
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: 'Mont';
-  src: url('../../fonts/Mont-SemiBold.otf') format('opentype');
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: 'Mont';
-  src: url('../../fonts/Mont-Regular.otf') format('opentype');
-  font-weight: 500;
-}
-
-$light-theme--primary: rgba(49, 50, 55, 1);
-$light-theme--secondary: rgba(137, 147, 154, 1);
-$light-theme--icons: rgba(180, 189, 195, 1);
-$light-theme--elements: rgba(226, 230, 233, 1);
-$light-theme--white: rgba(255, 255, 255, 1);
-$light-theme--green: rgba(39, 174, 96, 1);
-$light-theme--red: rgba(235, 87, 87, 1);
-
-$font-main: 'Mont', sans-serif;
-$font-bold: 800;
-$font-semi-bold: 700;
-$font-regular: 500;
+@import '../../appScss/colors.scss';
+@import '../../appScss/typography.scss';
 
 .card {
   box-sizing: border-box;
   display: flex;
   padding: 24px;
   gap: 24px;
-  border: 1px solid $light-theme--elements;
-
-  font-family: $font-main;
+  border: 1px solid var(--elements-color);
 
   &:not(:last-child) {
     margin-bottom: 16px;
@@ -85,11 +54,10 @@ $font-regular: 500;
 .name {
   width: 336px;
 
-  font-size: 14px;
+  @include bodyText;
   font-weight: 600;
-  line-height: 21px;
 
-  color: $light-theme--primary;
+  color: var(--primary-color);
 
   @include OnTablet {
     width: 176px;
@@ -111,22 +79,22 @@ $font-regular: 500;
 
   &__border {
     padding: 8px;
-    border: 1px solid $light-theme--icons;
-    color: $light-theme--primary;
+    border: 1px solid var(--icons-color);
+    color: var(--primary-color);
 
     &:hover {
-      border-color: $light-theme--primary;
+      border-color: var(--primary-color);
     }
   }
 
   &_disabled {
     padding: 8px;
-    border: 1px solid $light-theme--elements;
-    color: $light-theme--icons;
+    border: 1px solid var(--elements-color);
+    color: var(--icons-color);
   }
 
   &:hover {
-    color: $light-theme--primary;
+    color: var(--primary-color);
     transition: color 0.3s;
   }
 }
@@ -134,8 +102,9 @@ $font-regular: 500;
 .number {
   min-width: 32px;
 
+  @include bodyText;
+
   font-weight: 600;
-  font-size: 14px;
   text-align: center;
 
   color: rgba(0, 0, 0, 1);
@@ -146,11 +115,10 @@ $font-regular: 500;
   width: 80px;
 
   &_number {
-    font-size: 22px;
-    font-weight: $font-bold;
-    line-height: 32px;
+    @include default-h3;
+
     text-align: right;
 
-    color: $light-theme--primary;
+    color: var(--primary-color);
   }
 }
