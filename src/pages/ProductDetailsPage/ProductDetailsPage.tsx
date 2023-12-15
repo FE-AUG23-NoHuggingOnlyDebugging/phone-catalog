@@ -8,6 +8,7 @@ import { Description } from './Components/DescriptionDetails/DescriptionDetails'
 import { Features } from './Components/FeaturesBlock/Features';
 import { Gallery } from './Components/GalleryBlock/Gallery';
 import axios from 'axios';
+import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -50,7 +51,7 @@ export const ProductDetailsPage = () => {
   return (
     <>
       {isLoading && <h1>Loading</h1>}
-      {isError && <h1>Error</h1>}
+      {isError && <NotFoundPage />}
       {product && !isError && !isLoading && (
         <section className={style.product}>
           <div>
