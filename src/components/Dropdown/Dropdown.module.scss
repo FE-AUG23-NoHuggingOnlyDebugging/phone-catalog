@@ -1,23 +1,8 @@
-@font-face {
-  font-family: 'Mont';
-  src:
-    url('./fonts/Mont-Regular.otf') format('opentype'),
-    url('./fonts/Mont-SemiBold.otf') format('opentype'),
-    url('./fonts/Mont-Bold.otf') format('opentype');
-}
-
 .dropdown {
   font-family: Mont, sans-serif;
   position: relative;
 
-  &__title {
-    font-family: Mont, sans-serif;
-    font-size: 12px;
-    color: #89939a;
-    margin-bottom: 4px;
-  }
-
-  &__button {
+   &__button {
     font-family: Mont, sans-serif;
     display: flex;
     align-items: center;
@@ -27,6 +12,10 @@
     border: 1px solid #e2e6e9;
     box-sizing: border-box;
     background-color: white;
+
+    &:focus {
+      border: 1px solid #313237;
+    }
   }
 
   &__current {
