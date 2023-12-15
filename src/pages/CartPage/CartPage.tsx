@@ -15,17 +15,26 @@ export const CartPage = () => {
   const cartStorageList = useAppSelector(selectCartProducts);
 
   useEffect(() => {
-    cartStorageList.forEach((item) => {
-      axios
-        .get<ProductDetails>(
-          `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${item.name}`,
-        )
-        .then((res) => setProducts((curr) => [...curr, res.data]))
-        .catch((error) => {
-          console.error('Сталася помилка при отриманні даних:', error);
-        });
-    });
-  }, []);
+    const getCart = async () => {
+      try {
+        const requests = cartStorageList.map((item) =>
+          axios.get<ProductDetails>(
+            `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${item.name}`
+          )
+        );
+
+        const responses = await Promise.all(requests);
+
+        const updatedProducts = responses.map((res) => res.data);
+
+        setProducts(updatedProducts);
+      } catch (error) {
+        console.error('Сталася помилка при отриманні даних:', error);
+      }
+    };
+
+    getCart();
+  }, [cartStorageList]);
 
   let totalSum = 0;
   products.forEach((product) => {
@@ -37,6 +46,8 @@ export const CartPage = () => {
       totalSum += product.priceDiscount * productInfo.quantity;
     }
   });
+
+  const productsCount = cartStorageList.reduce((curr, next) => curr + next.quantity, 0);
 
   return (
     <div
@@ -75,7 +86,7 @@ export const CartPage = () => {
             <h2 className={styles.price}>{`$${totalSum}`}</h2>
             <p
               className={styles.price_text}
-            >{`Total for ${products.length} items`}</p>
+            >{`Total for ${productsCount} items`}</p>
             <a href="#" className={styles.checkout_button}>
               Checkout
             </a>
