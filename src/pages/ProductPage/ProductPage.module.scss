@@ -58,8 +58,9 @@ html {
   }
 
   :global(.set-width) {
-    width: 128px;
+    width: 136px;
+    @include onDesktop {
+      width: 128px;
+    }
   }
 }
-
-
