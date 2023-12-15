@@ -1,17 +1,19 @@
 .dropdown {
   font-family: Mont, sans-serif;
   position: relative;
+  width: 176px;
 
-   &__button {
+  &__button {
     font-family: Mont, sans-serif;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 176px;
+    width: 100%;
     padding: 12px;
     border: 1px solid #e2e6e9;
     box-sizing: border-box;
     background-color: white;
+    cursor: poiner;
 
     &:focus {
       border: 1px solid #313237;
@@ -27,8 +29,8 @@
     position: absolute;
     top: 100%;
     left: 0;
-    width: 176px;
-    margin-top: 4px;
+    right: 0;
+     margin-top: 4px;
     border: 1px solid #e2e6e9;
     box-sizing: border-box;
     padding-block: 8px;
@@ -55,3 +57,5 @@
     display: initial;
   }
 }
+
+

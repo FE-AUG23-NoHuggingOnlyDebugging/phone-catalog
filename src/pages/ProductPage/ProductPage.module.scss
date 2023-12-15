@@ -56,4 +56,10 @@ html {
   &__modelCount {
     color: $graySecondary;
   }
+
+  :global(.set-width) {
+    width: 128px;
+  }
 }
+
+

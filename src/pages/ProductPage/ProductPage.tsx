@@ -38,7 +38,8 @@ export const ProductPage = () => {
 
   const handleSearchParams = (setKey: string, value: string) => {
     setSearchParams((searchParams) => {
-      searchParams.set(setKey, value); console.log(setKey, value);
+      searchParams.set(setKey, value);
+      console.log(setKey, value);
       return searchParams;
     });
   };
@@ -53,11 +54,29 @@ export const ProductPage = () => {
       <section className={styles.catalog__filters}>
         <div>
           <p className={styles.catalog__filters_title}>Sort by</p>
-          <Dropdown list={[['age', 'Newest'], ['title', 'Alphabetically'], ['price', 'Price']]} setOn={'sort'} onHandle={handleSearchParams} />
+          <Dropdown
+            list={[
+              ['age', 'Newest'],
+              ['title', 'Alphabetically'],
+              ['price', 'Price'],
+            ]}
+            setOn={'sort'}
+            onHandle={handleSearchParams}
+          />
         </div>
         <div>
           <p className={styles.catalog__filters_title}>Items on page</p>
-          <Dropdown list={[['4', '4'], ['8', '8'], ['16', '16'], ['all', 'all']]} setOn={'perPage'} onHandle={handleSearchParams} />
+          <Dropdown
+            list={[
+              ['4', '4'],
+              ['8', '8'],
+              ['16', '16'],
+              ['all', 'all'],
+            ]}
+            setOn={'perPage'}
+            onHandle={handleSearchParams}
+            rootClassName={'set-width'}
+          />
         </div>
       </section>
       {!isLoading ? (
