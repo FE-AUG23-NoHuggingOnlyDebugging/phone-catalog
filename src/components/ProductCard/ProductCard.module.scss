@@ -2,14 +2,21 @@
 @import '../../appScss/typography';
 @import '../../appScss/link';
 
-.product_item {
+.product_card {
   display: flex;
   align-items: center;
   flex-flow: row wrap;
+  max-width: 272px;
   position: relative;
-  flex: 1 0 calc(25% - 62px);
+  width: calc(25% - (16px * 0.75));
   padding: 24px;
   border: 1px solid #e2e6e9;
+  box-sizing: border-box;
+
+  &_slide {
+    flex: 1 0 calc(25% - 62px);
+    box-sizing: initial;
+  }
 
   &:hover &__image {
     transform: scale(1.1);

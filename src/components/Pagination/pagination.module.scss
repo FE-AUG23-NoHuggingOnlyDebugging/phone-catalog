@@ -1,0 +1,39 @@
+@import "../../appScss/arrow";
+
+.pagination {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 40px;
+  justify-content: center;
+
+  &__list {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__item {
+    display: inline-block;
+    padding: 7px;
+    border: 1px solid #e2e6e9;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    color: #313237;
+    height: 32px;
+    min-width: 32px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  &__selected {
+    background: #313237;
+    color: #ffffff;
+    border: 1px solid #313237;
+  }
+
+  &__disabled {
+    opacity: 0.5;
+  }
+}
