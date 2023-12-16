@@ -1,8 +1,7 @@
 $tablet-min-width: 640px;
 $desktop-min-width: 1200px;
-$grayIcons: #b4bdc3;
-$grayPrimary: #313237;
-$graySecondary: #89939a;
+
+@import '../../appScss/index.scss';
 
 @mixin onTablet {
   @media (min-width: $tablet-min-width) {
@@ -19,7 +18,7 @@ $graySecondary: #89939a;
 html {
   font-family: Mont, sans-serif;
   font-weight: 600;
-  color: #313237;
+  color: var(--primary-color);
 }
 
 .wrapper {
@@ -49,12 +48,12 @@ html {
     margin-bottom: 24px;
 
     &_title {
-      color: $graySecondary;
+      color: var(--secondary-color);
       margin-bottom: 4px;
     }
   }
   &__modelCount {
-    color: $graySecondary;
+    color: var(--secondary-color);
   }
 
   :global(.set-width) {

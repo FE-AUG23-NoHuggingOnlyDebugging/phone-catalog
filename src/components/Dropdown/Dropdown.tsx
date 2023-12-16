@@ -4,29 +4,33 @@ import styles from './Dropdown.module.scss';
 type Props = {
   list: string[][];
   setOn: string;
-  rootClassName?: string
+  rootClassName?: string;
   onHandle: (setKey: string, value: string) => void;
 };
 
-const Dropdown: React.FC<Props> = ({ list, setOn, rootClassName, onHandle }) => {
+const Dropdown: React.FC<Props> = ({
+  list,
+  setOn,
+  rootClassName,
+  onHandle,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [current, setCurrent] = useState(list[0][1]);
 
   return (
-    <div className={`${styles.catalog__dropdown} ${styles.dropdown} ${rootClassName || ''}`}>
+    <div
+      className={`${styles.catalog__dropdown} ${styles.dropdown} ${
+        rootClassName || ''
+      }`}
+    >
       <button
         className={styles.dropdown__button}
         onClick={() => setIsOpen((x) => !x)}
       >
         <span className={styles.dropdown__current}>{current}</span>
         <img
-          src={
-            process.env.PUBLIC_URL +
-            `${
-              isOpen ? '/img/icons/arrow-up.svg' : '/img/icons/arrow-down.svg'
-            }`
-          }
-          className={styles.arrow__bottom}
+          src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
+          className={`${isOpen ? styles.arrow__top : styles.arrow__bottom}`}
           alt="Arrow"
         />
       </button>
