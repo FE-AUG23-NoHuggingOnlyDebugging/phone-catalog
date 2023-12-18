@@ -9,12 +9,11 @@ export const AuthRoot = () => {
   return (
     <>
       <div className={styles.container}>
-        {
-          location.pathname === '/login' ?
-            <LoginForm /> :
-            location.pathname === '/register' ?
-              <RegisterForm /> : null
-        }
+        {location.pathname === '/login' ? (
+          <LoginForm />
+        ) : location.pathname === '/register' ? (
+          <RegisterForm />
+        ) : null}
       </div>
     </>
   );

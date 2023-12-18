@@ -30,11 +30,11 @@ export const RegisterForm = () => {
     event.preventDefault();
 
     if (
-      !name
-      || !email
-      || !pass
-      || !namePattern.test(name)
-      || !passPattern.test(pass)
+      !name ||
+      !email ||
+      !pass ||
+      !namePattern.test(name) ||
+      !passPattern.test(pass)
     ) {
       setHasNameError(!name || !namePattern.test(name));
       setHasEmailError(!email);
@@ -67,19 +67,12 @@ export const RegisterForm = () => {
         </p>
       );
     } else if (hasFieldRrror) {
-      return (
-        <p className={styles.error_message}>
-          Please enter {message}
-        </p>
-      );
+      return <p className={styles.error_message}>Please enter {message}</p>;
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={styles.form}
-    >
+    <form onSubmit={handleSubmit} className={styles.form}>
       <h1 className={styles.form__title}>Create Account</h1>
 
       <div className={styles.login_box}>
@@ -98,19 +91,12 @@ export const RegisterForm = () => {
         />
         <FaUser
           className={cn(styles.login_box__icon, {
-            [styles.login_box__icon_error]: hasNameError
+            [styles.login_box__icon_error]: hasNameError,
           })}
         />
       </div>
 
-      {
-        errorMessages(
-          hasNameError,
-          namePattern,
-          name,
-          'name'
-        )
-      }
+      {errorMessages(hasNameError, namePattern, name, 'name')}
 
       <div className={styles.login_box}>
         <input
@@ -128,16 +114,14 @@ export const RegisterForm = () => {
         />
         <MdEmail
           className={cn(styles.login_box__icon, {
-            [styles.login_box__icon_error]: hasEmailError
+            [styles.login_box__icon_error]: hasEmailError,
           })}
         />
       </div>
 
-      {hasEmailError &&
-        <p className={styles.error_message}>
-          Please enter email
-        </p>
-      }
+      {hasEmailError && (
+        <p className={styles.error_message}>Please enter email</p>
+      )}
 
       <div className={styles.login_box}>
         <input
@@ -155,25 +139,27 @@ export const RegisterForm = () => {
         />
         <FaLock
           className={cn(styles.login_box__icon, {
-            [styles.login_box__icon_error]: hasPassError
+            [styles.login_box__icon_error]: hasPassError,
           })}
         />
       </div>
 
-      {
-        errorMessages(
-          hasPassError,
-          passPattern,
-          pass,
-          'password',
-          'and numbers'
-        )
-      }
+      {errorMessages(
+        hasPassError,
+        passPattern,
+        pass,
+        'password',
+        'and numbers',
+      )}
 
-      <button type="submit" className={styles.btn}>Сreate</button>
+      <button type="submit" className={styles.btn}>
+        Сreate
+      </button>
 
       <div className={styles.register_field}>
-        <p>Have an account? <Link to='/login'>Sign In</Link></p>
+        <p>
+          Have an account? <Link to="/login">Sign In</Link>
+        </p>
       </div>
     </form>
   );
