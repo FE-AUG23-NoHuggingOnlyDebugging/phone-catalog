@@ -3,6 +3,7 @@ import styles from './Dropdown.module.scss';
 
 type Props = {
   list: string[][];
+  currentItem: string;
   setOn: string;
   rootClassName?: string;
   onHandle: (setKey: string, value: string) => void;
@@ -10,12 +11,13 @@ type Props = {
 
 const Dropdown: React.FC<Props> = ({
   list,
+  currentItem,
   setOn,
   rootClassName,
   onHandle,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [current, setCurrent] = useState(list[0][1]);
+  const [current, setCurrent] = useState(currentItem);
 
   return (
     <div

@@ -60,6 +60,7 @@ export const ProductPage = () => {
               ['title', 'Alphabetically'],
               ['price', 'Price'],
             ]}
+            currentItem={'Newest'}
             setOn={'sort'}
             onHandle={handleSearchParams}
           />
@@ -73,6 +74,7 @@ export const ProductPage = () => {
               ['16', '16'],
               ['all', 'all'],
             ]}
+            currentItem={'16'}
             setOn={'perPage'}
             onHandle={handleSearchParams}
             rootClassName={'set-width'}
