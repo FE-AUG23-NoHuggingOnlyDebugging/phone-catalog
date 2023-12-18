@@ -7,6 +7,7 @@ import { colors } from './Colors';
 
 type Props = {
   product: ProductDetails;
+  location: string;
   productId: string | undefined;
   activeMemory: string | null;
   activeColor: string | null;
@@ -16,12 +17,15 @@ type Props = {
 
 export const Features: React.FC<Props> = ({
   product,
+  location,
   productId,
   activeColor,
   activeMemory,
   setActiveColor,
   setActiveMemory,
 }) => {
+  console.log(product);
+
   return (
     <div className={style.features}>
       <div className={style.features__colors}>
@@ -33,7 +37,7 @@ export const Features: React.FC<Props> = ({
             );
             return (
               <Link
-                to={`/product/${product.namespaceId}-${activeMemory}-${color}`}
+                to={`/${location}/${product.namespaceId}-${activeMemory}-${color}`}
                 key={color}
                 className={cn(style.colorItemWrapper, {
                   [style.activeColor]: productId?.includes(color),
@@ -60,7 +64,7 @@ export const Features: React.FC<Props> = ({
 
             return (
               <Link
-                to={`/product/${product.namespaceId}-${lowerCCapacity}-${activeColor}`}
+                to={`/${location}/${product.namespaceId}-${lowerCCapacity}-${activeColor}`}
                 key={capacity}
                 onClick={() => setActiveMemory(lowerCCapacity)}
                 className={cn(style.features__memoryItem, {
