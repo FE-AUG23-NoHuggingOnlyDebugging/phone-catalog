@@ -44,21 +44,28 @@ export const Description: React.FC<Props> = ({ descriptions, specs }) => {
 
         <div className={style.productDescription__specsBlock}>
           <div>
-            {specs?.filter((el) => el.value).map((spec) => (
-              <p className={style.productDescription__specName} key={spec.name}>
-                {spec.name}
-              </p>
-            ))}
+            {specs
+              ?.filter((el) => el.value)
+              .map((spec) => (
+                <p
+                  className={style.productDescription__specName}
+                  key={spec.name}
+                >
+                  {spec.name}
+                </p>
+              ))}
           </div>
           <div>
-            {specs?.filter((el) => el.value).map((spec) => (
-              <p
-                className={style.productDescription__specValue}
-                key={spec.value}
-              >
-                {spec.value}
-              </p>
-            ))}
+            {specs
+              ?.filter((el) => el.value)
+              .map((spec) => (
+                <p
+                  className={style.productDescription__specValue}
+                  key={spec.value}
+                >
+                  {spec.value}
+                </p>
+              ))}
           </div>
         </div>
       </div>
