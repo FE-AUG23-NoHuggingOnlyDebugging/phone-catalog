@@ -8,6 +8,7 @@ import { selectProducts, setProducts } from '../../store/productsSlice';
 import { InfoPage } from '../../types/InfoPage';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../store/hooks';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 export const ProductPage = () => {
   const [total, setTotal] = useState(0);
@@ -35,6 +36,14 @@ export const ProductPage = () => {
       });
   }, [page, perPage, sort]);
 
+  const handleSearchParams = (setKey: string, value: string) => {
+    setSearchParams((searchParams) => {
+      searchParams.set(setKey, value);
+      console.log(setKey, value);
+      return searchParams;
+    });
+  };
+
   return (
     <main className={`${styles.wrapper} ${styles.catalog}`}>
       <section className={styles.catalog__info}>
@@ -45,35 +54,31 @@ export const ProductPage = () => {
       <section className={styles.catalog__filters}>
         <div>
           <p className={styles.catalog__filters_title}>Sort by</p>
-          <select
-            onChange={(e) => {
-              setSearchParams((searchParams) => {
-                searchParams.set('sort', e.target.value);
-                return searchParams;
-              });
-            }}
-          >
-            <option value="age">Newest</option>
-            <option value="title">Alphabetically</option>
-            <option value="price">Price</option>
-          </select>
+          <Dropdown
+            list={[
+              ['age', 'Newest'],
+              ['title', 'Alphabetically'],
+              ['price', 'Price'],
+            ]}
+            currentItem={'Newest'}
+            setOn={'sort'}
+            onHandle={handleSearchParams}
+          />
         </div>
         <div>
           <p className={styles.catalog__filters_title}>Items on page</p>
-          <select
-            onChange={(e) => {
-              setSearchParams((searchParams) => {
-                searchParams.set('perPage', e.target.value);
-                return searchParams;
-              });
-            }}
-          >
-            {['4', '8', '16', 'all'].map((item) => (
-              <option value={item} key={item}>
-                {item}
-              </option>
-            ))}
-          </select>
+          <Dropdown
+            list={[
+              ['4', '4'],
+              ['8', '8'],
+              ['16', '16'],
+              ['all', 'all'],
+            ]}
+            currentItem={'16'}
+            setOn={'perPage'}
+            onHandle={handleSearchParams}
+            rootClassName={'set-width'}
+          />
         </div>
       </section>
       {!isLoading ? (
