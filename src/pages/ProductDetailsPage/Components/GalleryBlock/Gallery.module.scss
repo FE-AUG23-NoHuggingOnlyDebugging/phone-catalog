@@ -1,5 +1,5 @@
 @import '../../ProductDetails-mixins.scss';
-@import '../../ProductDetails-variables.scss';
+@import '../../../../appScss/colors.scss';
 
 .galleryBlock {
   display: flex;
@@ -60,6 +60,6 @@
 }
 
 #activeImage {
-  border: 2px solid $productDetails-title-color;
+  border: 2px solid var(--primary-color);
   transition: border 0s;
 }
