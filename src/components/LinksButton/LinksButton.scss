@@ -1,0 +1,253 @@
+@import '../../appScss/mixins.scss';
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-end;
+  gap: 0.5em;
+
+}
+
+.up {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.down {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.card1 {
+  width: 60px;
+  height: 60px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 90px 5px 5px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.2s ease-in-out;
+
+  @include OnTablet {
+    width: 40px;
+    height: 40px;
+  }
+
+  @include OnPhone {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.telegram {
+  width: 50px;
+  height: 50px;
+  margin-top: 1.5em;
+  margin-left: 1.2em;
+  fill: #03a9f4;
+
+  @include OnTablet {
+    width: 40px;
+    height: 40px;
+    margin-top: 1em;
+    margin-left: 0.7em;
+  }
+
+  @include OnPhone {
+    margin-top: 0.6em;
+    margin-left: 0.6em;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.card2 {
+  width: 60px;
+  height: 60px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 90px 5px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.2s ease-in-out;
+
+  @include OnTablet {
+    width: 40px;
+    height: 40px;
+  }
+
+  @include OnPhone {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.linkedin {
+  width: 30px;
+  height: 30px;
+  margin-top: 1.1em;
+  margin-left: 0.8em;
+  fill: rgb(23, 122, 252);
+
+  @include OnTablet {
+    width: 20px;
+    height: 20px;
+    margin-top: 0.8em;
+    margin-left: 0.6em;
+  }
+
+  @include OnPhone {
+    width: 15px;
+    height: 15px;
+    margin-top: 0.6em;
+    margin-left: 0.4em;
+  }
+}
+
+.card3 {
+  width: 60px;
+  height: 60px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 5px 5px 90px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.2s ease-in-out;
+
+  @include OnTablet {
+    width: 40px;
+    height: 40px;
+  }
+
+  @include OnPhone {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.github {
+  width: 30px;
+  height: 30px;
+  margin-top: 0.8em;
+  margin-left: 1.2em;
+
+  @include OnTablet {
+    width: 22px;
+    height: 22px;
+    margin-top: 0.5em;
+    margin-left: 0.7em;
+  }
+
+  @include OnPhone {
+    width: 18px;
+    height: 18px;
+    margin-top: 0.3em;
+    margin-left: 0.5em;
+  }
+}
+
+.card4 {
+  width: 60px;
+  height: 60px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 5px 90px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.2s ease-in-out;
+
+  @include OnTablet {
+    width: 40px;
+    height: 40px;
+  }
+
+  @include OnPhone {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.email {
+  width: 50px;
+  height: 50px;
+  margin-top: 1em;
+  margin-left: 0.8em;
+  fill: #c01d17;
+
+  @include OnTablet {
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    width: 40px;
+    height: 40px;
+  }
+
+  @include OnPhone {
+    width: 30px;
+    height: 30px;
+    margin-top: 0.3em;
+    margin-left: 0.4em;
+  }
+}
+
+.card1:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #03a9f4;
+  box-shadow: 1px 1px 0px #4ab3e4, 2px 2px 0px #4ab3e4, 3px 3px 0px #4ab3e4,
+    4px 4px 0px #4ab3e4, 5px 5px 0px #4ab3e4;
+}
+
+.card1:hover .telegram {
+  fill: white;
+}
+
+.card2:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: rgb(23, 122, 252);
+  box-shadow: 1px 1px 0px rgb(5, 80, 177), 2px 2px 0px rgb(5, 80, 177), 3px 3px 0px rgb(5, 80, 177),
+    4px 4px 0px rgb(5, 80, 177), 5px 5px 0px rgb(5, 80, 177);
+}
+
+.card2:hover .linkedin {
+  fill: white;
+}
+
+.card3:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: black;
+  box-shadow: 1px 1px 0px rgb(124, 123, 123), 2px 2px 0px #333, 3px 3px 0px #333,
+    4px 4px 0px #333, 5px 5px 0px #333;
+}
+
+.card3:hover .github {
+  fill: white;
+}
+
+.card4:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #c01d17;
+  box-shadow: 1px 1px 0px #7c0f0b, 2px 2px 0px #7c0f0b, 3px 3px 0px #7c0f0b,
+    4px 4px 0px #7c0f0b, 5px 5px 0px #7c0f0b;
+}
+
+.card4:hover .email {
+  fill: white;
+}
+
+.card1,
+.card2,
+.card3,
+.card4 {
+  box-shadow: 1px 1px 0px rgb(179, 175, 175), 2px 2px 0px rgb(179, 175, 175),
+    3px 3px 0px rgb(179, 175, 175), 4px 4px 0px rgb(179, 175, 175),
+    5px 5px 0px rgb(179, 175, 175);
+}

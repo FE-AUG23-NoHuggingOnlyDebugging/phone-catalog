@@ -28,8 +28,9 @@ export const Features: React.FC<Props> = ({
         <p className={style.features__colorsText}>Available colors</p>
         <div className={style.features__colorsBlock}>
           {product?.colorsAvailable.map((color) => {
-
-            const objectColor = colors.find(colorItem => colorItem.name === color);
+            const objectColor = colors.find(
+              (colorItem) => colorItem.name === color,
+            );
             return (
               <Link
                 to={`/product/${product.namespaceId}-${activeMemory}-${color}`}

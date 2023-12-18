@@ -12,6 +12,7 @@ import { CartPage } from './pages/CartPage/CartPage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage/ProductDetailsPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
+import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <Router>
@@ -28,6 +29,8 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
             <Route path="/favourites" element={<FavouritesPage />} />
 
             <Route path="product/:productId" element={<ProductDetailsPage />} />
+
+            <Route path='/contacts' element={<ContactsPage />} />
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>

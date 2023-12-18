@@ -53,19 +53,12 @@ export const LoginForm = () => {
         </p>
       );
     } else if (hasPassError) {
-      return (
-        <p className={styles.error_message}>
-          Please enter password
-        </p>
-      );
+      return <p className={styles.error_message}>Please enter password</p>;
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={styles.form}
-    >
+    <form onSubmit={handleSubmit} className={styles.form}>
       <h1 className={styles.form__title}>Login</h1>
 
       <div className={styles.login_box}>
@@ -84,16 +77,14 @@ export const LoginForm = () => {
         />
         <MdEmail
           className={cn(styles.login_box__icon, {
-            [styles.login_box__icon_error]: hasEmailError
+            [styles.login_box__icon_error]: hasEmailError,
           })}
         />
       </div>
 
-      {hasEmailError &&
-        <p className={styles.error_message}>
-          Please enter email
-        </p>
-      }
+      {hasEmailError && (
+        <p className={styles.error_message}>Please enter email</p>
+      )}
 
       <div className={styles.login_box}>
         <input
@@ -111,7 +102,7 @@ export const LoginForm = () => {
         />
         <FaLock
           className={cn(styles.login_box__icon, {
-            [styles.login_box__icon_error]: hasPassError
+            [styles.login_box__icon_error]: hasPassError,
           })}
         />
       </div>
@@ -119,22 +110,29 @@ export const LoginForm = () => {
       {passErrorMessages()}
 
       <div className={styles.additional_options}>
-        <label><input type="checkbox" />Remember me</label>
+        <label>
+          <input type="checkbox" />
+          Remember me
+        </label>
         <p onClick={() => setIsModal(true)}>Forgot password</p>
       </div>
 
-      <button type="submit" className={styles.btn}>Login</button>
+      <button type="submit" className={styles.btn}>
+        Login
+      </button>
 
       <div className={styles.register_field}>
-        <p>{'Don\'t have an account?'}<Link to='/register'>Sign Up</Link></p>
+        <p>
+          {'Don\'t have an account?'}
+          <Link to="/register">Sign Up</Link>
+        </p>
       </div>
 
-      {
-        isModal &&
+      {isModal && (
         <div className={styles.modal_background}>
           <Modal setIsModal={setIsModal} />
         </div>
-      }
+      )}
     </form>
   );
 };

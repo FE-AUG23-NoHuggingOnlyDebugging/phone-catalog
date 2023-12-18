@@ -1,0 +1,60 @@
+@import '../../appScss/mixins.scss';
+
+@mixin Contacts-onSmallPhones {
+  @media (max-width: 400px) {
+     @content;
+  }
+}
+
+.ContactsPage {
+  max-width: 1136px;
+  margin: 0 auto;
+  display: flex;
+  gap: 100px;
+  padding: 40px 10px;
+  box-sizing: border-box;
+
+  @include OnTablet {
+    gap: 30px;
+    justify-content: space-around;
+    padding: 40px 25px;
+  }
+
+  @include OnPhone {
+    flex-direction: column;    
+    padding: 40px 35px;
+  }
+
+  @include Contacts-onSmallPhones {
+    padding: 40px 20px;
+  }
+  
+
+  &__teamMembers {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__description {
+    width: 500px;
+
+    @include OnPhone {
+      max-width: 700px;
+      width: 100%;
+    }
+   }
+  
+  &__text {
+    font-size: 22px;
+
+    @include OnTablet {
+      font-size: 16px;
+    }
+  }
+
+  &__title {
+    font-weight: 800;
+    margin-bottom: 30px;
+  }
+}

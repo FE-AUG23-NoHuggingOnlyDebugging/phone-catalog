@@ -1,14 +1,14 @@
 @import './LoginForm/LoginForm.module.scss';
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.error_message{
-    margin-top: 8px;
-    @include smallText;
-    color: #cc1212cb;
-  }
+.error_message {
+  margin-top: 8px;
+  @include smallText;
+  color: #cc1212cb;
+}
