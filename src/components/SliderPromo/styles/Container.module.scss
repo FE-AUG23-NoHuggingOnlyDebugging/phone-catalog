@@ -1,0 +1,42 @@
+@import '../../../appScss/colors.scss';
+@import '../../../appScss/typography.scss';
+// @import '../../appScss/mixins.scss';
+
+@mixin onDesktop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin onTablet {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
+.container {
+  margin: 24px 0 56px;
+
+  @include onTablet {
+    margin: 32px 24px 64px;
+  }
+
+  @include onDesktop {
+    margin: 56px 0 80px;
+  }
+
+  &__title {
+    @include mob-h1;
+    color: var(--primary-color);
+    margin: 0 16px 24px;
+
+    @include onTablet {
+      @include default-h1;
+      margin: 0 0 32px;
+    }
+
+    @include onDesktop {
+      margin: 0 0 56px;
+    }
+  }
+}
