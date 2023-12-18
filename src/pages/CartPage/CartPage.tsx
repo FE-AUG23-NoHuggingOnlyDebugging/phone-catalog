@@ -61,7 +61,7 @@ export const CartPage = () => {
 
   const removeProduct = (id: string) => {
     console.log(id);
-    setProducts(products.filter(product => product.id !== id));
+    setProducts(products.filter((product) => product.id !== id));
   };
 
   return (
@@ -95,7 +95,11 @@ export const CartPage = () => {
         <div className={styles.cart_content}>
           <div className={styles.cards}>
             {products.map((product) => (
-              <CartItem product={product} removeProduct={removeProduct} key={product.id} />
+              <CartItem
+                product={product}
+                removeProduct={removeProduct}
+                key={product.id}
+              />
             ))}
           </div>
 
