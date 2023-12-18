@@ -12,31 +12,23 @@ export const CartSkeletonLoader = () => (
     >
       <rect
         y="32" rx="2" ry="2"
-        className={style.close}
-      />
+        className={style.close} />
 
       <rect
         x="40" rx="2" ry="2"
-        className={style.image}
-      />
+        className={style.image} />
 
       <rect
-        x="144" y="30"
-        rx="2" ry="2"
-        className={style.name}
-      />
+        x="144" y="30" rx="2"
+        ry="2" className={style.name} />
 
       <rect
-        x="504" y="26"
-        rx="2" ry="2"
-        className={style.buttons}
-      />
+        x="504" y="26" rx="2"
+        ry="2" className={style.buttons} />
 
       <rect
-        x="624" y="26"
-        rx="2" ry="2"
-        className={style.price}
-      />
+        x="624" y="26" rx="2"
+        ry="2" className={style.price} />
     </ContentLoader>
   </article>
 );

@@ -60,9 +60,7 @@ export const CartPage = () => {
   );
 
   return (
-    <div
-      className={styles.page}
-    >
+    <div className={styles.page}>
       <div className={styles.cart_info}>
         <button
           type="button"
@@ -80,46 +78,36 @@ export const CartPage = () => {
         <h1 className={styles.title}>Cart</h1>
       </div>
 
-      {
-        isLoading && (
-          [1, 2, 3].map(item => <CartSkeletonLoader key={item} />)
-        )
-      }
+      {isLoading && [1, 2, 3].map((item) => <CartSkeletonLoader key={item} />)}
 
-      {
-        isError && (
-          <p className={styles.error_message}>
-            An error occured while recieving data
-          </p>
-        )
-      }
+      {isError && (
+        <p className={styles.error_message}>
+          An error occured while recieving data
+        </p>
+      )}
 
-      {
-        products.length > 0 && !isLoading && !isError && (
-          <div className={styles.cart_content}>
-            <div className={styles.cards}>
-              {products.map((product) => (
-                <CartItem product={product} key={product.id} />
-              ))}
-            </div>
-
-            <div className={styles.total_price}>
-              <h2 className={styles.price}>{`$${totalSum}`}</h2>
-              <p
-                className={styles.price_text}
-              >{`Total for ${productsCount} items`}</p>
-              <a href="#" className={styles.checkout_button}>
-                Checkout
-              </a>
-            </div>
+      {products.length > 0 && !isLoading && !isError && (
+        <div className={styles.cart_content}>
+          <div className={styles.cards}>
+            {products.map((product) => (
+              <CartItem product={product} key={product.id} />
+            ))}
           </div>
-        )
-      }
-      {
-        !products.length && !isLoading && !isError && (
-          <p className={styles.empty_cart_message}>Your cart is empty</p>
-        )
-      }
-    </div >
+
+          <div className={styles.total_price}>
+            <h2 className={styles.price}>{`$${totalSum}`}</h2>
+            <p
+              className={styles.price_text}
+            >{`Total for ${productsCount} items`}</p>
+            <a href="#" className={styles.checkout_button}>
+              Checkout
+            </a>
+          </div>
+        </div>
+      )}
+      {!products.length && !isLoading && !isError && (
+        <p className={styles.empty_cart_message}>Your cart is empty</p>
+      )}
+    </div>
   );
 };
