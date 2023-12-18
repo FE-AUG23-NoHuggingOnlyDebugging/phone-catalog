@@ -2,16 +2,23 @@ import { useCallback, useEffect, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { useTransition, animated } from 'react-spring';
 
-import styles from './Container.module.scss';
+import axios from 'axios';
 
-import sliderPromoData from './data/sliderPromoData.json';
+import styles from './SliderPromo.module.scss';
+import { Data } from '../../types/SliderPromo';
 
 export const SliderPromo = () => {
-  const data = sliderPromoData.data;
+  const [data, setData] = useState<Data[]>([]);
   const [slide, setSlide] = useState(0);
 
+  useEffect(() => {
+    axios.get('http://localhost:8000/static/slider')
+      .then(data => setData(data.data.images))
+      .catch(error => console.error(error));
+  }, []);
+
   const transitions = useTransition(data[slide], {
-    key: data[slide].id,
+    key: data[slide]?.id,
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 1 },
@@ -43,11 +50,11 @@ export const SliderPromo = () => {
         {transitions((style, item) => (
           <animated.img
             key={item.id}
-            src={process.env.PUBLIC_URL + item.src}
+            src={item.url}
             alt={item.alt}
             style={{ ...style }}
             className={
-              slide === item.id
+              slide === +item.id
                 ? styles.carousel__slide
                 : styles.carousel__slide_hidden
             }
@@ -62,12 +69,12 @@ export const SliderPromo = () => {
           <button
             key={data.id}
             className={
-              slide === data.id
+              slide === +data.id
                 ? styles.indicators__indicator &&
                   styles.indicators__indicator_active
                 : styles.indicators__indicator
             }
-            onClick={() => setSlide(data.id)}
+            onClick={() => setSlide(+data.id)}
           ></button>
         ))}
       </span>

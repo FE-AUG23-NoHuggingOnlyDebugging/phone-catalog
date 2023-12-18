@@ -1,8 +1,6 @@
-@import '../../appScss/colors.scss';
-@import '../../appScss/typography.scss';
+@import '../../../appScss/colors.scss';
+@import '../../../appScss/typography.scss';
 // @import '../../appScss/mixins.scss';
-@import './Carousel.module.scss';
-@import './Indicators.module.scss';
 
 @mixin onDesktop {
   @media (min-width: 1200px) {
