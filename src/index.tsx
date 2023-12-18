@@ -30,7 +30,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 
             <Route path="product/:productId" element={<ProductDetailsPage />} />
 
-            <Route path='/contacts' element={<ContactsPage />} />
+            <Route path="/contacts" element={<ContactsPage />} />
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>
