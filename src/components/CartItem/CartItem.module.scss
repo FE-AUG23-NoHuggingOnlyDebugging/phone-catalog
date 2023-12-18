@@ -44,11 +44,13 @@
 }
 
 .photo_container {
-  width: 76px;
+  width: 80px;
+  height: 80px;
   display: flex;
   justify-content: center;
 
   &__image {
+    align-self: center;
     max-height: 66px;
   }
 }
@@ -75,13 +77,16 @@
 }
 
 .button {
-  width: 32px;
-  height: 32px;
+  width: 16px;
+  height: 16px;
+  padding: 0;
   background-color: transparent;
   border: none;
   cursor: pointer;
 
   &__border {
+    width: 32px;
+    height: 32px;
     border: 1px solid var(--icons-color);
 
     &:hover {
@@ -89,6 +94,8 @@
     }
 
     &__disabled {
+      width: 32px;
+      height: 32px;
       border: 1px solid var(--elements-color);
       cursor: auto;
     }

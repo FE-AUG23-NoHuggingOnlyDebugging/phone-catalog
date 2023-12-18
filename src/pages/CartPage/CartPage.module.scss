@@ -4,20 +4,6 @@
 @import '../../appScss/colors.scss';
 @import '../../appScss/typography.scss';
 
-.empty_cart_page {
-  margin-block: 24px auto 56px;
-  
-  @include default-h1;
-
-  @include onTablet {
-    margin-block: 40px 64px;
-  }
-
-  @include onDesktop {
-    margin-bottom: 80px;
-  }
-}
-
 .page {
   width: max-content;
   margin: 24px auto 56px;
@@ -29,11 +15,6 @@
   @include onDesktop {
     margin-bottom: 80px;
   }
-}
-
-.empty_cart_info {
-  margin-left: 40px;
-  margin-bottom: 32px;
 }
 
 .cart_info {
