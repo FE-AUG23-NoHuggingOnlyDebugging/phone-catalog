@@ -14,7 +14,6 @@ export const Gallery: React.FC<Props> = ({
   product,
   setMainImage,
 }) => {
-
   return (
     <div className={style.galleryBlock}>
       <div className={style.galleryBlock__leftSide}>

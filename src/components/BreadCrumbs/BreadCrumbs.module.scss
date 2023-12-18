@@ -3,20 +3,20 @@
   align-items: center;
   margin-bottom: 40px;
 
-&__link {
-  cursor: pointer;
-  text-decoration: none;
-  color:  #89939A;
-  font-family: Mont;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
+  &__link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #89939a;
+    font-family: Mont;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 
-&__icon {
-  margin: auto 6px;
-}
+  &__icon {
+    margin: auto 6px;
+  }
 }
 
 a {

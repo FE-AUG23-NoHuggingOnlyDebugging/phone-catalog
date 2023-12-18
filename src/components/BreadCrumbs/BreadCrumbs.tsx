@@ -17,10 +17,7 @@ const Breadcrumbs: React.FC = () => {
 
   return (
     <div className={styles.crumbs}>
-      <Link
-        to = "/"
-        className = {styles.crumbs__link}
-      >
+      <Link to="/" className={styles.crumbs__link}>
         <img
           className={styles.crumbs__icon}
           src={process.env.PUBLIC_URL + '/icons/home.png'}
@@ -34,17 +31,16 @@ const Breadcrumbs: React.FC = () => {
       />
       {breadcrumbs.slice(-1).map(({ breadcrumb, match }, index) => (
         <React.Fragment key={index}>
-          {index > 0
-            && <img
+          {index > 0 && (
+            <img
               className={styles.crumbs__icon}
               src={process.env.PUBLIC_URL + '/icons/right-arrow.png'}
               alt="Right Arrow"
             />
-          }
-          <Link
-            className = {styles.crumbs__link}
-            to={match.pathname}
-          >{breadcrumb}</Link>
+          )}
+          <Link className={styles.crumbs__link} to={match.pathname}>
+            {breadcrumb}
+          </Link>
         </React.Fragment>
       ))}
     </div>
