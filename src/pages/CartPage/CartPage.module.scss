@@ -5,29 +5,29 @@
 @import '../../appScss/typography.scss';
 
 .empty_cart_page {
-  margin: 40px auto 80px;
-
+  margin-block: 24px auto 56px;
+  
   @include default-h1;
 
-  @include OnTablet {
-    margin-bottom: 64px;
+  @include onTablet {
+    margin-block: 40px 64px;
   }
 
-  @include OnPhone {
-    margin-block: 24px 56px;
+  @include onDesktop {
+    margin-bottom: 80px;
   }
 }
 
 .page {
   width: max-content;
-  margin: 40px auto 80px;
+  margin: 24px auto 56px;
 
-  @include OnTablet {
-    margin-bottom: 64px;
+  @include onTablet {
+    margin-block: 40px 64px;
   }
 
-  @include OnPhone {
-    margin-block: 24px 56px;
+  @include onDesktop {
+    margin-bottom: 80px;
   }
 }
 
@@ -40,11 +40,13 @@
   margin-bottom: 32px;
 }
 
-.link {
+.button {
   margin-bottom: 16px;
   display: flex;
   align-items: center;
-  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .icon {
@@ -59,6 +61,8 @@
 
   @include smallText;
 
+  line-height: 16px;
+
   &:hover {
     color: var(--primary-color);
     transition: color 0.3s;
@@ -66,31 +70,36 @@
 }
 
 .title {
-  @include default-h1;
+  @include mob-h1;
 
-  @include OnPhone {
-    @include mob-h1;
+  @include onTablet {
+    @include default-h1;
   }
 
   color: var(--primary-color);
 }
 
-.empty_cart_message {
-  @include default-h4;
-
+.empty_cart_message,
+.loading_message,
+.error_message {
   @include mob-h4;
+
+  @include onDesktop {
+    @include default-h4;
+  }
 
   text-align: center;
 }
 
 .cart_content {
   display: flex;
-  gap: 16px;
+  flex-direction: column;
+  gap: 32px;
   justify-content: center;
 
-  @include OnTablet {
-    flex-direction: column;
-    gap: 32px;
+  @include onDesktop {
+    flex-direction: row;
+    gap: 16px;
   }
 }
 
@@ -118,7 +127,7 @@
 .checkout_button {
   box-sizing: border-box;
   position: relative;
-  width: 320px;
+  width: 240px;
 
   @include btns;
   text-decoration: none;
@@ -129,12 +138,12 @@
   color: var(--white-color);
   background-color: var(--primary-color);
 
-  @include OnTablet {
+  @include onTablet {
     width: 544px;
   }
 
-  @include OnPhone {
-    width: 240px;
+  @include onDesktop {
+    width: 320px;
   }
 
   &:hover {

@@ -11,6 +11,8 @@ import axios from 'axios';
 
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const cartStorageList = useAppSelector(selectCartProducts);
 
@@ -19,8 +21,8 @@ export const CartPage = () => {
       try {
         const requests = cartStorageList.map((item) =>
           axios.get<ProductDetails>(
-            `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${item.name}`
-          )
+            `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${item.name}`,
+          ),
         );
 
         const responses = await Promise.all(requests);
@@ -30,6 +32,9 @@ export const CartPage = () => {
         setProducts(updatedProducts);
       } catch (error) {
         console.error('Сталася помилка при отриманні даних:', error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -47,7 +52,10 @@ export const CartPage = () => {
     }
   });
 
-  const productsCount = cartStorageList.reduce((curr, next) => curr + next.quantity, 0);
+  const productsCount = cartStorageList.reduce(
+    (curr, next) => curr + next.quantity,
+    0,
+  );
 
   return (
     <div
@@ -62,19 +70,31 @@ export const CartPage = () => {
           [styles.empty_cart_info]: products.length === 0,
         })}
       >
-        <a href="#" className={styles.link}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() => window.history.back()}
+        >
           <img
             src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-            alt="Left arrow"
+            alt="left arrow"
             className={cn(styles.icon, styles.arrow__left)}
           />
           <span className={styles.text}>Back</span>
-        </a>
+        </button>
 
         <h1 className={styles.title}>Cart</h1>
       </div>
 
-      {products.length > 0 ? (
+      {isLoading && <p className={styles.loading_message}>Loading</p>}
+
+      {isError && (
+        <p className={styles.error_message}>
+          An error occured while recieving data
+        </p>
+      )}
+
+      {products.length > 0 && !isLoading && !isError && (
         <div className={styles.cart_content}>
           <div className={styles.cards}>
             {products.map((product) => (
@@ -92,7 +112,8 @@ export const CartPage = () => {
             </a>
           </div>
         </div>
-      ) : (
+      )}
+      {!products.length && !isLoading && !isError && (
         <p className={styles.empty_cart_message}>Your cart is empty</p>
       )}
     </div>
