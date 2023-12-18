@@ -39,8 +39,7 @@ export const CartPage = () => {
       }
     };
 
-    setTimeout(getCart, 2000);
-    // getCart();
+    getCart();
   }, [cartStorageList]);
 
   let totalSum = 0;
