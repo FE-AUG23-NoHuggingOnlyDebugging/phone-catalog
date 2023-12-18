@@ -10,6 +10,7 @@ function App() {
       <Header />
       <Breadcrumbs />
       <main>
+        <Breadcrumbs />
         <Outlet />
       </main>
       <Footer />
