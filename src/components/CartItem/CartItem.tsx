@@ -14,10 +14,11 @@ import {
 import { useAppSelector } from '../../store/hooks';
 
 type Props = {
-  product: ProductDetails;
+  product: ProductDetails,
+  removeProduct: (id: string) => void,
 };
 
-export const CartItem: React.FC<Props> = ({ product }) => {
+export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
   const { id, images, name, priceDiscount } = product;
 
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ export const CartItem: React.FC<Props> = ({ product }) => {
   };
 
   const handleClickRemove = () => {
+    removeProduct(id);
     dispatch(removeFromCart(id));
   };
 
