@@ -14,6 +14,7 @@ export const Gallery: React.FC<Props> = ({
   product,
   setMainImage,
 }) => {
+
   return (
     <div className={style.galleryBlock}>
       <div className={style.galleryBlock__leftSide}>
@@ -22,9 +23,10 @@ export const Gallery: React.FC<Props> = ({
             src={image}
             key={image}
             alt="iphone"
-            className={cn(style.galleryBlock__leftSide_img, {
+            id={cn({
               [style.activeImage]: mainImage === image,
             })}
+            className={style.galleryBlock__leftSide_img}
             onClick={(event) => {
               const target = event.target as HTMLImageElement;
               setMainImage(target.src);

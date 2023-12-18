@@ -59,6 +59,7 @@
   }
 }
 
-.activeImage {
-  border: 2px solid $productDetails-title-color !important;
+#activeImage {
+  border: 2px solid $productDetails-title-color;
+  transition: border 0s;
 }
