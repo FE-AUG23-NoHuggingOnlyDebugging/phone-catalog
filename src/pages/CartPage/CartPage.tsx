@@ -64,7 +64,10 @@ export const CartPage = () => {
   };
 
   return (
-    <div className={styles.page}>
+    <div
+      className={cn(styles.page, {
+        [styles.page__empty]: (!products.length || isError) && !isLoading,
+      })}>
       <div className={styles.cart_info}>
         <button
           type="button"
