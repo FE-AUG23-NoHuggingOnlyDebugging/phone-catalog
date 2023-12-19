@@ -24,8 +24,6 @@ export const Features: React.FC<Props> = ({
   setActiveColor,
   setActiveMemory,
 }) => {
-  console.log(product);
-
   return (
     <div className={style.features}>
       <div className={style.features__colors}>
@@ -40,7 +38,7 @@ export const Features: React.FC<Props> = ({
                 to={`/product/${type}/${product.namespaceId}-${activeMemory}-${color}`}
                 key={color}
                 className={cn(style.colorItemWrapper, {
-                  [style.activeColor]: productId?.includes(color),
+                  [style.activeColor]: activeColor === color,
                 })}
                 onClick={() => {
                   setActiveColor(color);
@@ -68,7 +66,7 @@ export const Features: React.FC<Props> = ({
                 key={capacity}
                 onClick={() => setActiveMemory(lowerCCapacity)}
                 className={cn(style.features__memoryItem, {
-                  [style.activeMemory]: productId?.includes(lowerCCapacity),
+                  [style.activeMemory]: activeMemory === lowerCCapacity,
                 })}
               >
                 {capacity}

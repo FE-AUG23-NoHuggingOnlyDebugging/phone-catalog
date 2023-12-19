@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './Dropdown.module.scss';
 
 type Props = {
@@ -19,11 +19,26 @@ const Dropdown: React.FC<Props> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [current, setCurrent] = useState(currentItem);
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref]);
+
   return (
     <div
-      className={`${styles.catalog__dropdown} ${styles.dropdown} ${
-        rootClassName || ''
-      }`}
+      ref={ref}
+      className={`${styles.catalog__dropdown} ${styles.dropdown} ${rootClassName || ''}`}
     >
       <button
         className={styles.dropdown__button}

@@ -5,12 +5,14 @@ import ProductList from '../ProductList/ProductList';
 import cn from 'classnames';
 import { useAppSelector } from '../../store/hooks';
 import { selectProducts } from '../../store/productsSlice';
+import ProductLoader from '../ProductLoader/ProductLoader';
 
 type Props = {
   title: string;
+  status: boolean;
 };
 
-const ProductsSlider: React.FC<Props> = ({ title }) => {
+const ProductsSlider: React.FC<Props> = ({ title, status }) => {
   const parentRef = useRef<HTMLDivElement>(null);
   const [parentWidth, setParentWidth] = useState(0);
   const [translateX, setTranslateX] = useState(0);
@@ -38,8 +40,22 @@ const ProductsSlider: React.FC<Props> = ({ title }) => {
   }, [parentRef, parentWidth]);
 
   // const blockWidth = (((parentWidth - 16 * 3) / 4 + 16) / parentWidth) * 100;
-  const blockWidth = ((parentWidth + 16) / parentWidth) * 100;
-  const maxTranslateX = (-blockWidth * (products.length - 4)) / 4;
+  let blockWidth = ((parentWidth + 16) / parentWidth) * 100;
+  let maxTranslateX = products.length
+    ? (-blockWidth * (products.length - 4)) / 4
+    : 0;
+
+  if (parentWidth < 1136) {
+    const oneBlockWidth = parentWidth > 591 ? 237 : 212;
+    const countBlockGap = parentWidth / (oneBlockWidth + 16.3);
+    const countBlockFloor = Math.floor(countBlockGap);
+    blockWidth = ((oneBlockWidth + 16) / parentWidth) * countBlockFloor * 100;
+    maxTranslateX = products.length
+      ? -(products.length / countBlockGap - 1) * 100
+      : 0;
+  }
+
+  console.log(translateX, maxTranslateX);
 
   const handleBack = () => {
     setTranslateX((prevTranslateX) => {
@@ -93,7 +109,15 @@ const ProductsSlider: React.FC<Props> = ({ title }) => {
         </div>
       </div>
 
-      <ProductList products={products} type="slider" translateX={translateX} />
+      {status ? (
+        <ProductLoader type="slider" />
+      ) : (
+        <ProductList
+          products={products}
+          type="slider"
+          translateX={translateX}
+        />
+      )}
     </section>
   );
 };

@@ -1,6 +1,6 @@
 .add_to_favorite {
   padding: 12px;
-  border: 1px solid #b4bdc3;
+  border: 1px solid var(--icons-color);
   background: transparent;
   width: 16px;
   height: 16px;
@@ -9,10 +9,10 @@
   z-index: 1;
 
   &:hover {
-    border: 1px solid #313237;
+    border: 1px solid var(--primary-color);
   }
 
   &__added {
-    border: 1px solid #e2e6e9;
+    border: 1px solid var(--elements-color);
   }
 }

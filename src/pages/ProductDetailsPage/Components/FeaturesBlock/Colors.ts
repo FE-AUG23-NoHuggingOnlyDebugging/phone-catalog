@@ -10,6 +10,7 @@ export const colors = [
   { name: 'spacegray', hash: '#808080' },
   { name: 'midnightgreen', hash: '#092E20' },
   { name: 'rosegold', hash: '#E0BFB8' },
+
   { name: 'rose-gold', hash: '#E0BFB8' },
   { name: 'coral', hash: '#ff7f50' },
   { name: 'spaceblack', hash: '#333334' },
