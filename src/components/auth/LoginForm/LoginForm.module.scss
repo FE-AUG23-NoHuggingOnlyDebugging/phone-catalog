@@ -1,7 +1,7 @@
 @import '../../../appScss/colors.scss';
 @import '../../../appScss/typography.scss';
 
-@mixin onTable {
+@mixin onTablet {
   @media (min-width: 400px) {
     @content;
   }
@@ -101,7 +101,7 @@
       margin-top: 20px;
     }
 
-    @include onTable {
+    @include onTablet {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
