@@ -14,6 +14,8 @@ import { ProductDetailsPage } from './pages/ProductDetailsPage/ProductDetailsPag
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 
+import { AuthRoot } from './components/auth/AuthRoot';
+
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <Router>
     <Provider store={store}>
@@ -28,6 +30,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
             <Route path="/cart" element={<CartPage />} />
             <Route path="/favourites" element={<FavouritesPage />} />
 
+
             <Route path="phones/:productId" element={<ProductDetailsPage />} />
             <Route path="tablets/:productId" element={<ProductDetailsPage />} />
             <Route
@@ -36,6 +39,11 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
             />
 
             <Route path="/contacts" element={<ContactsPage />} />
+            <Route path="/login" element={<AuthRoot />} />
+            <Route path="/register" element={<AuthRoot />} />
+
+            <Route path="product/:productId" element={<ProductDetailsPage />} />
+
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>

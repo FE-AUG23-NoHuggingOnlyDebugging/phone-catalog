@@ -1,0 +1,21 @@
+.crumbs {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+
+  &__link {
+    cursor: pointer;
+    height: 16px;
+    text-decoration: none;
+    color: #89939a;
+    font-family: Mont;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  &__icon {
+    margin-right: 8px;
+  }
+}
