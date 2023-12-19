@@ -123,7 +123,7 @@ export const LoginForm = () => {
 
       <div className={styles.register_field}>
         <p>
-          {'Don\'t have an account?'}
+          {'Don\'t have an account? '}
           <Link to="/register">Sign Up</Link>
         </p>
       </div>
