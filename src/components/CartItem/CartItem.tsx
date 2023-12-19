@@ -14,8 +14,8 @@ import {
 import { useAppSelector } from '../../store/hooks';
 
 type Props = {
-  product: ProductDetails,
-  removeProduct: (id: string) => void,
+  product: ProductDetails;
+  removeProduct: (id: string) => void;
 };
 
 export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
@@ -84,7 +84,7 @@ export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
               />
             </button>
 
-            <span className={styles.number}>{count}</span>
+            <span className={styles.quantity}>{count}</span>
 
             <button
               type="button"

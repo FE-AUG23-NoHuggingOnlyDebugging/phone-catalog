@@ -6,55 +6,51 @@
 .card {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  padding: 16px;
-  gap: 16px;
+  padding: 24px;
+  gap: 24px;
   border: 1px solid var(--elements-color);
 
-  &:not(:last-child) {
-    margin-bottom: 16px;
-  }
-
-  @include onTablet {
-    flex-direction: row;
-    padding: 24px;
-    gap: 24px;
+  @include onPhone {
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
   }
 }
 
 .first_part {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 
-  @include onTablet {
-    gap: 24px;
+  @include onPhone {
+    gap: 16px;
   }
 }
 
 .second_part {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 24px;
 
-  @include onTablet {
-    justify-content: center;
+  @include onPhone {
+    justify-content: space-between;
   }
 }
 
 .photo_container {
-  width: 76px;
   display: flex;
   justify-content: center;
+  width: 80px;
+  height: 80px;
 
   &__image {
+    align-self: center;
     max-height: 66px;
   }
 }
 
 .name {
-  width: 128px;
+  width: 336px;
 
   @include bodyText;
 
@@ -64,8 +60,8 @@
     width: 176px;
   }
 
-  @include onDesktop {
-    width: 336px;
+  @include onPhone {
+    width: 128px;
   }
 }
 
@@ -75,13 +71,19 @@
 }
 
 .button {
-  width: 32px;
-  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+
   background-color: transparent;
   border: none;
   cursor: pointer;
 
   &__border {
+    width: 32px;
+    height: 32px;
     border: 1px solid var(--icons-color);
 
     &:hover {
@@ -89,8 +91,14 @@
     }
 
     &__disabled {
+      width: 32px;
+      height: 32px;
       border: 1px solid var(--elements-color);
-      cursor: auto;
+      cursor: default;
+    }
+
+    &__disabled .icon {
+      opacity: 0.4;
     }
   }
 }
@@ -100,7 +108,7 @@
   height: 16px;
 }
 
-.number {
+.quantity {
   min-width: 32px;
 
   @include bodyText;
