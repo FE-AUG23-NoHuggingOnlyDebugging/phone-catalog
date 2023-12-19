@@ -12,7 +12,7 @@ export const SliderPromo = () => {
   const [slide, setSlide] = useState(0);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/static/slider')
+    axios.get('https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/slider')
       .then(data => setData(data.data.images))
       .catch(error => console.error(error));
   }, []);

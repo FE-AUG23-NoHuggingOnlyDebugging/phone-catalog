@@ -31,12 +31,12 @@
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: 0.2s ease-in-out;
 
-  @include OnTablet {
+  @include onTablet {
     width: 40px;
     height: 40px;
   }
 
-  @include OnPhone {
+  @include onPhone {
     width: 30px;
     height: 30px;
   }
@@ -49,14 +49,14 @@
   margin-left: 1.2em;
   fill: #03a9f4;
 
-  @include OnTablet {
+  @include onTablet {
     width: 40px;
     height: 40px;
     margin-top: 1em;
     margin-left: 0.7em;
   }
 
-  @include OnPhone {
+  @include onPhone {
     margin-top: 0.6em;
     margin-left: 0.6em;
     width: 30px;
@@ -76,12 +76,12 @@
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: 0.2s ease-in-out;
 
-  @include OnTablet {
+  @include onTablet {
     width: 40px;
     height: 40px;
   }
 
-  @include OnPhone {
+  @include onPhone {
     width: 30px;
     height: 30px;
   }
@@ -94,14 +94,14 @@
   margin-left: 0.8em;
   fill: rgb(23, 122, 252);
 
-  @include OnTablet {
+  @include onTablet {
     width: 20px;
     height: 20px;
     margin-top: 0.8em;
     margin-left: 0.6em;
   }
 
-  @include OnPhone {
+  @include onPhone {
     width: 15px;
     height: 15px;
     margin-top: 0.6em;
@@ -121,12 +121,12 @@
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: 0.2s ease-in-out;
 
-  @include OnTablet {
+  @include onTablet {
     width: 40px;
     height: 40px;
   }
 
-  @include OnPhone {
+  @include onPhone {
     width: 30px;
     height: 30px;
   }
@@ -138,14 +138,14 @@
   margin-top: 0.8em;
   margin-left: 1.2em;
 
-  @include OnTablet {
+  @include onTablet {
     width: 22px;
     height: 22px;
     margin-top: 0.5em;
     margin-left: 0.7em;
   }
 
-  @include OnPhone {
+  @include onPhone {
     width: 18px;
     height: 18px;
     margin-top: 0.3em;
@@ -165,12 +165,12 @@
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: 0.2s ease-in-out;
 
-  @include OnTablet {
+  @include onTablet {
     width: 40px;
     height: 40px;
   }
 
-  @include OnPhone {
+  @include onPhone {
     width: 30px;
     height: 30px;
   }
@@ -183,14 +183,14 @@
   margin-left: 0.8em;
   fill: #c01d17;
 
-  @include OnTablet {
+  @include onTablet {
     margin-top: 0.5em;
     margin-left: 0.5em;
     width: 40px;
     height: 40px;
   }
 
-  @include OnPhone {
+  @include onPhone {
     width: 30px;
     height: 30px;
     margin-top: 0.3em;

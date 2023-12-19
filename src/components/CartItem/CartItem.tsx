@@ -6,7 +6,7 @@ import React from 'react';
 import { ProductDetails } from '../../types/ProductDetails';
 import { useDispatch } from 'react-redux';
 import {
-  addToCart,
+  addOneMore,
   cartReduceQuantity,
   removeFromCart,
   selectCartProducts,
@@ -27,7 +27,7 @@ export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
   const count = cartStorageList.find((item) => item.name === id)?.quantity || 0;
 
   const handleClickAdd = () => {
-    dispatch(addToCart(id));
+    dispatch(addOneMore(id));
   };
 
   const handleClickRemove = () => {

@@ -9,7 +9,7 @@
   }
 }
 
-@mixin onTable {
+@mixin onTablet {
   @media (min-width: 640px) {
     @content;
   }
@@ -29,7 +29,7 @@
     background-color: var(--white-color);
     color: var(--primary-color);
 
-    @include onTable {
+    @include onTablet {
       width: 60%;
     }
 
@@ -55,7 +55,7 @@
       margin-top: 45px;
       text-align: center;
 
-      @include onTable {
+      @include onTablet {
         @include default-h2;
       }
 
@@ -71,7 +71,7 @@
         @include bodyText;
         text-align: center;
 
-        @include onTable {
+        @include onTablet {
           @include default-h4;
         }
       }
@@ -91,7 +91,7 @@
         cursor: pointer;
         @include btns;
 
-        @include onTable {
+        @include onTablet {
           width: 70%;
         }
 

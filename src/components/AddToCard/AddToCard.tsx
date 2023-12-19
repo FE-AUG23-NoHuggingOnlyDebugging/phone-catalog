@@ -7,13 +7,14 @@ import { addToCart, removeFromCart } from '../../store/cartSlice';
 type Props = {
   added?: boolean;
   id: string;
+	category: string;
 };
 
-const AddToCard: React.FC<Props> = ({ added = false, id }) => {
+const AddToCard: React.FC<Props> = ({ added = false, id, category }) => {
   const dispatch = useDispatch();
 
   const handleClickAdd = () => {
-    dispatch(addToCart(id));
+    dispatch(addToCart({id, category}));
   };
 
   const handleClickRemove = () => {

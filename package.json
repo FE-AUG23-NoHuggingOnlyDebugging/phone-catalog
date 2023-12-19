@@ -2,7 +2,7 @@
   "name": "phone-catalog-client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://FE-AUG23-NoHuggingOnlyDebugging.github.io/",
+  "homepage": "https://FE-AUG23-NoHuggingOnlyDebugging.github.io/phone-catalog",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",
