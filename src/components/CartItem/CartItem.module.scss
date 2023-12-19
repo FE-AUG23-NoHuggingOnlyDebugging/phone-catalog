@@ -7,8 +7,9 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 16px;
   gap: 16px;
+
+  padding: 16px;
   border: 1px solid var(--elements-color);
 
   &:not(:last-child) {
@@ -17,8 +18,8 @@
 
   @include onTablet {
     flex-direction: row;
-    padding: 24px;
     gap: 24px;
+    padding: 24px;
   }
 }
 
@@ -44,10 +45,10 @@
 }
 
 .photo_container {
-  width: 80px;
-  height: 80px;
   display: flex;
   justify-content: center;
+  width: 80px;
+  height: 80px;
 
   &__image {
     align-self: center;
@@ -77,9 +78,12 @@
 }
 
 .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 16px;
   height: 16px;
-  padding: 0;
+  
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -97,7 +101,11 @@
       width: 32px;
       height: 32px;
       border: 1px solid var(--elements-color);
-      cursor: auto;
+      cursor: default;
+    }
+
+    &__disabled .icon {
+      opacity: 0.4;
     }
   }
 }
@@ -107,7 +115,7 @@
   height: 16px;
 }
 
-.number {
+.quantity {
   min-width: 32px;
 
   @include bodyText;

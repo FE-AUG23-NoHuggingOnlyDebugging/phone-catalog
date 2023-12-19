@@ -20,11 +20,20 @@ export const CartPage = () => {
   useEffect(() => {
     const getCart = async () => {
       try {
-        const requests = cartStorageList.map((item) =>
-          axios.get<ProductDetails>(
-            `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${item.name}`,
-          ),
-        );
+        const requests = cartStorageList.map((item) => {
+          let category;
+          if (item.name.includes('phone')) {
+            category = 'phones';
+          } else if (item.name.includes('ipad')) {
+            category = 'tablets';
+          } else {
+            category = 'accessories';
+          }
+
+          return axios.get<ProductDetails>(
+            `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${category}/${item.name}`,
+          );
+        });
 
         const responses = await Promise.all(requests);
 

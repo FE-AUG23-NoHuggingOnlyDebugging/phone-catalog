@@ -3,7 +3,7 @@ import ContentLoader from 'react-content-loader';
 import style from './CartSkeletonLoader.module.scss';
 
 export const CartSkeletonLoader = () => (
-  <article className={style.card}>
+  <div className={style.card}>
     <ContentLoader
       speed={2}
       backgroundColor="#f3f3f3"
@@ -30,5 +30,5 @@ export const CartSkeletonLoader = () => (
         x="624" y="26" rx="2"
         ry="2" className={style.price} />
     </ContentLoader>
-  </article>
+  </div>
 );

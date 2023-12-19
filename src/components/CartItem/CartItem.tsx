@@ -84,7 +84,7 @@ export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
               />
             </button>
 
-            <span className={styles.number}>{count}</span>
+            <span className={styles.quantity}>{count}</span>
 
             <button
               type="button"

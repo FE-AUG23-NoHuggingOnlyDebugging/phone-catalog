@@ -22,12 +22,17 @@
 }
 
 .button {
-  margin-bottom: 16px;
   display: flex;
   align-items: center;
+  margin-bottom: 16px;
+
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  &:hover .text {
+    color: var(--primary-color);
+  }
 }
 
 .icon {
@@ -43,11 +48,6 @@
   @include smallText;
 
   line-height: 16px;
-
-  &:hover {
-    color: var(--primary-color);
-    transition: color 0.3s;
-  }
 }
 
 .title {
@@ -75,8 +75,8 @@
 .cart_content {
   display: flex;
   flex-direction: column;
-  gap: 32px;
   justify-content: center;
+  gap: 32px;
 
   @include onDesktop {
     flex-direction: row;
@@ -86,11 +86,12 @@
 
 .total_price {
   box-sizing: border-box;
-  max-height: 206px;
   display: flex;
   flex-direction: column;
-  padding: 24px;
   align-items: center;
+  
+  max-height: 206px;
+  padding: 24px;
   border: 1px solid var(--elements-color);
 }
 
