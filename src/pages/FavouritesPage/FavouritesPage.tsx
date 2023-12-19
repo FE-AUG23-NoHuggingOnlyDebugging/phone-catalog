@@ -6,29 +6,25 @@ import ProductList from '../../components/ProductList/ProductList';
 import { selectFavoritesProducts } from '../../store/favoriteSlice';
 import styles from './FavouritesPage.module.scss';
 import { useAppSelector } from '../../store/hooks';
-import { CartSkeletonLoader } from '../../components/CartSkeletonLoader';
 import { Product } from '../../types/Product';
 
 export const FavouritesPage = () => {
-  const [products] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-
-  const cartStorageList = useAppSelector(selectFavoritesProducts);
+  const elements = useAppSelector(selectFavoritesProducts);
 
   useEffect(() => {
     const getCart = async () => {
       try {
-        const requests = await axios.get<Product>(
-          `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/favorites?itemIds=${JSON.stringify(cartStorageList)}`,
+        const itemsIds = JSON.stringify(elements);
+        console.log(itemsIds);
+
+        const request = await axios.get<Product[]>(
+          `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/favorites/get?itemsIds=${itemsIds}`,
         );
-        console.log(requests);
 
-        // const responses = await Promise.all(requests);
-
-        // const updatedProducts = responses.map((res) => res.data);
-
-        // setProducts(updatedProducts);
+        setProducts(request.data);
       } catch (error) {
         console.error('Сталася помилка при отриманні даних:', error);
         setIsError(true);
@@ -38,20 +34,21 @@ export const FavouritesPage = () => {
     };
 
     getCart();
-  }, [cartStorageList]);
+  }, [elements]);
 
   return (
     <>
-      <h1>FavouritesPage</h1>
-
-      {isLoading && [1, 2, 3].map((item) => <CartSkeletonLoader key={item} />)}
+      <div className={styles.cart_info}>
+        <h1 className={styles.title}>Favourites Page</h1>
+        <p className={styles.modelCount}>{`${elements.length} items`}</p>
+      </div>
 
       {isError && (
         <p className={styles.error_message}>
           An error occured while recieving data
         </p>
       )}
-      <ProductList products={products} />
+      <ProductList products={products} status={isLoading} />
     </>
   );
 };
