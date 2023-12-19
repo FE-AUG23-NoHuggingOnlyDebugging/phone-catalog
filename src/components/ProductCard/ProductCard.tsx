@@ -36,7 +36,7 @@ const ProductCard: React.FC<Props> = ({ product, type }) => {
       })}
     >
       <Link
-        to={'/product/' + product.itemId}
+        to={'/product/'+ product.category + '/' + product.itemId}
         className={styles.link__cover}
       ></Link>
 

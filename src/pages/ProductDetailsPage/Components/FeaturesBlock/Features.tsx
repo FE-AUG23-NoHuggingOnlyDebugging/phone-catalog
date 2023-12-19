@@ -18,7 +18,6 @@ type Props = {
 export const Features: React.FC<Props> = ({
   product,
   type,
-  productId,
   activeColor,
   activeMemory,
   setActiveColor,

@@ -23,12 +23,12 @@
     }
   }
 
-  @include OnTablet {
+  @include onTablet {
     width: 300px;
     padding: 5px;
   }
 
-  @include OnPhone {
+  @include onPhone {
     gap: 10px;
     box-sizing: border-box;
     max-width: 600px;
@@ -51,12 +51,12 @@
     box-shadow: 0px 0px 14px 0px rgba(184, 184, 184, 1);
     transition: linear 0.3s;
 
-    @include OnTablet {
+    @include onTablet {
       width: 80px;
       height: 80px;
     }
 
-    @include OnPhone {
+    @include onPhone {
       width: 70px;
       height: 70px;
     }
@@ -70,11 +70,11 @@
   &__name {
     font-size: 20px;
 
-    @include OnTablet {
+    @include onTablet {
       font-size: 13px;
     }
 
-    @include OnPhone {
+    @include onPhone {
       font-size: 10px;
     }
   }
@@ -82,7 +82,7 @@
     color: var(--secondary-color);
     margin-top: 10px;
 
-    @include OnTablet {
+    @include onTablet {
       font-size: 10px;
     }
   }
