@@ -14,11 +14,11 @@ const Header = () => {
     window.addEventListener('resize', handleResize);
 
     return () => {};
-  }, [window.innerWidth]);
+  }, []);
 
   let componentToRender;
 
-  if (windowWidth < 320) {
+  if (windowWidth < 640) {
     componentToRender = <NavMobile />;
   } else {
     componentToRender = <NavDesktop />;
