@@ -120,7 +120,7 @@ export const CartPage = () => {
       {!products.length && !isLoading && !isError && (
         <div className={styles.test}>
           <img
-            src={process.env.PUBLIC_URL + '/img/icons/empty-cart.svg'} 
+            src={process.env.PUBLIC_URL + '/img/icons/empty-cart.svg'}
             alt="Empty cart"
             className={styles.cart_icon}
           />

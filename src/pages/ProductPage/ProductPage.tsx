@@ -48,8 +48,8 @@ export const ProductPage = () => {
 
   function checkItem(value: string, setBy: string, arr: string[][]): string {
     const current = setBy === 'sort' ? 'Newest' : '16';
-    if (value && !arr.map(([x,]) => x).includes(value)) {
-      handleSearchParams (setBy, current);
+    if (value && !arr.map(([x]) => x).includes(value)) {
+      handleSearchParams(setBy, current);
       return current;
     }
     return value || current;
@@ -89,7 +89,6 @@ export const ProductPage = () => {
     return currenType;
   };
 
-
   return (
     <div className={`${styles.wrapper} ${styles.catalog}`}>
       <section className={styles.catalog__info}>
@@ -111,7 +110,11 @@ export const ProductPage = () => {
           <p className={styles.catalog__filters_title}>Items on page</p>
           <Dropdown
             list={listPerPage}
-            currentItem={checkItem(perPage.toString() || '', 'perPage', listPerPage)}
+            currentItem={checkItem(
+              perPage.toString() || '',
+              'perPage',
+              listPerPage,
+            )}
             setOn={'perPage'}
             onHandle={handleSearchParams}
             rootClassName={'set-width'}
