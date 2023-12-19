@@ -1,4 +1,5 @@
 @import '../../appScss/arrow';
+@import '../../appScss/typography';
 
 .pagination {
   display: flex;
@@ -6,6 +7,7 @@
   align-items: center;
   margin-top: 40px;
   justify-content: center;
+  margin-bottom: 80px;
 
   &__list {
     display: flex;
@@ -15,22 +17,20 @@
   &__item {
     display: inline-block;
     padding: 7px;
-    border: 1px solid #e2e6e9;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    color: #313237;
+    border: 1px solid var(--elements-color);
+    color: var(--primary-color);
     height: 32px;
     min-width: 32px;
     box-sizing: border-box;
     text-align: center;
     text-decoration: none;
+    @include bodyText;
   }
 
   &__selected {
-    background: #313237;
-    color: #ffffff;
-    border: 1px solid #313237;
+    background: var(--primary-color);
+    color: var(--white-color);
+    border: 1px solid var(--primary-color);
   }
 
   &__disabled {
