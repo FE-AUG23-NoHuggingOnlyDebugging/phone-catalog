@@ -1,8 +1,8 @@
 export type Categories = {
-  id: string,
-  url: string,
-  alt: string,
-  total: number,
+  id: string;
+  url: string;
+  alt: string;
+  total: number;
 };
 
 export enum CategoriesTypes {

@@ -67,7 +67,8 @@ export const CartPage = () => {
     <div
       className={cn(styles.page, {
         [styles.page__empty]: (!products.length || isError) && !isLoading,
-      })}>
+      })}
+    >
       <div className={styles.cart_info}>
         <button
           type="button"
@@ -119,7 +120,7 @@ export const CartPage = () => {
       {!products.length && !isLoading && !isError && (
         <div className={styles.test}>
           <img
-            src={process.env.PUBLIC_URL + '/img/icons/empty-cart.svg'} 
+            src={process.env.PUBLIC_URL + '/img/icons/empty-cart.svg'}
             alt="Empty cart"
             className={styles.cart_icon}
           />

@@ -3,7 +3,7 @@ import styles from './Dropdown.module.scss';
 
 type Props = {
   list: string[][];
-   currentItem: string;
+  currentItem: string;
   setOn: string;
   rootClassName?: string;
   onHandle: (setKey: string, value: string) => void;
@@ -17,7 +17,6 @@ const Dropdown: React.FC<Props> = ({
   onHandle,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [current, setCurrent] = useState(currentItem);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -46,7 +45,7 @@ const Dropdown: React.FC<Props> = ({
         className={styles.dropdown__button}
         onClick={() => setIsOpen((x) => !x)}
       >
-        <span className={styles.dropdown__current}>{current}</span>
+        <span className={styles.dropdown__current}>{currentItem}</span>
         <img
           src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
           className={`${isOpen ? styles.arrow__top : styles.arrow__bottom}`}
@@ -62,7 +61,6 @@ const Dropdown: React.FC<Props> = ({
               onClick={() => {
                 onHandle(setOn, key);
                 setIsOpen(false);
-                setCurrent(value);
               }}
             >
               {value}

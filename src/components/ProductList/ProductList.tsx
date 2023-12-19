@@ -16,7 +16,7 @@ type Props = {
   infoPage?: InfoPage | null;
   translateX?: number;
   status?: boolean;
-  onStatus?: (isLoading: boolean) => void;
+  onStatus?: (isLoading: boolean) => void | null;
 };
 
 const ProductList: React.FC<Props> = ({
@@ -25,7 +25,7 @@ const ProductList: React.FC<Props> = ({
   infoPage = null,
   translateX = 0,
   status = false,
-  onStatus,
+  onStatus = null,
 }) => {
   const { perPage } = useSearchParams();
   return (
@@ -47,14 +47,15 @@ const ProductList: React.FC<Props> = ({
           ))}
       </div>
       {type !== 'slider' &&
-        infoPage !== null &&
-        (onStatus && !status ? (
-          <Pagination
-            currentPage={infoPage.selectedPage}
-            totalCount={infoPage.totalRecords}
-            pageSize={infoPage.perPage}
-            onStateUpload={onStatus}
-          />
+        (infoPage !== null && onStatus !== null && !status ? (
+          <>
+            <Pagination
+              currentPage={infoPage.selectedPage}
+              totalCount={infoPage.totalRecords}
+              pageSize={infoPage.perPage}
+              onStateUpload={onStatus}
+            />
+          </>
         ) : (
           <PaginationLoader />
         ))}

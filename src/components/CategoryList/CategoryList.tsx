@@ -1,9 +1,9 @@
 import styles from './categoryList.module.scss';
 
 import CategoryItem from '../CategoryItem/CategoryItem';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import {Categories} from '../../types/Categories';
+import { Categories } from '../../types/Categories';
 import CategoryLoader from '../CategoryLoader/CategoryLoader';
 
 const API_URL =
@@ -29,8 +29,8 @@ const CategoryList = () => {
       <h2 className={styles.category_list__title}>Shop by category</h2>
 
       <ul className={styles.category_list__content}>
-        {!isLoading ? (
-          category.map(info => (
+        {!isLoading
+          ? category.map((info) => (
             <CategoryItem
               image={{
                 src: info.url,
@@ -42,14 +42,12 @@ const CategoryList = () => {
               key={info.id}
             />
           ))
-        ) : (
-          Array.from({ length: 3 }).map((_, i) => <CategoryLoader count={i + 1} key={i} />)
-        )}
-
+          : Array.from({ length: 3 }).map((_, i) => (
+            <CategoryLoader count={i + 1} key={i} />
+          ))}
       </ul>
     </section>
   );
 };
 
 export default CategoryList;
-

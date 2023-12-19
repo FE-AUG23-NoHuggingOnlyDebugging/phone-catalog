@@ -55,7 +55,7 @@ const NavDesktop = () => {
     />
   </div> */}
         <NavLink to="/favourites" className={isActiveUtility}>
-          <FavouriteIcon/>
+          <FavouriteIcon />
         </NavLink>
 
         <NavLink to="/cart" className={isActiveUtility}>
