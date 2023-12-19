@@ -15,9 +15,20 @@ type Props = {
 };
 
 const CategoryItem: React.FC<Props> = ({ image, title, model, totalModel }) => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <li className={cn(styles.category_list__item, styles.category_item)}>
-      <Link to={'catalog/' + model} className={styles.link__cover} />
+      <Link
+        to={'catalog/' + model}
+        className={styles.link__cover}
+        onClick={scrollToTop}
+      />
       <div
         className={cn(
           styles.category_item__bg,
