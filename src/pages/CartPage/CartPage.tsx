@@ -117,7 +117,14 @@ export const CartPage = () => {
         </div>
       )}
       {!products.length && !isLoading && !isError && (
-        <p className={styles.empty_cart_message}>Your cart is empty</p>
+        <div className={styles.test}>
+          <img
+            src={process.env.PUBLIC_URL + '/img/icons/empty-cart.svg'} 
+            alt="Empty cart"
+            className={styles.cart_icon}
+          />
+          <p className={styles.empty_cart_message}>Your cart is empty</p>
+        </div>
       )}
     </div>
   );
