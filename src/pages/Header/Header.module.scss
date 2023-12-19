@@ -14,16 +14,24 @@
 
 .header {
   background-color: #fff;
+  padding-bottom: 24px;
 
   &__title {
     color: $color__for_test;
   }
+
+  &__logo {
+    height:64px;
+    margin: 0px;
+  }
 }
 .navbar {
+  height: 64px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid #e2e6e9;
 
   &__right {
     display: flex;
@@ -50,7 +58,7 @@
     text-transform: uppercase;
     text-decoration: none;
     padding-top: 27px;
-    padding-bottom: 24px;
+    padding-bottom: 22px;
     border-bottom: 3px solid transparent;
   }
 
@@ -59,12 +67,11 @@
   }
 
   &__utilities {
-    width: 16px;
-    height: 16px;
+    width: 64px;
+    height: 64px;
     padding: 24px;
-    padding-bottom: 21px;
     border-left: 1px solid #e2e6e9;
-    border-bottom: 3px solid transparent;
+    border-bottom: 1px solid #e2e6e9;
   }
 
   &__highlight {

@@ -1,10 +1,7 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
-import cn from 'classnames';
 
 const NavMobile = () => {
-  const isActiveUtility = ({ isActive }: { isActive: boolean }) =>
-    cn(styles.navbar__utilities, { [styles.navbar__highlight]: isActive });
 
   return (
     <nav className={`${styles.header__navbar} ${styles.navbar}`}>
@@ -18,25 +15,12 @@ const NavMobile = () => {
       </div>
 
       <div className={styles.navbar__utility}>
-        {/* <div className={styles.navbar__search}>
-    <input
-      type="text"
-      className={styles.navbar__search_input}
-      placeholder="Search in favourites..."
-    />
-
-    <img
-      src={process.env.PUBLIC_URL + '/img/icons/search.png'}
-      alt="search-icon"
-      className={styles.navbar__search_icon}
-    />
-  </div> */}
-        <NavLink to="/menu" className={isActiveUtility}>
+        <a href="/menu">
           <img
             src={process.env.PUBLIC_URL + '/img/icons/burger-menu.png'}
             alt=""
           />
-        </NavLink>
+        </a>
       </div>
     </nav>
   );
