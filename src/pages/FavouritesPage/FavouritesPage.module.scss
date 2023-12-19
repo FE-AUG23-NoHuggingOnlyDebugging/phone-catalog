@@ -4,7 +4,28 @@
 @import '../../appScss/colors.scss';
 @import '../../appScss/typography.scss';
 
-.cart_info {
+.page {
+  width: max-content;
+  margin: 40px auto 80px;
+
+  &__empty {
+    width: 1136px;
+
+    @include onTablet {
+      width: calc(100% - 48px);
+    }
+  }
+
+  @include onPhone {
+    margin-block: 24px 56px;
+  }
+
+  @include onTablet {
+    margin-bottom: 64px;
+  }
+}
+
+.favorites_info {
   margin-bottom: 32px;
 }
 

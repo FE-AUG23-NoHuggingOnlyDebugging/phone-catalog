@@ -1,7 +1,8 @@
 'use strict';
 
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import cn from 'classnames';
+import { useEffect, useState } from 'react';
 import ProductList from '../../components/ProductList/ProductList';
 import { selectFavoritesProducts } from '../../store/favoriteSlice';
 import styles from './FavouritesPage.module.scss';
@@ -37,8 +38,12 @@ export const FavouritesPage = () => {
   }, [elements]);
 
   return (
-    <>
-      <div className={styles.cart_info}>
+    <div
+      className={cn(styles.page, {
+        [styles.page__empty]: (products.length <= 1 || isError) && !isLoading,
+      })}
+    >
+      <div className={styles.favorites_info}>
         <h1 className={styles.title}>Favourites Page</h1>
         <p className={styles.modelCount}>{`${elements.length} items`}</p>
       </div>
@@ -49,6 +54,6 @@ export const FavouritesPage = () => {
         </p>
       )}
       <ProductList products={products} status={isLoading} />
-    </>
+    </div>
   );
 };

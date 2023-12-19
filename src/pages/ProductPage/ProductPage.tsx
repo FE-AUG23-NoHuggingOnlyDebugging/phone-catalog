@@ -110,6 +110,7 @@ export const ProductPage = () => {
           products={products}
           infoPage={infoPage}
           status={isLoading}
+          onStatus={setIsLoading}
         />
       </section>
       {isError && <p>Error...</p>}
