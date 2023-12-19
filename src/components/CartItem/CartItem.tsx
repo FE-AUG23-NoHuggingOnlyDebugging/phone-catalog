@@ -14,8 +14,8 @@ import {
 import { useAppSelector } from '../../store/hooks';
 
 type Props = {
-  product: ProductDetails,
-  removeProduct: (id: string) => void,
+  product: ProductDetails;
+  removeProduct: (id: string) => void;
 };
 
 export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
