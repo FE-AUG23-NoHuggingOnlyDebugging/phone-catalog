@@ -38,7 +38,9 @@ const Dropdown: React.FC<Props> = ({
   return (
     <div
       ref={ref}
-      className={`${styles.catalog__dropdown} ${styles.dropdown} ${rootClassName || ''}`}
+      className={`${styles.catalog__dropdown} ${styles.dropdown} ${
+        rootClassName || ''
+      }`}
     >
       <button
         className={styles.dropdown__button}
