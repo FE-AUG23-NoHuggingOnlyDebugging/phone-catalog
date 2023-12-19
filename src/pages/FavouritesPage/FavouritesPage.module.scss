@@ -1,7 +1,26 @@
+@import '../../appScss/reset';
+@import '../../appScss/mixins.scss';
+@import '../../appScss/arrow';
+@import '../../appScss/colors.scss';
+@import '../../appScss/typography.scss';
+
 .footer {
   background-color: rgb(137, 137, 137);
 
   &__title {
     color: red;
   }
+}
+
+
+.empty_cart_message,
+.loading_message,
+.error_message {
+  @include default-h4;
+
+  @include onTablet {
+    @include mob-h4;
+  }
+
+  text-align: center;
 }

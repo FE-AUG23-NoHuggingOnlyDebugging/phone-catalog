@@ -23,9 +23,9 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<HomePage />} />
-            <Route path="catalog/phones" element={<ProductPage />} />
-            <Route path="catalog/tablets" element={<ProductPage />} />
-            <Route path="catalog/accessories" element={<ProductPage />} />
+            <Route path="catalog/:type" element={<ProductPage />} />
+            {/* <Route path="catalog/:tablets" element={<ProductPage />} />
+            <Route path="catalog/:accessories" element={<ProductPage />} /> */}
 
             <Route path="/cart" element={<CartPage />} />
             <Route path="/favourites" element={<FavouritesPage />} />
