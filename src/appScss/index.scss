@@ -1,10 +1,13 @@
 @import './colors.scss';
 @import './typography.scss';
+
 @import './mixins';
+
 
 body {
   font-family: Mont, sans-serif;
 }
+
 
 #root {
   display: flex;

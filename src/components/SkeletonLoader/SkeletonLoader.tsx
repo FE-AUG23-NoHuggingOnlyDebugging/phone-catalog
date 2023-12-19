@@ -30,12 +30,8 @@ export const SkeletonLoader = () => (
         y="402" rx="2" ry="2"
         className="cart" />
       <rect
-        x="168"
-        y="402"
-        rx="2"
-        ry="2"
-        className="fav" />
-
+        x="168" y="402" rx="2"
+        ry="2" className="fav" />
     </ContentLoader>
   </div>
 );

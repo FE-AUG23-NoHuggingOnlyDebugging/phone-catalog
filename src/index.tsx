@@ -12,6 +12,8 @@ import { CartPage } from './pages/CartPage/CartPage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage/ProductDetailsPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
+import { ContactsPage } from './pages/ContactsPage/ContactsPage';
+
 import { AuthRoot } from './components/auth/AuthRoot';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
@@ -28,10 +30,11 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
             <Route path="/cart" element={<CartPage />} />
             <Route path="/favourites" element={<FavouritesPage />} />
 
+            <Route path="product/:type/:productId" element={<ProductDetailsPage />} />
+
+            <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/login" element={<AuthRoot />} />
             <Route path="/register" element={<AuthRoot />} />
-
-            <Route path="product/:productId" element={<ProductDetailsPage />} />
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>

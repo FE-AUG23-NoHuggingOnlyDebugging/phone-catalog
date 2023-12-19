@@ -10,5 +10,16 @@ export const colors = [
   { name: 'spacegray', hash: '#808080' },
   { name: 'midnightgreen', hash: '#092E20' },
   { name: 'rosegold', hash: '#E0BFB8' },
+
+  { name: 'rose-gold', hash: '#E0BFB8' },
   { name: 'coral', hash: '#ff7f50' },
+  { name: 'spaceblack', hash: '#333334' },
+  { name: 'graphite', hash: '#414141' },
+  { name: 'sierrablue', hash: '#69abce' },
+  { name: 'midnight', hash: '#011635' },
+  { name: 'blue', hash: '#51A0D5' },
+  { name: 'pink', hash: '#b76e79' },
+  { name: 'starlight', hash: '#f0f0dc' },
+  { name: 'skyblue', hash: '#87CEEB' },
+  { name: 'sky-blue', hash: '#87CEEB' },
 ];
