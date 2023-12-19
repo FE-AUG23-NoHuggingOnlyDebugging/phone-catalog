@@ -1,7 +1,7 @@
 'use strict';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { ProductDetails } from '../../types/ProductDetails';
 import style from './ProductDetailsPage.module.scss';
 import { Description } from './Components/DescriptionDetails/DescriptionDetails';
@@ -9,9 +9,12 @@ import { Features } from './Components/FeaturesBlock/Features';
 import { Gallery } from './Components/GalleryBlock/Gallery';
 import axios from 'axios';
 import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
+import { Spinner } from '../../components/Loader/Spinner';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
+  const { type } = useParams();
+  const location = useLocation().pathname.split('/')[1];
 
   const [product, setProduct] = useState<ProductDetails | null>(null);
   const [mainImage, setMainImage] = useState(product?.images[0]);
@@ -20,12 +23,14 @@ export const ProductDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
+  console.log(location);
+
   useEffect(() => {
     setIsError(false);
 
     axios
       .get<ProductDetails>(
-        `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${productId}`,
+        `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${type}/${productId}`,
       )
       .then((res) => {
         setProduct(res.data);
@@ -50,7 +55,7 @@ export const ProductDetailsPage = () => {
 
   return (
     <>
-      {isLoading && <h1>Loading</h1>}
+      {isLoading && <Spinner />}
       {isError && <NotFoundPage />}
       {product && !isError && !isLoading && (
         <section className={style.product}>
@@ -71,6 +76,7 @@ export const ProductDetailsPage = () => {
                 setActiveMemory={setActiveMemory}
                 activeColor={activeColor}
                 activeMemory={activeMemory}
+                type={type}
               />
             </article>
 
