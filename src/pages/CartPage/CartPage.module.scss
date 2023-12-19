@@ -68,6 +68,17 @@
   color: var(--primary-color);
 }
 
+.test {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cart_icon {
+  height: 120px;
+  width: auto;
+}
+
 .empty_cart_message,
 .error_message {
   @include default-h4;

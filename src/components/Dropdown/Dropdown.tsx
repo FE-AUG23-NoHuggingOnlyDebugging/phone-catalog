@@ -3,7 +3,7 @@ import styles from './Dropdown.module.scss';
 
 type Props = {
   list: string[][];
-  currentItem: string;
+   currentItem: string;
   setOn: string;
   rootClassName?: string;
   onHandle: (setKey: string, value: string) => void;
