@@ -8,6 +8,7 @@ import { ProductDetails } from '../../types/ProductDetails';
 import { useAppSelector } from '../../store/hooks';
 import { selectCartProducts } from '../../store/cartSlice';
 import axios from 'axios';
+import { CartSkeletonLoader } from '../../components/CartSkeletonLoader';
 
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
@@ -19,11 +20,20 @@ export const CartPage = () => {
   useEffect(() => {
     const getCart = async () => {
       try {
-        const requests = cartStorageList.map((item) =>
-          axios.get<ProductDetails>(
-            `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${item.name}`,
-          ),
-        );
+        const requests = cartStorageList.map((item) => {
+          let category;
+          if (item.name.includes('phone')) {
+            category = 'phones';
+          } else if (item.name.includes('ipad')) {
+            category = 'tablets';
+          } else {
+            category = 'accessories';
+          }
+
+          return axios.get<ProductDetails>(
+            `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${category}/${item.name}`,
+          );
+        });
 
         const responses = await Promise.all(requests);
 
@@ -59,22 +69,12 @@ export const CartPage = () => {
 
   const removeProduct = (id: string) => {
     console.log(id);
-    setProducts(products.filter(product => product.id !== id));
+    setProducts(products.filter((product) => product.id !== id));
   };
 
   return (
-    <div
-      className={cn({
-        [styles.page]: products.length > 0,
-        [styles.empty_cart_page]: products.length === 0,
-      })}
-    >
-      <div
-        className={cn({
-          [styles.cart_info]: products.length > 0,
-          [styles.empty_cart_info]: products.length === 0,
-        })}
-      >
+    <div className={styles.page}>
+      <div className={styles.cart_info}>
         <button
           type="button"
           className={styles.button}
@@ -91,7 +91,7 @@ export const CartPage = () => {
         <h1 className={styles.title}>Cart</h1>
       </div>
 
-      {isLoading && <p className={styles.loading_message}>Loading</p>}
+      {isLoading && [1, 2, 3].map((item) => <CartSkeletonLoader key={item} />)}
 
       {isError && (
         <p className={styles.error_message}>
@@ -103,7 +103,11 @@ export const CartPage = () => {
         <div className={styles.cart_content}>
           <div className={styles.cards}>
             {products.map((product) => (
-              <CartItem product={product} removeProduct={removeProduct} key={product.id} />
+              <CartItem
+                product={product}
+                removeProduct={removeProduct}
+                key={product.id}
+              />
             ))}
           </div>
 
