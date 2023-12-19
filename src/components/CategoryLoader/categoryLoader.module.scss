@@ -1,0 +1,136 @@
+@import '../../appScss/link';
+@import '../../appScss/mixins';
+$border-color: #fff;
+$animation-duration: 1s;
+$animation-delay: -0.5s;
+$animation-timing-function: cubic-bezier(0, 0.2, 0.8, 1);
+
+.category_loader {
+  position: relative;
+  width: calc(100% / 3);
+  height: calc(100% / 3);
+  aspect-ratio: 1 / 1;
+
+  @include onPhone {
+    width: 100%;
+    height: auto;
+    aspect-ratio: inherit;
+  }
+
+  &__info {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  &__box {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--hover-bg-color);
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(var(--elements-color), 0.1) 0,
+        rgba(var(--elements-color), 0.3) 20%,
+        rgba(var(--elements-color), 0.7) 60%,
+        rgba(var(--elements-color), 0.1)
+      );
+      animation: shimmer 5s infinite;
+      content: '';
+    }
+
+    @keyframes shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  &__bg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-bottom: 24px;
+
+    &_1 {
+      background: #6D6474;
+    }
+
+    &_2 {
+      background: #8d8d92;
+    }
+
+    &_3 {
+      background: #973d5f;
+    }
+  }
+
+  &__title {
+    width: 150px;
+    height: 28px;
+    margin-bottom: 4px;
+  }
+
+  &__count {
+    width: 75px;
+    height: 21px;
+  }
+
+  &__spinner {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+
+    span {
+      position: absolute;
+      border: 4px solid $border-color;
+      opacity: 1;
+      border-radius: 50%;
+      animation: lds-ripple $animation-duration $animation-timing-function infinite;
+    }
+
+    &:nth-child(2) {
+      animation-delay: $animation-delay;
+    }
+
+    @keyframes lds-ripple {
+      0%, 4.9% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+
+      5% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+      }
+
+      100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+      }
+    }
+  }
+
+}
