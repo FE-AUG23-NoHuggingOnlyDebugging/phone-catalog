@@ -12,9 +12,12 @@ export const SliderPromo = () => {
   const [slide, setSlide] = useState(0);
 
   useEffect(() => {
-    axios.get('https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/slider')
-      .then(data => setData(data.data.images))
-      .catch(error => console.error(error));
+    axios
+      .get(
+        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/slider',
+      )
+      .then((data) => setData(data.data.images))
+      .catch((error) => console.error(error));
   }, []);
 
   const transitions = useTransition(data[slide], {

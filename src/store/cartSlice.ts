@@ -4,7 +4,7 @@ import { RootState } from './store';
 export interface CartProduct {
   name: string;
   quantity: number;
-	category: string;
+  category: string;
 }
 
 export interface CartState {
@@ -19,7 +19,10 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<{id: string; category: string;}>) => {
+    addToCart: (
+      state,
+      action: PayloadAction<{ id: string; category: string }>,
+    ) => {
       const product = state.products.find(
         (item) => item.name === action.payload.id,
       );

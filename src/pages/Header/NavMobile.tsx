@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 const NavMobile = () => {
-
   return (
     <nav className={`${styles.header__navbar} ${styles.navbar}`}>
       <div className={styles.navbar__right}>
