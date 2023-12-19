@@ -1,41 +1,62 @@
 @import '../categoryList/categoryList.module';
+@import '../../appScss/link';
 
 .category_item {
+  position: relative;
+
+  &:hover &__image {
+    &_phones {
+      object-position: 2px 21px;
+    }
+
+    &_tablets {
+      object-position: 14px 5px;
+    }
+
+    &_accessories {
+      object-position: 28px 0px;
+    }
+  }
+
   &__bg {
     width: 100%;
-    height: 368px;
+    height: 100%;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
 
     &_phones {
-      background: #fcdbc1;
+      background: #6D6474;
     }
 
-    &_tablet {
+    &_tablets {
       background: #8d8d92;
     }
 
-    &_accessory {
+    &_accessories {
+      display: flex;
       background: #973d5f;
+      flex-direction: column;
+      justify-content: flex-end;
     }
   }
 
   &__image {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
+    transition: all 0.3s;
 
     &_phones {
-      width: 110%;
-      object-position: 56px 8px;
+      width: 125%;
+      object-position: 8px 36px;
     }
 
-    &_tablet {
+    &_tablets {
       width: 145%;
-      object-position: 30px 20px;
+      object-position: 22px 20px;
     }
 
-    &_accessory {
-      object-position: 70px 45px;
+    &_accessories {
+      width: 187%;
+      object-position: 38px 8px;
     }
   }
 
@@ -49,6 +70,6 @@
     margin-top: 4px;
     font-weight: 500;
     line-height: 21px;
-    color: #89939a;
+    color: var(--secondary-color);
   }
 }
