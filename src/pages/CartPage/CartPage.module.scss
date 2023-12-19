@@ -8,6 +8,14 @@
   width: max-content;
   margin: 40px auto 80px;
 
+  display: flex;
+  flex-direction: column;
+
+
+  &__empty {
+    width: 100%;
+  }
+
   @include onTablet {
     margin-bottom: 64px;
   }
@@ -60,16 +68,36 @@
   color: var(--primary-color);
 }
 
-.empty_cart_message,
-.loading_message,
-.error_message {
+.message {
+  margin-inline: auto;
+
   @include default-h4;
 
-  @include onTablet {
+  @include onPhone {
     @include mob-h4;
   }
 
   text-align: center;
+
+  &_container {
+    align-self: center;
+
+    &__empty_cart {
+      width: calc(100vw - 183px - 48px);
+  
+      @include onTablet {
+        width: fit-content;
+      }
+    }
+
+    &__error {
+        width: calc(100vw - 250px);
+    
+        @include onTablet {
+          width: fit-content;
+        }
+      }
+  }
 }
 
 .cart_content {

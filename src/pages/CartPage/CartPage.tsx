@@ -64,7 +64,10 @@ export const CartPage = () => {
   };
 
   return (
-    <div className={styles.page}>
+    <div
+      className={cn(styles.page, {
+        [styles.page__empty]: (products.length === 0 || isError) && !isLoading,
+      })}>
       <div className={styles.cart_info}>
         <button
           type="button"
@@ -85,9 +88,11 @@ export const CartPage = () => {
       {isLoading && [1, 2, 3].map((item) => <CartSkeletonLoader key={item} />)}
 
       {isError && (
-        <p className={styles.error_message}>
-          An error occured while recieving data
-        </p>
+        <div className={`${styles.message_container} ${styles.message_container__error}`}>
+          <p className={styles.message}>
+            An error occured while recieving data
+          </p>
+        </div>
       )}
 
       {products.length > 0 && !isLoading && !isError && (
@@ -114,7 +119,9 @@ export const CartPage = () => {
         </div>
       )}
       {!products.length && !isLoading && !isError && (
-        <p className={styles.empty_cart_message}>Your cart is empty</p>
+        <div className={`${styles.message_container} ${styles.message_container__empty_cart}`}>
+          <p className={styles.message}>Your cart is empty</p>
+        </div>
       )}
     </div>
   );
