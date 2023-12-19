@@ -1,5 +1,5 @@
 @import '../../ProductDetails-mixins.scss';
-@import '../../ProductDetails-variables.scss';
+@import '../../../../appScss/colors.scss';
 
 .productDescription {
   margin: 80px 0;
@@ -37,7 +37,7 @@
   }
 
   &__title {
-    color: $productDetails-title-color;
+    color: var(--primary-color);
     margin: 0;
     font-size: 22px;
     font-weight: 800;
@@ -50,7 +50,7 @@
 
   &__article {
     &__subTitle {
-      color: $productDetails-title-color;
+      color: var(--primary-color);
       font-size: 20px;
       margin: 32px 0 16px 0;
 
@@ -79,7 +79,7 @@
   }
 
   &__specValue {
-    color: $productDetails-title-color;
+    color: var(--primary-color);
     text-align: right;
     font-size: 14px;
     font-weight: 500;
