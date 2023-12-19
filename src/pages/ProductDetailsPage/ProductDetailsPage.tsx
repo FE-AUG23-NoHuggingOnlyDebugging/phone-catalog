@@ -13,6 +13,7 @@ import { Spinner } from '../../components/Loader/Spinner';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
+  const { type } = useParams();
   const location = useLocation().pathname.split('/')[1];
 
   const [product, setProduct] = useState<ProductDetails | null>(null);
@@ -29,7 +30,7 @@ export const ProductDetailsPage = () => {
 
     axios
       .get<ProductDetails>(
-        `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${location}/${productId}`,
+        `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${type}/${productId}`,
       )
       .then((res) => {
         setProduct(res.data);
@@ -75,7 +76,7 @@ export const ProductDetailsPage = () => {
                 setActiveMemory={setActiveMemory}
                 activeColor={activeColor}
                 activeMemory={activeMemory}
-                location={location}
+                type={type}
               />
             </article>
 
