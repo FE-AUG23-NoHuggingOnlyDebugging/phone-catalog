@@ -1,6 +1,6 @@
 import styles from './pagination.module.scss';
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { usePagination, DOTS } from './utils/usePagination';
 import './pagination.module.scss';
@@ -13,10 +13,7 @@ interface PaginationProps {
   pageSize: number;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
-  totalCount,
-  pageSize,
-}) => {
+const Pagination: React.FC<PaginationProps> = ({ totalCount, pageSize }) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const { page } = useSearchParams();
@@ -26,7 +23,9 @@ const Pagination: React.FC<PaginationProps> = ({
 
   useEffect(() => {
     const handleResize = () => {
-      setSiblingCount(window.innerWidth > 500 ? 2 : window.innerWidth > 420 ? 1 : 0);
+      setSiblingCount(
+        window.innerWidth > 500 ? 2 : window.innerWidth > 420 ? 1 : 0,
+      );
     };
 
     handleResize();

@@ -78,7 +78,11 @@ export const ProductPage = () => {
         </div>
       </section>
       <section className={styles.catalog__products}>
-        <ProductList products={products} infoPage={infoPage} status={isLoading} />
+        <ProductList
+          products={products}
+          infoPage={infoPage}
+          status={isLoading}
+        />
       </section>
       {isError && <p>Error...</p>}
     </div>

@@ -7,7 +7,7 @@ import ProductCard from '../ProductCard/ProductCard';
 import Pagination from '../Pagination/Pagination';
 import { InfoPage } from '../../types/InfoPage';
 import ProductLoader from '../ProductLoader/ProductLoader';
-import {useSearchParams} from '../../utils/useSearchParams';
+import { useSearchParams } from '../../utils/useSearchParams';
 import PaginationLoader from '../PaginationLoader/PaginationLoader';
 
 type Props = {
@@ -25,7 +25,7 @@ const ProductList: React.FC<Props> = ({
   translateX = 0,
   status = false,
 }) => {
-  const {perPage} = useSearchParams();
+  const { perPage } = useSearchParams();
 
   return (
     <>
@@ -36,14 +36,15 @@ const ProductList: React.FC<Props> = ({
         style={{ transform: `translateX(calc(${translateX}%)` }}
       >
         {status
-          ? [<>
-            <ProductLoader key={0} perPage={Number(perPage) || 16} />
-            <PaginationLoader />
-          </>]
+          ? [
+            <>
+              <ProductLoader key={0} perPage={Number(perPage) || 16} />
+              <PaginationLoader />
+            </>,
+          ]
           : products.map((product) => (
             <ProductCard key={product.id} product={product} type={type} />
-          ))
-        }
+          ))}
       </div>
       {type !== 'slider' && !status && infoPage !== null && (
         <Pagination

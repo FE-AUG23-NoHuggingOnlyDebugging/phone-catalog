@@ -4,11 +4,11 @@ import styles from '../ProductCardLoader/ProductCardLoader.module.scss';
 import React from 'react';
 
 type Props = {
-  type?: string | null,
-  perPage?: number,
+  type?: string | null;
+  perPage?: number;
 };
 
-const ProductLoader: React.FC<Props> = ({type = null, perPage = 16}) => {
+const ProductLoader: React.FC<Props> = ({ type = null, perPage = 16 }) => {
   const getPerPage = type === 'slider' ? 4 : perPage;
 
   const content = Array.from({ length: getPerPage }, (_, index) => (

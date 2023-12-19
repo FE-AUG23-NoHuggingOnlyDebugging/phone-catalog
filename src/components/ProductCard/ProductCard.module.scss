@@ -29,7 +29,6 @@
       width: calc(33.33% - (16px * 2 / 3));
     }
 
-
     @media (max-width: 767px) {
       width: calc(50% - 8px);
     }
@@ -40,7 +39,7 @@
   }
 
   &:hover {
-    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
   }
 
   &__info {
@@ -77,7 +76,6 @@
       min-height: 63px;
       @include bodyText;
     }
-
   }
 
   &__price {

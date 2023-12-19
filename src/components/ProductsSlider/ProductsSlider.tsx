@@ -41,14 +41,18 @@ const ProductsSlider: React.FC<Props> = ({ title, status }) => {
 
   // const blockWidth = (((parentWidth - 16 * 3) / 4 + 16) / parentWidth) * 100;
   let blockWidth = ((parentWidth + 16) / parentWidth) * 100;
-  let maxTranslateX = products.length ?  (-blockWidth * (products.length - 4)) / 4 : 0;
+  let maxTranslateX = products.length
+    ? (-blockWidth * (products.length - 4)) / 4
+    : 0;
 
   if (parentWidth < 1136) {
-    const oneBlockWidth = parentWidth > (591) ? 237 : 212;
+    const oneBlockWidth = parentWidth > 591 ? 237 : 212;
     const countBlockGap = parentWidth / (oneBlockWidth + 16.3);
     const countBlockFloor = Math.floor(countBlockGap);
     blockWidth = ((oneBlockWidth + 16) / parentWidth) * countBlockFloor * 100;
-    maxTranslateX = products.length ? -((products.length / countBlockGap) - 1) * 100 : 0;
+    maxTranslateX = products.length
+      ? -(products.length / countBlockGap - 1) * 100
+      : 0;
   }
 
   console.log(translateX, maxTranslateX);
@@ -91,8 +95,7 @@ const ProductsSlider: React.FC<Props> = ({ title, status }) => {
           <button
             type="button"
             className={cn(styles.swiper__button, {
-              [styles.swiper__disabled]:
-                translateX === maxTranslateX
+              [styles.swiper__disabled]: translateX === maxTranslateX,
             })}
             onClick={handleNext}
             disabled={translateX === maxTranslateX}
@@ -106,11 +109,15 @@ const ProductsSlider: React.FC<Props> = ({ title, status }) => {
         </div>
       </div>
 
-      {status
-        ? <ProductLoader type='slider' />
-        : <ProductList products={products} type="slider" translateX={translateX} />
-      }
-
+      {status ? (
+        <ProductLoader type="slider" />
+      ) : (
+        <ProductList
+          products={products}
+          type="slider"
+          translateX={translateX}
+        />
+      )}
     </section>
   );
 };

@@ -4,7 +4,7 @@ import ProductsSlider from '../../components/ProductsSlider/ProductsSlider';
 import { SliderPromo } from '../../components/SliderPromo/SliderPromo';
 import { setProducts } from '../../store/productsSlice';
 import axios from 'axios';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import CategoryList from '../../components/CategoryList/CategoryList';
 
@@ -29,7 +29,7 @@ export const HomePage = () => {
   return (
     <>
       <SliderPromo />
-      <ProductsSlider title="Brand new models" status={isLoading}/>
+      <ProductsSlider title="Brand new models" status={isLoading} />
       <CategoryList />
       <ProductsSlider title="Hot prices" status={isLoading} />
     </>
