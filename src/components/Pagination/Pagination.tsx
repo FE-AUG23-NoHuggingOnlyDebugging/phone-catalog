@@ -11,9 +11,14 @@ interface PaginationProps {
   totalCount: number;
   currentPage: number;
   pageSize: number;
+  onStateUpload: (isLoading: boolean) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ totalCount, pageSize }) => {
+const Pagination: React.FC<PaginationProps> = ({
+  totalCount,
+  pageSize,
+  onStateUpload,
+}) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const { page } = useSearchParams();
@@ -67,6 +72,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalCount, pageSize }) => {
         className={cn(styles.pagination__item, {
           [styles.pagination__disabled]: currentPage === 1,
         })}
+        onClick={() => onStateUpload(true)}
       >
         <img
           className={styles.arrow__left}
@@ -91,6 +97,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalCount, pageSize }) => {
               className={cn(styles.pagination__item, {
                 [styles.pagination__selected]: pageNumber === currentPage,
               })}
+              onClick={() => onStateUpload(true)}
             >
               {pageNumber}
             </Link>
@@ -106,6 +113,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalCount, pageSize }) => {
         className={cn(styles.pagination__item, {
           [styles.pagination__disabled]: currentPage === lastPage,
         })}
+        onClick={() => onStateUpload(true)}
       >
         <img src={process.env.PUBLIC_URL + '/img/icons/arrow.png'} alt="next" />
       </Link>
