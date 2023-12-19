@@ -40,10 +40,31 @@ export const ProductPage = () => {
   const handleSearchParams = (setKey: string, value: string) => {
     setSearchParams((searchParams) => {
       searchParams.set(setKey, value);
-      console.log(setKey, value);
       return searchParams;
     });
   };
+
+  function checkItem(value: string, setBy: string, arr: string[][]): string {
+    const current = setBy === 'sort' ? 'Newest' : '16';
+    if (value && !arr.map(([x,]) => x).includes(value)) {
+      handleSearchParams (setBy, current);
+      return current;
+    }
+    return value || current;
+  }
+
+  const listSort = [
+    ['age', 'Newest'],
+    ['title', 'Alphabetically'],
+    ['price', 'Price'],
+  ];
+
+  const listPerPage = [
+    ['4', '4'],
+    ['8', '8'],
+    ['16', '16'],
+    ['all', 'all'],
+  ];
 
   return (
     <div className={`${styles.wrapper} ${styles.catalog}`}>
@@ -56,12 +77,8 @@ export const ProductPage = () => {
         <div>
           <p className={styles.catalog__filters_title}>Sort by</p>
           <Dropdown
-            list={[
-              ['age', 'Newest'],
-              ['title', 'Alphabetically'],
-              ['price', 'Price'],
-            ]}
-            currentItem={'Newest'}
+            list={listSort}
+            currentItem={checkItem(sort || '', 'sort', listSort)}
             setOn={'sort'}
             onHandle={handleSearchParams}
           />
@@ -69,13 +86,8 @@ export const ProductPage = () => {
         <div>
           <p className={styles.catalog__filters_title}>Items on page</p>
           <Dropdown
-            list={[
-              ['4', '4'],
-              ['8', '8'],
-              ['16', '16'],
-              ['all', 'all'],
-            ]}
-            currentItem={'16'}
+            list={listPerPage}
+            currentItem={checkItem(perPage.toString() || '', 'perPage', listPerPage)}
             setOn={'perPage'}
             onHandle={handleSearchParams}
             rootClassName={'set-width'}
