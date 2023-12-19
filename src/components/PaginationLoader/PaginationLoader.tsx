@@ -16,4 +16,3 @@ const PaginationLoader = () => (
 );
 
 export default PaginationLoader;
-
