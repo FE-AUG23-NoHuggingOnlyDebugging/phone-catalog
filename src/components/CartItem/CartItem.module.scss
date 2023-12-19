@@ -1,51 +1,20 @@
 @import '../../appScss/reset';
 @import '../../appScss/mixins.scss';
-
-@font-face {
-  font-family: 'Mont';
-  src: url('../../fonts/Mont-Bold.otf') format('opentype');
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: 'Mont';
-  src: url('../../fonts/Mont-SemiBold.otf') format('opentype');
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: 'Mont';
-  src: url('../../fonts/Mont-Regular.otf') format('opentype');
-  font-weight: 500;
-}
-
-$light-theme--primary: rgba(49, 50, 55, 1);
-$light-theme--secondary: rgba(137, 147, 154, 1);
-$light-theme--icons: rgba(180, 189, 195, 1);
-$light-theme--elements: rgba(226, 230, 233, 1);
-$light-theme--white: rgba(255, 255, 255, 1);
-$light-theme--green: rgba(39, 174, 96, 1);
-$light-theme--red: rgba(235, 87, 87, 1);
-
-$font-main: 'Mont', sans-serif;
-$font-bold: 800;
-$font-semi-bold: 700;
-$font-regular: 500;
+@import '../../appScss/colors.scss';
+@import '../../appScss/typography.scss';
 
 .card {
   box-sizing: border-box;
   display: flex;
   padding: 24px;
   gap: 24px;
-  border: 1px solid $light-theme--elements;
+  border: 1px solid var(--elements-color);
 
-  font-family: $font-main;
+	&:not(:last-child) {
+		margin-bottom: 16px;
+	}
 
-  &:not(:last-child) {
-    margin-bottom: 16px;
-  }
-
-  @include OnPhone {
+  @include onPhone {
     flex-direction: column;
     padding: 16px;
     gap: 16px;
@@ -57,7 +26,7 @@ $font-regular: 500;
   align-items: center;
   gap: 24px;
 
-  @include OnPhone {
+  @include onPhone {
     gap: 16px;
   }
 }
@@ -67,17 +36,19 @@ $font-regular: 500;
   align-items: center;
   gap: 24px;
 
-  @include OnPhone {
+  @include onPhone {
     justify-content: space-between;
   }
 }
 
 .photo_container {
-  width: 76px;
   display: flex;
   justify-content: center;
+  width: 80px;
+  height: 80px;
 
   &__image {
+    align-self: center;
     max-height: 66px;
   }
 }
@@ -85,17 +56,15 @@ $font-regular: 500;
 .name {
   width: 336px;
 
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 21px;
+  @include bodyText;
 
-  color: $light-theme--primary;
+  color: var(--primary-color);
 
-  @include OnTablet {
+  @include onTablet {
     width: 176px;
   }
 
-  @include OnPhone {
+  @include onPhone {
     width: 128px;
   }
 }
@@ -105,37 +74,50 @@ $font-regular: 500;
   align-items: center;
 }
 
-.icon {
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 16px;
   height: 16px;
 
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
   &__border {
-    padding: 8px;
-    border: 1px solid $light-theme--icons;
-    color: $light-theme--primary;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--icons-color);
 
     &:hover {
-      border-color: $light-theme--primary;
+      border-color: var(--primary-color);
     }
-  }
 
-  &_disabled {
-    padding: 8px;
-    border: 1px solid $light-theme--elements;
-    color: $light-theme--icons;
-  }
+    &__disabled {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--elements-color);
+      cursor: default;
+    }
 
-  &:hover {
-    color: $light-theme--primary;
-    transition: color 0.3s;
+    &__disabled .icon {
+      opacity: 0.4;
+    }
   }
 }
 
-.number {
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.quantity {
   min-width: 32px;
 
+  @include bodyText;
+
   font-weight: 600;
-  font-size: 14px;
   text-align: center;
 
   color: rgba(0, 0, 0, 1);
@@ -146,11 +128,10 @@ $font-regular: 500;
   width: 80px;
 
   &_number {
-    font-size: 22px;
-    font-weight: $font-bold;
-    line-height: 32px;
+    @include default-h3;
+
     text-align: right;
 
-    color: $light-theme--primary;
+    color: var(--primary-color);
   }
 }

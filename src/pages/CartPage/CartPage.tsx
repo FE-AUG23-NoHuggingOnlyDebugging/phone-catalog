@@ -8,24 +8,39 @@ import { ProductDetails } from '../../types/ProductDetails';
 import { useAppSelector } from '../../store/hooks';
 import { selectCartProducts } from '../../store/cartSlice';
 import axios from 'axios';
+import { CartSkeletonLoader } from '../../components/CartSkeletonLoader';
 
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const cartStorageList = useAppSelector(selectCartProducts);
 
   useEffect(() => {
-    cartStorageList.forEach((item) => {
-      axios
-        .get<ProductDetails>(
-          `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${item.name}`,
-        )
-        .then((res) => setProducts((curr) => [...curr, res.data]))
-        .catch((error) => {
-          console.error('Сталася помилка при отриманні даних:', error);
+    const getCart = async () => {
+      try {
+        const requests = cartStorageList.map((item) => {
+          return axios.get<ProductDetails>(
+            `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${item.category}/${item.name}`,
+          );
         });
-    });
-  }, []);
+
+        const responses = await Promise.all(requests);
+
+        const updatedProducts = responses.map((res) => res.data);
+
+        setProducts(updatedProducts);
+      } catch (error) {
+        console.error('Сталася помилка при отриманні даних:', error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getCart();
+  }, [cartStorageList]);
 
   let totalSum = 0;
   products.forEach((product) => {
@@ -38,36 +53,55 @@ export const CartPage = () => {
     }
   });
 
+  const productsCount = cartStorageList.reduce(
+    (curr, next) => curr + next.quantity,
+    0,
+  );
+
+  const removeProduct = (id: string) => {
+    console.log(id);
+    setProducts(products.filter((product) => product.id !== id));
+  };
+
   return (
     <div
-      className={cn({
-        [styles.page]: products.length > 0,
-        [styles.empty_cart_page]: products.length === 0,
-      })}
-    >
-      <div
-        className={cn({
-          [styles.cart_info]: products.length > 0,
-          [styles.empty_cart_info]: products.length === 0,
-        })}
-      >
-        <a href="#" className={styles.link}>
+      className={cn(styles.page, {
+        [styles.page__empty]: (!products.length || isError) && !isLoading,
+      })}>
+      <div className={styles.cart_info}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() => window.history.back()}
+        >
           <img
             src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-            alt="Left arrow"
+            alt="left arrow"
             className={cn(styles.icon, styles.arrow__left)}
           />
           <span className={styles.text}>Back</span>
-        </a>
+        </button>
 
         <h1 className={styles.title}>Cart</h1>
       </div>
 
-      {products.length > 0 ? (
+      {isLoading && [1, 2, 3].map((item) => <CartSkeletonLoader key={item} />)}
+
+      {isError && (
+        <p className={styles.error_message}>
+          An error occured while recieving data
+        </p>
+      )}
+
+      {products.length > 0 && !isLoading && !isError && (
         <div className={styles.cart_content}>
           <div className={styles.cards}>
             {products.map((product) => (
-              <CartItem product={product} key={product.id} />
+              <CartItem
+                product={product}
+                removeProduct={removeProduct}
+                key={product.id}
+              />
             ))}
           </div>
 
@@ -75,13 +109,14 @@ export const CartPage = () => {
             <h2 className={styles.price}>{`$${totalSum}`}</h2>
             <p
               className={styles.price_text}
-            >{`Total for ${products.length} items`}</p>
+            >{`Total for ${productsCount} items`}</p>
             <a href="#" className={styles.checkout_button}>
               Checkout
             </a>
           </div>
         </div>
-      ) : (
+      )}
+      {!products.length && !isLoading && !isError && (
         <p className={styles.empty_cart_message}>Your cart is empty</p>
       )}
     </div>

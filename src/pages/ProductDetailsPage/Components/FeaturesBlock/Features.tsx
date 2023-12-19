@@ -7,6 +7,7 @@ import { colors } from './Colors';
 
 type Props = {
   product: ProductDetails;
+  type: string | undefined;
   productId: string | undefined;
   activeMemory: string | null;
   activeColor: string | null;
@@ -16,7 +17,7 @@ type Props = {
 
 export const Features: React.FC<Props> = ({
   product,
-  productId,
+  type,
   activeColor,
   activeMemory,
   setActiveColor,
@@ -28,14 +29,15 @@ export const Features: React.FC<Props> = ({
         <p className={style.features__colorsText}>Available colors</p>
         <div className={style.features__colorsBlock}>
           {product?.colorsAvailable.map((color) => {
-
-            const objectColor = colors.find(colorItem => colorItem.name === color);
+            const objectColor = colors.find(
+              (colorItem) => colorItem.name === color,
+            );
             return (
               <Link
-                to={`/product/${product.namespaceId}-${activeMemory}-${color}`}
+                to={`/product/${type}/${product.namespaceId}-${activeMemory}-${color}`}
                 key={color}
                 className={cn(style.colorItemWrapper, {
-                  [style.activeColor]: productId?.includes(color),
+                  [style.activeColor]: activeColor === color,
                 })}
                 onClick={() => {
                   setActiveColor(color);
@@ -59,11 +61,11 @@ export const Features: React.FC<Props> = ({
 
             return (
               <Link
-                to={`/product/${product.namespaceId}-${lowerCCapacity}-${activeColor}`}
+                to={`/product/${type}/${product.namespaceId}-${lowerCCapacity}-${activeColor}`}
                 key={capacity}
                 onClick={() => setActiveMemory(lowerCCapacity)}
                 className={cn(style.features__memoryItem, {
-                  [style.activeMemory]: productId?.includes(lowerCCapacity),
+                  [style.activeMemory]: activeMemory === lowerCCapacity,
                 })}
               >
                 {capacity}

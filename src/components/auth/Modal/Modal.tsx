@@ -2,18 +2,14 @@ import PropTypes from 'prop-types';
 import styles from './Modal.module.scss';
 
 type Props = {
-  setIsModal: (value: boolean) => void,
+  setIsModal: (value: boolean) => void;
 };
 
 export const Modal: React.FC<Props> = ({ setIsModal }) => {
   return (
     <div className={styles.container}>
       <div className={styles.modal_window}>
-
-        <button
-          className={styles.close_btn}
-          onClick={() => setIsModal(false)}
-        >
+        <button className={styles.close_btn} onClick={() => setIsModal(false)}>
           x
         </button>
 
@@ -21,7 +17,8 @@ export const Modal: React.FC<Props> = ({ setIsModal }) => {
 
         <div className={styles.modal_window__info}>
           <p>
-            Your password request is complete. Check your email for the new password.
+            Your password request is complete. Check your email for the new
+            password.
           </p>
         </div>
 
