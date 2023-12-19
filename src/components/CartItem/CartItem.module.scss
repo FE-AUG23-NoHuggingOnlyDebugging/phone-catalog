@@ -10,6 +10,10 @@
   gap: 24px;
   border: 1px solid var(--elements-color);
 
+	&:not(:last-child) {
+		margin-bottom: 16px;
+	}
+
   @include onPhone {
     flex-direction: column;
     padding: 16px;

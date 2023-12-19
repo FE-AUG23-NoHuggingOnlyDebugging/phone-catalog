@@ -36,7 +36,7 @@ const ProductCard: React.FC<Props> = ({ product, type }) => {
       })}
     >
       <Link
-        to={'/product/'+ product.category + '/' + product.itemId}
+        to={'/product/' + product.category + '/' + product.itemId}
         className={styles.link__cover}
       ></Link>
 
@@ -85,6 +85,7 @@ const ProductCard: React.FC<Props> = ({ product, type }) => {
               (cartProduct) => cartProduct.name === product.itemId,
             )}
             id={product.itemId}
+            category={product.category}
           />
 
           <AddToFavorite
