@@ -4,13 +4,14 @@ import ProductsSlider from '../../components/ProductsSlider/ProductsSlider';
 import { SliderPromo } from '../../components/SliderPromo/SliderPromo';
 import { setProducts } from '../../store/productsSlice';
 import axios from 'axios';
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import { useDispatch } from 'react-redux';
 import CategoryList from '../../components/CategoryList/CategoryList';
 
 const API_URL =
-  'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products';
+  'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/new';
 export const HomePage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,6 +19,7 @@ export const HomePage = () => {
       .get(`${API_URL}`)
       .then((res) => {
         dispatch(setProducts(res.data.records));
+        setIsLoading(false);
       })
       .catch((e) => {
         console.error('Сталася помилка при отриманні даних:', e);
@@ -27,9 +29,9 @@ export const HomePage = () => {
   return (
     <>
       <SliderPromo />
-      <ProductsSlider title="Brand new models" />
+      <ProductsSlider title="Brand new models" status={isLoading}/>
       <CategoryList />
-      <ProductsSlider title="Hot prices" />
+      <ProductsSlider title="Hot prices" status={isLoading} />
     </>
   );
 };

@@ -1,28 +1,42 @@
 import styles from './pagination.module.scss';
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import cn from 'classnames';
-import { usePagination, DOTS } from './usePagination';
+import { usePagination, DOTS } from './utils/usePagination';
 import './pagination.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 import { useSearchParams } from '../../utils/useSearchParams';
 
 interface PaginationProps {
   totalCount: number;
-  siblingCount?: number;
   currentPage: number;
   pageSize: number;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
   totalCount,
-  siblingCount = 2,
   pageSize,
 }) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const { page } = useSearchParams();
   const currentPage = Number(page) || 1;
+
+  const [siblingCount, setSiblingCount] = useState(2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSiblingCount(window.innerWidth > 500 ? 2 : window.innerWidth > 420 ? 1 : 0);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const paginationRange =
     usePagination({

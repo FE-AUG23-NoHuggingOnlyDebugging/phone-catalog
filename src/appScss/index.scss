@@ -1,2 +1,35 @@
 @import './colors.scss';
 @import './typography.scss';
+@import './mixins';
+
+body {
+  font-family: Mont, sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  @include onTablet {
+    overflow: hidden;
+  }
+}
+
+header, footer {
+  flex-shrink: 0;
+}
+
+main {
+  flex-grow: 1;
+  margin-inline: auto;
+
+  @include onDesktop {
+    max-width: 1136px;
+  }
+
+  @include onTablet {
+    width: calc(100% - 48px);
+  }
+}

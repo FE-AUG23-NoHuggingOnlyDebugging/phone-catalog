@@ -19,7 +19,7 @@ export const ProductPage = () => {
   const { page, perPage, sort, setSearchParams } = useSearchParams();
 
   const API_URL =
-    'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products';
+    'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/phones/';
 
   useEffect(() => {
     axios
@@ -31,12 +31,13 @@ export const ProductPage = () => {
         setIsLoading(false);
       })
       .catch((e) => {
+        console.log(e);
         setIsError(e);
       });
   }, [page, perPage, sort]);
 
   return (
-    <main className={`${styles.wrapper} ${styles.catalog}`}>
+    <div className={`${styles.wrapper} ${styles.catalog}`}>
       <section className={styles.catalog__info}>
         <h2 className={styles.catalog__title}>Mobile phones</h2>
         <p className={styles.catalog__modelCount}>{total}</p>
@@ -76,14 +77,10 @@ export const ProductPage = () => {
           </select>
         </div>
       </section>
-      {!isLoading ? (
-        <section className={styles.catalog__products}>
-          <ProductList products={products} infoPage={infoPage} />
-        </section>
-      ) : (
-        <p>Loading ...</p>
-      )}
+      <section className={styles.catalog__products}>
+        <ProductList products={products} infoPage={infoPage} status={isLoading} />
+      </section>
       {isError && <p>Error...</p>}
-    </main>
+    </div>
   );
 };

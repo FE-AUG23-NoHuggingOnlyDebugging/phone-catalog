@@ -1,24 +1,30 @@
+@import "../../appScss/typography";
+@import "../../appScss/colors";
+@import "../../appScss/mixins";
+
 .add_to_card {
   width: 100%;
-  font-family: Mont, sans-serif;
-  font-size: 14px;
-  line-height: 21px;
   height: 21px;
   padding-block: 10px;
-  background: #313237;
-  color: #ffffff;
-  border: 1px solid #313237;
+  background: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid var(--primary-color);
   box-sizing: content-box;
   transition: all 0.3s;
   z-index: 1;
+  @include btns;
 
   &:hover {
     box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
   }
 
   &__added {
-    border: 1px solid #e2e6e9;
-    color: #27ae60;
+    border: 1px solid var(--elements-color);
+    color: var(--green-color);
     background: transparent;
+
+    @include onPhone {
+      font-size: 11px;
+    }
   }
 }
