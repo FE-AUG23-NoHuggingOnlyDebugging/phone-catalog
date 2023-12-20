@@ -1,11 +1,12 @@
 .add_to_favorite {
   padding: 12px;
   border: 1px solid var(--icons-color);
-  background: transparent;
+  background: var(--additional-btn);
   width: 16px;
   height: 16px;
   box-sizing: content-box;
   transition: border 0.3s;
+  cursor: pointer;
   z-index: 1;
 
   &:hover {
@@ -14,5 +15,25 @@
 
   &__added {
     border: 1px solid var(--elements-color);
+  }
+}
+
+[theme='dark'] {
+  .add_to_favorite {
+    &:hover {
+      border: 1px solid var(--additional-btn-hover);
+      background-color: var(--additional-btn-hover);
+    }
+  }  
+
+  .dark_theme_icon_color {
+    filter: invert(100%);
+  }
+
+  .bg_added {
+    background: transparent;
+    &:hover {
+      background-color: transparent;
+    }
   }
 }

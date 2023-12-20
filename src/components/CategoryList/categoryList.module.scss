@@ -7,6 +7,7 @@
   &__title {
     @include default-h2;
     margin-bottom: 24px;
+    color: var(--primary-color);
   }
 
   &__content {

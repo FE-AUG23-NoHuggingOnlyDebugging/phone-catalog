@@ -8,7 +8,8 @@
   display: flex;
   padding: 24px;
   gap: 24px;
-  border: 1px solid var(--elements-color);
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
 
   &:not(:last-child) {
     margin-bottom: 16px;
@@ -80,8 +81,8 @@
   align-items: center;
   width: 16px;
   height: 16px;
-
-  background-color: transparent;
+  
+  background-color: var(--additional-btn);
   border: none;
   cursor: pointer;
 
@@ -97,6 +98,7 @@
     &__disabled {
       width: 32px;
       height: 32px;
+      background-color: transparent;
       border: 1px solid var(--elements-color);
       cursor: default;
     }
@@ -105,6 +107,11 @@
       opacity: 0.4;
     }
   }
+}
+
+.remove_button {
+  @extend .button;
+  background-color: transparent;
 }
 
 .icon {
@@ -120,7 +127,7 @@
   font-weight: 600;
   text-align: center;
 
-  color: rgba(0, 0, 0, 1);
+  color: var(--primary-color);
 }
 
 .price {
@@ -133,5 +140,33 @@
     text-align: right;
 
     color: var(--primary-color);
+  }
+}
+
+[theme='dark'] {
+  .dark_theme_icon_color {
+    filter: invert(100%);
+  }  
+
+  .card {
+    .remove_button {
+      opacity: 0.3;
+    }
+
+    .button {
+      &__border {
+        &:hover {
+          border: 1px solid var(--additional-btn-hover);
+          background-color: var(--secondary-color);
+        }
+        }
+
+      &__disabled {
+        &:hover {
+          border: 1px solid var(--elements-color);
+          background-color: transparent;
+        }
+      }
+    }
   }
 }

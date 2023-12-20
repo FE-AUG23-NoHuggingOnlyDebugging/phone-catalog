@@ -4,11 +4,20 @@
 @import './appScss/typography';
 @import './appScss/reset';
 
+* {
+  box-sizing: border-box;
+  transition: all 0.5s;
+}
+
+[theme='dark'] {
+  background-color: var(--bg-color);
+}
+
 html {
   font-family: Mont, sans-serif;
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
+    background-color: var(--btn);
   }
 
   &::-webkit-scrollbar-track {

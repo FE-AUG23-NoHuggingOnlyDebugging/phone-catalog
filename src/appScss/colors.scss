@@ -3,10 +3,36 @@ $color__for_test: #ab9d4d;
 :root {
   --primary-color: #313237;
   --secondary-color: #89939a;
-  --icons-color: #b4bdc3;
   --elements-color: #e2e6e9;
-  --hover-bg-color: #fafbfc;
+  --additional-btn: #FFFFFF;
+  --btn: #313237;
+  --card-bg: #FFFFFF;
+  --card-border: #e2e6e9;
+  --icons-color: #b4bdc3;
+  --bg-color: #FFFFFF;
   --white-color: #ffffff;
-  --green-color: #27ae60;
+  --added-color: #27ae60;
   --red-color: #eb5757;
+  --footer-text-color: #89939A;
+  --pagination-deafult-bg: #FFFFFF;
+  --capacity-text-color: #FFFFFF;
+}
+
+[theme='dark'] {
+  --primary-color: #f1f2f9;
+  --secondary-color: #75767F;
+  --elements-color: #3b3e4a;
+  --additional-btn: #323542;
+  --additional-btn-hover: #4A4D58;
+  --btn: #905bff;
+  --btn-hover: #A378FF;
+  --card-bg: #161827;
+  --card-border: #161827;
+  --icons-color: #323542;
+  --bg-color: #0F1121;
+  --white-color: #f1f2f9;
+  --added-color: #f1f2f9;
+  --red-color: #eb5757;
+  --footer-text-color: #F1F2F9;
+  --capacity-text-color: #0F1121;
 }

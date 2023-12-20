@@ -77,7 +77,7 @@ export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
           <button
             type="button"
             onClick={handleClickRemove}
-            className={styles.button}
+            className={styles.remove_button}
           >
             <img
               src={process.env.PUBLIC_URL + '/img/icons/close.png'}
@@ -111,7 +111,7 @@ export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
               <img
                 src={process.env.PUBLIC_URL + '/img/icons/minus.png'}
                 alt="minus"
-                className={styles.icon}
+                className={`${styles.icon} ${styles.dark_theme_icon_color}`}
               />
             </button>
 
@@ -125,7 +125,7 @@ export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
               <img
                 src={process.env.PUBLIC_URL + '/img/icons/plus.png'}
                 alt="plus"
-                className={styles.icon}
+                className={`${styles.icon} ${styles.dark_theme_icon_color}`}
               />
             </button>
           </div>

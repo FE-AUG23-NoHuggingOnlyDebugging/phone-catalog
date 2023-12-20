@@ -19,13 +19,13 @@ const Breadcrumbs: React.FC = () => {
     <div className={styles.crumbs}>
       <Link to="/" className={styles.crumbs__link}>
         <img
-          className={styles.crumbs__icon}
+          className={`${styles.crumbs__icon} ${styles.dark_theme_icon_color}`}
           src={process.env.PUBLIC_URL + '/icons/home.png'}
           alt="Home"
         />
       </Link>
       <img
-        className={styles.crumbs__icon}
+        className={`${styles.crumbs__icon} ${styles.dark_theme_crumbs__icon}`}
         src={process.env.PUBLIC_URL + '/icons/right-arrow.png'}
         alt="Right Arrow"
       />
@@ -36,12 +36,12 @@ const Breadcrumbs: React.FC = () => {
           <React.Fragment key={index}>
             {index > 0 && (
               <img
-                className={styles.crumbs__icon}
+                className={`${styles.crumbs__icon} ${styles.dark_theme_crumbs__icon}`}
                 src={process.env.PUBLIC_URL + '/icons/right-arrow.png'}
                 alt="Right Arrow"
               />
             )}
-            <Link className={styles.crumbs__link} to={match.pathname}>
+            <Link className={`${styles.crumbs__link} ${styles.dark_theme_crumbs__link_hover}`} to={match.pathname}>
               {breadcrumb}
             </Link>
           </React.Fragment>
