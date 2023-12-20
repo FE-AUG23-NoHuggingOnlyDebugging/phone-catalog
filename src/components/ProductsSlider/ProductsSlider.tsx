@@ -4,9 +4,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import ProductList from '../ProductList/ProductList';
 import cn from 'classnames';
 import ProductLoader from '../ProductLoader/ProductLoader';
-import {Product} from '../../types/Product';
-import {useAppSelector} from '../../store/hooks';
-import {selectProducts} from '../../store/productsSlice';
+import { Product } from '../../types/Product';
+import { useAppSelector } from '../../store/hooks';
+import { selectProducts } from '../../store/productsSlice';
 
 type Props = {
   title: string;
@@ -14,7 +14,11 @@ type Props = {
   products?: Product[] | null;
 };
 
-const ProductsSlider: React.FC<Props> = ({ title, status, products = null }) => {
+const ProductsSlider: React.FC<Props> = ({
+  title,
+  status,
+  products = null,
+}) => {
   const parentRef = useRef<HTMLDivElement>(null);
   const [parentWidth, setParentWidth] = useState(0);
   const [translateX, setTranslateX] = useState(0);

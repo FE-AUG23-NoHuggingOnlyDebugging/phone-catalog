@@ -50,17 +50,17 @@ export const ProductPage = () => {
     const current = setBy === 'sort' ? 'Newest' : '16';
 
     if (!value) {
-       return current;
+      return current;
     }
-    if (value && !arr.map(([x,]) => x).includes(value)) {
+    if (value && !arr.map(([x]) => x).includes(value)) {
       handleSearchParams(setBy, current);
       return current;
     }
-   const el = arr.find(([x, y])=> x === value);
-     if (el) {
-   return el[1];
-  }
-   return '';
+    const el = arr.find(([x, ]) => x === value);
+    if (el) {
+      return el[1];
+    }
+    return '';
   }
 
   const listSort = [

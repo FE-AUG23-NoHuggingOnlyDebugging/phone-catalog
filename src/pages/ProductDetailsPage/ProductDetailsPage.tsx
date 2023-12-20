@@ -11,16 +11,15 @@ import axios from 'axios';
 import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 import { Spinner } from '../../components/Loader/Spinner';
 import ProductsSlider from '../../components/ProductsSlider/ProductsSlider';
-import {setProducts} from '../../store/productsSlice';
-import {useDispatch} from 'react-redux';
+import { setProducts } from '../../store/productsSlice';
+import { useDispatch } from 'react-redux';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
   const { type } = useParams();
   // const location = useLocation().pathname.split('/')[1];
 
-  const API_URL =
-    `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${productId}/recommended`;
+  const API_URL = `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${productId}/recommended`;
   const [product, setProduct] = useState<ProductDetails | null>(null);
   const [mainImage, setMainImage] = useState(product?.images[0]);
   const [activeColor, setActiveColor] = useState<string | null>(null);

@@ -43,9 +43,17 @@ export const HomePage = () => {
   return (
     <>
       <SliderPromo />
-      <ProductsSlider title="Brand new models" status={isLoading} products={productsHot} />
+      <ProductsSlider
+        title="Brand new models"
+        status={isLoading}
+        products={productsHot}
+      />
       <CategoryList />
-      <ProductsSlider title="Hot prices" status={isLoading} products={productsDiscount} />
+      <ProductsSlider
+        title="Hot prices"
+        status={isLoading}
+        products={productsDiscount}
+      />
     </>
   );
 };
