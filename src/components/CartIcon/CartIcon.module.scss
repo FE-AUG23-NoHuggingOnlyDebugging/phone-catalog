@@ -13,3 +13,9 @@
   padding: 2px 4px;
   font-size: 12px;
 }
+
+[theme='dark'] {
+  .dark_theme_icon_color {
+    filter: invert(100%);
+  }  
+}

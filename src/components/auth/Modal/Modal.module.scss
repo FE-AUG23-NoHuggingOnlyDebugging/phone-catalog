@@ -22,9 +22,9 @@
   .modal_window {
     width: 80%;
     padding: 20px 15px 35px;
-    border: 3px solid rgba(143, 143, 143, 0.171);
+    border: 3px solid var(--elements-color);
     box-shadow: 10px 10px 8px 1px rgba(30, 30, 37, 0.192);
-    background-color: var(--white-color);
+    background-color: var(--card-bg);
     color: var(--primary-color);
 
     @include onTablet {
@@ -85,7 +85,7 @@
         height: 40px;
         border: none;
         color: var(--white-color);
-        background-color: var(--primary-color);
+        background-color: var(--btn);
         cursor: pointer;
         @include btns;
 
@@ -97,6 +97,14 @@
           height: 50px;
         }
       }
+    }
+  }
+}
+
+[theme='dark'] {
+  .container {
+    .close_btn {
+      background-color: var(--additional-btn);
     }
   }
 }

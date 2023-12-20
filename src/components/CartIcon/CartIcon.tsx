@@ -10,7 +10,11 @@ const CartIcon: React.FC = () => {
 
   return (
     <div className={styles.cart_icon}>
-      <img src={process.env.PUBLIC_URL + '/img/icons/cart.png'} alt="Cart" />
+      <img
+        className={styles.dark_theme_icon_color}
+        src={process.env.PUBLIC_URL + '/img/icons/cart.svg'}
+        alt="Cart"
+      />
       {count > 0 && <div className={styles.counter}>{count}</div>}
     </div>
   );

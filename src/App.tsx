@@ -7,12 +7,14 @@ import Breadcrumbs from './components/BreadCrumbs/BreadCrumbs';
 function App() {
   return (
     <>
-      <Header />
-      <main>
-        <Breadcrumbs />
-        <Outlet />
-      </main>
-      <Footer />
+      <div id="theme">
+        <Header />
+        <main>
+          <Breadcrumbs />
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

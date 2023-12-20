@@ -6,7 +6,7 @@
   &__link {
     cursor: pointer;
     text-decoration: none;
-    color: #89939a;
+    color: var(--secondary-color);
     font-family: Mont;
     font-size: 12px;
     font-style: normal;
@@ -17,5 +17,19 @@
   &__icon {
     margin-right: 8px;
     margin-left: 8px;
+  }
+}
+
+[theme='dark'] {
+  .dark_theme_icon_color {
+    filter: invert(100%);
+  }  
+  .dark_theme_crumbs__icon {
+    opacity: 0.3;
+  }
+  .dark_theme_crumbs__link_hover {
+    &:hover {
+      text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.144);
+    }
   }
 }

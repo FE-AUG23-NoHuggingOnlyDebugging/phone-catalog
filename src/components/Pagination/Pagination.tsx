@@ -115,7 +115,11 @@ const Pagination: React.FC<PaginationProps> = ({
         })}
         onClick={() => onStateUpload(true)}
       >
-        <img src={process.env.PUBLIC_URL + '/img/icons/arrow.png'} alt="next" />
+        <img
+          className={styles.arrow__right}
+          src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
+          alt="next"
+        />
       </Link>
     </ul>
   );

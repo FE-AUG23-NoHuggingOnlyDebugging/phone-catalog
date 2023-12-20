@@ -1,35 +1,44 @@
 @import '../../appScss/index.scss';
-@import '../../appScss/mixins.scss';
+
+@mixin onTablet {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin onDesktop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
 
 .header {
-  background-color: #fff;
-  margin-bottom: 24px;
+  background-color: var(--bg-color);
+  padding-bottom: 24px;
 
   &__title {
     color: $color__for_test;
   }
 
   &__logo {
-    object-fit:contain;
-    margin:auto;
+    position: relative;
+    height: 28px;
+    margin: 0 24px;
   }
 
-  & a {
-    margin:0;
-    padding: 0;
+  &__logo_hand {
+    position: absolute;
+    bottom: 42%;
+    right: 34%;
   }
 }
 .navbar {
   height: 64px;
-  
-  @include onPhone() {
-    height: 48px;
-  }
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #e2e6e9;
+  border-bottom: 1px solid var(--elements-color);
 
   &__right {
     display: flex;
@@ -48,7 +57,7 @@
 
   &__item {
     display: inline-block;
-    color: #89939a;
+    color: var(--secondary-color);
     font-size: 12px;
     font-weight: bold;
     line-height: 11px;
@@ -62,19 +71,25 @@
 
   &__utility {
     display: flex;
+
+    .switch {
+      margin-right: 22px;
+      margin-top: 21px;
+      position: relative;
+    }
   }
 
   &__utilities {
     width: 64px;
     height: 64px;
     padding: 24px;
-    border-left: 1px solid #e2e6e9;
-    border-bottom: 1px solid #e2e6e9;
+    border-left: 1px solid var(--elements-color);
+    border-bottom: 1px solid var(--elements-color);
   }
 
   &__highlight {
-    color: #313237;
-    border-bottom: 3px solid #313237;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
   }
 
   &__search {
@@ -87,7 +102,7 @@
       font-size: 14px;
       font-family: Mont, sans-serif;
       padding-left: 24px;
-      border-left: 1px solid #e2e6e9;
+      border-left: 1px solid var(--elements-color);
     }
 
     &_icon {
@@ -96,4 +111,10 @@
       padding: 24px;
     }
   }
+}
+
+[theme='dark'] {
+  .dark_theme_logo_color {
+    filter: invert(100%);
+  }  
 }
