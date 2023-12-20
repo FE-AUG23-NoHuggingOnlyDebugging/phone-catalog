@@ -10,18 +10,13 @@
   }
 
   &__logo {
-    object-fit:contain;
-    margin:auto;
-  }
-
-  & a {
-    margin:0;
-    padding: 0;
+    object-fit: contain;
+    margin: auto;
   }
 }
 .navbar {
   height: 64px;
-  
+
   @include onPhone() {
     height: 48px;
   }
@@ -51,12 +46,11 @@
     color: #89939a;
     font-size: 12px;
     font-weight: bold;
-    line-height: 11px;
+    line-height: calc(64px - 6px);
+    margin-top: 3px;
     letter-spacing: 0.48px;
     text-transform: uppercase;
     text-decoration: none;
-    padding-top: 27px;
-    padding-bottom: 22px;
     border-bottom: 3px solid transparent;
   }
 
