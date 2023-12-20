@@ -18,6 +18,8 @@ html {
   &::-webkit-scrollbar {
     width: 12px;
   }
+
+  overflow-y: scroll;
 }
 
 main {

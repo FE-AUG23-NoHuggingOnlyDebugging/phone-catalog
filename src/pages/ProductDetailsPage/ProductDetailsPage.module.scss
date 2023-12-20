@@ -10,14 +10,9 @@
   box-sizing: border-box;
 
   @include ProductDetails-OnTablet {
-    padding: 0 24px;
     display: flex;
     align-items: center;
     flex-direction: column;
-  }
-
-  @include ProductDetails-OnPhones {
-    padding: 0 17px;
   }
 
   p {
@@ -48,4 +43,9 @@
   line-height: 41px;
   letter-spacing: -0.32px;
   margin: 16px 0 0 0;
+
+  @include ProductDetails-OnPhones {
+    font-size: 32px;
+    line-height: 30.8px;
+  }
 }

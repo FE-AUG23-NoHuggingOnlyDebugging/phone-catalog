@@ -1,5 +1,5 @@
 @mixin NotFoundPage-onTablet {
-  @media (max-width: 979px) {
+  @media (max-width: 1165px) {
     @content;
   }
 }
@@ -165,15 +165,22 @@
   }
 }
 .ErrorContainer {
+  width: 1136px;
   box-sizing: border-box;
   padding: 80px 20px 80px 40px;
 
   @include NotFoundPage-onTablet {
-    padding: 80px 20px;
+    width: 100%;
+    padding: 80px 0px;
   }
 }
 
+.phoneWrapper {
+  position: relative;
+}
+
 .ErrorWrapper {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 

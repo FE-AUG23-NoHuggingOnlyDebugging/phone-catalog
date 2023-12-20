@@ -62,8 +62,6 @@ const ProductsSlider: React.FC<Props> = ({
       : 0;
   }
 
-  console.log(translateX, maxTranslateX);
-
   const handleBack = () => {
     setTranslateX((prevTranslateX) => {
       const nextTranslateX = prevTranslateX + blockWidth;

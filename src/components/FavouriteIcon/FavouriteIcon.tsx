@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
 import styles from './FavouriteIcon.module.scss';
+import { useAppSelector } from '../../store/hooks';
+import { selectFavoritesProducts } from '../../store/favoriteSlice';
 
 const FavouriteIcon: React.FC = () => {
-  const [FavouriteCount, setFavouriteCount] = useState<number>(10); //поки поставив 10 по замовчуванні
-
-  const addToFavourite = () => {
-    setFavouriteCount((prevCount) => prevCount + 1);
-  };
+  const elements = useAppSelector(selectFavoritesProducts);
 
   return (
-    <div className={styles.favourite_icon} onClick={addToFavourite}>
+    <div className={styles.favourite_icon}>
       <img
         src={process.env.PUBLIC_URL + '/img/icons/favourites.png'}
         alt="Favourites"
       />
-      {FavouriteCount > 0 && (
-        <div className={styles.counter}>{FavouriteCount}</div>
+      {elements.length > 0 && (
+        <div className={styles.counter}>{elements.length}</div>
       )}
     </div>
   );

@@ -9,6 +9,8 @@ import { InfoPage } from '../../types/InfoPage';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../store/hooks';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import { useParams } from 'react-router-dom';
+import { CategoriesTypes } from '../../types/Categories';
 
 export const ProductPage = () => {
   const [total, setTotal] = useState(0);
@@ -18,9 +20,9 @@ export const ProductPage = () => {
   const dispatch = useDispatch();
   const products = useAppSelector(selectProducts);
   const { page, perPage, sort, setSearchParams } = useSearchParams();
+  const { type } = useParams();
 
-  const API_URL =
-    'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/phones/';
+  const API_URL = `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${type}`;
 
   useEffect(() => {
     axios
@@ -35,7 +37,7 @@ export const ProductPage = () => {
         console.log(e);
         setIsError(e);
       });
-  }, [page, perPage, sort]);
+  }, [page, perPage, sort, type]);
 
   const handleSearchParams = (setKey: string, value: string) => {
     setSearchParams((searchParams) => {
@@ -44,23 +46,62 @@ export const ProductPage = () => {
     });
   };
 
+  function checkItem(value: string, setBy: string, arr: string[][]): string {
+    const current = setBy === 'sort' ? 'Newest' : '16';
+    if (value && !arr.map(([x]) => x).includes(value)) {
+      handleSearchParams(setBy, current);
+      return current;
+    }
+    return value || current;
+  }
+
+  const listSort = [
+    ['age', 'Newest'],
+    ['title', 'Alphabetically'],
+    ['price', 'Price'],
+  ];
+
+  const listPerPage = [
+    ['4', '4'],
+    ['8', '8'],
+    ['16', '16'],
+    ['all', 'all'],
+  ];
+
+  const pageTitle = (type?: string) => {
+    let currenType;
+
+    switch (type) {
+    case 'phones':
+      currenType = CategoriesTypes.Phones;
+      break;
+    case 'tablets':
+      currenType = CategoriesTypes.Tablets;
+      break;
+    case 'accessories':
+      currenType = CategoriesTypes.Accessories;
+      break;
+
+    default:
+      break;
+    }
+
+    return currenType;
+  };
+
   return (
     <div className={`${styles.wrapper} ${styles.catalog}`}>
       <section className={styles.catalog__info}>
-        <h2 className={styles.catalog__title}>Mobile phones</h2>
-        <p className={styles.catalog__modelCount}>{total}</p>
+        <h2 className={styles.catalog__title}>{pageTitle(type)}</h2>
+        <p className={styles.catalog__modelCount}>{`${total} models`}</p>
       </section>
 
       <section className={styles.catalog__filters}>
         <div>
           <p className={styles.catalog__filters_title}>Sort by</p>
           <Dropdown
-            list={[
-              ['age', 'Newest'],
-              ['title', 'Alphabetically'],
-              ['price', 'Price'],
-            ]}
-            currentItem={'Newest'}
+            list={listSort}
+            currentItem={checkItem(sort || '', 'sort', listSort)}
             setOn={'sort'}
             onHandle={handleSearchParams}
           />
@@ -68,13 +109,12 @@ export const ProductPage = () => {
         <div>
           <p className={styles.catalog__filters_title}>Items on page</p>
           <Dropdown
-            list={[
-              ['4', '4'],
-              ['8', '8'],
-              ['16', '16'],
-              ['all', 'all'],
-            ]}
-            currentItem={'16'}
+            list={listPerPage}
+            currentItem={checkItem(
+              perPage.toString() || '',
+              'perPage',
+              listPerPage,
+            )}
             setOn={'perPage'}
             onHandle={handleSearchParams}
             rootClassName={'set-width'}
