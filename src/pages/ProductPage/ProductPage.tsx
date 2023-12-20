@@ -121,7 +121,7 @@ export const ProductPage = () => {
           />
         </div>
       </section>
-      <section className={styles.catalog__products}>
+      <section>
         <ProductList
           products={products}
           infoPage={infoPage}
