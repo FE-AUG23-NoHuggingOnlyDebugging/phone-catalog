@@ -14,9 +14,9 @@
 
   &:hover {
     transform: scale(1.1);
-    -webkit-box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 3px 20px 0px var(--teamMember-shadow-color);
+    -moz-box-shadow: 0px 3px 20px 0px var(--teamMember-shadow-color);
+    box-shadow: 0px 3px 20px 0px var(--teamMember-shadow-color);
 
     .TeamMember__avatar {
       border-radius: 20px;

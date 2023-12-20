@@ -1,4 +1,5 @@
 $color__for_test: #ab9d4d;
+$skeleton-gradient-color: #e2e6e9;
 
 :root {
   --primary-color: #313237;
@@ -16,6 +17,12 @@ $color__for_test: #ab9d4d;
   --footer-text-color: #89939A;
   --pagination-deafult-bg: #FFFFFF;
   --capacity-text-color: #FFFFFF;
+  --skeleton-bg-color: #fafbfc;
+  --github-color: white;
+  --telegram-color: #03a9f4;
+  --linkedIn-color: rgb(23, 122, 252);
+  --email-color: #c01d17;
+  --teamMember-shadow-color: rgba(0, 0, 0, 0.75);
 }
 
 [theme='dark'] {
@@ -35,4 +42,8 @@ $color__for_test: #ab9d4d;
   --red-color: #eb5757;
   --footer-text-color: #F1F2F9;
   --capacity-text-color: #0F1121;
+  --telegram-color: white;
+  --linkedIn-color: white;
+  --email-color: white;
+  --teamMember-shadow-color:  rgba(144,91,255,0.3);
 }
