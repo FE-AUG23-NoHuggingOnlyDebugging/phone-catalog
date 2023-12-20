@@ -1,10 +1,8 @@
 @import './ProductDetails-mixins.scss';
-@import './ProductDetails-variables.scss';
+@import '../../appScss/colors.scss';
 
 .product {
-  margin: 0 auto;
-  max-width: 1136px;
-  color: $productDetails-text-color;
+  color: var(--secondary-color);
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -12,14 +10,9 @@
   box-sizing: border-box;
 
   @include ProductDetails-OnTablet {
-    padding: 0 24px;
     display: flex;
     align-items: center;
     flex-direction: column;
-  }
-
-  @include ProductDetails-OnPhones {
-    padding: 0 17px;
   }
 
   p {
@@ -43,11 +36,16 @@
 }
 
 .mainTitle {
-  color: $productDetails-title-color;
+  color: var(--primary-color);
   font-size: 32px;
   font-style: normal;
   font-weight: 800;
   line-height: 41px;
   letter-spacing: -0.32px;
   margin: 16px 0 0 0;
+
+  @include ProductDetails-OnPhones {
+    font-size: 32px;
+    line-height: 30.8px;
+  }
 }

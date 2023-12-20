@@ -2,15 +2,31 @@ import { useCallback, useEffect, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { useTransition, animated } from 'react-spring';
 
-import styles from '../SliderPromo/SliderPromo.module.scss';
-import sliderPromoData from './data/sliderPromoData.json';
+import axios from 'axios';
+
+import styles from './SliderPromo.module.scss';
+import { Data } from '../../types/SliderPromo';
+import cn from 'classnames';
 
 export const SliderPromo = () => {
-  const data = sliderPromoData.data;
+  const [data, setData] = useState<Data[]>([]);
   const [slide, setSlide] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(
+        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/slider',
+      )
+      .then((data) => {
+        setData(data.data.images);
+        setIsLoading(false);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
   const transitions = useTransition(data[slide], {
-    key: data[slide].id,
+    key: data[slide]?.id,
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 1 },
@@ -39,36 +55,48 @@ export const SliderPromo = () => {
         <button className={styles.carousel__btn} onClick={goBack}>
           <IoIosArrowBack />
         </button>
-        {transitions((style, item) => (
-          <animated.img
-            key={item.id}
-            src={process.env.PUBLIC_URL + item.src}
-            alt={item.alt}
-            style={{ ...style }}
-            className={
-              slide === item.id
-                ? styles.carousel__slide
-                : styles.carousel__slide_hidden
-            }
-          />
-        ))}
+        {!isLoading ? (
+          transitions((style, item) => (
+            <>
+              <animated.img
+                key={item.id}
+                src={item.url}
+                alt={item.alt}
+                style={{ ...style }}
+                className={
+                  slide === +item.id
+                    ? styles.carousel__slide
+                    : styles.carousel__slide_hidden
+                }
+              />
+            </>
+          ))
+        ) : (
+          <div className={styles.loader}>
+            <div className={cn(styles.loader_box, styles.loader__slide)} />
+          </div>
+        )}
         <button className={styles.carousel__btn} onClick={goForward}>
           <IoIosArrowForward />
         </button>
       </div>
       <span className={styles.indicators}>
-        {data.map((data) => (
-          <button
-            key={data.id}
-            className={
-              slide === data.id
-                ? styles.indicators__indicator &&
-                  styles.indicators__indicator_active
-                : styles.indicators__indicator
-            }
-            onClick={() => setSlide(data.id)}
-          ></button>
-        ))}
+        {!isLoading ? (
+          data.map((data) => (
+            <button
+              key={data.id}
+              className={
+                slide === +data.id
+                  ? styles.indicators__indicator &&
+                    styles.indicators__indicator_active
+                  : styles.indicators__indicator
+              }
+              onClick={() => setSlide(+data.id)}
+            ></button>
+          ))
+        ) : (
+          <span className={cn(styles.loader_box, styles.loader__btn)} />
+        )}
       </span>
     </div>
   );

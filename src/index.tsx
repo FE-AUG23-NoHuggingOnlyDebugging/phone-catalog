@@ -12,6 +12,9 @@ import { CartPage } from './pages/CartPage/CartPage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage/ProductDetailsPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
+import { ContactsPage } from './pages/ContactsPage/ContactsPage';
+
+import { AuthRoot } from './components/auth/AuthRoot';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <Router>
@@ -20,14 +23,21 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<HomePage />} />
-            <Route path="catalog/phones" element={<ProductPage />} />
-            <Route path="catalog/tablets" element={<ProductPage />} />
-            <Route path="catalog/accessories" element={<ProductPage />} />
+            <Route path="catalog/:type" element={<ProductPage />} />
+            {/* <Route path="catalog/:tablets" element={<ProductPage />} />
+            <Route path="catalog/:accessories" element={<ProductPage />} /> */}
 
             <Route path="/cart" element={<CartPage />} />
             <Route path="/favourites" element={<FavouritesPage />} />
 
-            <Route path="product/:productId" element={<ProductDetailsPage />} />
+            <Route
+              path="product/:type/:productId"
+              element={<ProductDetailsPage />}
+            />
+
+            <Route path="/contacts" element={<ContactsPage />} />
+            <Route path="/login" element={<AuthRoot />} />
+            <Route path="/register" element={<AuthRoot />} />
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>

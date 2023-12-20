@@ -1,25 +1,45 @@
 @import '../../appScss/text';
 @import '../../appScss/typography';
 @import '../../appScss/link';
+@import '../../appScss/mixins';
 
 .product_card {
   display: flex;
   align-items: center;
   flex-flow: row wrap;
-  max-width: 272px;
   position: relative;
   width: calc(25% - (16px * 0.75));
-  padding: 24px;
-  border: 1px solid #e2e6e9;
+  padding: 32px;
+  border: 1px solid var(--elements-color);
   box-sizing: border-box;
+  transition: box-shadow 0.3s;
 
-  &_slide {
-    flex: 1 0 calc(25% - 62px);
-    box-sizing: initial;
+  &__slider {
+    @include onTablet {
+      min-width: 237px;
+    }
+
+    @include onPhone {
+      min-width: 212px;
+    }
   }
 
-  &:hover &__image {
-    transform: scale(1.1);
+  &__list {
+    @media (max-width: 1080px) {
+      width: calc(33.33% - (16px * 2 / 3));
+    }
+
+    @media (max-width: 767px) {
+      width: calc(50% - 8px);
+    }
+
+    @media (max-width: 489px) {
+      width: 100%;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
   }
 
   &__info {
@@ -34,23 +54,33 @@
     margin-inline: auto;
     margin-bottom: 24px;
     object-fit: contain;
-    transition: transform 0.3s;
     z-index: -1;
+
+    @include onTablet {
+      width: 173px;
+      height: 173px;
+    }
+
+    @include onPhone {
+      width: 148px;
+      height: 148px;
+    }
   }
 
   &__title {
     height: 42px;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 21px;
     margin-bottom: 6.5px;
+    @include bodyText;
+
+    @include onPhone {
+      min-height: 63px;
+      @include bodyText;
+    }
   }
 
   &__price {
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 140%;
     margin-bottom: 8px;
+    @include default-h3;
 
     &::before {
       content: '$';
@@ -59,10 +89,10 @@
 
   &__fullPrice {
     font-size: 22px;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: line-through;
     margin-left: 8px;
-    color: #89939a;
+    color: var(--secondary-color);
 
     &::before {
       content: '$';
@@ -74,7 +104,7 @@
     gap: 8px 0;
     flex-flow: column nowrap;
     padding-top: 16px;
-    border-top: 1px solid #e2e6e9;
+    border-top: 1px solid var(--elements-color);
   }
 
   &__feature {
@@ -82,12 +112,12 @@
     justify-content: space-between;
 
     &_title {
-      font-size: 12px;
-      color: #89939a;
+      color: var(--secondary-color);
+      @include smallText;
     }
 
     &_value {
-      font-size: 12px;
+      @include smallText;
     }
   }
 

@@ -4,6 +4,7 @@ import { RootState } from './store';
 export interface CartProduct {
   name: string;
   quantity: number;
+  category: string;
 }
 
 export interface CartState {
@@ -18,18 +19,32 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<string>) => {
+    addToCart: (
+      state,
+      action: PayloadAction<{ id: string; category: string }>,
+    ) => {
       const product = state.products.find(
-        (item) => item.name === action.payload,
+        (item) => item.name === action.payload.id,
       );
 
       if (product) {
         product.quantity += 1;
       } else {
         state.products.push({
-          name: action.payload,
+          name: action.payload.id,
+          category: action.payload.category,
           quantity: 1,
         });
+      }
+    },
+
+    addOneMore: (state, action: PayloadAction<string>) => {
+      const product = state.products.find(
+        (item) => item.name === action.payload,
+      );
+
+      if (product) {
+        product.quantity += 1;
       }
     },
 
@@ -51,7 +66,7 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, cartReduceQuantity } =
+export const { addToCart, removeFromCart, cartReduceQuantity, addOneMore } =
   cartSlice.actions;
 
 export const selectCartProducts = (state: RootState) => state.cart.products;

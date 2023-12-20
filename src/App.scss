@@ -6,10 +6,24 @@
 
 html {
   font-family: Mont, sans-serif;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--white-color);
+  }
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  overflow-y: scroll;
 }
 
 main {
-  @include onTable {
+  @include onTablet {
     width: 1136px;
     margin: 0 auto;
   }

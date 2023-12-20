@@ -1,0 +1,58 @@
+@import '../../appScss/colors.scss';
+@import '../../appScss/mixins.scss';
+
+.card {
+  max-width: 752px;
+  border: 1px solid var(--elements-color);
+
+  @include onPhone {
+    max-width: 289px;
+  }
+
+  @include onTablet {
+    max-width: 592px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+}
+
+.content {
+  width: 752px;
+  height: 128px;
+  padding: 24px;
+
+
+  @include onTablet {
+    width: 592px;
+  }
+  @include onPhone {
+    width: 289px;
+  }
+}
+
+.close {
+  width: 16px;
+  height: 16px;
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+}
+
+.name {
+  width: 336px;
+  height: 21px;
+}
+
+.buttons {
+  width: 96px;
+  height: 32px;
+}
+
+.price {
+  width: 80px;
+  height: 32px;
+}

@@ -1,0 +1,56 @@
+.loader {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 16px;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  justify-content: center;
+
+  &__box {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--hover-bg-color);
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(var(--elements-color), 0.1) 0,
+        rgba(var(--elements-color), 0.3) 20%,
+        rgba(var(--elements-color), 0.7) 60%,
+        rgba(var(--elements-color), 0.1)
+      );
+      animation: shimmer 5s infinite;
+      content: '';
+    }
+
+    @keyframes shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+  }
+}
+
+.control {
+  width: 32px;
+  height: 32px;
+}
+
+.pages {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+}
+
+.page {
+  width: 32px;
+  height: 32px;
+}

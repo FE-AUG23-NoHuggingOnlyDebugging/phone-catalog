@@ -19,8 +19,13 @@ export const NotFoundPage = () => {
 
         <div className={style.ErrorMessage}>
           <h1 className={style.ErrorMessage__title}>Oh no!!</h1>
-          <p className={style.ErrorMessage__text}>You&apos;re either misspelling the URL or requesting a page that&apos;s no longer here.</p>
-          <Link className={style.button} to="/">Back Home</Link>
+          <p className={style.ErrorMessage__text}>
+            You&apos;re either misspelling the URL or requesting a page
+            that&apos;s no longer here.
+          </p>
+          <Link className={style.button} to="/">
+            Back Home
+          </Link>
         </div>
       </div>
     </div>

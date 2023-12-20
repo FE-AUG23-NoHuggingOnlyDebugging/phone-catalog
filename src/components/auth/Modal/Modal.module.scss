@@ -1,100 +1,5 @@
-// <---------all styles--------->
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  transition: all .5s;
-}
-
-// <---------typography--------->
-
-$font-name: 'Mont';
-
-@font-face {
-  font-family: $font-name;
-  src: url('../../../fonts/Mont-Bold.otf') format('opentype');
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: $font-name;
-  src: url('../../../fonts/Mont-SemiBold.otf') format('opentype');
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: $font-name;
-  src: url('../../../fonts/Mont-Regular.otf') format('opentype');
-  font-weight: 500;
-}
-
-@mixin typography ($font-size,
-  $line-height,
-  $letter-spacing,
-  $font-weight,
-  $text-tarnsform: none) {
-  font-family: $font-name;
-  font-size: $font-size;
-  line-height: $line-height;
-  letter-spacing: $letter-spacing;
-  font-weight: $font-weight;
-  text-transform: $text-tarnsform;
-}
-
-// <---------Typography (Desktop/Tablet)--------->
-
-@mixin default-h1 {
-  @include typography(48px, 56px, -0.01em, 800)
-}
-
-@mixin default-h2 {
-  @include typography(32px, 41px, -0.01em, 800)
-}
-
-@mixin default-h3 {
-  @include typography(22px, 31px, 0, 800)
-}
-
-@mixin default-h4 {
-  @include typography(20px, 26px, 0, 700)
-}
-
-@mixin uppercase {
-  @include typography(12px, 11px, 0.04em, 800, uppercase)
-}
-
-@mixin btns {
-  @include typography(14px, 21px, 0, 700)
-}
-
-@mixin bodyText {
-  @include typography(14px, 21px, 0, 500)
-}
-
-@mixin smallText {
-  @include typography(12px, 15px, 0, 700)
-}
-
-// <---------Typography (Mobile)--------->
-
-@mixin mob-h1 {
-  @include typography(32px, 41px, -0.01em, 800)
-}
-
-@mixin mob-h2 {
-  @include typography(22px, 31px, 0, 800)
-}
-
-@mixin mob-h3 {
-  @include typography(20px, 26px, 0, 700)
-}
-
-@mixin mob-h4 {
-  @include typography(16px, 20px, 0, 700)
-}
-
-// <---------LoginForm.module.scss styles--------->
+@import '../../../appScss/colors.scss';
+@import '../../../appScss/typography.scss';
 
 @mixin onDesktop {
   @media (min-width: 1200px) {
@@ -102,7 +7,7 @@ $font-name: 'Mont';
   }
 }
 
-@mixin onTable {
+@mixin onTablet {
   @media (min-width: 640px) {
     @content;
   }
@@ -116,13 +21,13 @@ $font-name: 'Mont';
 
   .modal_window {
     width: 80%;
-    padding: 20px 15px 35px 15px;
+    padding: 20px 15px 35px;
     border: 3px solid rgba(143, 143, 143, 0.171);
     box-shadow: 10px 10px 8px 1px rgba(30, 30, 37, 0.192);
-    background-color: #fff;
-    color: #000;
+    background-color: var(--white-color);
+    color: var(--primary-color);
 
-    @include onTable {
+    @include onTablet {
       width: 60%;
     }
 
@@ -132,20 +37,15 @@ $font-name: 'Mont';
     }
 
     .close_btn {
-      width: 25px;
-      height: 25px;
+      width: 24px;
+      height: 24px;
       float: right;
-      border: 2px solid #f0f0f0;
+      border: none;
       border-radius: 40px;
-      color: #fff;
-      background-color: #000;
+      color: var(--white-color);
+      background-color: var(--primary-color);
       cursor: pointer;
       @include btns;
-    }
-
-    .close_btn :hover {
-      transform: scale(1.03);
-      border: none;
     }
 
     &__title {
@@ -153,14 +53,13 @@ $font-name: 'Mont';
       margin-top: 45px;
       text-align: center;
 
-      @include onTable {
+      @include onTablet {
         @include default-h2;
       }
 
       @include onDesktop {
         margin-top: 55px;
       }
-
     }
 
     &__info {
@@ -170,7 +69,7 @@ $font-name: 'Mont';
         @include bodyText;
         text-align: center;
 
-        @include onTable {
+        @include onTablet {
           @include default-h4;
         }
       }
@@ -185,12 +84,12 @@ $font-name: 'Mont';
         width: 80%;
         height: 40px;
         border: none;
-        color: #fff;
-        background-color: #000;
+        color: var(--white-color);
+        background-color: var(--primary-color);
         cursor: pointer;
         @include btns;
 
-        @include onTable {
+        @include onTablet {
           width: 70%;
         }
 

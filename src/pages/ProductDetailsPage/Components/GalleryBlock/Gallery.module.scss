@@ -1,5 +1,5 @@
 @import '../../ProductDetails-mixins.scss';
-@import '../../ProductDetails-variables.scss';
+@import '../../../../appScss/colors.scss';
 
 .galleryBlock {
   display: flex;
@@ -52,13 +52,15 @@
       object-fit: contain;
 
       @include ProductDetails-OnTablet {
-        width: 287px;
-        height: 287px;
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 1 / 1;
       }
     }
   }
 }
 
-.activeImage {
-  border: 2px solid $productDetails-title-color !important;
+#activeImage {
+  border: 2px solid var(--primary-color);
+  transition: border 0s;
 }

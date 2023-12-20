@@ -1,49 +1,50 @@
 import styles from './categoryList.module.scss';
 
-import { useAppSelector } from '../../store/hooks';
-import { selectProducts } from '../../store/productsSlice';
-import { Product } from '../../types/Product';
 import CategoryItem from '../CategoryItem/CategoryItem';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Categories } from '../../types/Categories';
+import CategoryLoader from '../CategoryLoader/CategoryLoader';
 
+const API_URL =
+  'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/categories';
 const CategoryList = () => {
-  const products = useAppSelector<Product[]>(selectProducts);
-  const counterModel = (model: string) =>
-    products.filter((product) => product.category === model).length;
+  const [isLoading, setIsLoading] = useState(true);
+  const [category, setCategory] = useState<Categories[]>([]);
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}`)
+      .then((res) => {
+        setCategory(res.data);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        console.error('Сталася помилка при отриманні даних:', e);
+      });
+  }, []);
 
   return (
     <section className={styles.category_list}>
       <h2 className={styles.category_list__title}>Shop by category</h2>
 
       <ul className={styles.category_list__content}>
-        <CategoryItem
-          image={{
-            src: '/img/categories/category-phones.png',
-            alt: 'Category Phones',
-          }}
-          title="Mobile phones"
-          model="phones"
-          modelCount={counterModel('phones')}
-        />
-
-        <CategoryItem
-          image={{
-            src: '/img/categories/category-tablets.png',
-            alt: 'Category Tablets',
-          }}
-          title="Tablets"
-          model="tablet"
-          modelCount={counterModel('tablet')}
-        />
-
-        <CategoryItem
-          image={{
-            src: '/img/categories/category-accessories.png',
-            alt: 'Category Accessories',
-          }}
-          title="Accessories"
-          model="accessory"
-          modelCount={counterModel('accessory')}
-        />
+        {!isLoading
+          ? category.map((info) => (
+            <CategoryItem
+              image={{
+                src: info.url,
+                alt: info.alt,
+              }}
+              title={info.alt}
+              model={info.id}
+              totalModel={info.total}
+              key={info.id}
+            />
+          ))
+          : Array.from({ length: 3 }).map((_, i) => (
+            <CategoryLoader count={i + 1} key={i} />
+          ))}
       </ul>
     </section>
   );

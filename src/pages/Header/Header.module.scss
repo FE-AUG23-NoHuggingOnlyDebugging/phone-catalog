@@ -1,29 +1,30 @@
 @import '../../appScss/index.scss';
-
-@mixin onTablet {
-  @media (min-width: 640px) {
-    @content;
-  }
-}
-
-@mixin onDesktop {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
+@import '../../appScss/mixins.scss';
 
 .header {
   background-color: #fff;
+  margin-bottom: 24px;
 
   &__title {
     color: $color__for_test;
   }
+
+  &__logo {
+    object-fit: contain;
+    margin: auto;
+  }
 }
 .navbar {
+  height: 64px;
+
+  @include onPhone() {
+    height: 48px;
+  }
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid #e2e6e9;
 
   &__right {
     display: flex;
@@ -45,12 +46,11 @@
     color: #89939a;
     font-size: 12px;
     font-weight: bold;
-    line-height: 11px;
+    line-height: calc(64px - 6px);
+    margin-top: 3px;
     letter-spacing: 0.48px;
     text-transform: uppercase;
     text-decoration: none;
-    padding-top: 27px;
-    padding-bottom: 24px;
     border-bottom: 3px solid transparent;
   }
 
@@ -59,12 +59,11 @@
   }
 
   &__utilities {
-    width: 16px;
-    height: 16px;
+    width: 64px;
+    height: 64px;
     padding: 24px;
-    padding-bottom: 21px;
     border-left: 1px solid #e2e6e9;
-    border-bottom: 3px solid transparent;
+    border-bottom: 1px solid #e2e6e9;
   }
 
   &__highlight {

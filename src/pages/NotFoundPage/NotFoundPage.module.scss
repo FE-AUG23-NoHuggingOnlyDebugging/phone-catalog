@@ -1,5 +1,5 @@
 @mixin NotFoundPage-onTablet {
-  @media (max-width: 979px) {
+  @media (max-width: 1165px) {
     @content;
   }
 }
@@ -10,7 +10,6 @@
   }
 }
 
-
 .iphoneX {
   position: relative;
   width: 360px;
@@ -18,7 +17,10 @@
   background-color: #313237;
   // background-image: linear-gradient(60deg, #7371ee 1%,#a1d9d6 100%);
   border-radius: 40px;
-  box-shadow: 0px 0px 0px 11px #1f1f1f, 0px 0px 0px 13px #191919, 0px 0px 0px 20px #111;
+  box-shadow:
+    0px 0px 0px 11px #1f1f1f,
+    0px 0px 0px 13px #191919,
+    0px 0px 0px 20px #111;
 
   @include NotFoundPage-onTablet {
     width: 260px;
@@ -26,7 +28,7 @@
   }
 
   &:before,
-  &:after{
+  &:after {
     content: '';
     position: absolute;
     left: 50%;
@@ -145,8 +147,8 @@
 }
 
 #Error {
-  top: 135px ;
-  left: 5px ;
+  top: 135px;
+  left: 5px;
 
   @include NotFoundPage-onPhone {
     top: 50px;
@@ -154,7 +156,7 @@
 }
 
 #PageNotFound {
-  top: 220px ;
+  top: 220px;
   left: 3px;
 
   @include NotFoundPage-onPhone {
@@ -163,21 +165,24 @@
   }
 }
 .ErrorContainer {
-  margin: 0 auto;
-  max-width: 1136px;
+  width: 1136px;
   box-sizing: border-box;
-  padding: 0px 20px 0 40px;
-  
+  padding: 80px 20px 80px 40px;
 
-  @include NotFoundPage-onTablet{
-    padding: 20px;
+  @include NotFoundPage-onTablet {
+    width: 100%;
+    padding: 80px 0px;
   }
 }
 
+.phoneWrapper {
+  position: relative;
+}
+
 .ErrorWrapper {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-
 
   @include NotFoundPage-onTablet {
     justify-content: space-around;
@@ -189,7 +194,6 @@
     width: 260px;
     margin: 0 auto;
   }
-
 }
 
 .ErrorMessage {
@@ -204,18 +208,21 @@
 
   &__title {
     font-size: 70px;
+    margin-bottom: 30px;
 
     @include NotFoundPage-onTablet {
       font-size: 50px;
     }
 
     @include NotFoundPage-onPhone {
+      margin-top: 30px;
       font-size: 30px;
     }
   }
 
   &__text {
     font-size: 50px;
+    margin-bottom: 40px;
     width: 500px;
 
     @include NotFoundPage-onTablet {
@@ -234,7 +241,7 @@
     display: inline-block;
     margin-top: 30px;
     padding: 15px;
-    background-color: #F1F2F9;
+    background-color: #f1f2f9;
   }
 }
 

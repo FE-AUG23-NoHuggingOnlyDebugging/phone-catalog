@@ -14,7 +14,7 @@ type Props = {
   type?: string | null;
 };
 
-const ProductCard: React.FC<Props> = ({ product, type = null }) => {
+const ProductCard: React.FC<Props> = ({ product, type }) => {
   const favoritesStorageList = useAppSelector(selectFavoritesProducts);
   const cartStorageList = useAppSelector(selectCartProducts);
   const withDiscount = (price: number, discount: number) => {
@@ -31,11 +31,12 @@ const ProductCard: React.FC<Props> = ({ product, type = null }) => {
   return (
     <div
       className={cn(styles.product_card, {
-        [styles.product_card_slide]: type === 'slider',
+        [styles.product_card__slide]: type === 'slider',
+        [styles.product_card__list]: type !== 'list',
       })}
     >
       <Link
-        to={'/product/' + product.phoneId}
+        to={'/product/' + product.category + '/' + product.itemId}
         className={styles.link__cover}
       ></Link>
 
@@ -81,14 +82,15 @@ const ProductCard: React.FC<Props> = ({ product, type = null }) => {
         <div className={styles.product_card__buttons}>
           <AddToCard
             added={cartStorageList.some(
-              (cartProduct) => cartProduct.name === product.phoneId,
+              (cartProduct) => cartProduct.name === product.itemId,
             )}
-            id={product.phoneId}
+            id={product.itemId}
+            category={product.category}
           />
 
           <AddToFavorite
-            added={favoritesStorageList.includes(product.phoneId)}
-            id={product.phoneId}
+            added={favoritesStorageList.includes(product.itemId)}
+            id={product.itemId}
           />
         </div>
       </div>

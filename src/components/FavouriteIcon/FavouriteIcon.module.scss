@@ -1,0 +1,15 @@
+.favourite_icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.counter {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background-color: #eb5757;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 4px;
+  font-size: 12px;
+}

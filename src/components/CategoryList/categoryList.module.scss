@@ -1,10 +1,11 @@
+@import '../../appScss/typography';
+@import '../../appScss/mixins';
+
 .category_list {
   margin-bottom: 80px;
 
   &__title {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -0.32px;
+    @include default-h2;
     margin-bottom: 24px;
   }
 
@@ -12,9 +13,21 @@
     display: flex;
     gap: 16px;
     width: 100%;
+
+    @include onPhone {
+      flex-flow: column nowrap;
+    }
   }
 
   &__item {
     width: calc(100% / 3);
+    height: calc(100% / 3);
+    aspect-ratio: 1 / 1;
+
+    @include onPhone {
+      width: 100%;
+      height: auto;
+      aspect-ratio: inherit;
+    }
   }
 }

@@ -1,0 +1,140 @@
+@import '../ProductList/ProductList.module.scss';
+@import '../ProductCard/ProductCard.module.scss';
+@import '../../appScss/mixins';
+
+.product_loader {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  width: calc(25% - (16px * 0.75));
+  padding: 32px;
+  border: 1px solid var(--elements-color);
+  box-sizing: border-box;
+  transition: box-shadow 0.3s;
+
+  &__slider {
+    @include onTablet {
+      min-width: 237px;
+    }
+
+    @include onPhone {
+      min-width: 212px;
+    }
+  }
+
+  &__list {
+    @media (max-width: 1080px) {
+      width: calc(33.33% - (16px * 2 / 3));
+    }
+
+    @media (max-width: 767px) {
+      width: calc(50% - 8px);
+    }
+
+    @media (max-width: 489px) {
+      width: 100%;
+    }
+  }
+
+  &__box {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--hover-bg-color);
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(var(--elements-color), 0.1) 0,
+        rgba(var(--elements-color), 0.3) 20%,
+        rgba(var(--elements-color), 0.7) 60%,
+        rgba(var(--elements-color), 0.1)
+      );
+      animation: shimmer 5s infinite;
+      content: '';
+    }
+
+    @keyframes shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  &__image {
+    box-sizing: border-box;
+    width: 208px;
+    height: 208px;
+    padding-inline: 12px;
+    margin-inline: auto;
+    margin-bottom: 24px;
+
+    @include onTablet {
+      width: 173px;
+      height: 173px;
+    }
+
+    @include onPhone {
+      width: 148px;
+      height: 148px;
+    }
+  }
+
+  &__title {
+    height: 42px;
+    width: 100%;
+    margin-bottom: 6.5px;
+  }
+
+  &__price {
+    height: 31px;
+    width: 120px;
+    margin-bottom: 8px;
+  }
+
+  &__list {
+    display: flex;
+    gap: 8px 0;
+    flex-flow: column nowrap;
+    padding-top: 16px;
+    border-top: 1px solid var(--elements-color);
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    height: 12px;
+
+    &_title {
+      width: 57px;
+    }
+
+    &_value {
+      width: 40px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    margin-top: 16px;
+    gap: 0 8px;
+  }
+
+  &__button {
+    &_cart {
+      width: calc(100% - 50px);
+      height: 43px;
+    }
+
+    &_fav {
+      width: 43px;
+      height: 43px;
+    }
+  }
+}

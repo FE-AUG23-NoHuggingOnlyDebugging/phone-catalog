@@ -1,10 +1,17 @@
 @import '../../appScss/swiper';
 @import '../../appScss/arrow';
 @import '../../appScss/typography';
+@import '../../appScss/mixins';
 
 .product_slider {
   margin-bottom: 80px;
   overflow: hidden;
+
+  @include onTablet {
+    position: relative;
+    overflow: visible;
+    z-index: 2;
+  }
 
   &__header {
     display: flex;
@@ -14,7 +21,6 @@
   }
 
   &__title {
-    font-size: 32px;
-    font-weight: 700;
+    @include default-h2;
   }
 }

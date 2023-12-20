@@ -1,34 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './Dropdown.module.scss';
 
 type Props = {
-  title: string;
-  current: string | null;
-  list: string[];
+  list: string[][];
+  currentItem: string;
+  setOn: string;
+  rootClassName?: string;
+  onHandle: (setKey: string, value: string) => void;
 };
 
-const Dropdown: React.FC<Props> = ({ title, current = null, list }) => {
+const Dropdown: React.FC<Props> = ({
+  list,
+  currentItem,
+  setOn,
+  rootClassName,
+  onHandle,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref]);
+
   return (
-    <div className={`${styles.catalog__dropdown} ${styles.dropdown}`}>
-      <p className={styles.dropdown__title}>{title}</p>
+    <div
+      ref={ref}
+      className={`${styles.catalog__dropdown} ${styles.dropdown} ${
+        rootClassName || ''
+      }`}
+    >
       <button
         className={styles.dropdown__button}
         onClick={() => setIsOpen((x) => !x)}
       >
-        <span className={styles.dropdown__current}>{current || list[0]}</span>
+        <span className={styles.dropdown__current}>{currentItem}</span>
         <img
-          src={process.env.PUBLIC_URL + '/img/icon/arrow.svg'}
-          className={styles.arrow__bottom}
-          alt="Bottom Arrow"
+          src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
+          className={`${isOpen ? styles.arrow__top : styles.arrow__bottom}`}
+          alt="Arrow"
         />
       </button>
       {isOpen && (
         <ul className={styles.dropdown__list}>
-          {list.map((item: string) => (
-            <li className={styles.dropdown__item} key={item}>
-              {item}
+          {list.map(([key, value]) => (
+            <li
+              className={`${value === currentItem ? styles.dropdown__item_current : styles.dropdown__item}`}
+              key={key}
+              onClick={() => {
+                if (value === currentItem) {
+                  return;
+                }
+                onHandle(setOn, key);
+                setIsOpen(false);
+              }}
+            >
+              {value}
             </li>
           ))}
         </ul>

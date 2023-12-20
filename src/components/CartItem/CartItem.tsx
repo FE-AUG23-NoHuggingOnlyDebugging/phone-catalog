@@ -6,7 +6,7 @@ import React from 'react';
 import { ProductDetails } from '../../types/ProductDetails';
 import { useDispatch } from 'react-redux';
 import {
-  addToCart,
+  addOneMore,
   cartReduceQuantity,
   removeFromCart,
   selectCartProducts,
@@ -15,9 +15,10 @@ import { useAppSelector } from '../../store/hooks';
 
 type Props = {
   product: ProductDetails;
+  removeProduct: (id: string) => void;
 };
 
-export const CartItem: React.FC<Props> = ({ product }) => {
+export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
   const { id, images, name, priceDiscount } = product;
 
   const dispatch = useDispatch();
@@ -26,10 +27,11 @@ export const CartItem: React.FC<Props> = ({ product }) => {
   const count = cartStorageList.find((item) => item.name === id)?.quantity || 0;
 
   const handleClickAdd = () => {
-    dispatch(addToCart(id));
+    dispatch(addOneMore(id));
   };
 
   const handleClickRemove = () => {
+    removeProduct(id);
     dispatch(removeFromCart(id));
   };
 
@@ -41,14 +43,17 @@ export const CartItem: React.FC<Props> = ({ product }) => {
     <>
       <article className={styles.card}>
         <div className={styles.first_part}>
-          <a href="#/cart">
+          <button
+            type="button"
+            onClick={handleClickRemove}
+            className={styles.button}
+          >
             <img
               src={process.env.PUBLIC_URL + '/img/icons/close.png'}
-              alt="Close"
+              alt="remove"
               className={styles.icon}
-              onClick={handleClickRemove}
             />
-          </a>
+          </button>
 
           <div className={styles.photo_container}>
             <img
@@ -63,28 +68,35 @@ export const CartItem: React.FC<Props> = ({ product }) => {
 
         <div className={styles.second_part}>
           <div className={styles.device_count}>
-            <a href="#/cart">
+            <button
+              type="button"
+              className={cn(styles.button, {
+                [styles.button__border]: count > 1,
+                [styles.button__border__disabled]: count <= 1,
+              })}
+              onClick={handleClickReduce}
+              disabled={count <= 1}
+            >
               <img
                 src={process.env.PUBLIC_URL + '/img/icons/minus.png'}
                 alt="minus"
-                className={cn(`${styles.icon}`, {
-                  [styles.icon__border]: count > 1,
-                  [styles.icon_disabled]: count <= 1,
-                })}
-                onClick={handleClickReduce}
+                className={styles.icon}
               />
-            </a>
+            </button>
 
-            <span className={styles.number}>{count}</span>
+            <span className={styles.quantity}>{count}</span>
 
-            <a href="#/cart">
+            <button
+              type="button"
+              className={`${styles.button} ${styles.button__border}`}
+              onClick={handleClickAdd}
+            >
               <img
                 src={process.env.PUBLIC_URL + '/img/icons/plus.png'}
                 alt="plus"
-                className={`${styles.icon} ${styles.icon__border}`}
-                onClick={handleClickAdd}
+                className={styles.icon}
               />
-            </a>
+            </button>
           </div>
 
           <div className={styles.price}>

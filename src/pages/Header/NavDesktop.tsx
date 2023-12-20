@@ -1,6 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import cn from 'classnames';
+import CartIcon from '../../components/CartIcon/CartIcon';
+import FavouriteIcon from '../../components/FavouriteIcon/FavouriteIcon';
 
 const NavDesktop = () => {
   const isActiveLink = ({ isActive }: { isActive: boolean }) =>
@@ -53,14 +55,11 @@ const NavDesktop = () => {
     />
   </div> */}
         <NavLink to="/favourites" className={isActiveUtility}>
-          <img
-            src={process.env.PUBLIC_URL + '/img/icons/favourites.png'}
-            alt=""
-          />
+          <FavouriteIcon />
         </NavLink>
 
         <NavLink to="/cart" className={isActiveUtility}>
-          <img src={process.env.PUBLIC_URL + '/img/icons/cart.png'} alt="" />
+          <CartIcon />
         </NavLink>
       </div>
     </nav>
