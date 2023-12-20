@@ -8,8 +8,8 @@ import Breadcrumbs from './components/BreadCrumbs/BreadCrumbs';
 
 function App() {
   return (
-    <>
-<!-- <<<<<<< light-dark-theme -->
+    <div id="theme">
+      {/* <!-- <<<<<<< light-dark-theme -->
 <!--       <div id="theme">
         <Header />
         <main>
@@ -18,7 +18,7 @@ function App() {
         </main>
         <Footer />
       </div> -->
-<!-- ======= -->
+<!-- ======= --> */}
       <Header />
       <main>
         <Breadcrumbs />
@@ -26,8 +26,8 @@ function App() {
       </main>
       <Footer />
       <Auth />
-<!-- >>>>>>> main -->
-    </>
+      {/* <!-- >>>>>>> main --> */}
+    </div>
   );
 }
 
