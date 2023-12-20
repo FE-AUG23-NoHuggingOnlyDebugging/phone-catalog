@@ -6,7 +6,7 @@
 
 .page {
   width: max-content;
-  margin: 40px auto 80px;
+  margin: 16px auto 80px;
 
   &__empty {
     width: 1136px;
@@ -18,13 +18,12 @@
 
   &__modal_active {
     position: relative;
-    // background-color: var(--white-color);
     background-color: transparent;
     opacity: 0.1;
   }
 
   @include onPhone {
-    margin-block: 24px 56px;
+    margin-block: 0 56px;
   }
 
   @include onTablet {
@@ -157,7 +156,7 @@
     box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
     transition: box-shadow 0.3s;
   }
-  
+
   &:active {
     color: var(--green-color);
     border-color: var(--elements-color);
@@ -190,7 +189,7 @@
         background-color: var(--btn-hover);
       }
     }
-  }  
+  }
 }
 
 [theme='dark'] {
