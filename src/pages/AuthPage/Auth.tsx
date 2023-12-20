@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addUser, selectUser } from '../../store/userSlice';
-import {
-  // addFavoritesFromDb,
-  // clearFavorites,
-  replaceFavorites,
-} from '../../store/favoriteSlice';
+import { replaceFavorites } from '../../store/favoriteSlice';
+// import { replaceCart } from '../../store/cartSlice';
 
 export type User = {
   id: string;
@@ -13,7 +10,7 @@ export type User = {
   name: string;
 };
 
-export const loadUsersFavorites = async () => {
+export const loadUserFavorites = async () => {
   try {
     const res = await fetch(
       'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/favorites',
@@ -33,81 +30,40 @@ export const loadUsersFavorites = async () => {
     return data;
   } catch (error) {
     console.log((error as Error).message);
-    alert('помилка з фейворіт');
+  }
+};
+
+export const loadUserCart = async () => {
+  try {
+    const res = await fetch(
+      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/cart',
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        credentials: 'include',
+      },
+    );
+
+    const data = await res.json();
+
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    console.log((error as Error).message);
   }
 };
 
 const AuthPage = () => {
-  // const [email, setEmail] = useState('');
-  // const [name, setName] = useState('');
-  // const [pass, setPass] = useState('');
-  // const [error, setError] = useState(false);
-
   const user = useAppSelector(selectUser);
   const dispatcher = useAppDispatch();
 
-  // const signOut = async () => {
-  //   try {
-  //     await fetch(
-  //       'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signOut',
-  //       {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json; charset=UTF-8',
-  //         },
-  //         credentials: 'include',
-  //       },
-  //     );
-
-  //     dispatcher(removeUser());
-  //     dispatcher(clearFavorites());
-  //     //також треба буде видаляти картку замовлень та решту персональних даних зі стейту
-  //   } catch (error) {
-  //     console.log((error as Error).message);
-  //     setError(true);
-  //   }
-  // };
-
-  // const signIn = async (e: React.FocusEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   setError(false);
-  //   try {
-  //     const response = await fetch(
-  //       'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signIn',
-  //       {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json; charset=UTF-8',
-  //         },
-  //         credentials: 'include',
-  //         body: JSON.stringify({
-  //           email,
-  //           password: pass,
-  //         }),
-  //       },
-  //     );
-
-  //     const userDataFromServer = await response.json();
-
-  //     const data = await loadUsersFavorites(); // після того як залогінились тянемо з бази збережені улюблені
-  //     // та додаємо до тих які він наклацав поки був не залогінений
-  //     console.log(userDataFromServer);
-
-  //     dispatcher(addUser(userDataFromServer));
-  //     dispatcher(addFavoritesFromDb(data));
-  //   } catch (error) {
-  //     console.log((error as Error).message);
-  //     setError(true);
-  //   }
-  // };
-
   useEffect(() => {
-    //наступний код дублюється, можна повиносити в більш універсальні функції
     const checkIfAuthorized = async () => {
-      // щоразу при першому рендері буде перевіряти чи дійсний кукі ключ
       if (user) {
-        return; //якщо юзер є - виходимо
+        return;
       }
 
       try {
@@ -123,16 +79,19 @@ const AuthPage = () => {
         );
 
         if (!response.ok) {
-          return; // якщо 401 - виходимо
+          return;
         }
 
         const userDataFromServer = await response.json();
 
-        const data = await loadUsersFavorites();
-        dispatcher(replaceFavorites(data)); //замінюємо улюблені щоб уникнути дублюванні при повторному відкритті вкладки будучи авторизованим
+        const favorutes = await loadUserFavorites();
+        // const cart = await loadUserCart();
+
+        // dispatcher(replaceCart(cart));
+        dispatcher(replaceFavorites(favorutes));
         console.log(userDataFromServer);
 
-        dispatcher(addUser(userDataFromServer)); //додаємо юзера в стейт
+        dispatcher(addUser(userDataFromServer));
       } catch (error) {
         console.log((error as Error).message);
         // setError(true);
