@@ -1,8 +1,8 @@
 'use strict';
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../store/store';
-import { User } from './AuthPage';
+import { RootState } from './store';
+import { User } from '../pages/AuthPage/Auth';
 
 export interface UserState {
   user: User | null;

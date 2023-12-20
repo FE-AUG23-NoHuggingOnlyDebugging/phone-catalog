@@ -7,7 +7,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 
 import thunk from 'redux-thunk';
 import productsSlice from './productsSlice';
-import userSlice from '../pages/AuthPage/userSlice';
+import userSlice from './userSlice';
 
 const persistConfigFavorite = {
   //add
