@@ -31,7 +31,13 @@ export const favoriteSlice = createSlice({
   },
 });
 
-export const { addToFavorites, removeFromFavorites, addFavoritesFromDb, clearFavorites, replaceFavorites } = favoriteSlice.actions;
+export const {
+  addToFavorites,
+  removeFromFavorites,
+  addFavoritesFromDb,
+  clearFavorites,
+  replaceFavorites,
+} = favoriteSlice.actions;
 
 export const selectFavoritesProducts = (state: RootState) =>
   state.favorite.products;

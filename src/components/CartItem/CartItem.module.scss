@@ -81,7 +81,7 @@
   align-items: center;
   width: 16px;
   height: 16px;
-  
+
   background-color: var(--additional-btn);
   border: none;
   cursor: pointer;
@@ -146,7 +146,7 @@
 [theme='dark'] {
   .dark_theme_icon_color {
     filter: invert(100%);
-  }  
+  }
 
   .card {
     .remove_button {
@@ -159,7 +159,7 @@
           border: 1px solid var(--additional-btn-hover);
           background-color: var(--secondary-color);
         }
-        }
+      }
 
       &__disabled {
         &:hover {

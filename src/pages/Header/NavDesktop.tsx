@@ -15,7 +15,6 @@ const NavDesktop = () => {
   return (
     <nav className={`${styles.header__navbar} ${styles.navbar}`}>
       <div className={styles.navbar__right}>
-
         <Link to="/" className={styles.header__logo}>
           <img
             className={styles.dark_theme_logo_color}
@@ -50,7 +49,6 @@ const NavDesktop = () => {
       </div>
 
       <div className={styles.navbar__utility}>
-
         <div className={styles.switch}>
           <Switch />
         </div>

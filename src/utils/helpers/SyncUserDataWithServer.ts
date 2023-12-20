@@ -1,6 +1,9 @@
 'use strict';
 
-export const SyncUserDataWithServer = async (favorites: string, type: string) => {
+export const SyncUserDataWithServer = async (
+  favorites: string,
+  type: string,
+) => {
   try {
     await fetch(
       `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/${type}`,

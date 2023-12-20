@@ -41,7 +41,10 @@ const Breadcrumbs: React.FC = () => {
                 alt="Right Arrow"
               />
             )}
-            <Link className={`${styles.crumbs__link} ${styles.dark_theme_crumbs__link_hover}`} to={match.pathname}>
+            <Link
+              className={`${styles.crumbs__link} ${styles.dark_theme_crumbs__link_hover}`}
+              to={match.pathname}
+            >
               {breadcrumb}
             </Link>
           </React.Fragment>

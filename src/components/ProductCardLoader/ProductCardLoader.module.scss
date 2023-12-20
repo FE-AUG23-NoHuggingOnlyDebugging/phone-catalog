@@ -146,7 +146,7 @@
     position: relative;
     overflow: hidden;
     background-color: #323542;
-  
+
     &::after {
       position: absolute;
       top: 0;
@@ -156,10 +156,10 @@
       transform: translateX(-100%);
       background-image: linear-gradient(
         90deg,
-        rgba(#4A4D58, 0.1) 0,
-        rgba(#4A4D58, 0.3) 20%,
-        rgba(#4A4D58, 0.7) 60%,
-        rgba(#4A4D58, 0.1)
+        rgba(#4a4d58, 0.1) 0,
+        rgba(#4a4d58, 0.3) 20%,
+        rgba(#4a4d58, 0.7) 60%,
+        rgba(#4a4d58, 0.1)
       );
       animation: shimmer 5s infinite;
       content: '';
