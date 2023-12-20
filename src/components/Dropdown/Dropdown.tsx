@@ -48,7 +48,7 @@ const Dropdown: React.FC<Props> = ({
         <span className={styles.dropdown__current}>{currentItem}</span>
         <img
           src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-          className={`${isOpen ? styles.arrow__top : styles.arrow__bottom}`}
+          className={`${isOpen ? styles.arrow__top : styles.arrow__bottom} ${styles.dark_theme_icon_color}`}
           alt="Arrow"
         />
       </button>
@@ -56,7 +56,11 @@ const Dropdown: React.FC<Props> = ({
         <ul className={styles.dropdown__list}>
           {list.map(([key, value]) => (
             <li
-              className={`${value === currentItem ? styles.dropdown__item_current : styles.dropdown__item}`}
+              className={`${
+                value === currentItem
+                  ? styles.dropdown__item_current
+                  : styles.dropdown__item
+              }`}
               key={key}
               onClick={() => {
                 if (value === currentItem) {

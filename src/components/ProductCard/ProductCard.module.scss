@@ -10,7 +10,8 @@
   position: relative;
   width: calc(25% - (16px * 0.75));
   padding: 32px;
-  border: 1px solid var(--elements-color);
+  border: 1px solid var(--card-border);
+  background-color: var(--card-bg);
   box-sizing: border-box;
   transition: box-shadow 0.3s;
 
@@ -54,7 +55,6 @@
     margin-inline: auto;
     margin-bottom: 24px;
     object-fit: contain;
-    z-index: -1;
 
     @include onTablet {
       width: 173px;
@@ -71,6 +71,7 @@
     height: 42px;
     margin-bottom: 6.5px;
     @include bodyText;
+    color: var(--primary-color);
 
     @include onPhone {
       min-height: 63px;
@@ -81,6 +82,7 @@
   &__price {
     margin-bottom: 8px;
     @include default-h3;
+    color: var(--primary-color);
 
     &::before {
       content: '$';
@@ -117,6 +119,7 @@
     }
 
     &_value {
+      color: var(--primary-color);
       @include smallText;
     }
   }
@@ -125,5 +128,13 @@
     display: flex;
     margin-top: 16px;
     gap: 0 8px;
+  }
+}
+
+[theme='dark'] {
+  .product_card {
+    &__image {
+      filter: brightness(90%);
+    }
   }
 }

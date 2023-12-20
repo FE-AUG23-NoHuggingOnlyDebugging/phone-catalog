@@ -1,8 +1,13 @@
 import styles from './AddToCard.module.scss';
 import React from 'react';
 import cn from 'classnames';
-import { useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from '../../store/cartSlice';
+import {
+  addToCart,
+  removeFromCart,
+  selectCartProducts,
+} from '../../store/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { SyncUserDataWithServer } from '../../utils/helpers/SyncUserDataWithServer';
 
 type Props = {
   added?: boolean;
@@ -11,14 +16,23 @@ type Props = {
 };
 
 const AddToCard: React.FC<Props> = ({ added = false, id, category }) => {
-  const dispatch = useDispatch();
+  const dispatcher = useAppDispatch();
+  const cartInBrowser = useAppSelector(selectCartProducts);
 
   const handleClickAdd = () => {
-    dispatch(addToCart({ id, category }));
+    dispatcher(addToCart({ id, category }));
+    const cart = JSON.stringify({
+      favorite: [...cartInBrowser, { id, category }],
+    });
+    SyncUserDataWithServer(cart, 'cart');
   };
 
   const handleClickRemove = () => {
-    dispatch(removeFromCart(id));
+    dispatcher(removeFromCart(id));
+    const cart = JSON.stringify({
+      cart: cartInBrowser.filter((item) => item.name !== id),
+    });
+    SyncUserDataWithServer(cart, 'cart');
   };
 
   return (

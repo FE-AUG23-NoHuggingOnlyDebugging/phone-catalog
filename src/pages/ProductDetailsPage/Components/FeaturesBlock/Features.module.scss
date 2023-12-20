@@ -148,7 +148,7 @@
 
 .activeMemory {
   background-color: var(--primary-color);
-  color: #fff;
+  color: var(--capacity-text-color);
 }
 
 .activeColor {
@@ -166,4 +166,12 @@
   &:hover {
     border-color: var(--icons-color);
   }
+}
+
+[theme='dark'] {
+  .colorItemWrapper {
+    &:hover {
+      border-color: var(--secondary-color);
+    }
+}
 }

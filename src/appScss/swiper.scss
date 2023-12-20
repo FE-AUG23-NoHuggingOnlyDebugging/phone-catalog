@@ -3,15 +3,26 @@
   gap: 16px;
 
   &__button {
-    background: transparent;
-    border: 1px solid #b4bdc3;
+    background: var(--additional-btn);
+    border: 1px solid var(--additional-btn);
     padding: 8px;
     width: 34px;
     height: 34px;
   }
 
+  &__button:hover {
+    background: var(--additional-btn-hover);
+    cursor: pointer;
+  }
+
   &__disabled {
     opacity: 0.5;
+    background: transparent;
     cursor: default;
+  }
+
+  &__disabled:hover {
+    background: transparent;
+    cursor: pointer;
   }
 }

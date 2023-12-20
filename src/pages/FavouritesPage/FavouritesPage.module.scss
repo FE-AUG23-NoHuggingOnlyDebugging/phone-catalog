@@ -28,6 +28,7 @@
 
 .title {
   @include default-h1;
+  color: var(--primary-color);
 
   @include onPhone {
     @include mob-h1;

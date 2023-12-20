@@ -8,11 +8,16 @@ const FavouriteIcon: React.FC = () => {
   return (
     <div className={styles.favourite_icon}>
       <img
-        src={process.env.PUBLIC_URL + '/img/icons/favourites.png'}
+        className={styles.dark_theme_icon_color}
+        src={process.env.PUBLIC_URL + '/img/icons/favourites.svg'}
         alt="Favourites"
       />
       {elements.length > 0 && (
-        <div className={styles.counter}>{elements.length}</div>
+        <div className={styles.circle}>
+          <span className={styles.counter}>
+            {elements.length}
+          </span>
+        </div>
       )}
     </div>
   );
