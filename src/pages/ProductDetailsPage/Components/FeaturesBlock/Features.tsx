@@ -1,14 +1,14 @@
 import cn from 'classnames';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import style from './Features.module.scss';
 import React from 'react';
 import { ProductDetails } from '../../../../types/ProductDetails';
 import { colors } from './Colors';
 import AddToCard from '../../../../components/AddToCard/AddToCard';
 import AddToFavorite from '../../../../components/AddToFavorite/AddToFavorite';
-import {useAppSelector} from '../../../../store/hooks';
-import {selectFavoritesProducts} from '../../../../store/favoriteSlice';
-import {selectCartProducts} from '../../../../store/cartSlice';
+import { useAppSelector } from '../../../../store/hooks';
+import { selectFavoritesProducts } from '../../../../store/favoriteSlice';
+import { selectCartProducts } from '../../../../store/cartSlice';
 
 type Props = {
   product: ProductDetails;

@@ -5,15 +5,12 @@
 @import '../../appScss/typography.scss';
 
 .page {
-  width: max-content;
-  margin: 40px auto 80px;
+  width: 1136px;
+  margin-inline: auto;
+  margin-bottom: 80px;
 
-  &__empty {
-    width: 1136px;
-
-    @include onTablet {
-      width: calc(100% - 48px);
-    }
+  @include onTablet {
+    width: 100%;
   }
 
   @include onPhone {

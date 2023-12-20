@@ -25,7 +25,7 @@ const ProductList: React.FC<Props> = ({
   infoPage = null,
   translateX = 0,
   status = false,
-  onStatus= null,
+  onStatus = null,
 }) => {
   const { perPage } = useSearchParams();
   return (
@@ -57,7 +57,7 @@ const ProductList: React.FC<Props> = ({
             />
           </>
         ) : (
-          <PaginationLoader />
+          (status && infoPage === null) && <PaginationLoader />
         ))}
     </>
   );

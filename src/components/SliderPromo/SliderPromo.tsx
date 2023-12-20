@@ -6,17 +6,22 @@ import axios from 'axios';
 
 import styles from './SliderPromo.module.scss';
 import { Data } from '../../types/SliderPromo';
+import cn from 'classnames';
 
 export const SliderPromo = () => {
   const [data, setData] = useState<Data[]>([]);
   const [slide, setSlide] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(
         'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/slider',
       )
-      .then((data) => setData(data.data.images))
+      .then((data) => {
+        setData(data.data.images);
+        setIsLoading(false);
+      })
       .catch((error) => console.error(error));
   }, []);
 
@@ -50,36 +55,48 @@ export const SliderPromo = () => {
         <button className={styles.carousel__btn} onClick={goBack}>
           <IoIosArrowBack />
         </button>
-        {transitions((style, item) => (
-          <animated.img
-            key={item.id}
-            src={item.url}
-            alt={item.alt}
-            style={{ ...style }}
-            className={
-              slide === +item.id
-                ? styles.carousel__slide
-                : styles.carousel__slide_hidden
-            }
-          />
-        ))}
+        {!isLoading ? (
+          transitions((style, item) => (
+            <>
+              <animated.img
+                key={item.id}
+                src={item.url}
+                alt={item.alt}
+                style={{ ...style }}
+                className={
+                  slide === +item.id
+                    ? styles.carousel__slide
+                    : styles.carousel__slide_hidden
+                }
+              />
+            </>
+          ))
+        ) : (
+          <div className={styles.loader}>
+            <div className={cn(styles.loader_box, styles.loader__slide)} />
+          </div>
+        )}
         <button className={styles.carousel__btn} onClick={goForward}>
           <IoIosArrowForward />
         </button>
       </div>
       <span className={styles.indicators}>
-        {data.map((data) => (
-          <button
-            key={data.id}
-            className={
-              slide === +data.id
-                ? styles.indicators__indicator &&
-                  styles.indicators__indicator_active
-                : styles.indicators__indicator
-            }
-            onClick={() => setSlide(+data.id)}
-          ></button>
-        ))}
+        {!isLoading ? (
+          data.map((data) => (
+            <button
+              key={data.id}
+              className={
+                slide === +data.id
+                  ? styles.indicators__indicator &&
+                    styles.indicators__indicator_active
+                  : styles.indicators__indicator
+              }
+              onClick={() => setSlide(+data.id)}
+            ></button>
+          ))
+        ) : (
+          <span className={cn(styles.loader_box, styles.loader__btn)} />
+        )}
       </span>
     </div>
   );

@@ -11,16 +11,15 @@ import axios from 'axios';
 import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 import { Spinner } from '../../components/Loader/Spinner';
 import ProductsSlider from '../../components/ProductsSlider/ProductsSlider';
-import {setProducts} from '../../store/productsSlice';
-import {useDispatch} from 'react-redux';
+import { setProducts } from '../../store/productsSlice';
+import { useDispatch } from 'react-redux';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
   const { type } = useParams();
   // const location = useLocation().pathname.split('/')[1];
 
-  const API_URL =
-    `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${productId}/recommended`;
+  const API_URL = `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${productId}/recommended`;
   const [product, setProduct] = useState<ProductDetails | null>(null);
   const [mainImage, setMainImage] = useState(product?.images[0]);
   const [activeColor, setActiveColor] = useState<string | null>(null);
@@ -76,33 +75,35 @@ export const ProductDetailsPage = () => {
       {isLoading && <Spinner />}
       {isError && <NotFoundPage />}
       {product && !isError && !isLoading && (
-        <section className={style.product}>
-          <div>
-            <h1 className={style.mainTitle}>{product?.name}</h1>
+        <>
+          <section className={style.product}>
+            <div>
+              <h1 className={style.mainTitle}>{product?.name}</h1>
 
-            <article className={style.productOverview}>
-              <Gallery
-                product={product}
-                setMainImage={setMainImage}
-                mainImage={mainImage}
-              />
+              <article className={style.productOverview}>
+                <Gallery
+                  product={product}
+                  setMainImage={setMainImage}
+                  mainImage={mainImage}
+                />
 
-              <Features
-                product={product}
-                productId={productId}
-                setActiveColor={setActiveColor}
-                setActiveMemory={setActiveMemory}
-                activeColor={activeColor}
-                activeMemory={activeMemory}
-                type={type}
-              />
-            </article>
+                <Features
+                  product={product}
+                  productId={productId}
+                  setActiveColor={setActiveColor}
+                  setActiveMemory={setActiveMemory}
+                  activeColor={activeColor}
+                  activeMemory={activeMemory}
+                  type={type}
+                />
+              </article>
 
-            <Description specs={specs} descriptions={product?.description} />
-          </div>
+              <Description specs={specs} descriptions={product?.description} />
+            </div>
+          </section>
 
           <ProductsSlider title="You may also like" status={isLoadingSlider} />
-        </section>
+        </>
       )}
     </>
   );
