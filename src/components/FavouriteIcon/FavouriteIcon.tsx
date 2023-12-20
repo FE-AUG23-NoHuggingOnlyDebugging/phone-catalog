@@ -10,8 +10,13 @@ const FavouriteIcon: React.FC = () => {
 
   return (
     <div className={styles.favourite_icon} onClick={addToFavourite}>
-      <img src={process.env.PUBLIC_URL + '/img/icons/favourites.png'} alt="Favourites" />
-      {FavouriteCount > 0 && <div className={styles.counter}>{FavouriteCount}</div>}
+      <img
+        src={process.env.PUBLIC_URL + '/img/icons/favourites.png'}
+        alt="Favourites"
+      />
+      {FavouriteCount > 0 && (
+        <div className={styles.counter}>{FavouriteCount}</div>
+      )}
     </div>
   );
 };

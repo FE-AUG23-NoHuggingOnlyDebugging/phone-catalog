@@ -1,9 +1,14 @@
 import cn from 'classnames';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import style from './Features.module.scss';
 import React from 'react';
 import { ProductDetails } from '../../../../types/ProductDetails';
 import { colors } from './Colors';
+import AddToCard from '../../../../components/AddToCard/AddToCard';
+import AddToFavorite from '../../../../components/AddToFavorite/AddToFavorite';
+import {useAppSelector} from '../../../../store/hooks';
+import {selectFavoritesProducts} from '../../../../store/favoriteSlice';
+import {selectCartProducts} from '../../../../store/cartSlice';
 
 type Props = {
   product: ProductDetails;
@@ -23,6 +28,9 @@ export const Features: React.FC<Props> = ({
   setActiveColor,
   setActiveMemory,
 }) => {
+  const favoritesStorageList = useAppSelector(selectFavoritesProducts);
+  const cartStorageList = useAppSelector(selectCartProducts);
+
   return (
     <div className={style.features}>
       <div className={style.features__colors}>
@@ -94,13 +102,18 @@ export const Features: React.FC<Props> = ({
         </div>
 
         <div className={style.features__cartBlock}>
-          <div className={style.features__cart}>Add to cart</div>
-          <div className={style.features__fav}>
-            <img
-              src={process.env.PUBLIC_URL + '/icons/Favourites(HeartLike).svg'}
-              alt=""
-            />
-          </div>
+          <AddToCard
+            added={cartStorageList.some(
+              (cartProduct) => cartProduct.name === product.id,
+            )}
+            id={product.id}
+            category={type || ''}
+          />
+
+          <AddToFavorite
+            added={favoritesStorageList.includes(product.id)}
+            id={product.id}
+          />
         </div>
 
         <div className={style.features__briefInfBlock}>

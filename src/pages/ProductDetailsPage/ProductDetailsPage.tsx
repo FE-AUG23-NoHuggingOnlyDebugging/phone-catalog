@@ -1,7 +1,7 @@
 'use strict';
 
-import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { ProductDetails } from '../../types/ProductDetails';
 import style from './ProductDetailsPage.module.scss';
 import { Description } from './Components/DescriptionDetails/DescriptionDetails';
@@ -10,12 +10,17 @@ import { Gallery } from './Components/GalleryBlock/Gallery';
 import axios from 'axios';
 import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 import { Spinner } from '../../components/Loader/Spinner';
+import ProductsSlider from '../../components/ProductsSlider/ProductsSlider';
+import {setProducts} from '../../store/productsSlice';
+import {useDispatch} from 'react-redux';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
   const { type } = useParams();
-  const location = useLocation().pathname.split('/')[1];
+  // const location = useLocation().pathname.split('/')[1];
 
+  const API_URL =
+    `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${productId}/recommended`;
   const [product, setProduct] = useState<ProductDetails | null>(null);
   const [mainImage, setMainImage] = useState(product?.images[0]);
   const [activeColor, setActiveColor] = useState<string | null>(null);
@@ -23,7 +28,8 @@ export const ProductDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
-  console.log(location);
+  const [isLoadingSlider, setIsLoadingSlider] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsError(false);
@@ -41,6 +47,18 @@ export const ProductDetailsPage = () => {
       .catch(() => setIsError(true))
       .finally(() => setIsLoading(false));
   }, [productId]);
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}`)
+      .then((res) => {
+        dispatch(setProducts(res.data));
+        setIsLoadingSlider(false);
+      })
+      .catch((e) => {
+        console.error('Сталася помилка при отриманні даних:', e);
+      });
+  });
 
   const specs = [
     { name: 'Screen', value: product?.screen },
@@ -82,6 +100,8 @@ export const ProductDetailsPage = () => {
 
             <Description specs={specs} descriptions={product?.description} />
           </div>
+
+          <ProductsSlider title="You may also like" status={isLoadingSlider} />
         </section>
       )}
     </>

@@ -40,7 +40,6 @@ export const ProductPage = () => {
   const handleSearchParams = (setKey: string, value: string) => {
     setSearchParams((searchParams) => {
       searchParams.set(setKey, value);
-      console.log(setKey, value);
       return searchParams;
     });
   };
@@ -82,11 +81,12 @@ export const ProductPage = () => {
           />
         </div>
       </section>
-      <section className={styles.catalog__products}>
+      <section>
         <ProductList
           products={products}
           infoPage={infoPage}
           status={isLoading}
+          onStatus={setIsLoading}
         />
       </section>
       {isError && <p>Error...</p>}
