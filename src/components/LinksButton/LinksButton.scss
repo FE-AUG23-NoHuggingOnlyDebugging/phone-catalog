@@ -43,8 +43,7 @@
 }
 
 #telegram {
-
-  transform : scale(8,8);
+  transform: scale(8, 8);
 }
 
 .telegram {
@@ -54,7 +53,6 @@
   margin-left: 1.2em;
   fill: #03a9f4;
   transition: all 0s;
-
 
   @include onTablet {
     width: 18px;
