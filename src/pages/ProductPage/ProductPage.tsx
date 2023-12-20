@@ -48,11 +48,19 @@ export const ProductPage = () => {
 
   function checkItem(value: string, setBy: string, arr: string[][]): string {
     const current = setBy === 'sort' ? 'Newest' : '16';
-    if (value && !arr.map(([x]) => x).includes(value)) {
+
+    if (!value) {
+       return current;
+    }
+    if (value && !arr.map(([x,]) => x).includes(value)) {
       handleSearchParams(setBy, current);
       return current;
     }
-    return value || current;
+   const el = arr.find(([x, y])=> x === value);
+     if (el) {
+   return el[1];
+  }
+   return '';
   }
 
   const listSort = [
