@@ -11,6 +11,7 @@ import axios from 'axios';
 import { CartSkeletonLoader } from '../../components/CartSkeletonLoader';
 import { CheckoutModal } from '../../components/CheckoutModal';
 import { useDispatch } from 'react-redux';
+import { GoBackButton } from '../../components/GoBackButton';
 
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
@@ -87,23 +88,13 @@ export const CartPage = () => {
         })}
       >
         <div className={styles.cart_info}>
-          <button
-            type="button"
-            className={styles.button}
-            onClick={() => window.history.back()}
-          >
-            <img
-              src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-              alt="left arrow"
-              className={cn(styles.icon, styles.arrow__left)}
-            />
-            <span className={styles.text}>Back</span>
-          </button>
+          <GoBackButton />
 
           <h1 className={styles.title}>Cart</h1>
         </div>
 
-        {isLoading && [1, 2, 3].map((item) => <CartSkeletonLoader key={item} />)}
+        {isLoading &&
+          [1, 2, 3].map((item) => <CartSkeletonLoader key={item} />)}
 
         {isError && (
           <p className={styles.error_message}>
@@ -149,7 +140,6 @@ export const CartPage = () => {
             <p className={styles.empty_cart_message}>Your cart is empty</p>
           </div>
         )}
-
       </div>
       {isModalShown && <CheckoutModal handleCloseClick={handleCloseClick} />}
     </>
