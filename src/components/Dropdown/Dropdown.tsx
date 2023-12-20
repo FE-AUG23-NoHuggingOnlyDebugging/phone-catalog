@@ -59,6 +59,9 @@ const Dropdown: React.FC<Props> = ({
               className={styles.dropdown__item}
               key={key}
               onClick={() => {
+                if (value === currentItem) {
+                  return;
+                }
                 onHandle(setOn, key);
                 setIsOpen(false);
               }}
