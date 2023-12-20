@@ -3,6 +3,7 @@ import style from './ContactsPage.module.scss';
 import { team } from './Team';
 
 export const ContactsPage = () => {
+
   return (
     <div className={style.ContactsPage}>
       <div className={style.ContactsPage__description}>
