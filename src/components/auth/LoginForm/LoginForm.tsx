@@ -16,7 +16,11 @@ import {
   addFavoritesFromDb,
   clearFavorites,
 } from '../../../store/favoriteSlice';
-import { loadUsersFavorites } from '../../../pages/AuthPage/Auth';
+import {
+  // loadUserCart,
+  loadUserFavorites,
+} from '../../../pages/AuthPage/Auth';
+// import { replaceCart } from '../../../store/cartSlice';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -62,13 +66,11 @@ export const LoginForm = () => {
   const handleSubmit = async (e: React.FocusEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!email || !pass || !pattern.test(pass)) {
-      setHasEmailError(!email);
-      setHasPassError(!pass || !pattern.test(pass));
-      return;
-    }
-
-    reset();
+    // if (!email || !pass || !pattern.test(pass)) {
+    //   setHasEmailError(!email);
+    //   setHasPassError(!pass || !pattern.test(pass));
+    //   return;
+    // }
 
     setError(false);
     try {
@@ -89,12 +91,13 @@ export const LoginForm = () => {
 
       const userDataFromServer = await response.json();
 
-      const data = await loadUsersFavorites();
-      console.log(userDataFromServer);
+      const data = await loadUserFavorites();
+      // const cart = await loadUserCart();
 
+      // dispatcher(replaceCart(cart));
       dispatcher(addUser(userDataFromServer));
-      dispatcher(addFavoritesFromDb(data));
 
+      dispatcher(addFavoritesFromDb(data));
       reset();
     } catch (error) {
       console.log((error as Error).message);
