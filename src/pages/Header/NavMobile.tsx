@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
+import BurgerMenu from '../../components/BurgerMenu/BurgerMenu';
 
 const NavMobile = () => {
   return (
@@ -7,19 +8,14 @@ const NavMobile = () => {
       <div className={styles.navbar__right}>
         <Link to="/" className={styles.header__logo}>
           <img
-            src={process.env.PUBLIC_URL + '/img/icons/logo.png'}
+            src={process.env.PUBLIC_URL + '/img/icons/logo.svg'}
             alt="logo"
           />
         </Link>
       </div>
 
       <div className={styles.navbar__utility}>
-        <a href="/menu">
-          <img
-            src={process.env.PUBLIC_URL + '/img/icons/burger-menu.png'}
-            alt=""
-          />
-        </a>
+        <BurgerMenu />
       </div>
     </nav>
   );

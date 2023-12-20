@@ -1,44 +1,109 @@
-.burgerMenu {
+@import '../../appScss/index.scss';
+
+.burger_menu {
+  width:100%;
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 1000;
+  align-items: center;
+  background-color: #fff;
+}
+
+.burger_button {
+  width: 48px;
+  height: 48px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #E2E6E9;
+  border-left: 1px solid #E2E6E9;
+}
+
+.menu_items {
+  height: 568px;
+  width:100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  position: absolute;
+  padding-bottom: 32px;
+  top: 48px;
+  left:0;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  position: fixed;
-  top: 20px;
-  right: 20px;
   z-index: 999;
+  box-sizing: border-box;
+  display: flex;
+}
 
-  &_icon {
-    cursor: pointer;
+.header {
+  background-color: #fff;
+
+  &__title {
+    color: $color__for_test;
   }
 }
-
-.menu {
+.navbar {
+  position: relative;
+  width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex-direction: column;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
-}
 
-.menu.open {
-  max-height: 568px;
-}
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+  }
 
-.menu a {
-  text-decoration: none;
-  color: #333;
-  margin: 5px 0;
-  transition: color 0.3s ease-in-out;
-}
+  &__top {
+    display: flex;
+    align-items: center;
+    padding-top: 32px;
+  }
 
-.menu a:hover {
-  color: #007bff;
+  &__item {
+    display: inline-block;
+    color: #89939a;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 11px;
+    letter-spacing: 0.48px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-bottom: 32px;
+    border-bottom: 3px solid transparent;
+    padding-bottom: 8px;
+  }
+
+  &__bottom {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & a {
+      margin-right: 50px;
+    }
+  }
+
+  &__utilities {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    padding: 24px;
+    padding-bottom: 21px;
+    border-left: 1px solid #e2e6e9;
+    border-bottom: 3px solid transparent;
+  }
+
+  &__highlight {
+    color: #313237;
+    border-bottom: 3px solid #313237;
+  }
 }
