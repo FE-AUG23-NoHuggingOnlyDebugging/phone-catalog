@@ -63,15 +63,13 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <ul className={styles.pagination}>
-      <Link
+      {currentPage !== 1 ? <Link
         to={
           currentPage < 2
             ? updatePage(currentPage)
             : updatePage(currentPage - 1)
         }
-        className={cn(styles.pagination__item, {
-          [styles.pagination__disabled]: currentPage === 1,
-        })}
+        className={styles.pagination__item}
         onClick={() => onStateUpload(true)}
       >
         <img
@@ -79,7 +77,17 @@ const Pagination: React.FC<PaginationProps> = ({
           src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
           alt="prev"
         />
-      </Link>
+      </Link> : <span
+        className={cn(styles.pagination__item, {
+          [styles.pagination__disabled]: currentPage === 1,
+        })}
+      >
+        <img
+          className={styles.arrow__left}
+          src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
+          alt="prev"
+        />
+      </span>}
       <div className={styles.pagination__list}>
         {paginationRange.map((pageNumber, index) => {
           if (pageNumber === DOTS) {
@@ -104,19 +112,23 @@ const Pagination: React.FC<PaginationProps> = ({
           );
         })}
       </div>
-      <Link
+      {currentPage !== lastPage ? <Link
         to={
           currentPage === lastPage
             ? updatePage(currentPage)
             : updatePage(currentPage + 1)
         }
+        className={styles.pagination__item}
+        onClick={() => onStateUpload(true)}
+      >
+        <img src={process.env.PUBLIC_URL + '/img/icons/arrow.png'} alt="next"/>
+      </Link> : <span
         className={cn(styles.pagination__item, {
           [styles.pagination__disabled]: currentPage === lastPage,
         })}
-        onClick={() => onStateUpload(true)}
       >
-        <img src={process.env.PUBLIC_URL + '/img/icons/arrow.png'} alt="next" />
-      </Link>
+        <img src={process.env.PUBLIC_URL + '/img/icons/arrow.png'} alt="next"/>
+      </span>}
     </ul>
   );
 };

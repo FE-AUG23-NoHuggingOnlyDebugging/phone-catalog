@@ -56,7 +56,11 @@ const Dropdown: React.FC<Props> = ({
         <ul className={styles.dropdown__list}>
           {list.map(([key, value]) => (
             <li
-              className={`${value === currentItem ? styles.dropdown__item_current : styles.dropdown__item}`}
+              className={`${
+                value === currentItem
+                  ? styles.dropdown__item_current
+                  : styles.dropdown__item
+              }`}
               key={key}
               onClick={() => {
                 if (value === currentItem) {
