@@ -26,7 +26,7 @@ export const HomePage = () => {
       .catch((e) => {
         console.error('Сталася помилка при отриманні даних:', e);
       });
-  });
+  }, []);
 
   useEffect(() => {
     axios
@@ -38,7 +38,7 @@ export const HomePage = () => {
       .catch((e) => {
         console.error('Сталася помилка при отриманні даних:', e);
       });
-  });
+  }, []);
 
   return (
     <>
