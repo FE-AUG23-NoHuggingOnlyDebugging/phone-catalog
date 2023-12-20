@@ -3,20 +3,22 @@ import styles from './ProductsSlider.module.scss';
 import React, { useEffect, useRef, useState } from 'react';
 import ProductList from '../ProductList/ProductList';
 import cn from 'classnames';
-import { useAppSelector } from '../../store/hooks';
-import { selectProducts } from '../../store/productsSlice';
 import ProductLoader from '../ProductLoader/ProductLoader';
+import {Product} from '../../types/Product';
+import {useAppSelector} from '../../store/hooks';
+import {selectProducts} from '../../store/productsSlice';
 
 type Props = {
   title: string;
   status: boolean;
+  products?: Product[] | null;
 };
 
-const ProductsSlider: React.FC<Props> = ({ title, status }) => {
+const ProductsSlider: React.FC<Props> = ({ title, status, products = null }) => {
   const parentRef = useRef<HTMLDivElement>(null);
   const [parentWidth, setParentWidth] = useState(0);
   const [translateX, setTranslateX] = useState(0);
-  const products = useAppSelector(selectProducts);
+  const productSlice = useAppSelector(selectProducts);
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,8 +43,8 @@ const ProductsSlider: React.FC<Props> = ({ title, status }) => {
 
   // const blockWidth = (((parentWidth - 16 * 3) / 4 + 16) / parentWidth) * 100;
   let blockWidth = ((parentWidth + 16) / parentWidth) * 100;
-  let maxTranslateX = products.length
-    ? (-blockWidth * (products.length - 4)) / 4
+  let maxTranslateX = products?.length
+    ? (-blockWidth * (products?.length - 4)) / 4
     : 0;
 
   if (parentWidth < 1136) {
@@ -50,8 +52,8 @@ const ProductsSlider: React.FC<Props> = ({ title, status }) => {
     const countBlockGap = parentWidth / (oneBlockWidth + 16.3);
     const countBlockFloor = Math.floor(countBlockGap);
     blockWidth = ((oneBlockWidth + 16) / parentWidth) * countBlockFloor * 100;
-    maxTranslateX = products.length
-      ? -(products.length / countBlockGap - 1) * 100
+    maxTranslateX = products?.length
+      ? -(products?.length / countBlockGap - 1) * 100
       : 0;
   }
 
@@ -111,7 +113,7 @@ const ProductsSlider: React.FC<Props> = ({ title, status }) => {
         <ProductLoader type="slider" />
       ) : (
         <ProductList
-          products={products}
+          products={products || productSlice}
           type="slider"
           translateX={translateX}
         />
