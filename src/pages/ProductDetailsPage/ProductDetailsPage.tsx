@@ -57,7 +57,7 @@ export const ProductDetailsPage = () => {
       .catch((e) => {
         console.error('Сталася помилка при отриманні даних:', e);
       });
-  });
+  }, []);
 
   const specs = [
     { name: 'Screen', value: product?.screen },
