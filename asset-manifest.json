@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/phone-catalog/static/css/main.45e3fa4c.css",
-    "main.js": "/phone-catalog/static/js/main.e482d7b7.js",
+    "main.css": "/phone-catalog/static/css/main.d82d2ea9.css",
+    "main.js": "/phone-catalog/static/js/main.61845b25.js",
     "static/media/Mont-Regular.otf": "/phone-catalog/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
     "static/media/Mont-SemiBold.otf": "/phone-catalog/static/media/Mont-SemiBold.8979d71a3146ca1d761f.otf",
     "static/media/Mont-Bold.otf": "/phone-catalog/static/media/Mont-Bold.03c8c2f6127c1da0fc39.otf",
     "index.html": "/phone-catalog/index.html",
-    "main.45e3fa4c.css.map": "/phone-catalog/static/css/main.45e3fa4c.css.map",
-    "main.e482d7b7.js.map": "/phone-catalog/static/js/main.e482d7b7.js.map"
+    "main.d82d2ea9.css.map": "/phone-catalog/static/css/main.d82d2ea9.css.map",
+    "main.61845b25.js.map": "/phone-catalog/static/js/main.61845b25.js.map"
   },
   "entrypoints": [
-    "static/css/main.45e3fa4c.css",
-    "static/js/main.e482d7b7.js"
+    "static/css/main.d82d2ea9.css",
+    "static/js/main.61845b25.js"
   ]
 }
