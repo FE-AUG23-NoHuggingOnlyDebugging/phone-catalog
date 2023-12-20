@@ -50,9 +50,10 @@ export const FavouritesPage = () => {
 
       {isError && (
         <p className={styles.error_message}>
-          An error occured while recieving data
+          An error occurred while receiving data
         </p>
       )}
+
       <ProductList products={products} status={isLoading} />
     </div>
   );

@@ -57,7 +57,7 @@ const ProductList: React.FC<Props> = ({
             />
           </>
         ) : (
-          <PaginationLoader />
+          (status && infoPage === null) && <PaginationLoader />
         ))}
     </>
   );
