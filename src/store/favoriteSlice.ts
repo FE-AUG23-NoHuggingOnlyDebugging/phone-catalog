@@ -19,10 +19,19 @@ export const favoriteSlice = createSlice({
     removeFromFavorites: (state, action: PayloadAction<string>) => {
       state.products = state.products.filter((item) => item !== action.payload);
     },
+    addFavoritesFromDb: (state, action: PayloadAction<string[]>) => {
+      state.products = [...state.products, ...action.payload];
+    },
+    clearFavorites: (state) => {
+      state.products = [];
+    },
+    replaceFavorites: (state, action: PayloadAction<string[]>) => {
+      state.products = [...action.payload];
+    },
   },
 });
 
-export const { addToFavorites, removeFromFavorites } = favoriteSlice.actions;
+export const { addToFavorites, removeFromFavorites, addFavoritesFromDb, clearFavorites, replaceFavorites } = favoriteSlice.actions;
 
 export const selectFavoritesProducts = (state: RootState) =>
   state.favorite.products;

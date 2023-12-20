@@ -59,7 +59,6 @@ export const CartPage = () => {
   );
 
   const removeProduct = (id: string) => {
-    console.log(id);
     setProducts(products.filter((product) => product.id !== id));
   };
 

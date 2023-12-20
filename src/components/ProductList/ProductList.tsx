@@ -47,7 +47,7 @@ const ProductList: React.FC<Props> = ({
           ))}
       </div>
       {type !== 'slider' &&
-        (infoPage !== null && onStatus !== null && !status ? (
+        (infoPage !== null && onStatus !== null ? (
           <>
             <Pagination
               currentPage={infoPage.selectedPage}
@@ -57,7 +57,7 @@ const ProductList: React.FC<Props> = ({
             />
           </>
         ) : (
-          status && infoPage === null && <PaginationLoader />
+          (status && infoPage === null) && <PaginationLoader />
         ))}
     </>
   );

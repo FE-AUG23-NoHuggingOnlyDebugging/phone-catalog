@@ -2,15 +2,15 @@
 @import '../../appScss/mixins.scss';
 
 .card {
-  max-width: 272px;
+  max-width: 752px;
   border: 1px solid var(--elements-color);
+
+  @include onPhone {
+    max-width: 289px;
+  }
 
   @include onTablet {
     max-width: 592px;
-  }
-
-  @include onDesktop {
-    max-width: 752px;
   }
 
   &:not(:last-child) {
@@ -19,16 +19,16 @@
 }
 
 .content {
-  width: 272px;
+  width: 752px;
   height: 128px;
   padding: 24px;
+
 
   @include onTablet {
     width: 592px;
   }
-
-  @include onDesktop {
-    width: 752px;
+  @include onPhone {
+    width: 289px;
   }
 }
 

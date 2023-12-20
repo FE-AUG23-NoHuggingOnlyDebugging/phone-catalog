@@ -3,15 +3,24 @@
   cursor: pointer;
 }
 
-.counter {
+.circle {
   position: absolute;
   top: -8px;
   left: 8px;
   background-color: #eb5757;
   color: white;
   border-radius: 50%;
-  padding: 2px 4px;
-  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+}
+
+.counter {
+  display: block;
+  width: 100%;
+  line-height: 13px;
+  font-size: 9px;
+  text-align: center;
 }
 
 [theme='dark'] {

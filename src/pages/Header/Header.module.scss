@@ -13,14 +13,19 @@
 }
 
 .header {
+
   background-color: var(--bg-color);
   padding-bottom: 24px;
+
+//  background-color: #fff;
+
 
   &__title {
     color: $color__for_test;
   }
 
   &__logo {
+//<<<<<<< light-dark-theme
     position: relative;
     height: 28px;
     margin: 0 24px;
@@ -30,10 +35,19 @@
     position: absolute;
     bottom: 42%;
     right: 34%;
+//=======
+    object-fit: contain;
+    margin: auto;
+//>>>>>>> main
   }
 }
 .navbar {
   height: 64px;
+
+  @include onPhone() {
+    height: 48px;
+  }
+
   width: 100%;
   display: flex;
   align-items: center;
@@ -60,12 +74,11 @@
     color: var(--secondary-color);
     font-size: 12px;
     font-weight: bold;
-    line-height: 11px;
+    line-height: calc(64px - 6px);
+    margin-top: 3px;
     letter-spacing: 0.48px;
     text-transform: uppercase;
     text-decoration: none;
-    padding-top: 27px;
-    padding-bottom: 22px;
     border-bottom: 3px solid transparent;
   }
 

@@ -4,14 +4,14 @@ import cn from 'classnames';
 import styles from './CartItem.module.scss';
 import React from 'react';
 import { ProductDetails } from '../../types/ProductDetails';
-import { useDispatch } from 'react-redux';
 import {
   addOneMore,
   cartReduceQuantity,
   removeFromCart,
   selectCartProducts,
 } from '../../store/cartSlice';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { SyncUserDataWithServer } from '../../utils/helpers/SyncUserDataWithServer';
 
 type Props = {
   product: ProductDetails;
@@ -20,23 +20,54 @@ type Props = {
 
 export const CartItem: React.FC<Props> = ({ product, removeProduct }) => {
   const { id, images, name, priceDiscount } = product;
-
-  const dispatch = useDispatch();
   const cartStorageList = useAppSelector(selectCartProducts);
+  const dispatcher = useAppDispatch();
 
   const count = cartStorageList.find((item) => item.name === id)?.quantity || 0;
 
   const handleClickAdd = () => {
-    dispatch(addOneMore(id));
+    dispatcher(addOneMore(id));
+    const cart = JSON.stringify({
+      cart: cartStorageList.map((elem) => {
+        if (elem.name === id) {
+          return {
+            ...elem,
+            quantity: elem.quantity + 1,
+          };
+        }
+
+        return elem;
+      }),
+    });
+    SyncUserDataWithServer(cart, 'cart');
   };
 
   const handleClickRemove = () => {
     removeProduct(id);
-    dispatch(removeFromCart(id));
+    dispatcher(removeFromCart(id));
+
+    const cart = JSON.stringify({
+      cart: cartStorageList.filter((elem) => elem.name !== id),
+    });
+    SyncUserDataWithServer(cart, 'cart');
   };
 
   const handleClickReduce = () => {
-    dispatch(cartReduceQuantity(id));
+    dispatcher(cartReduceQuantity(id));
+
+    const cart = JSON.stringify({
+      cart: cartStorageList.map((elem) => {
+        if (elem.name === id && elem.quantity > 1) {
+          return {
+            ...elem,
+            quantity: elem.quantity - 1,
+          };
+        }
+
+        return elem;
+      }),
+    });
+    SyncUserDataWithServer(cart, 'cart');
   };
 
   return (
