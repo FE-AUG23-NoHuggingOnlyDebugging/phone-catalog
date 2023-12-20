@@ -60,7 +60,7 @@ export const usePagination = ({
       return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
     }
 
-    return [];
+    return [...range(1, 3 + 1 * siblingCount), DOTS, lastPageIndex];
   }, [totalCount, pageSize, siblingCount, currentPage]);
 
   return paginationRange;
