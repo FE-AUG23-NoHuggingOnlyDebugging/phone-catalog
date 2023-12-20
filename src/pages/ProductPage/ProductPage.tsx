@@ -60,7 +60,7 @@ export const ProductPage = () => {
       handleSearchParams(setBy, current);
       return current;
     }
-    const el = arr.find(([x, ]) => x === value);
+    const el = arr.find(([x]) => x === value);
     if (el) {
       return el[1];
     }
@@ -105,7 +105,9 @@ export const ProductPage = () => {
     <div className={`${styles.wrapper} ${styles.catalog}`}>
       <section className={styles.catalog__info}>
         <h2 className={styles.catalog__title}>{pageTitle(type)}</h2>
-        <p className={styles.catalog__modelCount}>{!isLoading ? `${total} models` : 'Counting models...'}</p>
+        <p className={styles.catalog__modelCount}>
+          {!isLoading ? `${total} models` : 'Counting models...'}
+        </p>
       </section>
 
       <section className={styles.catalog__filters}>
