@@ -16,6 +16,7 @@ type Props = {
   infoPage?: InfoPage | null;
   translateX?: number;
   status?: boolean;
+  onStatus?: (isLoading: boolean) => void | null;
 };
 
 const ProductList: React.FC<Props> = ({
@@ -24,9 +25,9 @@ const ProductList: React.FC<Props> = ({
   infoPage = null,
   translateX = 0,
   status = false,
+  onStatus= null,
 }) => {
   const { perPage } = useSearchParams();
-
   return (
     <>
       <div
@@ -39,20 +40,25 @@ const ProductList: React.FC<Props> = ({
           ? [
             <>
               <ProductLoader key={0} perPage={Number(perPage) || 16} />
-              <PaginationLoader />
             </>,
           ]
           : products.map((product) => (
             <ProductCard key={product.id} product={product} type={type} />
           ))}
       </div>
-      {type !== 'slider' && !status && infoPage !== null && (
-        <Pagination
-          currentPage={infoPage.selectedPage}
-          totalCount={infoPage.totalRecords}
-          pageSize={infoPage.perPage}
-        />
-      )}
+      {type !== 'slider' &&
+        (infoPage !== null && onStatus !== null && !status ? (
+          <>
+            <Pagination
+              currentPage={infoPage.selectedPage}
+              totalCount={infoPage.totalRecords}
+              pageSize={infoPage.perPage}
+              onStateUpload={onStatus}
+            />
+          </>
+        ) : (
+          <PaginationLoader />
+        ))}
     </>
   );
 };

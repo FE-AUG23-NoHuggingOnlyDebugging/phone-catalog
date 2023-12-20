@@ -9,6 +9,8 @@ import { InfoPage } from '../../types/InfoPage';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../store/hooks';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import { useParams } from 'react-router-dom';
+import { CategoriesTypes } from '../../types/Categories';
 
 export const ProductPage = () => {
   const [total, setTotal] = useState(0);
@@ -18,9 +20,9 @@ export const ProductPage = () => {
   const dispatch = useDispatch();
   const products = useAppSelector(selectProducts);
   const { page, perPage, sort, setSearchParams } = useSearchParams();
+  const { type } = useParams();
 
-  const API_URL =
-    'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/phones/';
+  const API_URL = `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${type}`;
 
   useEffect(() => {
     axios
@@ -35,7 +37,7 @@ export const ProductPage = () => {
         console.log(e);
         setIsError(e);
       });
-  }, [page, perPage, sort]);
+  }, [page, perPage, sort, type]);
 
   const handleSearchParams = (setKey: string, value: string) => {
     setSearchParams((searchParams) => {
@@ -46,6 +48,7 @@ export const ProductPage = () => {
 
   function checkItem(value: string, setBy: string, arr: string[][]): string {
     const current = setBy === 'sort' ? 'Newest' : '16';
+
     if (!value) {
        return current;
     }
@@ -73,11 +76,32 @@ export const ProductPage = () => {
     ['all', 'all'],
   ];
 
+  const pageTitle = (type?: string) => {
+    let currenType;
+
+    switch (type) {
+    case 'phones':
+      currenType = CategoriesTypes.Phones;
+      break;
+    case 'tablets':
+      currenType = CategoriesTypes.Tablets;
+      break;
+    case 'accessories':
+      currenType = CategoriesTypes.Accessories;
+      break;
+
+    default:
+      break;
+    }
+
+    return currenType;
+  };
+
   return (
     <div className={`${styles.wrapper} ${styles.catalog}`}>
       <section className={styles.catalog__info}>
-        <h2 className={styles.catalog__title}>Mobile phones</h2>
-        <p className={styles.catalog__modelCount}>{total}</p>
+        <h2 className={styles.catalog__title}>{pageTitle(type)}</h2>
+        <p className={styles.catalog__modelCount}>{`${total} models`}</p>
       </section>
 
       <section className={styles.catalog__filters}>
@@ -105,11 +129,12 @@ export const ProductPage = () => {
           />
         </div>
       </section>
-      <section className={styles.catalog__products}>
+      <section>
         <ProductList
           products={products}
           infoPage={infoPage}
           status={isLoading}
+          onStatus={setIsLoading}
         />
       </section>
       {isError && <p>Error...</p>}

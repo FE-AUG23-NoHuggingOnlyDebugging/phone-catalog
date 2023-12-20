@@ -8,12 +8,20 @@
   width: max-content;
   margin: 40px auto 80px;
 
-  @include onTablet {
-    margin-bottom: 64px;
+  &__empty {
+    width: 1136px;
+
+    @include onTablet {
+      width: calc(100% - 48px);
+    }
   }
 
   @include onPhone {
     margin-block: 24px 56px;
+  }
+
+  @include onTablet {
+    margin-bottom: 64px;
   }
 }
 
@@ -60,8 +68,18 @@
   color: var(--primary-color);
 }
 
+.test {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cart_icon {
+  height: 120px;
+  width: auto;
+}
+
 .empty_cart_message,
-.loading_message,
 .error_message {
   @include default-h4;
 
