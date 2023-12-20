@@ -16,6 +16,12 @@
     }
   }
 
+  &__modal_active {
+    position: relative;
+    background-color: transparent;
+    opacity: 0.1;
+  }
+
   @include onPhone {
     margin-block: 0 56px;
   }

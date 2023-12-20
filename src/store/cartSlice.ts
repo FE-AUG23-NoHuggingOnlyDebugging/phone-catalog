@@ -23,19 +23,11 @@ export const cartSlice = createSlice({
       state,
       action: PayloadAction<{ id: string; category: string }>,
     ) => {
-      const product = state.products.find(
-        (item) => item.name === action.payload.id,
-      );
-
-      if (product) {
-        product.quantity += 1;
-      } else {
-        state.products.push({
-          name: action.payload.id,
-          category: action.payload.category,
-          quantity: 1,
-        });
-      }
+      state.products.push({
+        name: action.payload.id,
+        category: action.payload.category,
+        quantity: 1,
+      });
     },
 
     addOneMore: (state, action: PayloadAction<string>) => {
@@ -63,9 +55,11 @@ export const cartSlice = createSlice({
         product.quantity -= 1;
       }
     },
+
     clearCart: (state) => {
       state.products = [];
     },
+
     replaceCart: (state, action: PayloadAction<CartProduct[]>) => {
       state.products = [...action.payload];
     },
