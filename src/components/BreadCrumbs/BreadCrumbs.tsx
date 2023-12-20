@@ -29,20 +29,23 @@ const Breadcrumbs: React.FC = () => {
         src={process.env.PUBLIC_URL + '/icons/right-arrow.png'}
         alt="Right Arrow"
       />
-      {breadcrumbs.slice(-1).map(({ breadcrumb, match }, index) => (
-        <React.Fragment key={index}>
-          {index > 0 && (
-            <img
-              className={styles.crumbs__icon}
-              src={process.env.PUBLIC_URL + '/icons/right-arrow.png'}
-              alt="Right Arrow"
-            />
-          )}
-          <Link className={styles.crumbs__link} to={match.pathname}>
-            {breadcrumb}
-          </Link>
-        </React.Fragment>
-      ))}
+      {breadcrumbs
+        .slice(-2)
+        .filter((elem) => elem.key !== '/catalog')
+        .map(({ breadcrumb, match }, index) => (
+          <React.Fragment key={index}>
+            {index > 0 && (
+              <img
+                className={styles.crumbs__icon}
+                src={process.env.PUBLIC_URL + '/icons/right-arrow.png'}
+                alt="Right Arrow"
+              />
+            )}
+            <Link className={styles.crumbs__link} to={match.pathname}>
+              {breadcrumb}
+            </Link>
+          </React.Fragment>
+        ))}
     </div>
   );
 };
