@@ -39,6 +39,10 @@ export const ProductPage = () => {
       });
   }, [page, perPage, sort, type]);
 
+  useEffect(() => {
+    setIsLoading(true);
+  }, [type]);
+
   const handleSearchParams = (setKey: string, value: string) => {
     setSearchParams((searchParams) => {
       searchParams.set(setKey, value);
@@ -93,7 +97,7 @@ export const ProductPage = () => {
     <div className={`${styles.wrapper} ${styles.catalog}`}>
       <section className={styles.catalog__info}>
         <h2 className={styles.catalog__title}>{pageTitle(type)}</h2>
-        <p className={styles.catalog__modelCount}>{`${total} models`}</p>
+        <p className={styles.catalog__modelCount}>{!isLoading ? `${total} models` : 'Counting models...'}</p>
       </section>
 
       <section className={styles.catalog__filters}>
