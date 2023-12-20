@@ -37,7 +37,7 @@ const Footer = () => (
           </Link>
         </li>
 
-        <li className={styles.footer__li}>
+        <li className={styles.footer__li} onClick={scrollToTop}>
           <Link to="/contacts" className={styles.footer__link}>
             Contacts
           </Link>

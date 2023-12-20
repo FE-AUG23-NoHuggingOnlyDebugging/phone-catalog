@@ -9,15 +9,15 @@ import { Features } from './Components/FeaturesBlock/Features';
 import { Gallery } from './Components/GalleryBlock/Gallery';
 import axios from 'axios';
 import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
-import { Spinner } from '../../components/Loader/Spinner';
 import ProductsSlider from '../../components/ProductsSlider/ProductsSlider';
 import { setProducts } from '../../store/productsSlice';
 import { useDispatch } from 'react-redux';
+import { ProductDetailsSkeleton } from '../../components/ProductDetailsSkeleton/ProductDetailsSkeleton';
+import { GoBackButton } from '../../components/GoBackButton';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
   const { type } = useParams();
-  // const location = useLocation().pathname.split('/')[1];
 
   const API_URL = `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${productId}/recommended`;
   const [product, setProduct] = useState<ProductDetails | null>(null);
@@ -72,7 +72,8 @@ export const ProductDetailsPage = () => {
 
   return (
     <>
-      {isLoading && <Spinner />}
+      <GoBackButton />
+      {true && <ProductDetailsSkeleton />}
       {isError && <NotFoundPage />}
       {product && !isError && !isLoading && (
         <>

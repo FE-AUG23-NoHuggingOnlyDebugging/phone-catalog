@@ -28,6 +28,13 @@ const ProductCard: React.FC<Props> = ({ product, type }) => {
 
   const featureList: Array<keyof Product> = ['screen', 'capacity', 'ram'];
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <div
       className={cn(styles.product_card, {
@@ -38,6 +45,7 @@ const ProductCard: React.FC<Props> = ({ product, type }) => {
       <Link
         to={'/product/' + product.category + '/' + product.itemId}
         className={styles.link__cover}
+        onClick={scrollToTop}
       ></Link>
 
       <img

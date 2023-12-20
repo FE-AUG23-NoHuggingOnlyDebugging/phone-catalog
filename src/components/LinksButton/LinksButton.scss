@@ -42,25 +42,30 @@
   }
 }
 
+#telegram {
+  transform: scale(8, 8);
+}
+
 .telegram {
-  width: 50px;
-  height: 50px;
-  margin-top: 1.5em;
+  width: 30px;
+  height: 30px;
+  margin-top: 1.3em;
   margin-left: 1.2em;
   fill: #03a9f4;
+  transition: all 0s;
 
   @include onTablet {
-    width: 40px;
-    height: 40px;
-    margin-top: 1em;
-    margin-left: 0.7em;
+    width: 18px;
+    height: 18px;
+    margin-top: 0.8em;
+    margin-left: 0.8em;
   }
 
   @include onPhone {
     margin-top: 0.6em;
     margin-left: 0.6em;
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
   }
 }
 
@@ -93,6 +98,7 @@
   margin-top: 1.1em;
   margin-left: 0.8em;
   fill: rgb(23, 122, 252);
+  transition: all 0s;
 
   @include onTablet {
     width: 20px;
@@ -137,6 +143,7 @@
   height: 30px;
   margin-top: 0.8em;
   margin-left: 1.2em;
+  transition: all 0s;
 
   @include onTablet {
     width: 22px;
@@ -182,6 +189,7 @@
   margin-top: 1em;
   margin-left: 0.8em;
   fill: #c01d17;
+  transition: all 0s;
 
   @include onTablet {
     margin-top: 0.5em;
