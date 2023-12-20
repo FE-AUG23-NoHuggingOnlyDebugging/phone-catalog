@@ -6,7 +6,7 @@
 
 .page {
   width: max-content;
-  margin: 40px auto 80px;
+  margin: 16px auto 80px;
 
   &__empty {
     width: 1136px;
@@ -17,7 +17,7 @@
   }
 
   @include onPhone {
-    margin-block: 24px 56px;
+    margin-block: 0 56px;
   }
 
   @include onTablet {
