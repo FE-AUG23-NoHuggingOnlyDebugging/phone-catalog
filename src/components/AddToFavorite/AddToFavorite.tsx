@@ -28,14 +28,18 @@ const AddToFavorite: React.FC<Props> = ({ added = false, id }) => {
   const handleClickRemove = () => {
     dispatcher(removeFromFavorites(id));
     const favorites = JSON.stringify({
-      favorite: favoritesInBrowser.filter(elem => elem !== id),
+      favorite: favoritesInBrowser.filter((elem) => elem !== id),
     });
     SyncUserDataWithServer(favorites, 'favorites');
   };
 
   return (
     <button
-      className={added ? `${styles.add_to_favorite} ${styles.bg_added}` : styles.add_to_favorite}
+      className={
+        added
+          ? `${styles.add_to_favorite} ${styles.bg_added}`
+          : styles.add_to_favorite
+      }
       type="button"
       onClick={added ? handleClickRemove : handleClickAdd}
     >
@@ -50,8 +54,7 @@ const AddToFavorite: React.FC<Props> = ({ added = false, id }) => {
           src={process.env.PUBLIC_URL + '/img/icons/favourites.png'}
           alt={'add to favourites'}
         />
-      )
-      }
+      )}
     </button>
   );
 };

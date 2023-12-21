@@ -13,19 +13,17 @@
 }
 
 .header {
-
   background-color: var(--bg-color);
   padding-bottom: 24px;
 
-//  background-color: #fff;
-
+  //  background-color: #fff;
 
   &__title {
     color: $color__for_test;
   }
 
   &__logo {
-//<<<<<<< light-dark-theme
+    //<<<<<<< light-dark-theme
     position: relative;
     height: 28px;
     margin: 0 24px;
@@ -35,10 +33,10 @@
     position: absolute;
     bottom: 42%;
     right: 34%;
-//=======
+    //=======
     object-fit: contain;
     margin: auto;
-//>>>>>>> main
+    //>>>>>>> main
   }
 }
 .navbar {
@@ -129,5 +127,5 @@
 [theme='dark'] {
   .dark_theme_logo_color {
     filter: invert(100%);
-  }  
+  }
 }

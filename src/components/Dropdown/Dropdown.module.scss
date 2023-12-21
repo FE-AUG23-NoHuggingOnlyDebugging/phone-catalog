@@ -89,7 +89,7 @@
 [theme='dark'] {
   .dark_theme_icon_color {
     filter: invert(100%);
-  }  
+  }
 
   .dropdown {
     &__button {
@@ -97,7 +97,7 @@
         opacity: 1.5;
         border: 1px solid var(--additional-btn-hover);
         .dark_theme_icon_color {
-            opacity: 0.5;
+          opacity: 0.5;
         }
       }
       &:focus {
@@ -106,4 +106,3 @@
     }
   }
 }
-
