@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { addUser, selectUser } from '../../store/userSlice';
-import { replaceFavorites } from '../../store/favoriteSlice';
-// import { replaceCart } from '../../store/cartSlice';
+import { addUser, removeUser, selectUser } from '../../store/userSlice';
+import { clearFavorites, replaceFavorites } from '../../store/favoriteSlice';
+import { clearCart, replaceCart } from '../../store/cartSlice';
+import { loadUserCart } from '../../utils/helpers/loadUserCart';
+import { loadUserFavorites } from '../../utils/helpers/loadUserFavorites';
 
 export type User = {
   id: string;
@@ -10,55 +12,30 @@ export type User = {
   name: string;
 };
 
-export const loadUserFavorites = async () => {
-  try {
-    const res = await fetch(
-      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/favorites',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        credentials: 'include',
-      },
-    );
-
-    const data = await res.json();
-
-    console.log(data);
-
-    return data;
-  } catch (error) {
-    console.log((error as Error).message);
-  }
-};
-
-export const loadUserCart = async () => {
-  try {
-    const res = await fetch(
-      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/cart',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        credentials: 'include',
-      },
-    );
-
-    const data = await res.json();
-
-    console.log(data);
-
-    return data;
-  } catch (error) {
-    console.log((error as Error).message);
-  }
-};
-
 const AuthPage = () => {
   const user = useAppSelector(selectUser);
   const dispatcher = useAppDispatch();
+
+  const signOut = async () => {
+    try {
+      await fetch(
+        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signOut',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          credentials: 'include',
+        },
+      );
+
+      dispatcher(removeUser());
+      dispatcher(clearFavorites());
+      dispatcher(clearCart());
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  };
 
   useEffect(() => {
     const checkIfAuthorized = async () => {
@@ -85,9 +62,9 @@ const AuthPage = () => {
         const userDataFromServer = await response.json();
 
         const favorutes = await loadUserFavorites();
-        // const cart = await loadUserCart();
+        const cart = await loadUserCart();
 
-        // dispatcher(replaceCart(cart));
+        dispatcher(replaceCart(cart));
         dispatcher(replaceFavorites(favorutes));
         console.log(userDataFromServer);
 
@@ -103,35 +80,23 @@ const AuthPage = () => {
 
   return (
     <>
-      {/* <h1>User: {user ? user?.name : 'no user'}</h1>
-      <form onSubmit={signIn}>
-        <label htmlFor="email">Email</label>
-        <input
-          name="emal"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="email">Name</label>
-        <input
-          name="name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor="pass">Password</label>
-        <input
-          name="pass"
-          type="text"
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
-        />
-        <button type="submit">Sign In</button>
-      </form>
-      <button type="button" onClick={signOut}>
-        Sign Out
-      </button>
-      <p style={{ color: 'red' }}>{error && 'Щось пішло не так'}</p> */}
+      {user &&
+      <button
+        onClick={signOut}
+        style={{
+          position: 'absolute',
+          top: '10px',
+          left: '50%',
+          display: 'block',
+          color: 'red',
+          height: '100px',
+          width: '100px',
+          marginInline: 'auto',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        Logout
+      </button>}
     </>
   );
 };

@@ -9,11 +9,20 @@ import { useAppSelector } from '../../store/hooks';
 import { selectCartProducts } from '../../store/cartSlice';
 import axios from 'axios';
 import { CartSkeletonLoader } from '../../components/CartSkeletonLoader';
+import { useNavigate } from 'react-router-dom';
+import { selectUser } from '../../store/userSlice';
 
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
+
+  const user = useAppSelector(selectUser);
+
+  if (!user) {
+    navigate('/login');
+  }
 
   const cartStorageList = useAppSelector(selectCartProducts);
 
