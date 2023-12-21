@@ -69,6 +69,12 @@ export const LoginForm = () => {
         },
       );
 
+      if (response.status >= 400) {
+        setError(true);
+
+        return;
+      }
+
       const userDataFromServer = await response.json();
 
       const data = await loadUserFavorites();
