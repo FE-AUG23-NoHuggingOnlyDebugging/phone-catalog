@@ -7,6 +7,7 @@
 .page {
   width: max-content;
   margin: 16px auto 80px;
+  min-height: calc(100vh - 88px - 98px - 96px);
 
   &__empty {
     width: 1136px;
@@ -22,13 +23,16 @@
     opacity: 0.1;
   }
 
+  @include onTablet {
+    min-height: calc(100vh - 88px - 98px - 80px);
+    margin-bottom: 64px;
+  }
+
   @include onPhone {
+    min-height: calc(100vh - 72px - 242px - 56px);
     margin-block: 0 56px;
   }
 
-  @include onTablet {
-    margin-bottom: 64px;
-  }
 }
 
 .cart_info {
@@ -89,7 +93,7 @@
 .error_message {
   @include default-h4;
 
-  @include onTablet {
+  @include onPhone {
     @include mob-h4;
   }
 
