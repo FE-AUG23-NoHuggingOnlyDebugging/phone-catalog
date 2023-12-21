@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux';
 import { GoBackButton } from '../../components/GoBackButton';
 import { SyncUserDataWithServer } from '../../utils/helpers/SyncUserDataWithServer';
 
+
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +34,7 @@ export const CartPage = () => {
 
   const [isModalShown, setIsModalShown] = useState(false);
   const [isOrderSuccessful, setIsOrderSuccessful] = useState(true);
+  const [isCheckoutDisabled, setIsCheckoutDisabled] = useState(false);
 
   const dispatch = useDispatch();
   const cartStorageList = useAppSelector(selectCartProducts);
@@ -83,6 +85,8 @@ export const CartPage = () => {
   };
 
   const handleCheckoutButtonClick = () => {
+    setIsCheckoutDisabled(true);
+
     fetch(
       'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/orders',
       {
@@ -104,6 +108,7 @@ export const CartPage = () => {
 
   const handleCloseClick = () => {
     setIsModalShown(false);
+    setIsCheckoutDisabled(false);
 
     if (isOrderSuccessful) {
       const cart = JSON.stringify({
@@ -158,8 +163,11 @@ export const CartPage = () => {
               >{`Total for ${productsCount} items`}</p>
               <button
                 type="button"
-                className={styles.checkout_button}
+                className={cn(styles.checkout_button, {
+                  [styles.checkout_button__disabled]: isCheckoutDisabled,
+                })}
                 onClick={handleCheckoutButtonClick}
+                disabled={isCheckoutDisabled}
               >
                 Checkout
               </button>
