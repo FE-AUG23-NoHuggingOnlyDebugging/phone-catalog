@@ -164,10 +164,14 @@
   }
 
   &:active {
-    color: var(--green-color);
+    color: var(--added-color);
     border-color: var(--elements-color);
     background-color: transparent;
     box-shadow: none;
+  }
+
+  &__disabled {
+    cursor: default;
   }
 
   &::before {
@@ -193,6 +197,10 @@
     .checkout_button {
       &:hover {
         background-color: var(--btn-hover);
+      }
+
+      &:active {
+        background-color: var(--additional-btn);
       }
     }
   }
