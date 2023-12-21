@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { addUser, removeUser, selectUser } from '../../store/userSlice';
-import { clearFavorites, replaceFavorites } from '../../store/favoriteSlice';
-import { clearCart, replaceCart } from '../../store/cartSlice';
+import { addUser, selectUser } from '../../store/userSlice';
+import { replaceFavorites } from '../../store/favoriteSlice';
+import { replaceCart } from '../../store/cartSlice';
 import { loadUserCart } from '../../utils/helpers/loadUserCart';
 import { loadUserFavorites } from '../../utils/helpers/loadUserFavorites';
 
@@ -15,27 +15,6 @@ export type User = {
 const AuthPage = () => {
   const user = useAppSelector(selectUser);
   const dispatcher = useAppDispatch();
-
-  const signOut = async () => {
-    try {
-      await fetch(
-        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signOut',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          credentials: 'include',
-        },
-      );
-
-      dispatcher(removeUser());
-      dispatcher(clearFavorites());
-      dispatcher(clearCart());
-    } catch (error) {
-      console.log((error as Error).message);
-    }
-  };
 
   useEffect(() => {
     const checkIfAuthorized = async () => {
@@ -77,28 +56,7 @@ const AuthPage = () => {
     checkIfAuthorized();
   }, []);
 
-  return (
-    <>
-      {user && (
-        <button
-          onClick={signOut}
-          style={{
-            position: 'absolute',
-            top: '10px',
-            left: '50%',
-            display: 'block',
-            color: 'red',
-            height: '100px',
-            width: '100px',
-            marginInline: 'auto',
-            transform: 'translateX(-50%)',
-          }}
-        >
-          Logout
-        </button>
-      )}
-    </>
-  );
+  return <></>;
 };
 
 export default AuthPage;
