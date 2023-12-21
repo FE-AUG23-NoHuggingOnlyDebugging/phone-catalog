@@ -14,6 +14,9 @@ const NavDesktop = () => {
   const isActiveUtility = ({ isActive }: { isActive: boolean }) =>
     cn(styles.navbar__utilities, { [styles.navbar__highlight]: isActive });
 
+  const isActiveUtilityForBtn = ({ isActive }: { isActive: boolean }) =>
+    cn(styles.navbar__utilities_btn, { [styles.navbar__highlight]: isActive });
+
   const user = useAppSelector(selectUser);
 
   return (
@@ -57,13 +60,32 @@ const NavDesktop = () => {
           <Switch />
         </div>
 
-        <NavLink to="/favourites" className={isActiveUtility}>
+        <NavLink to='/favourites' className={isActiveUtility}>
           <FavouriteIcon />
         </NavLink>
 
-        <NavLink className={isActiveUtility} to={user ? '/cart' : '/login'}>
+        <NavLink to={user ? '/cart' : '/login'} className={user ? isActiveUtility : styles.navbar__utilities}>
           <CartIcon />
         </NavLink>
+
+        {user ? (
+          <NavLink to='/user' className={isActiveUtility}>
+            <img
+              className={`${styles.dark_theme_user_icon} ${styles.user_icon}`}
+              src={process.env.PUBLIC_URL + '/img/icons/user.png'}
+              alt="user"
+            />
+          </NavLink>
+        ) : (
+          <NavLink to='/login' className={isActiveUtilityForBtn}>
+            <div className={styles.signIn}>
+              <button className={styles.signIn__btn}>
+                Sign In
+              </button>
+            </div>
+          </NavLink>
+        )}
+
       </div>
     </nav>
   );
