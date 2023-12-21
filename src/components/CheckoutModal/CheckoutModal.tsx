@@ -2,10 +2,11 @@
 import styles from './CheckoutModal.module.scss';
 
 type Props = {
+  success: boolean;
   handleCloseClick: () => void;
 };
 
-export const CheckoutModal:React.FC<Props> = ({ handleCloseClick }) => {
+export const CheckoutModal:React.FC<Props> = ({ success, handleCloseClick }) => {
   return (
     <div className={styles.modal}>
       <header className={styles.modal_header}>
@@ -24,7 +25,9 @@ export const CheckoutModal:React.FC<Props> = ({ handleCloseClick }) => {
 
       <div className={styles.modal_body}>
         <p className={styles.modal_body_text}>
-          We have received your order. Thank you for making a purchase!
+          {success
+            ? 'We have received your order. Thank you for making a purchase!'
+            : 'Failed to process the order. Something went wrong.'}
         </p>
       </div>
     </div>
