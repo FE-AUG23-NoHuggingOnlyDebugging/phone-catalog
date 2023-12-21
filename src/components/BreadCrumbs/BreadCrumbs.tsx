@@ -40,7 +40,7 @@ const Breadcrumbs: React.FC = () => {
       />
       {breadcrumbs
         .slice(-2)
-        .filter((elem) => elem.key !== '/catalog')
+        .filter((elem) => elem.key !== '/catalog' && elem.key !== '/')
         .map(({ breadcrumb, match }, index) => (
           <React.Fragment key={index}>
             {index > 0 && (
