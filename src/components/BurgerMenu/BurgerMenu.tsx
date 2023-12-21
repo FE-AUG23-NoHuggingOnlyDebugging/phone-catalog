@@ -4,19 +4,26 @@ import cn from 'classnames';
 import styles from './BurgerMenu.module.scss';
 import CartIcon from '../CartIcon/CartIcon';
 import FavouriteIcon from '../FavouriteIcon/FavouriteIcon';
+import { useAppSelector } from '../../store/hooks';
+import { selectUser } from '../../store/userSlice';
 
 const isActiveLink = ({ isActive }: { isActive: boolean }) =>
   cn(styles.navbar__item, { [styles.navbar__highlight]: isActive });
-
-const isActiveUtility = ({ isActive }: { isActive: boolean }) =>
-  cn(styles.navbar__utilities, { [styles.navbar__highlight]: isActive });
 
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    const body = document.body;
+    if (body.style.overflow === 'scroll') {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = 'scroll';
+    }
   };
+
+  const user = useAppSelector(selectUser);
 
   return (
     <>
@@ -64,34 +71,37 @@ const BurgerMenu = () => {
             <nav className={`${styles.header__navbar} ${styles.navbar}`}>
               <div className={styles.navbar__top}>
                 <div className={styles.navbar__link}>
-                  <NavLink to="/" className={isActiveLink}>
+                  <NavLink to="/" className={isActiveLink} onClick={toggleMenu}>
                     Home
                   </NavLink>
 
-                  <NavLink to="/catalog/phones" className={isActiveLink}>
+                  <NavLink to="/catalog/phones" className={isActiveLink} onClick={toggleMenu}>
                     Phones
                   </NavLink>
 
-                  <NavLink to="/catalog/tablets" className={isActiveLink}>
+                  <NavLink to="/catalog/tablets" className={isActiveLink} onClick={toggleMenu}>
                     Tablets
                   </NavLink>
 
-                  <NavLink to="/catalog/accessories" className={isActiveLink}>
+                  <NavLink to="/catalog/accessories" className={isActiveLink} onClick={toggleMenu}>
                     Accessories
                   </NavLink>
                 </div>
               </div>
 
-              <div className={styles.navbar__bottom}>
-                <NavLink to="/favourites" className={isActiveUtility}>
+            </nav>
+            <div className={styles.navbar__bottom}>
+              <div className={styles.navbar__bottom_block}>
+                <NavLink to="/favourites"  onClick={toggleMenu}>
                   <FavouriteIcon />
                 </NavLink>
-
-                <NavLink to="/cart" className={isActiveUtility}>
+              </div>
+              <div className={styles.navbar__bottom_block}>
+                <NavLink to={user ? '/cart' : '/login'} onClick={toggleMenu}>
                   <CartIcon />
                 </NavLink>
               </div>
-            </nav>
+            </div>
           </div>
         )}
       </div>
