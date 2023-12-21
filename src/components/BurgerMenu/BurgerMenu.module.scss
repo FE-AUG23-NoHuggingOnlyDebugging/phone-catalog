@@ -15,17 +15,22 @@
   height: 48px;
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 30px;
   cursor: pointer;
-  border-bottom: 1px solid #e2e6e9;
-  border-left: 1px solid #e2e6e9;
+  border-left: 1px solid var(--elements-color);
+
+  &_icon {
+    margin: 0 auto;
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .menu_items {
   height: 568px;
   width: 100%;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: var(--card-bg);
+  border: 1px solid var(--elements-color);
   position: absolute;
   padding-bottom: 32px;
   top: 48px;
@@ -37,13 +42,6 @@
   display: flex;
 }
 
-.header {
-  background-color: #fff;
-
-  &__title {
-    color: $color__for_test;
-  }
-}
 .navbar {
   position: relative;
   width: 100%;
@@ -73,7 +71,7 @@
 
   &__item {
     display: inline-block;
-    color: #89939a;
+    color: var(--secondary-color);
     font-size: 12px;
     font-weight: bold;
     line-height: 11px;
@@ -121,12 +119,18 @@
     height: 16px;
     padding: 24px;
     padding-bottom: 21px;
-    border-left: 1px solid #e2e6e9;
+    border-left: 1px solid var(--elements-color);
     border-bottom: 3px solid transparent;
   }
 
   &__highlight {
-    color: #313237;
-    border-bottom: 3px solid #313237;
+    color: var(--btn-hover);
+    border-bottom: 3px solid var(--btn);
+  }
+}
+
+[theme='dark'] {
+  .burger_button_icon {
+    filter: invert(100%);
   }
 }

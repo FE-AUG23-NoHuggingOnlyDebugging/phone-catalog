@@ -14,6 +14,7 @@
 
 .header {
   background-color: var(--bg-color);
+  padding-bottom: 24px;
 
   &__title {
     color: $color__for_test;
@@ -31,13 +32,18 @@
     right: 34%;
     object-fit: contain;
     margin: auto;
+
+
     height: 100%;
+
   }
 }
 .navbar {
-  height: 64px;
+  @include onDesktop {
+    height: 64px;
+  }
 
-  @include onPhone() {
+  @include onPhone {
     height: 48px;
   }
 
@@ -80,19 +86,53 @@
     display: flex;
 
     .switch {
-      margin-right: 22px;
-      margin-top: 21px;
+      margin: 21px 22px 0 0;
       position: relative;
+
+
+      @include onlyForHeader {
+        margin: 15px 16px 0 0;
+      }
     }
   }
 
   &__utilities {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 64px;
     height: 64px;
     padding: 24px;
     border-left: 1px solid var(--elements-color);
-    border-bottom: 1px solid var(--elements-color);
+
+    .user_icon {
+      width: 24px;
+      height: 24px;
+    }
   }
+
+  &__utilities_btn {
+    @extend .navbar__utilities;
+    width: 84px;
+    height: 64px;
+
+    .signIn {
+      &__btn {
+        width: 64px;
+        height: 24px;
+        border: 1px solid var(--btn);
+        border-radius: 0;
+        background-color: var(--btn);
+        color: var(--white-color);
+        cursor: pointer;
+        @include smallText;
+
+        &:hover {
+          background-color: #313237ee;
+        }
+    }
+  }
+}
 
   &__highlight {
     color: var(--primary-color);
@@ -121,7 +161,16 @@
 }
 
 [theme='dark'] {
-  .dark_theme_logo_color {
+  .dark_theme_logo_color, 
+  .dark_theme_user_icon {
     filter: invert(100%);
+  }
+
+  .signIn {
+    &__btn {
+      &:hover {
+        background-color: var(--btn-hover);
+      }
+  }
   }
 }

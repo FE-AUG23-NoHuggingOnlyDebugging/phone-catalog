@@ -1,3 +1,5 @@
+@import '../../appScss/index.scss';
+
 @mixin onMobile {
   @media (max-width: 639px) {
     @content;
@@ -85,6 +87,10 @@
     display: flex;
     gap: 0 16px;
     align-items: center;
+
+    @include onlyForHeader {
+      padding: 18px 0;
+    }
   }
 
   &__text {
