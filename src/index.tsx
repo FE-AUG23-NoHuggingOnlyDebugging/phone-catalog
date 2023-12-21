@@ -39,7 +39,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/login" element={<AuthRoot />} />
             <Route path="/register" element={<AuthRoot />} />
-            <Route path='/user' element={<UserPage />} />
+            <Route path="/user" element={<UserPage />} />
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>
