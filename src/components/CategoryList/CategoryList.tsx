@@ -31,20 +31,20 @@ const CategoryList = () => {
       <ul className={styles.category_list__content}>
         {!isLoading
           ? category.map((info) => (
-            <CategoryItem
-              image={{
-                src: info.url,
-                alt: info.alt,
-              }}
-              title={info.alt}
-              model={info.id}
-              totalModel={info.total}
-              key={info.id}
-            />
-          ))
+              <CategoryItem
+                image={{
+                  src: info.url,
+                  alt: info.alt,
+                }}
+                title={info.alt}
+                model={info.id}
+                totalModel={info.total}
+                key={info.id}
+              />
+            ))
           : Array.from({ length: 3 }).map((_, i) => (
-            <CategoryLoader count={i + 1} key={i} />
-          ))}
+              <CategoryLoader count={i + 1} key={i} />
+            ))}
       </ul>
     </section>
   );

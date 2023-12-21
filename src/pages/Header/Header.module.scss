@@ -14,16 +14,12 @@
 
 .header {
   background-color: var(--bg-color);
-  padding-bottom: 24px;
-
-  //  background-color: #fff;
 
   &__title {
     color: $color__for_test;
   }
 
   &__logo {
-    //<<<<<<< light-dark-theme
     position: relative;
     height: 28px;
     margin: 0 24px;
@@ -33,10 +29,9 @@
     position: absolute;
     bottom: 42%;
     right: 34%;
-    //=======
     object-fit: contain;
     margin: auto;
-    //>>>>>>> main
+    height: 100%;
   }
 }
 .navbar {
@@ -55,6 +50,7 @@
   &__right {
     display: flex;
     align-items: center;
+    height: 100%;
   }
 
   &__link {
