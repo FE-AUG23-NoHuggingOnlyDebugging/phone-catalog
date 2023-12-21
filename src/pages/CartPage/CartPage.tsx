@@ -9,15 +9,30 @@ import { useAppSelector } from '../../store/hooks';
 import { clearCart, selectCartProducts } from '../../store/cartSlice';
 import axios from 'axios';
 import { CartSkeletonLoader } from '../../components/CartSkeletonLoader';
+
+import { useNavigate } from 'react-router-dom';
+import { selectUser } from '../../store/userSlice';
+
 import { CheckoutModal } from '../../components/CheckoutModal';
 import { useDispatch } from 'react-redux';
 import { GoBackButton } from '../../components/GoBackButton';
+
 
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+
+  const navigate = useNavigate();
+
+  const user = useAppSelector(selectUser);
+
+  if (!user) {
+    navigate('/login');
+  }
+
   const [isModalShown, setIsModalShown] = useState(false);
+
 
   const dispatch = useDispatch();
   const cartStorageList = useAppSelector(selectCartProducts);

@@ -4,6 +4,8 @@ import cn from 'classnames';
 import CartIcon from '../../components/CartIcon/CartIcon';
 import FavouriteIcon from '../../components/FavouriteIcon/FavouriteIcon';
 import { Switch } from '../../components/Switch/Switch';
+import { useAppSelector } from '../../store/hooks';
+import { selectUser } from '../../store/userSlice';
 
 const NavDesktop = () => {
   const isActiveLink = ({ isActive }: { isActive: boolean }) =>
@@ -11,6 +13,8 @@ const NavDesktop = () => {
 
   const isActiveUtility = ({ isActive }: { isActive: boolean }) =>
     cn(styles.navbar__utilities, { [styles.navbar__highlight]: isActive });
+
+  const user = useAppSelector(selectUser);
 
   return (
     <nav className={`${styles.header__navbar} ${styles.navbar}`}>
@@ -57,7 +61,7 @@ const NavDesktop = () => {
           <FavouriteIcon />
         </NavLink>
 
-        <NavLink to="/cart" className={isActiveUtility}>
+        <NavLink className={isActiveUtility} to={user ? '/cart' : '/login'}>
           <CartIcon />
         </NavLink>
       </div>

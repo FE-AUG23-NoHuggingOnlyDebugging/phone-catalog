@@ -1,26 +1,19 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { FaLock } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
 import { Modal } from '../Modal/Modal';
 
-// import axios from 'axios';
-
 import styles from './LoginForm.module.scss';
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { addUser, removeUser, selectUser } from '../../../store/userSlice';
-import {
-  addFavoritesFromDb,
-  clearFavorites,
-} from '../../../store/favoriteSlice';
-import {
-  // loadUserCart,
-  loadUserFavorites,
-} from '../../../pages/AuthPage/Auth';
-// import { replaceCart } from '../../../store/cartSlice';
+import { addUser, selectUser } from '../../../store/userSlice';
+import { addFavoritesFromDb } from '../../../store/favoriteSlice';
+import { replaceCart } from '../../../store/cartSlice';
+import { loadUserFavorites } from '../../../utils/helpers/loadUserFavorites';
+import { loadUserCart } from '../../../utils/helpers/loadUserCart';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -32,35 +25,20 @@ export const LoginForm = () => {
 
   const [isModal, setIsModal] = useState(false);
 
-  const user = useAppSelector(selectUser);
+  const navigate = useNavigate();
   const dispatcher = useAppDispatch();
+
+  const user = useAppSelector(selectUser);
+
+  if (user) {
+    navigate('/');
+  }
 
   const pattern = /^[^\W_]*$/;
 
   const reset = () => {
     setEmail('');
     setPass('');
-  };
-
-  const signOut = async () => {
-    try {
-      await fetch(
-        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signOut',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          credentials: 'include',
-        },
-      );
-
-      dispatcher(removeUser());
-      dispatcher(clearFavorites());
-    } catch (error) {
-      console.log((error as Error).message);
-      setError(true);
-    }
   };
 
   const handleSubmit = async (e: React.FocusEvent<HTMLFormElement>) => {
@@ -92,13 +70,15 @@ export const LoginForm = () => {
       const userDataFromServer = await response.json();
 
       const data = await loadUserFavorites();
-      // const cart = await loadUserCart();
+      const cart = await loadUserCart();
 
-      // dispatcher(replaceCart(cart));
+      dispatcher(replaceCart(cart));
       dispatcher(addUser(userDataFromServer));
 
       dispatcher(addFavoritesFromDb(data));
       reset();
+
+      navigate('/');
     } catch (error) {
       console.log((error as Error).message);
       setError(true);
@@ -197,9 +177,6 @@ export const LoginForm = () => {
         )}
         <p style={{ color: 'red' }}>{error && 'Щось пішло не так'}</p>
       </form>
-      <button type="button" onClick={signOut}>
-        Sign Out
-      </button>
     </>
   );
 };

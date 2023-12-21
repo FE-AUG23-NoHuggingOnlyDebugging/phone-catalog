@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import { FaUser, FaLock } from 'react-icons/fa';
@@ -6,7 +6,6 @@ import { MdEmail } from 'react-icons/md';
 
 import styles from './RegisterForm.module.scss';
 import cn from 'classnames';
-import axios from 'axios';
 
 export const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -16,6 +15,9 @@ export const RegisterForm = () => {
   const [hasNameError, setHasNameError] = useState(false);
   const [hasEmailError, setHasEmailError] = useState(false);
   const [hasPassError, setHasPassError] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
+
+  const navigate = useNavigate();
 
   const reset = () => {
     setName('');
@@ -48,7 +50,27 @@ export const RegisterForm = () => {
       password: pass,
     };
 
-    await axios.post('http://localhost:5000/auth/signUp', userData);
+    setIsloading(true);
+
+    try {
+      await fetch(
+        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signUp',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          credentials: 'include',
+          body: JSON.stringify(userData),
+        },
+      );
+
+      navigate('/login');
+    } catch (error) {
+      console.log((error as Error).message);
+    } finally {
+      setIsloading(false);
+    }
 
     reset();
   };
@@ -152,7 +174,7 @@ export const RegisterForm = () => {
         'and numbers',
       )}
 
-      <button type="submit" className={styles.btn}>
+      <button type="submit" className={styles.btn} disabled={isLoading}>
         Сreate
       </button>
 
