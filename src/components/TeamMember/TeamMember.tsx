@@ -11,8 +11,12 @@ type Props = {
   text: string[] | null;
 };
 
-export const TeamMember: React.FC<Props> = ({ member, setText, setTitle, text }) => {
-
+export const TeamMember: React.FC<Props> = ({
+  member,
+  setText,
+  setTitle,
+  text,
+}) => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -22,7 +26,9 @@ export const TeamMember: React.FC<Props> = ({ member, setText, setTitle, text })
 
   return (
     <div
-      className={cn(style.TeamMember, { [style.activeMember]: text === member.text})}
+      className={cn(style.TeamMember, {
+        [style.activeMember]: text === member.text,
+      })}
       onClick={() => {
         if (text !== member.text) {
           setText(member.text);

@@ -142,7 +142,6 @@
   }
 
   &__ordersByDate {
-
     @include ProductDetails-PseudoElement {
       margin: 30px 0;
     }

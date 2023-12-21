@@ -95,7 +95,8 @@ export const CartPage = () => {
         },
         credentials: 'include',
         body: JSON.stringify({ order: cartStorageList }),
-      })
+      },
+    )
       .catch(() => setIsOrderSuccessful(false))
       .finally(() => {
         setIsModalShown(true);
@@ -184,11 +185,12 @@ export const CartPage = () => {
           </div>
         )}
       </div>
-      {isModalShown &&
+      {isModalShown && (
         <CheckoutModal
           success={isOrderSuccessful}
           handleCloseClick={handleCloseClick}
-        />}
+        />
+      )}
     </>
   );
 };

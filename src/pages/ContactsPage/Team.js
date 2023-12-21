@@ -8,7 +8,10 @@ export const team = [
     gitHub: 'https://github.com/OlegPopovych',
     LinkedIn: 'https://www.linkedin.com/in/oleh-popovych-a23152246/',
     email: 'popovycholeh0@gmail.com',
-    text: ['During my time with the team working on the creation of an online store, my efforts were primarily focused on the development of the server-side and database management. Serving as the team lead, I coordinated the team\'s efforts and assisted in managing various aspects of the project.', 'We were an impressive and cohesive team, allowing us to achieve high efficiency in development. My responsibilities also included setting up communication between the client and server, contributing to a smooth interaction and ensuring the project\'s high productivity. Working on this project inspired me with its complexity and the high level of collaboration within the entire team.'],
+    text: [
+      'During my time with the team working on the creation of an online store, my efforts were primarily focused on the development of the server-side and database management. Serving as the team lead, I coordinated the team\'s efforts and assisted in managing various aspects of the project.',
+      'We were an impressive and cohesive team, allowing us to achieve high efficiency in development. My responsibilities also included setting up communication between the client and server, contributing to a smooth interaction and ensuring the project\'s high productivity. Working on this project inspired me with its complexity and the high level of collaboration within the entire team.',
+    ],
   },
   {
     name: 'Oksana Drozdyk',
@@ -19,7 +22,10 @@ export const team = [
     gitHub: 'https://github.com/o-drozzdyk',
     LinkedIn: '-',
     email: 'oksana.drozdyk.dev@gmail.com',
-    text: ['Hey there! My work in a project was focused on creating the Cart page for this online gadget store. It included different tasks, from shaping the user interface to implementing the functionality for managing the filling of the shopping cart and showing current order details. My another responsibility was creating a modal window that appears to keep users in the loop about the status of their order and manages the further state of the basket depending on the response received.', 'Also it was an awesome experience working hand-in-hand with the team, where team members actively supported each other, offering their assistance, and I\'m glad to see the result of our work!'],
+    text: [
+      'Hey there! My work in a project was focused on creating the Cart page for this online gadget store. It included different tasks, from shaping the user interface to implementing the functionality for managing the filling of the shopping cart and showing current order details. My another responsibility was creating a modal window that appears to keep users in the loop about the status of their order and manages the further state of the basket depending on the response received.',
+      'Also it was an awesome experience working hand-in-hand with the team, where team members actively supported each other, offering their assistance, and I\'m glad to see the result of our work!',
+    ],
   },
   {
     name: 'Vladyslav Atanov',
@@ -30,7 +36,10 @@ export const team = [
     gitHub: 'https://github.com/sintax1s',
     LinkedIn: 'https://www.linkedin.com/in/vladyslav-atanov-9931a02a4/',
     email: 'atanov.vladyslav@gmail.com',
-    text: ['Throughout the development of this exciting project, I poured all my knowledge and creative energy into it, with my primary focus on crafting key pages: the product page, contact page, user profile page, and error handling page. I enthusiastically immersed myself in the workflow, often dedicating late hours and working on the project until 3 in the morning. I meticulously worked on every detail, from aesthetics to functionality, aiming to give the project not only visual excellence but also outstanding user appeal.', 'Completing this development phase, I feel profound gratitude to the entire team for our productive collaboration. Each team member brought their unique contributions, making our project particularly rich and successful. I would gladly continue working together in the future, as every project with us is an exhilarating adventure.'],
+    text: [
+      'Throughout the development of this exciting project, I poured all my knowledge and creative energy into it, with my primary focus on crafting key pages: the product page, contact page, user profile page, and error handling page. I enthusiastically immersed myself in the workflow, often dedicating late hours and working on the project until 3 in the morning. I meticulously worked on every detail, from aesthetics to functionality, aiming to give the project not only visual excellence but also outstanding user appeal.',
+      'Completing this development phase, I feel profound gratitude to the entire team for our productive collaboration. Each team member brought their unique contributions, making our project particularly rich and successful. I would gladly continue working together in the future, as every project with us is an exhilarating adventure.',
+    ],
   },
   {
     name: 'Tetyana Poletayeva',
@@ -52,11 +61,13 @@ export const team = [
     gitHub: 'https://github.com/hrysta',
     LinkedIn: '-',
     email: 'hr.starykov@gmail.com',
-    text: [`
+    text: [
+      `
     As a Full Stack Developer on the project, I played a pivotal role in enhancing the user interface by crafting the header and footer blocks with a keen eye for design and functionality. The implementation of a sleek and responsive burger menu further optimized the user experience, providing seamless navigation. To enhance user navigation and improve overall site usability, I strategically integrated breadcrumbs into the interface.`,
 
-    `Throughout the development process, collaboration with my talented teammates was crucial. Their support and expertise significantly contributed to the success of these features. I am grateful for the collaborative spirit within the team, and I extend my sincere thanks to each member for their valuable contributions. Together, we've not only created a visually appealing and user-friendly interface but also fostered a positive and productive team dynamic.
-  `],
+      `Throughout the development process, collaboration with my talented teammates was crucial. Their support and expertise significantly contributed to the success of these features. I am grateful for the collaborative spirit within the team, and I extend my sincere thanks to each member for their valuable contributions. Together, we've not only created a visually appealing and user-friendly interface but also fostered a positive and productive team dynamic.
+  `,
+    ],
   },
   {
     name: 'Maksym Semeniuk',
