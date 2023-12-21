@@ -7,10 +7,16 @@ import { removeUser, selectUser } from '../../store/userSlice';
 import style from './UserPage.module.scss';
 import { Orders } from '../../types/Orders';
 import { GoBackButton } from '../../components/GoBackButton';
+import { useNavigate } from 'react-router-dom';
 
 export const UserPage = () => {
   const user = useAppSelector(selectUser);
   const [orders, setOrders] = useState<Orders[] | null>(null);
+  const navigate = useNavigate();
+
+  if (!user) {
+    navigate('/login', { state: { from: '/user' } });
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -54,6 +60,7 @@ export const UserPage = () => {
       dispatcher(removeUser());
       dispatcher(clearFavorites());
       dispatcher(clearCart());
+      navigate('/');
     } catch (error) {
       console.log((error as Error).message);
     }
