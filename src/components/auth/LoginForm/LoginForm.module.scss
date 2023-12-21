@@ -17,7 +17,7 @@
   box-shadow: 10px 10px 8px 1px rgba(30, 30, 37, 0.192);
 
   &__title {
-    @include default-h1;
+    @include default-h2;
     text-align: center;
   }
 

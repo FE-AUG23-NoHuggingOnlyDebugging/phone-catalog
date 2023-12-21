@@ -13,6 +13,7 @@ const isActiveLink = ({ isActive }: { isActive: boolean }) =>
 
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const user = useAppSelector(selectUser);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -23,8 +24,6 @@ const BurgerMenu = () => {
       disableScroll.on();
     }
   };
-
-  const user = useAppSelector(selectUser);
 
   return (
     <>
@@ -75,6 +74,14 @@ const BurgerMenu = () => {
                     onClick={toggleMenu}
                   >
                     Accessories
+                  </NavLink>
+
+                  <NavLink
+                    to={user ? '/user' : '/login'}
+                    className={isActiveLink}
+                    onClick={toggleMenu}
+                  >
+                    {user ? 'User Profile' : 'Login'}
                   </NavLink>
                 </div>
               </div>

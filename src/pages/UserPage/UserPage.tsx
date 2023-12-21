@@ -4,9 +4,11 @@ import { clearFavorites } from '../../store/favoriteSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { removeUser, selectUser } from '../../store/userSlice';
 import style from './UserPage.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 export const UserPage = () => {
   const user = useAppSelector(selectUser);
+  const navigate = useNavigate();
 
   console.log(user);
 
@@ -55,6 +57,7 @@ export const UserPage = () => {
       dispatcher(removeUser());
       dispatcher(clearFavorites());
       dispatcher(clearCart());
+      navigate('/');
     } catch (error) {
       console.log((error as Error).message);
     }
