@@ -147,6 +147,8 @@
   color: var(--white-color);
   background-color: var(--btn);
 
+  cursor: pointer;
+
   @include onTablet {
     width: 544px;
   }

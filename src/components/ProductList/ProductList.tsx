@@ -48,16 +48,14 @@ const ProductList: React.FC<Props> = ({
       </div>
       {type !== 'slider' &&
         (infoPage !== null && onStatus !== null ? (
-          <>
-            <Pagination
-              currentPage={infoPage.selectedPage}
-              totalCount={infoPage.totalRecords}
-              pageSize={infoPage.perPage}
-              onStateUpload={onStatus}
-            />
-          </>
+          <Pagination
+            currentPage={infoPage.selectedPage}
+            totalCount={infoPage.totalRecords}
+            pageSize={infoPage.perPage}
+            onStateUpload={onStatus}
+          />
         ) : (
-          status && infoPage === null && <PaginationLoader />
+          status && <PaginationLoader />
         ))}
     </>
   );

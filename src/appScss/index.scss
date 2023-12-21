@@ -1,6 +1,5 @@
 @import './colors.scss';
 @import './typography.scss';
-
 @import './mixins';
 
 body {
@@ -34,4 +33,8 @@ main {
   @include onTablet {
     width: calc(100% - 48px);
   }
+}
+
+button {
+  cursor: pointer;
 }
