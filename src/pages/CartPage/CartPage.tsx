@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux';
 import { GoBackButton } from '../../components/GoBackButton';
 import { SyncUserDataWithServer } from '../../utils/helpers/SyncUserDataWithServer';
 
+
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
   const [isLoading, setIsLoading] = useState(true);
