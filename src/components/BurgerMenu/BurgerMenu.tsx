@@ -6,6 +6,7 @@ import CartIcon from '../CartIcon/CartIcon';
 import FavouriteIcon from '../FavouriteIcon/FavouriteIcon';
 import { useAppSelector } from '../../store/hooks';
 import { selectUser } from '../../store/userSlice';
+import disableScroll from 'disable-scroll';
 
 const isActiveLink = ({ isActive }: { isActive: boolean }) =>
   cn(styles.navbar__item, { [styles.navbar__highlight]: isActive });
@@ -15,11 +16,11 @@ const BurgerMenu = () => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    const body = document.body;
-    if (body.style.overflow === 'scroll') {
-      body.style.overflow = 'hidden';
+
+    if (isOpen) {
+      disableScroll.off();
     } else {
-      body.style.overflow = 'scroll';
+      disableScroll.on();
     }
   };
 
