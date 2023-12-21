@@ -89,6 +89,9 @@
     text-transform: uppercase;
     text-decoration: none;
     color: var(--footer-text-color);
+    &:hover {
+      color: #313237;
+    }
   }
 
   &__right {
