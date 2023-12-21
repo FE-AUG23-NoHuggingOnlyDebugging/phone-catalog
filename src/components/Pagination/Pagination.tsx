@@ -63,31 +63,35 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <ul className={styles.pagination}>
-      {currentPage !== 1 ? <Link
-        to={
-          currentPage < 2
-            ? updatePage(currentPage)
-            : updatePage(currentPage - 1)
-        }
-        className={styles.pagination__item}
-        onClick={() => onStateUpload(true)}
-      >
-        <img
-          className={styles.arrow__left}
-          src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-          alt="prev"
-        />
-      </Link> : <span
-        className={cn(styles.pagination__item, {
-          [styles.pagination__disabled]: currentPage === 1,
-        })}
-      >
-        <img
-          className={styles.arrow__left}
-          src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-          alt="prev"
-        />
-      </span>}
+      {currentPage !== 1 ? (
+        <Link
+          to={
+            currentPage < 2
+              ? updatePage(currentPage)
+              : updatePage(currentPage - 1)
+          }
+          className={styles.pagination__item}
+          onClick={() => onStateUpload(true)}
+        >
+          <img
+            className={styles.arrow__left}
+            src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
+            alt="prev"
+          />
+        </Link>
+      ) : (
+        <span
+          className={cn(styles.pagination__item, {
+            [styles.pagination__disabled]: currentPage === 1,
+          })}
+        >
+          <img
+            className={styles.arrow__left}
+            src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
+            alt="prev"
+          />
+        </span>
+      )}
       <div className={styles.pagination__list}>
         {paginationRange.map((pageNumber, index) => {
           if (pageNumber === DOTS) {
@@ -112,23 +116,33 @@ const Pagination: React.FC<PaginationProps> = ({
           );
         })}
       </div>
-      {currentPage !== lastPage ? <Link
-        to={
-          currentPage === lastPage
-            ? updatePage(currentPage)
-            : updatePage(currentPage + 1)
-        }
-        className={styles.pagination__item}
-        onClick={() => onStateUpload(true)}
-      >
-        <img src={process.env.PUBLIC_URL + '/img/icons/arrow.png'} alt="next"/>
-      </Link> : <span
-        className={cn(styles.pagination__item, {
-          [styles.pagination__disabled]: currentPage === lastPage,
-        })}
-      >
-        <img src={process.env.PUBLIC_URL + '/img/icons/arrow.png'} alt="next"/>
-      </span>}
+      {currentPage !== lastPage ? (
+        <Link
+          to={
+            currentPage === lastPage
+              ? updatePage(currentPage)
+              : updatePage(currentPage + 1)
+          }
+          className={styles.pagination__item}
+          onClick={() => onStateUpload(true)}
+        >
+          <img
+            src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
+            alt="next"
+          />
+        </Link>
+      ) : (
+        <span
+          className={cn(styles.pagination__item, {
+            [styles.pagination__disabled]: currentPage === lastPage,
+          })}
+        >
+          <img
+            src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
+            alt="next"
+          />
+        </span>
+      )}
     </ul>
   );
 };

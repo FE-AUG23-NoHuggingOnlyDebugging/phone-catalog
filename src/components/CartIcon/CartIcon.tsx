@@ -11,12 +11,11 @@ const CartIcon: React.FC = () => {
   return (
     <div className={styles.cart_icon}>
       <img src={process.env.PUBLIC_URL + '/img/icons/cart.png'} alt="Cart" />
-      {count > 0 &&
+      {count > 0 && (
         <div className={styles.circle}>
-          <span className={styles.counter}>
-            {count}
-          </span>
-        </div>}
+          <span className={styles.counter}>{count}</span>
+        </div>
+      )}
     </div>
   );
 };

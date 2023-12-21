@@ -13,9 +13,7 @@ const FavouriteIcon: React.FC = () => {
       />
       {elements.length > 0 && (
         <div className={styles.circle}>
-          <span className={styles.counter}>
-            {elements.length}
-          </span>
+          <span className={styles.counter}>{elements.length}</span>
         </div>
       )}
     </div>

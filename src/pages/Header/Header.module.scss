@@ -3,6 +3,7 @@
 
 .header {
   background-color: #fff;
+  padding-bottom: 0;
 
   &__title {
     color: $color__for_test;
@@ -11,6 +12,7 @@
   &__logo {
     object-fit: contain;
     margin: auto;
+    height: 100%;
   }
 }
 .navbar {
@@ -28,6 +30,7 @@
   &__right {
     display: flex;
     align-items: center;
+    height: 100%;
   }
 
   &__link {
@@ -90,3 +93,4 @@
     }
   }
 }
+
