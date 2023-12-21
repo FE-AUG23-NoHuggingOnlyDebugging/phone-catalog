@@ -71,7 +71,6 @@ const AuthPage = () => {
         dispatcher(addUser(userDataFromServer));
       } catch (error) {
         console.log((error as Error).message);
-        // setError(true);
       }
     };
 
