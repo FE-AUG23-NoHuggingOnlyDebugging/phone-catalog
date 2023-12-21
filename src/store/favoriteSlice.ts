@@ -20,7 +20,8 @@ export const favoriteSlice = createSlice({
       state.products = state.products.filter((item) => item !== action.payload);
     },
     addFavoritesFromDb: (state, action: PayloadAction<string[]>) => {
-      state.products = [...state.products, ...action.payload];
+      const unic = new Set([...state.products, ...action.payload]);
+      state.products = Array.from(unic);
     },
     clearFavorites: (state) => {
       state.products = [];

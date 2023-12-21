@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import { FaLock } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
@@ -26,13 +26,15 @@ export const LoginForm = () => {
   const [isModal, setIsModal] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatcher = useAppDispatch();
 
   const user = useAppSelector(selectUser);
 
   if (user) {
-    navigate('/');
+    navigate(location.state.from || '/');
   }
+  console.log(location.state);
 
   const pattern = /^[^\W_]*$/;
 
@@ -44,11 +46,11 @@ export const LoginForm = () => {
   const handleSubmit = async (e: React.FocusEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // if (!email || !pass || !pattern.test(pass)) {
-    //   setHasEmailError(!email);
-    //   setHasPassError(!pass || !pattern.test(pass));
-    //   return;
-    // }
+    if (!email || !pass || !pattern.test(pass)) {
+      setHasEmailError(!email);
+      setHasPassError(!pass || !pattern.test(pass));
+      return;
+    }
 
     setError(false);
     try {
@@ -72,8 +74,9 @@ export const LoginForm = () => {
       const data = await loadUserFavorites();
       const cart = await loadUserCart();
 
-      dispatcher(replaceCart(cart));
       dispatcher(addUser(userDataFromServer));
+			
+      dispatcher(replaceCart(cart));
 
       dispatcher(addFavoritesFromDb(data));
       reset();
@@ -175,7 +178,7 @@ export const LoginForm = () => {
             <Modal setIsModal={setIsModal} />
           </div>
         )}
-        <p style={{ color: 'red' }}>{error && 'Щось пішло не так'}</p>
+        <p style={{ color: 'red', textAlign: 'center' }}>{error && 'Щось пішло не так'}</p>
       </form>
     </>
   );

@@ -28,7 +28,7 @@ export const CartPage = () => {
   const user = useAppSelector(selectUser);
 
   if (!user) {
-    navigate('/login');
+    navigate('/login', { state: { from: '/cart' } });
   }
 
   const [isModalShown, setIsModalShown] = useState(false);

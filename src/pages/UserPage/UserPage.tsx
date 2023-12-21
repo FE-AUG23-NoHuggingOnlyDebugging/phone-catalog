@@ -14,7 +14,9 @@ export const UserPage = () => {
   const [orders, setOrders] = useState<Orders[] | null>(null);
   const navigate = useNavigate();
 
-  console.log(user);
+  if (!user) {
+    navigate('/login', { state: { from: '/user' } });
+  }
 
   useEffect(() => {
     const getData = async () => {
