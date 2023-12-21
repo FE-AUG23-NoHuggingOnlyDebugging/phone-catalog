@@ -6,8 +6,8 @@
 
 .page {
   width: max-content;
-  margin: 16px auto 80px;
-  min-height: calc(100vh - 88px - 98px - 96px);
+  margin: 40px auto 80px;
+  min-height: calc(100vh - 64px - 98px - 120px);
 
   &__empty {
     width: 1136px;
@@ -24,15 +24,14 @@
   }
 
   @include onTablet {
-    min-height: calc(100vh - 88px - 98px - 80px);
+    min-height: calc(100vh - 64px - 98px - 104px);
     margin-bottom: 64px;
   }
 
   @include onPhone {
-    min-height: calc(100vh - 72px - 242px - 56px);
-    margin-block: 0 56px;
+    min-height: calc(100vh - 48px - 242px - 72px);
+    margin-block: 16px 56px;
   }
-
 }
 
 .cart_info {
@@ -148,6 +147,8 @@
   color: var(--white-color);
   background-color: var(--btn);
 
+  cursor: pointer;
+
   @include onTablet {
     width: 544px;
   }
@@ -162,10 +163,14 @@
   }
 
   &:active {
-    color: var(--green-color);
+    color: var(--added-color);
     border-color: var(--elements-color);
     background-color: transparent;
     box-shadow: none;
+  }
+
+  &__disabled {
+    cursor: default;
   }
 
   &::before {
@@ -191,6 +196,10 @@
     .checkout_button {
       &:hover {
         background-color: var(--btn-hover);
+      }
+
+      &:active {
+        background-color: var(--additional-btn);
       }
     }
   }

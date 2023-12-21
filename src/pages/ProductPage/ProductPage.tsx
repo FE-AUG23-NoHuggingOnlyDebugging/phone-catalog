@@ -84,18 +84,18 @@ export const ProductPage = () => {
     let currenType;
 
     switch (type) {
-    case 'phones':
-      currenType = CategoriesTypes.Phones;
-      break;
-    case 'tablets':
-      currenType = CategoriesTypes.Tablets;
-      break;
-    case 'accessories':
-      currenType = CategoriesTypes.Accessories;
-      break;
+      case 'phones':
+        currenType = CategoriesTypes.Phones;
+        break;
+      case 'tablets':
+        currenType = CategoriesTypes.Tablets;
+        break;
+      case 'accessories':
+        currenType = CategoriesTypes.Accessories;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
 
     return currenType;

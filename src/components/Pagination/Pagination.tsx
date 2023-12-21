@@ -138,16 +138,6 @@ const Pagination: React.FC<PaginationProps> = ({
             [styles.pagination__disabled]: currentPage === lastPage,
           })}
         >
-          {/* <<<<<<<<<light-dark-theme  */}
-          {/* <img
-      //     className={styles.arrow__right}
-      //     src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-      //     alt="next"
-      //   />
-      // </Link> */}
-
-          {/* <!-- =========== --> */}
-
           <img
             className={styles.arrow__right}
             src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
@@ -155,7 +145,6 @@ const Pagination: React.FC<PaginationProps> = ({
           />
         </span>
       )}
-      {/* <!-- //>>>>>>> main --> */}
     </ul>
   );
 };

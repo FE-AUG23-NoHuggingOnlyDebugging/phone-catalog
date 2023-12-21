@@ -50,6 +50,12 @@
   justify-content: space-between;
   flex-direction: column;
 
+  &__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__link {
     display: flex;
     align-items: center;
@@ -75,18 +81,37 @@
     margin-bottom: 32px;
     border-bottom: 3px solid transparent;
     padding-bottom: 8px;
+    &:hover {
+      color: #313237;
+    }
+
   }
 
   &__bottom {
+    max-height: 64px;
     width: 100%;
     position: absolute;
     bottom: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0px -1px 0px 0px #E2E6E9;
+
+    &_block {
+      width:50%;
+      box-shadow: -1px 0px 0px 0px #E2E6E9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1 0 0;
+      position: relative;
+    }
 
     & a {
-      margin-right: 50px;
+      height: 16px;
+      margin: 24px auto;
+      padding: 0;
+      
     }
   }
 

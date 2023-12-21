@@ -16,6 +16,7 @@ import { selectUser } from '../../store/userSlice';
 import { CheckoutModal } from '../../components/CheckoutModal';
 import { useDispatch } from 'react-redux';
 import { GoBackButton } from '../../components/GoBackButton';
+import { SyncUserDataWithServer } from '../../utils/helpers/SyncUserDataWithServer';
 
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
@@ -31,6 +32,8 @@ export const CartPage = () => {
   }
 
   const [isModalShown, setIsModalShown] = useState(false);
+  const [isOrderSuccessful, setIsOrderSuccessful] = useState(true);
+  const [isCheckoutDisabled, setIsCheckoutDisabled] = useState(false);
 
   const dispatch = useDispatch();
   const cartStorageList = useAppSelector(selectCartProducts);
@@ -81,15 +84,39 @@ export const CartPage = () => {
   };
 
   const handleCheckoutButtonClick = () => {
-    setIsModalShown(true);
+    setIsCheckoutDisabled(true);
 
-    setTimeout(handleCloseClick, 5000);
+    fetch(
+      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/orders',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ order: cartStorageList }),
+      })
+      .catch(() => setIsOrderSuccessful(false))
+      .finally(() => {
+        setIsModalShown(true);
+
+        setTimeout(handleCloseClick, 5000);
+      });
   };
 
   const handleCloseClick = () => {
     setIsModalShown(false);
-    dispatch(clearCart());
-    setProducts([]);
+    setIsCheckoutDisabled(false);
+
+    if (isOrderSuccessful) {
+      const cart = JSON.stringify({
+        cart: [],
+      });
+
+      SyncUserDataWithServer(cart, 'cart');
+      dispatch(clearCart());
+      setProducts([]);
+    }
   };
 
   return (
@@ -134,8 +161,11 @@ export const CartPage = () => {
               >{`Total for ${productsCount} items`}</p>
               <button
                 type="button"
-                className={styles.checkout_button}
+                className={cn(styles.checkout_button, {
+                  [styles.checkout_button__disabled]: isCheckoutDisabled,
+                })}
                 onClick={handleCheckoutButtonClick}
+                disabled={isCheckoutDisabled}
               >
                 Checkout
               </button>
@@ -154,7 +184,11 @@ export const CartPage = () => {
           </div>
         )}
       </div>
-      {isModalShown && <CheckoutModal handleCloseClick={handleCloseClick} />}
+      {isModalShown &&
+        <CheckoutModal
+          success={isOrderSuccessful}
+          handleCloseClick={handleCloseClick}
+        />}
     </>
   );
 };

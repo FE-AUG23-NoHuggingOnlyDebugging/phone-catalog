@@ -18,8 +18,8 @@
     height: 168px;
   }
 
-  border: 1px solid rgba(0, 0, 0, .171);
-  box-shadow: 10px 10px 8px 1px rgba(30, 30, 37, .192);
+  border: 1px solid rgba(0, 0, 0, 0.171);
+  box-shadow: 10px 10px 8px 1px rgba(30, 30, 37, 0.192);
   color: var(--primary-color);
 
   &_header {
@@ -67,6 +67,6 @@
 [theme='dark'] {
   .modal {
     background-color: var(--card-bg);
-    box-shadow: 10px 10px 8px 1px rgba(163, 120, 255, .192);
+    box-shadow: 10px 10px 8px 1px rgba(163, 120, 255, 0.192);
   }
 }
