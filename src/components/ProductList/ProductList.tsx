@@ -38,26 +38,24 @@ const ProductList: React.FC<Props> = ({
       >
         {status
           ? [
-              <>
-                <ProductLoader key={0} perPage={Number(perPage) || 16} />
-              </>,
-            ]
+            <>
+              <ProductLoader key={0} perPage={Number(perPage) || 16} />
+            </>,
+          ]
           : products.map((product) => (
-              <ProductCard key={product.id} product={product} type={type} />
-            ))}
+            <ProductCard key={product.id} product={product} type={type} />
+          ))}
       </div>
       {type !== 'slider' &&
         (infoPage !== null && onStatus !== null ? (
-          <>
-            <Pagination
-              currentPage={infoPage.selectedPage}
-              totalCount={infoPage.totalRecords}
-              pageSize={infoPage.perPage}
-              onStateUpload={onStatus}
-            />
-          </>
+          <Pagination
+            currentPage={infoPage.selectedPage}
+            totalCount={infoPage.totalRecords}
+            pageSize={infoPage.perPage}
+            onStateUpload={onStatus}
+          />
         ) : (
-          status && infoPage === null && <PaginationLoader />
+          status && <PaginationLoader />
         ))}
     </>
   );
