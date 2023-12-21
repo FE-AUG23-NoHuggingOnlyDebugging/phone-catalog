@@ -15,6 +15,7 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 
 import { AuthRoot } from './components/auth/AuthRoot';
+import { UserPage } from './pages/UserPage/UserPage';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <Router>
@@ -38,6 +39,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/login" element={<AuthRoot />} />
             <Route path="/register" element={<AuthRoot />} />
+            <Route path='/user' element={<UserPage />} />
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>

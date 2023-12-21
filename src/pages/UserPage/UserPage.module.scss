@@ -1,0 +1,56 @@
+@import '../../appScss/colors.scss';
+
+.userPage {
+  width: 1136px;
+
+  &__title {
+    color: var(--primary-color);
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 56px;
+    letter-spacing: -0.48px;
+    margin-bottom: 38px;
+  }
+
+  &__userInfo {
+    background-color: var(--card-border);
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%;
+  }
+
+  &__main {
+    margin-bottom: 80px;
+  }
+
+  &__subTitle {
+    font-size: 22px;
+    color: var(--btn);
+    margin-bottom: 8px;
+  }
+
+  &__value {
+    font-size: 30px;
+    color: var(--primary-color);
+    margin-bottom: 32px;
+  }
+
+  &__button {
+    background-color: red;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+    border-radius: 20px;
+    font-size: 20px;
+    border: 2px solid red;
+    padding: 15px 30px;
+
+    &:hover {
+      background-color: white;
+      color: red;
+    }
+  }
+}

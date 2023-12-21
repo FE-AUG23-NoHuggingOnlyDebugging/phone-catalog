@@ -17,7 +17,6 @@ import { CheckoutModal } from '../../components/CheckoutModal';
 import { useDispatch } from 'react-redux';
 import { GoBackButton } from '../../components/GoBackButton';
 
-
 export const CartPage = () => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +31,6 @@ export const CartPage = () => {
   }
 
   const [isModalShown, setIsModalShown] = useState(false);
-
 
   const dispatch = useDispatch();
   const cartStorageList = useAppSelector(selectCartProducts);
