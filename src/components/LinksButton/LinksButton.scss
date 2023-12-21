@@ -1,4 +1,5 @@
 @import '../../appScss/mixins.scss';
+@import '../../appScss/colors.scss';
 
 .main {
   display: flex;
@@ -24,7 +25,7 @@
   height: 60px;
   outline: none;
   border: none;
-  background: white;
+  background: var(--additional-btn);
   border-radius: 90px 5px 5px 5px;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -51,7 +52,7 @@
   height: 30px;
   margin-top: 1.3em;
   margin-left: 1.2em;
-  fill: #03a9f4;
+  fill: var(--telegram-color);
   transition: all 0s;
 
   @include onTablet {
@@ -74,7 +75,7 @@
   height: 60px;
   outline: none;
   border: none;
-  background: white;
+  background: var(--additional-btn);
   border-radius: 5px 90px 5px 5px;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -97,7 +98,7 @@
   height: 30px;
   margin-top: 1.1em;
   margin-left: 0.8em;
-  fill: rgb(23, 122, 252);
+  fill: var(--linkedIn-color);
   transition: all 0s;
 
   @include onTablet {
@@ -120,7 +121,7 @@
   height: 60px;
   outline: none;
   border: none;
-  background: white;
+  background: var(--additional-btn);
   border-radius: 5px 5px 5px 90px;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -143,6 +144,7 @@
   height: 30px;
   margin-top: 0.8em;
   margin-left: 1.2em;
+  fill: var(--github-color);
   transition: all 0s;
 
   @include onTablet {
@@ -165,7 +167,7 @@
   height: 60px;
   outline: none;
   border: none;
-  background: white;
+  background: var(--additional-btn);
   border-radius: 5px 5px 90px 5px;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -188,7 +190,7 @@
   height: 50px;
   margin-top: 1em;
   margin-left: 0.8em;
-  fill: #c01d17;
+  fill: var(--email-color);
   transition: all 0s;
 
   @include onTablet {

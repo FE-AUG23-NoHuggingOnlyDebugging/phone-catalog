@@ -33,7 +33,7 @@
     @include onTablet {
       display: block;
       width: 32px;
-      background-color: var( --additional-btn);
+      background-color: var(--additional-btn);
       border: 1px solid var(--icons-color);
       color: var(--primary-color);
       cursor: pointer;
@@ -44,7 +44,6 @@
     width: 100%;
     object-fit: cover;
     object-position: 70% 50%;
-
 
     @include onTablet {
       margin: 0 19px;

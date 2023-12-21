@@ -73,7 +73,7 @@ export const ProductDetailsPage = () => {
   return (
     <>
       <GoBackButton />
-      {true && <ProductDetailsSkeleton />}
+      {isLoading && <ProductDetailsSkeleton />}
       {isError && <NotFoundPage />}
       {product && !isError && !isLoading && (
         <>

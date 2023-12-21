@@ -1,38 +1,50 @@
 $color__for_test: #ab9d4d;
+$skeleton-gradient-color: #e2e6e9;
 
 :root {
   --primary-color: #313237;
   --secondary-color: #89939a;
   --elements-color: #e2e6e9;
-  --additional-btn: #FFFFFF;
+  --additional-btn: #ffffff;
   --btn: #313237;
-  --card-bg: #FFFFFF;
+  --card-bg: #ffffff;
   --card-border: #e2e6e9;
   --icons-color: #b4bdc3;
-  --bg-color: #FFFFFF;
+  --bg-color: #ffffff;
   --white-color: #ffffff;
   --added-color: #27ae60;
   --red-color: #eb5757;
-  --footer-text-color: #89939A;
-  --pagination-deafult-bg: #FFFFFF;
-  --capacity-text-color: #FFFFFF;
+  --footer-text-color: #89939a;
+  --pagination-deafult-bg: #ffffff;
+  --capacity-text-color: #ffffff;
+  --skeleton-bg-color: #fafbfc;
+  --github-color: black;
+  --telegram-color: #03a9f4;
+  --linkedIn-color: rgb(23, 122, 252);
+  --email-color: #c01d17;
+  --teamMember-shadow-color: rgba(0, 0, 0, 0.75);
 }
 
 [theme='dark'] {
   --primary-color: #f1f2f9;
-  --secondary-color: #75767F;
+  --secondary-color: #75767f;
   --elements-color: #3b3e4a;
   --additional-btn: #323542;
-  --additional-btn-hover: #4A4D58;
+  --additional-btn-hover: #4a4d58;
   --btn: #905bff;
-  --btn-hover: #A378FF;
+  --btn-hover: #a378ff;
   --card-bg: #161827;
   --card-border: #161827;
   --icons-color: #323542;
-  --bg-color: #0F1121;
+  --bg-color: #0f1121;
   --white-color: #f1f2f9;
   --added-color: #f1f2f9;
   --red-color: #eb5757;
-  --footer-text-color: #F1F2F9;
-  --capacity-text-color: #0F1121;
+  --footer-text-color: #f1f2f9;
+  --capacity-text-color: #0f1121;
+  --telegram-color: white;
+  --github-color: white;
+  --linkedIn-color: white;
+  --email-color: white;
+  --teamMember-shadow-color: rgba(144, 91, 255, 0.3);
 }

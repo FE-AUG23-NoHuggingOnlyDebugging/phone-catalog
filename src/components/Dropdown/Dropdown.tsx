@@ -48,7 +48,9 @@ const Dropdown: React.FC<Props> = ({
         <span className={styles.dropdown__current}>{currentItem}</span>
         <img
           src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-          className={`${isOpen ? styles.arrow__top : styles.arrow__bottom} ${styles.dark_theme_icon_color}`}
+          className={`${isOpen ? styles.arrow__top : styles.arrow__bottom} ${
+            styles.dark_theme_icon_color
+          }`}
           alt="Arrow"
         />
       </button>

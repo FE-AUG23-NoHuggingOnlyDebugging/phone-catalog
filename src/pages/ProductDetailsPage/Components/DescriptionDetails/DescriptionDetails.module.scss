@@ -19,7 +19,6 @@
     box-sizing: border-box;
 
     @include ProductDetails-OnTablet {
-      max-width: 670px;
       width: 100%;
     }
   }
@@ -31,7 +30,6 @@
     margin-top: 25px;
 
     @include ProductDetails-OnTablet {
-      max-width: 670px;
       width: 100%;
     }
   }
