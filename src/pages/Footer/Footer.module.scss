@@ -20,6 +20,7 @@
   padding: 32px;
 
   @include onMobile {
+    padding: 32px 16px;
     flex-direction: column;
     align-items: flex-start;
   }
@@ -39,12 +40,18 @@
     position: relative;
     height: 28px;
     margin: 0 24px;
+    @include onPhone() {
+      scale: 0.8;
+    }
   }
 
   &__logo_hand {
     position: absolute;
     bottom: 42%;
     right: 35%;
+    @include onPhone() {
+      scale: 0.8;
+    }
   }
 
   &__center {
@@ -53,6 +60,7 @@
     @include onMobile {
       flex-direction: column;
       align-items: flex-start;
+      margin-bottom: 32px;
     }
   }
 
@@ -87,9 +95,15 @@
     display: flex;
     gap: 0 16px;
     align-items: center;
-
+    
     @include onlyForHeader {
       padding: 18px 0;
+    }
+
+    @include onPhone() {
+      margin-left: auto;
+      margin-right: auto;
+      padding:0
     }
   }
 
