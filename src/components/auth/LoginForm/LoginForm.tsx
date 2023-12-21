@@ -75,7 +75,7 @@ export const LoginForm = () => {
       const cart = await loadUserCart();
 
       dispatcher(addUser(userDataFromServer));
-			
+
       dispatcher(replaceCart(cart));
 
       dispatcher(addFavoritesFromDb(data));
@@ -178,7 +178,9 @@ export const LoginForm = () => {
             <Modal setIsModal={setIsModal} />
           </div>
         )}
-        <p style={{ color: 'red', textAlign: 'center' }}>{error && 'Щось пішло не так'}</p>
+        <p style={{ color: 'red', textAlign: 'center' }}>
+          {error && 'Щось пішло не так'}
+        </p>
       </form>
     </>
   );
