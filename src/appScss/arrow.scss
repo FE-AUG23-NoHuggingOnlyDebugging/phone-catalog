@@ -18,3 +18,24 @@
     opacity: 0.5;
   }
 }
+
+[theme='dark'] {
+  .arrow__left,
+  .arrow__right {
+    filter: invert(100%);
+  }
+
+  .swiper__disabled {
+    .arrow__left,
+    .arrow__right {
+      opacity: 0.3;
+    }
+  }
+
+  .pagination__disabled {
+    .arrow__left,
+    .arrow__right {
+      opacity: 0.3;
+    }
+  }
+}

@@ -15,12 +15,17 @@ const Footer = () => (
   <footer className={styles.footer}>
     <div className={styles.footer__left}>
       <img
-        src={process.env.PUBLIC_URL + '/img/icons/logo-desktop.png'}
+        className={`${styles.footer__left} ${styles.dark_theme_logo_color}`}
+        src={process.env.PUBLIC_URL + '/img/icons/new_logo.svg'}
         alt="logo"
-        className={styles.footer__logo}
       />
+      <div className={styles.footer__logo_hand}>
+        <img
+          src={process.env.PUBLIC_URL + '/img/icons/hand_logo.svg'}
+          alt="logo"
+        />
+      </div>
     </div>
-
     <nav className={styles.footer__center}>
       <ul className={styles.footer__ul}>
         <li className={styles.footer__li}>
@@ -32,7 +37,7 @@ const Footer = () => (
           </Link>
         </li>
 
-        <li className={styles.footer__li}>
+        <li className={styles.footer__li} onClick={scrollToTop}>
           <Link to="/contacts" className={styles.footer__link}>
             Contacts
           </Link>
@@ -52,7 +57,7 @@ const Footer = () => (
         <img
           src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
           alt="Button Up"
-          className={styles.footer__arrow}
+          className={`${styles.footer__arrow} ${styles.dark_theme_icon_color}`}
           onClick={scrollToTop}
         />
       </button>

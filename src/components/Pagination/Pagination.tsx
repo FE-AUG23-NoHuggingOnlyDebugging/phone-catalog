@@ -138,6 +138,7 @@ const Pagination: React.FC<PaginationProps> = ({
           })}
         >
           <img
+            className={styles.arrow__right}
             src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
             alt="next"
           />

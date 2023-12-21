@@ -1,5 +1,4 @@
 @import '../../../appScss/colors.scss';
-// @import '../../appScss/mixins.scss';
 
 @mixin onDesktop {
   @media (min-width: 1200px) {
@@ -34,8 +33,9 @@
     @include onTablet {
       display: block;
       width: 32px;
-      background-color: var(--white-color);
+      background-color: var(--additional-btn);
       border: 1px solid var(--icons-color);
+      color: var(--primary-color);
       cursor: pointer;
     }
   }

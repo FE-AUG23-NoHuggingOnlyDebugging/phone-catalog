@@ -197,7 +197,7 @@
 }
 
 .ErrorMessage {
-  color: #313237;
+  color: var(--primary-color);
 
   @include NotFoundPage-onPhone {
     position: absolute;
@@ -262,5 +262,15 @@
     background-color: rgba(0, 0, 0, 0.3);
     color: #fff;
     border-radius: 5px;
+  }
+}
+
+[theme='dark'] {
+  .button {
+    background-color: var(--btn);
+
+    &:hover {
+      background-color: var(--btn-hover);
+    }
   }
 }
