@@ -6,4 +6,5 @@ export interface Member {
   gitHub: string;
   LinkedIn: string;
   email: string;
+  text: string[];
 }
