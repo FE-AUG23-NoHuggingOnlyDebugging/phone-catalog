@@ -75,24 +75,35 @@ const BurgerMenu = () => {
                     Home
                   </NavLink>
 
-                  <NavLink to="/catalog/phones" className={isActiveLink} onClick={toggleMenu}>
+                  <NavLink
+                    to="/catalog/phones"
+                    className={isActiveLink}
+                    onClick={toggleMenu}
+                  >
                     Phones
                   </NavLink>
 
-                  <NavLink to="/catalog/tablets" className={isActiveLink} onClick={toggleMenu}>
+                  <NavLink
+                    to="/catalog/tablets"
+                    className={isActiveLink}
+                    onClick={toggleMenu}
+                  >
                     Tablets
                   </NavLink>
 
-                  <NavLink to="/catalog/accessories" className={isActiveLink} onClick={toggleMenu}>
+                  <NavLink
+                    to="/catalog/accessories"
+                    className={isActiveLink}
+                    onClick={toggleMenu}
+                  >
                     Accessories
                   </NavLink>
                 </div>
               </div>
-
             </nav>
             <div className={styles.navbar__bottom}>
               <div className={styles.navbar__bottom_block}>
-                <NavLink to="/favourites"  onClick={toggleMenu}>
+                <NavLink to="/favourites" onClick={toggleMenu}>
                   <FavouriteIcon />
                 </NavLink>
               </div>

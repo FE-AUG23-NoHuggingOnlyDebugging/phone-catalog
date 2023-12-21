@@ -71,7 +71,6 @@ const AuthPage = () => {
         dispatcher(addUser(userDataFromServer));
       } catch (error) {
         console.log((error as Error).message);
-        // setError(true);
       }
     };
 
@@ -80,23 +79,24 @@ const AuthPage = () => {
 
   return (
     <>
-      {user &&
-      <button
-        onClick={signOut}
-        style={{
-          position: 'absolute',
-          top: '10px',
-          left: '50%',
-          display: 'block',
-          color: 'red',
-          height: '100px',
-          width: '100px',
-          marginInline: 'auto',
-          transform: 'translateX(-50%)',
-        }}
-      >
-        Logout
-      </button>}
+      {user && (
+        <button
+          onClick={signOut}
+          style={{
+            position: 'absolute',
+            top: '10px',
+            left: '50%',
+            display: 'block',
+            color: 'red',
+            height: '100px',
+            width: '100px',
+            marginInline: 'auto',
+            transform: 'translateX(-50%)',
+          }}
+        >
+          Logout
+        </button>
+      )}
     </>
   );
 };

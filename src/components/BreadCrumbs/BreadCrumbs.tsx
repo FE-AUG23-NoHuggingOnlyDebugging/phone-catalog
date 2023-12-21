@@ -8,6 +8,15 @@ const Breadcrumbs: React.FC = () => {
   const location = useLocation();
   const breadcrumbs = useBreadcrumbs();
 
+  if (breadcrumbs.length === 4) {
+    const crumb = breadcrumbs[breadcrumbs.length - 2];
+    crumb.match.pathname = crumb.match.pathname.replace(
+      '/product/',
+      '/catalog/',
+    );
+    breadcrumbs.splice(-2, 1, crumb);
+  }
+
   const isHomePage = location.pathname === '/';
   const isCardPage = location.pathname === '/cart';
 
