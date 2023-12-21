@@ -10,7 +10,9 @@ type Props = {
 export const LinksButton: React.FC<Props> = ({ member }) => {
   return (
     <>
-      <div className="main">
+      <div className="main" onClick={(e) => {
+        e.stopPropagation();
+      }}>
         <div className="up">
           <a href={member.telegram} className="card1">
             <svg

@@ -6,7 +6,6 @@ type Props = {
   handleCloseClick: () => void;
 };
 
-
 export const CheckoutModal:React.FC<Props> = ({ success, handleCloseClick }) => {
   return (
     <div className={styles.modal}>
