@@ -7,7 +7,6 @@ import style from './UserPage.module.scss';
 
 export const UserPage = () => {
   const user = useAppSelector(selectUser);
-  //const [orders, setOrders] = useState(null);
 
   console.log(user);
 
