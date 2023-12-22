@@ -181,7 +181,7 @@ export const LoginForm = () => {
 
         {isModal && (
           <div className={styles.modal_background}>
-            <Modal setIsModal={setIsModal} />
+            <Modal setIsModal={setIsModal}/>
           </div>
         )}
         <p style={{ color: 'red', textAlign: 'center' }}>

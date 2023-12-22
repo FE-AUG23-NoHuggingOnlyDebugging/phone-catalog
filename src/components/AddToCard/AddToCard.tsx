@@ -56,7 +56,9 @@ const AddToCard: React.FC<Props> = ({ added = false, id, category }) => {
     </button>
   ) : (
     <button
-      className={cn(styles.add_to_card, { [styles.add_to_card__added]: added })}
+      className={cn(styles.add_to_card, {
+        [styles.add_to_card__added]: added,
+      })}
       type="button"
       onClick={() => alert('Login first')}
     >
