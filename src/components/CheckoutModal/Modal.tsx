@@ -28,12 +28,18 @@ export const CheckoutModal: React.FC<Props> = ({
 
       <div className={styles.modal_body}>
         <p className={styles.modal_body_text}>
-          {(success === 'success') && 'We have received your order. Thank you for making a purchase!'}
-          {(success === 'failed') && 'Failed to process the order. Something went wrong.'}
+          {success === 'success' &&
+            'We have received your order. Thank you for making a purchase!'}
+          {success === 'failed' &&
+            'Failed to process the order. Something went wrong.'}
         </p>
 
-        <p className={styles.modal_body_text}>To be able to add products to cart you should login first</p>
-        <a href="#/login" className={styles.modal_body_link}>Sign in</a>
+        <p className={styles.modal_body_text}>
+          To be able to add products to cart you should login first
+        </p>
+        <a href="#/login" className={styles.modal_body_link}>
+          Sign in
+        </a>
       </div>
     </div>
   );

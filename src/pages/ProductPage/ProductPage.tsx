@@ -118,7 +118,8 @@ export const ProductPage = () => {
       <div
         className={cn(styles.wrapper, styles.catalog, {
           [styles.wrapper__isModal]: isModalShown,
-        })}>
+        })}
+      >
         <section className={styles.catalog__info}>
           <h2 className={styles.catalog__title}>{pageTitle(type)}</h2>
           <p className={styles.catalog__modelCount}>
@@ -163,10 +164,12 @@ export const ProductPage = () => {
         {isError && <p>Error...</p>}
       </div>
 
-      {isModalShown && <CheckoutModal
-        status='registerRequired'
-        handleCloseClick={handleCloseClick}
-      />}
+      {isModalShown && (
+        <CheckoutModal
+          status="registerRequired"
+          handleCloseClick={handleCloseClick}
+        />
+      )}
     </>
   );
 };

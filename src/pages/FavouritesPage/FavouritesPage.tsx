@@ -73,10 +73,12 @@ export const FavouritesPage = () => {
         />
       </div>
 
-      {isModalShown && <CheckoutModal
-        status='registerRequired'
-        handleCloseClick={handleCloseClick}
-      />}
+      {isModalShown && (
+        <CheckoutModal
+          status="registerRequired"
+          handleCloseClick={handleCloseClick}
+        />
+      )}
     </>
   );
 };

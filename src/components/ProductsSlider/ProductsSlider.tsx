@@ -138,10 +138,12 @@ const ProductsSlider: React.FC<Props> = ({
         )}
       </section>
 
-      {isModalShown && <CheckoutModal
-        status='registerRequired'
-        handleCloseClick={handleCloseClick}
-      />}
+      {isModalShown && (
+        <CheckoutModal
+          status="registerRequired"
+          handleCloseClick={handleCloseClick}
+        />
+      )}
     </>
   );
 };

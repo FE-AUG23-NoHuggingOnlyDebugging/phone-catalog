@@ -1,5 +1,5 @@
 import styles from './AddToCard.module.scss';
-import React, { useState } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import {
   addToCart,
@@ -9,7 +9,6 @@ import {
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { SyncUserDataWithServer } from '../../utils/helpers/SyncUserDataWithServer';
 import { selectUser } from '../../store/userSlice';
-import { CheckoutModal } from '../CheckoutModal';
 
 type Props = {
   added?: boolean;
@@ -18,8 +17,12 @@ type Props = {
   showModal: () => void;
 };
 
-const AddToCard: React.FC<Props> = ({ added = false, id, category, showModal }) => {
-  const [isModalShown, setIsModalShown] = useState(false);
+const AddToCard: React.FC<Props> = ({
+  added = false,
+  id,
+  category,
+  showModal,
+}) => {
 
   const dispatcher = useAppDispatch();
   const cartInBrowser = useAppSelector(selectCartProducts);
@@ -50,15 +53,13 @@ const AddToCard: React.FC<Props> = ({ added = false, id, category, showModal }) 
     SyncUserDataWithServer(cart, 'cart');
   };
 
-  const handleCloseClick = () => {
-    setIsModalShown(false);
-  };
-
   return (
     <>
       {user ? (
         <button
-          className={cn(styles.add_to_card, { [styles.add_to_card__added]: added })}
+          className={cn(styles.add_to_card, {
+            [styles.add_to_card__added]: added,
+          })}
           type="button"
           onClick={added ? handleClickRemove : handleClickAdd}
         >
@@ -75,11 +76,6 @@ const AddToCard: React.FC<Props> = ({ added = false, id, category, showModal }) 
           {added ? 'Added to cart' : 'Add to cart'}
         </button>
       )}
-
-      {isModalShown && <CheckoutModal
-        status='registerRequired'
-        handleCloseClick={handleCloseClick}
-      />}
     </>
   );
 };

@@ -32,7 +32,9 @@ export const CartPage = () => {
   }
 
   const [isModalShown, setIsModalShown] = useState(false);
-  const [orderState, setOrderState] = useState<'success' | 'failed' | 'registerRequired'>('success');
+  const [orderState, setOrderState] = useState<
+    'success' | 'failed' | 'registerRequired'
+  >('success');
   const [isCheckoutDisabled, setIsCheckoutDisabled] = useState(false);
 
   const dispatch = useDispatch();

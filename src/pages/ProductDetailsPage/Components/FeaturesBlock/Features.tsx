@@ -47,7 +47,8 @@ export const Features: React.FC<Props> = ({
       <div
         className={cn(style.features, {
           [style.features__is_modal]: isModalShown,
-        })}>
+        })}
+      >
         <div className={style.features__colors}>
           <p className={style.features__colorsText}>Available colors</p>
           <div className={style.features__colorsBlock}>
@@ -149,10 +150,12 @@ export const Features: React.FC<Props> = ({
         </div>
       </div>
 
-      {isModalShown && <CheckoutModal
-        status='registerRequired'
-        handleCloseClick={handleCloseClick}
-      />}
+      {isModalShown && (
+        <CheckoutModal
+          status="registerRequired"
+          handleCloseClick={handleCloseClick}
+        />
+      )}
     </>
   );
 };

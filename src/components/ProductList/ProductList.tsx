@@ -45,7 +45,12 @@ const ProductList: React.FC<Props> = ({
             </>,
           ]
           : products.map((product) => (
-            <ProductCard key={product.id} product={product} type={type} showModal={showModal} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              type={type}
+              showModal={showModal}
+            />
           ))}
       </div>
       {type !== 'slider' &&
