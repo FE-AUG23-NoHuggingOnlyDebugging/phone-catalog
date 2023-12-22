@@ -11,7 +11,6 @@ import axios from 'axios';
 import { CartSkeletonLoader } from '../../components/CartSkeletonLoader';
 
 import { useNavigate } from 'react-router-dom';
-import { selectUser } from '../../store/userSlice';
 
 import { CheckoutModal } from '../../components/CheckoutModal';
 import { useDispatch } from 'react-redux';
@@ -24,12 +23,6 @@ export const CartPage = () => {
   const [isError, setIsError] = useState(false);
 
   const navigate = useNavigate();
-
-  const user = useAppSelector(selectUser);
-
-  if (!user) {
-    navigate('/login', { state: { from: '/cart' } });
-  }
 
   const [isModalShown, setIsModalShown] = useState(false);
   const [orderState, setOrderState] = useState<
