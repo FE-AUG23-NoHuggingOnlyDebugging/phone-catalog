@@ -34,7 +34,7 @@ export const LoginForm = () => {
   const user = useAppSelector(selectUser);
 
   if (user) {
-    navigate(location.state.from || '/');
+    navigate(location.state?.from || '/');
   }
 
   const pattern = /^[^\W_]*$/;
@@ -188,6 +188,7 @@ export const LoginForm = () => {
           </div>
         )}
         <p style={{ color: 'red', textAlign: 'center' }}>{error?.error}</p>
+
         <p style={{ color: 'green', textAlign: 'center' }}>
           {isLoading && 'Sending...'}
         </p>

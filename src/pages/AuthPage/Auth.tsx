@@ -45,7 +45,6 @@ const AuthPage = () => {
 
         dispatcher(replaceCart(cart));
         dispatcher(replaceFavorites(favorutes));
-        console.log(userDataFromServer);
 
         dispatcher(addUser(userDataFromServer));
       } catch (error) {
