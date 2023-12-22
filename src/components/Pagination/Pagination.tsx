@@ -61,6 +61,14 @@ const Pagination: React.FC<PaginationProps> = ({
 
   const lastPage = paginationRange[paginationRange.length - 1];
 
+  const handleClick = () => {
+    onStateUpload(true);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <ul className={styles.pagination}>
       {currentPage !== 1 ? (
@@ -71,7 +79,7 @@ const Pagination: React.FC<PaginationProps> = ({
               : updatePage(currentPage - 1)
           }
           className={styles.pagination__item}
-          onClick={() => onStateUpload(true)}
+          onClick={() => handleClick()}
         >
           <img
             className={styles.arrow__left}
@@ -109,7 +117,7 @@ const Pagination: React.FC<PaginationProps> = ({
               className={cn(styles.pagination__item, {
                 [styles.pagination__selected]: pageNumber === currentPage,
               })}
-              onClick={() => onStateUpload(true)}
+              onClick={() => handleClick()}
             >
               {pageNumber}
             </Link>
@@ -124,7 +132,7 @@ const Pagination: React.FC<PaginationProps> = ({
               : updatePage(currentPage + 1)
           }
           className={styles.pagination__item}
-          onClick={() => onStateUpload(true)}
+          onClick={() => handleClick()}
         >
           <img
             className={styles.arrow__right}
