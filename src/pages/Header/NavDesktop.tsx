@@ -65,7 +65,7 @@ const NavDesktop = () => {
         </NavLink>
 
         <NavLink
-          to={user ? '/cart' : '/login'}
+          to={'/cart'}
           className={user ? isActiveUtility : styles.navbar__utilities}
         >
           <CartIcon />

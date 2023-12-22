@@ -61,7 +61,20 @@ export const cartSlice = createSlice({
     },
 
     replaceCart: (state, action: PayloadAction<CartProduct[]>) => {
-      state.products = [...action.payload];
+      const uniqueObjectsMap = new Map();
+
+      state.products.forEach(item => {
+        uniqueObjectsMap.set(item.name, item);
+      });
+
+      action.payload.forEach(item => {
+        if (!uniqueObjectsMap.has(item.name)) {
+          uniqueObjectsMap.set(item.name, item);
+        }
+      });
+
+      const uniqueObjects = Array.from(uniqueObjectsMap.values());
+      state.products = uniqueObjects;
     },
   },
 });
