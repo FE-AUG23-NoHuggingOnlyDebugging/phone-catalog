@@ -2,42 +2,39 @@ import { useCallback, useEffect, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { useTransition, animated } from 'react-spring';
 
-import axios from 'axios';
-
 import styles from './SliderPromo.module.scss';
-import { Data } from '../../types/SliderPromo';
 import cn from 'classnames';
+import { useAppSelector, useThunkDispatch } from '../../store/hooks';
+import {
+  fetchCarousel,
+  selectCarousel,
+  selectCarouselLoadingStatus,
+} from '../../store/carouselSlice';
 
 export const SliderPromo = () => {
-  const [data, setData] = useState<Data[]>([]);
   const [slide, setSlide] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+
+  const dispatchCarousel = useThunkDispatch();
+  const carousel = useAppSelector(selectCarousel);
+  const carouselStatus = useAppSelector(selectCarouselLoadingStatus);
 
   useEffect(() => {
-    axios
-      .get(
-        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/slider',
-      )
-      .then((data) => {
-        setData(data.data.images);
-        setIsLoading(false);
-      })
-      .catch((error) => console.error(error));
+    dispatchCarousel(fetchCarousel());
   }, []);
 
-  const transitions = useTransition(data[slide], {
-    key: data[slide]?.id,
+  const transitions = useTransition(carousel[slide], {
+    key: carousel[slide]?.id,
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 1 },
   });
 
   const goForward = useCallback(() => {
-    setSlide(slide === data.length - 1 ? 0 : slide + 1);
-  }, [slide, data.length]);
+    setSlide(slide === carousel.length - 1 ? 0 : slide + 1);
+  }, [slide, carousel.length]);
 
   const goBack = () => {
-    setSlide(slide === 0 ? data.length - 1 : slide - 1);
+    setSlide(slide === 0 ? carousel.length - 1 : slide - 1);
   };
 
   useEffect(() => {
@@ -55,7 +52,7 @@ export const SliderPromo = () => {
         <button className={styles.carousel__btn} onClick={goBack}>
           <IoIosArrowBack />
         </button>
-        {!isLoading ? (
+        {carouselStatus !== 'loading' ? (
           transitions((style, item) => (
             <>
               <animated.img
@@ -81,8 +78,8 @@ export const SliderPromo = () => {
         </button>
       </div>
       <span className={styles.indicators}>
-        {!isLoading ? (
-          data.map((data) => (
+        {carouselStatus !== 'loading' ? (
+          carousel.map((data) => (
             <button
               key={data.id}
               className={
