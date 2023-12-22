@@ -23,5 +23,9 @@
   &__title {
     @include default-h2;
     color: var(--primary-color);
+
+    @include onPhone {
+      @include mob-h2;
+    }
   }
 }
