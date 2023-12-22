@@ -22,7 +22,7 @@
   &__title {
     @include mob-h1;
     color: var(--primary-color);
-    margin: 0 16px 24px;
+    margin-bottom: 24px;
 
     @include onTablet {
       @include default-h1;

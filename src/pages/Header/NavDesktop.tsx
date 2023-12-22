@@ -60,16 +60,19 @@ const NavDesktop = () => {
           <Switch />
         </div>
 
-        <NavLink to='/favourites' className={isActiveUtility}>
+        <NavLink to="/favourites" className={isActiveUtility}>
           <FavouriteIcon />
         </NavLink>
 
-        <NavLink to={user ? '/cart' : '/login'} className={user ? isActiveUtility : styles.navbar__utilities}>
+        <NavLink
+          to={user ? '/cart' : '/login'}
+          className={user ? isActiveUtility : styles.navbar__utilities}
+        >
           <CartIcon />
         </NavLink>
 
         {user ? (
-          <NavLink to='/user' className={isActiveUtility}>
+          <NavLink to="/user" className={isActiveUtility}>
             <img
               className={`${styles.dark_theme_user_icon} ${styles.user_icon}`}
               src={process.env.PUBLIC_URL + '/img/icons/user.png'}
@@ -77,15 +80,12 @@ const NavDesktop = () => {
             />
           </NavLink>
         ) : (
-          <NavLink to='/login' className={isActiveUtilityForBtn}>
+          <NavLink to="/login" className={isActiveUtilityForBtn}>
             <div className={styles.signIn}>
-              <button className={styles.signIn__btn}>
-                Sign In
-              </button>
+              <button className={styles.signIn__btn}>Sign In</button>
             </div>
           </NavLink>
         )}
-
       </div>
     </nav>
   );

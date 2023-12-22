@@ -99,7 +99,7 @@
     display: flex;
     gap: 0 16px;
     align-items: center;
-    
+
     @include onlyForHeader {
       padding: 18px 0;
     }
@@ -107,7 +107,7 @@
     @include onPhone() {
       margin-left: auto;
       margin-right: auto;
-      padding:0
+      padding: 0;
     }
   }
 
