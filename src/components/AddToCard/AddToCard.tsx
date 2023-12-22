@@ -14,9 +14,15 @@ type Props = {
   added?: boolean;
   id: string;
   category: string;
+  showModal: () => void;
 };
 
-const AddToCard: React.FC<Props> = ({ added = false, id, category }) => {
+const AddToCard: React.FC<Props> = ({
+  added = false,
+  id,
+  category,
+  showModal,
+}) => {
   const dispatcher = useAppDispatch();
   const cartInBrowser = useAppSelector(selectCartProducts);
 
@@ -48,7 +54,9 @@ const AddToCard: React.FC<Props> = ({ added = false, id, category }) => {
 
   return user ? (
     <button
-      className={cn(styles.add_to_card, { [styles.add_to_card__added]: added })}
+      className={cn(styles.add_to_card, {
+        [styles.add_to_card__added]: added,
+      })}
       type="button"
       onClick={added ? handleClickRemove : handleClickAdd}
     >
@@ -60,10 +68,11 @@ const AddToCard: React.FC<Props> = ({ added = false, id, category }) => {
         [styles.add_to_card__added]: added,
       })}
       type="button"
-      onClick={() => alert('Login first')}
+      onClick={showModal}
     >
       {added ? 'Added to cart' : 'Add to cart'}
     </button>
   );
 };
+
 export default AddToCard;
