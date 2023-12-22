@@ -37,7 +37,7 @@ export const CheckoutModal: React.FC<Props> = ({
         <p className={styles.modal_body_text}>
           To be able to add products to cart you should login first
         </p>
-        <a href="#/login" className={styles.modal_body_link}>
+        <a href="#/login" className={styles.modal_body_link1}>
           Sign in
         </a>
       </div>
