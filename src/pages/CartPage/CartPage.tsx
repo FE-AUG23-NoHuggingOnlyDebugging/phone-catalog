@@ -119,6 +119,8 @@ export const CartPage = () => {
       SyncUserDataWithServer(cart, 'cart');
       dispatch(clearCart());
       setProducts([]);
+
+      navigate('/');
     }
   };
 

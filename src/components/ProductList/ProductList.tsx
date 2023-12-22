@@ -40,9 +40,7 @@ const ProductList: React.FC<Props> = ({
       >
         {status
           ? [
-            <>
-              <ProductLoader key={0} perPage={Number(perPage) || 16} />
-            </>,
+            <ProductLoader key={0} perPage={Number(perPage) || 16} />
           ]
           : products.map((product) => (
             <ProductCard

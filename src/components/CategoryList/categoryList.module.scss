@@ -8,6 +8,10 @@
     @include default-h2;
     margin-bottom: 24px;
     color: var(--primary-color);
+
+    @include onPhone {
+      @include mob-h2;
+    }
   }
 
   &__content {

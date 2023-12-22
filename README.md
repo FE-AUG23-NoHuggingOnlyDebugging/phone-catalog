@@ -1,1 +1,3 @@
-# Lets buy something!
+# Nice Gadgets
+
+## Lets buy something!

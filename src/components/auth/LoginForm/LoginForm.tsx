@@ -14,11 +14,12 @@ import { addFavoritesFromDb } from '../../../store/favoriteSlice';
 import { replaceCart } from '../../../store/cartSlice';
 import { loadUserFavorites } from '../../../utils/helpers/loadUserFavorites';
 import { loadUserCart } from '../../../utils/helpers/loadUserCart';
+import { usePageError } from '../../../hooks/usePageError';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
-  const [error, setError] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
 
   const [hasEmailError, setHasEmailError] = useState(false);
   const [hasPassError, setHasPassError] = useState(false);
@@ -28,6 +29,7 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatcher = useAppDispatch();
+  const [error, setError] = usePageError(false);
 
   const user = useAppSelector(selectUser);
 
@@ -53,6 +55,7 @@ export const LoginForm = () => {
     }
 
     setError(false);
+    setIsloading(true);
     try {
       const response = await fetch(
         'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signIn',
@@ -68,6 +71,12 @@ export const LoginForm = () => {
           }),
         },
       );
+
+      if (response.status >= 400) {
+        setError(true);
+
+        return;
+      }
 
       const userDataFromServer = await response.json();
 
@@ -85,6 +94,8 @@ export const LoginForm = () => {
     } catch (error) {
       console.log((error as Error).message);
       setError(true);
+    } finally {
+      setIsloading(false);
     }
   };
 
@@ -179,7 +190,10 @@ export const LoginForm = () => {
           </div>
         )}
         <p style={{ color: 'red', textAlign: 'center' }}>
-          {error && 'Щось пішло не так'}
+          {error && 'Error'}
+        </p>
+        <p style={{ color: 'green', textAlign: 'center' }}>
+          {isLoading && 'Sending...'}
         </p>
       </form>
     </>

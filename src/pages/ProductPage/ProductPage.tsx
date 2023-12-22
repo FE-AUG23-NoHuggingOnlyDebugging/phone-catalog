@@ -1,26 +1,22 @@
 'use strict';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { useSearchParams } from '../../utils/useSearchParams';
 import styles from './ProductPage.module.scss';
 import ProductList from '../../components/ProductList/ProductList';
-import { selectProducts, setProducts } from '../../store/productsSlice';
-import { InfoPage } from '../../types/InfoPage';
-import { useDispatch } from 'react-redux';
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector, useThunkDispatch } from '../../store/hooks';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import { useParams } from 'react-router-dom';
 import { CategoriesTypes } from '../../types/Categories';
+import {
+  fetchPagination,
+  selectPagination,
+  selectPaginationLoadingStatus,
+} from '../../store/paginationSlice';
 import { CheckoutModal } from '../../components/CheckoutModal';
 
 export const ProductPage = () => {
-  const [total, setTotal] = useState(0);
-  const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [infoPage, setInfoPage] = useState<InfoPage>();
-  const dispatch = useDispatch();
-  const products = useAppSelector(selectProducts);
   const { page, perPage, sort, setSearchParams } = useSearchParams();
   const { type } = useParams();
 
@@ -29,23 +25,21 @@ export const ProductPage = () => {
   const API_URL = `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${type}`;
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}?page=${page}&perPage=${perPage}&sort=${sort}`)
-      .then((res) => {
-        dispatch(setProducts(res.data.records));
-        setInfoPage(res.data.info);
-        setTotal(res.data.info.totalRecords);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        console.log(e);
-        setIsError(e);
-      });
+    const query = {
+      type: type || '',
+      sort: sort,
+      page: page,
+      perPage: perPage,
+    };
+    dispatchPaginate(fetchPagination(query));
   }, [page, perPage, sort, type]);
 
   useEffect(() => {
     setIsLoading(true);
-  }, [type]);
+    if (paginateLoadingStatus !== 'loading') {
+      setIsLoading(false);
+    }
+  }, [type, paginateLoadingStatus]);
 
   const handleSearchParams = (setKey: string, value: string) => {
     setSearchParams((searchParams) => {
@@ -154,15 +148,14 @@ export const ProductPage = () => {
         </section>
         <section>
           <ProductList
-            products={products}
-            infoPage={infoPage}
+            products={products.records}
+            infoPage={products.info}
             status={isLoading}
             onStatus={setIsLoading}
             showModal={handleShowModal}
           />
         </section>
-        {isError && <p>Error...</p>}
-      </div>
+        </div>
 
       {isModalShown && (
         <CheckoutModal
