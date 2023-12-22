@@ -12,9 +12,10 @@ import { Link } from 'react-router-dom';
 type Props = {
   product: Product;
   type?: string | null;
+  showModal: () => void;
 };
 
-const ProductCard: React.FC<Props> = ({ product, type }) => {
+const ProductCard: React.FC<Props> = ({ product, type, showModal }) => {
   const favoritesStorageList = useAppSelector(selectFavoritesProducts);
   const cartStorageList = useAppSelector(selectCartProducts);
   const withDiscount = (price: number, discount: number) => {
@@ -94,6 +95,7 @@ const ProductCard: React.FC<Props> = ({ product, type }) => {
             )}
             id={product.itemId}
             category={product.category}
+            showModal={showModal}
           />
 
           <AddToFavorite

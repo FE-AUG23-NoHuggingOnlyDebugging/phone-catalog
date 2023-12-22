@@ -188,9 +188,7 @@ export const LoginForm = () => {
             <Modal setIsModal={setIsModal} />
           </div>
         )}
-        <p style={{ color: 'red', textAlign: 'center' }}>
-          {error && 'Error'}
-        </p>
+        <p style={{ color: 'red', textAlign: 'center' }}>{error && 'Error'}</p>
         <p style={{ color: 'green', textAlign: 'center' }}>
           {isLoading && 'Sending...'}
         </p>

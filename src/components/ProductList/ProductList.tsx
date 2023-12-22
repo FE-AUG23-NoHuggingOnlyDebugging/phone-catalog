@@ -17,6 +17,7 @@ type Props = {
   translateX?: number;
   status?: boolean;
   onStatus?: (isLoading: boolean) => void | null;
+  showModal: () => void;
 };
 
 const ProductList: React.FC<Props> = ({
@@ -26,6 +27,7 @@ const ProductList: React.FC<Props> = ({
   translateX = 0,
   status = false,
   onStatus = null,
+  showModal,
 }) => {
   const { perPage } = useSearchParams();
   return (
@@ -37,11 +39,14 @@ const ProductList: React.FC<Props> = ({
         style={{ transform: `translateX(calc(${translateX}%)` }}
       >
         {status
-          ? [
-            <ProductLoader key={0} perPage={Number(perPage) || 16} />
-          ]
+          ? [<ProductLoader key={0} perPage={Number(perPage) || 16} />]
           : products.map((product) => (
-            <ProductCard key={product.id} product={product} type={type} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              type={type}
+              showModal={showModal}
+            />
           ))}
       </div>
       {type !== 'slider' &&

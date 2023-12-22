@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 export const usePageError = (
-  initial: boolean
+  initial: boolean,
 ): [boolean, (b: boolean) => void] => {
   const [error, setError] = useState(initial);
 
