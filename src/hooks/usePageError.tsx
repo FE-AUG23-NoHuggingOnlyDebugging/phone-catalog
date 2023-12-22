@@ -1,10 +1,13 @@
 'use strict';
 
 import { useEffect, useState } from 'react';
+type Err = {
+  error: string;
+};
 
 export const usePageError = (
-  initial: boolean
-): [boolean, (b: boolean) => void] => {
+  initial: Err | null
+): [Err | null, (b: Err | null) => void] => {
   const [error, setError] = useState(initial);
 
   useEffect(() => {
@@ -13,7 +16,7 @@ export const usePageError = (
     }
 
     const timerId = setTimeout(() => {
-      setError(false);
+      setError(null);
     }, 3000);
 
     return () => {

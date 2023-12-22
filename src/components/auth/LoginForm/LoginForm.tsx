@@ -29,14 +29,13 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatcher = useAppDispatch();
-  const [error, setError] = usePageError(false);
+  const [error, setError] = usePageError(null);
 
   const user = useAppSelector(selectUser);
 
   if (user) {
     navigate(location.state.from || '/');
   }
-  console.log(location.state);
 
   const pattern = /^[^\W_]*$/;
 
@@ -54,7 +53,7 @@ export const LoginForm = () => {
       return;
     }
 
-    setError(false);
+    setError(null);
     setIsloading(true);
     try {
       const response = await fetch(
@@ -73,7 +72,7 @@ export const LoginForm = () => {
       );
 
       if (response.status >= 400) {
-        setError(true);
+        setError(await response.json());
 
         return;
       }
@@ -93,7 +92,6 @@ export const LoginForm = () => {
       navigate('/');
     } catch (error) {
       console.log((error as Error).message);
-      setError(true);
     } finally {
       setIsloading(false);
     }
@@ -190,7 +188,7 @@ export const LoginForm = () => {
           </div>
         )}
         <p style={{ color: 'red', textAlign: 'center' }}>
-          {error && 'Error'}
+          {error?.error}
         </p>
         <p style={{ color: 'green', textAlign: 'center' }}>
           {isLoading && 'Sending...'}

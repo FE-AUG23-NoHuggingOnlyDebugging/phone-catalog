@@ -8,6 +8,10 @@ import styles from './RegisterForm.module.scss';
 import cn from 'classnames';
 import { usePageError } from '../../../hooks/usePageError';
 
+/* type Err = {
+  error: string;
+}; */
+
 export const RegisterForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -17,7 +21,7 @@ export const RegisterForm = () => {
   const [hasEmailError, setHasEmailError] = useState(false);
   const [hasPassError, setHasPassError] = useState(false);
   const [isLoading, setIsloading] = useState(false);
-  const [error, setError] = usePageError(false);
+  const [error, setError] = usePageError(null);
 
   const navigate = useNavigate();
 
@@ -68,7 +72,7 @@ export const RegisterForm = () => {
       );
 
       if (res.status >= 400) {
-        setError(true);
+        setError(await res.json());
 
         return;
       }
@@ -76,7 +80,6 @@ export const RegisterForm = () => {
       navigate('/login');
     } catch (error) {
       console.log((error as Error).message);
-      setError(true);
     } finally {
       setIsloading(false);
     }
@@ -192,7 +195,7 @@ export const RegisterForm = () => {
           Have an account? <Link to="/login">Sign In</Link>
         </p>
       </div>
-      <p style={{ color: 'red', textAlign: 'center' }}>{error && 'Error'}</p>
+      <p style={{ color: 'red', textAlign: 'center' }}>{error?.error}</p>
       <p style={{ color: 'green', textAlign: 'center' }}>
         {isLoading && 'Sending...'}
       </p>
