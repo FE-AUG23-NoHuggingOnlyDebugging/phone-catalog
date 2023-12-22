@@ -52,29 +52,26 @@ const AddToCard: React.FC<Props> = ({
     SyncUserDataWithServer(cart, 'cart');
   };
 
-  return (
-    user ? (
-      <button
-        className={cn(styles.add_to_card, {
-          [styles.add_to_card__added]: added,
-        })
-        }
-        type="button"
-        onClick={added ? handleClickRemove : handleClickAdd}
-      >
-        {added ? 'Added to cart' : 'Add to cart'}
-      </button >
-    ) : (
-      <button
-        className={cn(styles.add_to_card, {
-          [styles.add_to_card__added]: added,
-        })}
-        type="button"
-        onClick={showModal}
-      >
-        {added ? 'Added to cart' : 'Add to cart'}
-      </button>
-    )
+  return user ? (
+    <button
+      className={cn(styles.add_to_card, {
+        [styles.add_to_card__added]: added,
+      })}
+      type="button"
+      onClick={added ? handleClickRemove : handleClickAdd}
+    >
+      {added ? 'Added to cart' : 'Add to cart'}
+    </button>
+  ) : (
+    <button
+      className={cn(styles.add_to_card, {
+        [styles.add_to_card__added]: added,
+      })}
+      type="button"
+      onClick={showModal}
+    >
+      {added ? 'Added to cart' : 'Add to cart'}
+    </button>
   );
 };
 
