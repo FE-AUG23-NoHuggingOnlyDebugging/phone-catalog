@@ -39,9 +39,7 @@ const ProductList: React.FC<Props> = ({
         style={{ transform: `translateX(calc(${translateX}%)` }}
       >
         {status
-          ? [
-            <ProductLoader key={0} perPage={Number(perPage) || 16} />
-          ]
+          ? [<ProductLoader key={0} perPage={Number(perPage) || 16} />]
           : products.map((product) => (
             <ProductCard
               key={product.id}
