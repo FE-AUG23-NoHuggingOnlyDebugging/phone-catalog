@@ -34,12 +34,16 @@ export const CheckoutModal: React.FC<Props> = ({
             'Failed to process the order. Something went wrong.'}
         </p>
 
-        <p className={styles.modal_body_text}>
-          To be able to add products to cart you should login first
-        </p>
-        <a href="#/login" className={styles.modal_body_link1}>
-          Sign in
-        </a>
+        {success === 'registerRequired' && (
+          <>
+            <p className={styles.modal_body_text}>
+              To be able to add products to cart you should login first
+            </p>
+            <a href="#/login" className={styles.modal_body_link1}>
+              Sign in
+            </a>
+          </>
+        )}
       </div>
     </div>
   );
