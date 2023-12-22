@@ -50,7 +50,8 @@ export const team = [
     gitHub: 'https://github.com/tetyana-pol',
     LinkedIn: 'https://www.linkedin.com/in/tetiana-poletaieva-09b45b144/',
     email: 'ptupob@gmail.com',
-    text: [`Hey! I'm a FullStack Developer! One of my notable achievements includes the successful implementation of a theme change functionality on this website, providing users with a personalized and visually appealing interface. ',
+    text: [
+      `Hey! I'm a FullStack Developer! One of my notable achievements includes the successful implementation of a theme change functionality on this website, providing users with a personalized and visually appealing interface. ',
       'In particular, my significant contribution to the project involved designing and implementing the main slider, positioned prominently on the homepage. The development of this slider not only added a visually captivating element to the website but also played a crucial role in showcasing essential content and capturing user attention. `,
     ],
   },
@@ -91,10 +92,11 @@ export const team = [
     gitHub: 'https://github.com/ivaZaiets',
     LinkedIn: 'https://www.linkedin.com/in/ivanna-zaiets-6122532a0/',
     email: 'iva.zaiets.dev@gmail.com',
-    text: ['Hey! I\'m a Front End Developer! One of my notable achievements includes the successful implementation of a theme change functionality on this website, providing users with a personalized and visually appealing interface. ',
+    text: [
+      'Hey! I\'m a Front End Developer! One of my notable achievements includes the successful implementation of a theme change functionality on this website, providing users with a personalized and visually appealing interface. ',
       'In particular, my significant contribution to the project involved designing and implementing the main slider, positioned prominently on the homepage. The development of this slider not only added a visually captivating element to the website but also played a crucial role in showcasing essential content and capturing user attention. ',
       'In addition, I took charge of enhancing the user authentication system. This involved implementing robust logic for both login and registration processes, ensuring a secure and efficient user onboarding experience. ',
-      'My careful attention to detail and adept problem-solving skills played a crucial role in the project\'s overall success.'
+      'My careful attention to detail and adept problem-solving skills played a crucial role in the project\'s overall success.',
     ],
   },
 ];
