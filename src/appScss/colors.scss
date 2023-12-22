@@ -23,6 +23,8 @@ $skeleton-gradient-color: #e2e6e9;
   --linkedIn-color: rgb(23, 122, 252);
   --email-color: #c01d17;
   --teamMember-shadow-color: rgba(0, 0, 0, 0.75);
+  --user-bg-color: #f1f2f9;
+  --user-subTitle-color: #89939a;
 }
 
 [theme='dark'] {
@@ -47,4 +49,6 @@ $skeleton-gradient-color: #e2e6e9;
   --linkedIn-color: white;
   --email-color: white;
   --teamMember-shadow-color: rgba(144, 91, 255, 0.3);
+  --user-bg-color: #161827;
+  --user-subTitle-color: #905bff;
 }

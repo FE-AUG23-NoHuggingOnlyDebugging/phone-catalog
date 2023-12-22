@@ -1,7 +1,10 @@
 @import '../../appScss/colors.scss';
+@import '../../pages/ProductDetailsPage/ProductDetails-mixins.scss';
+@import '../../appScss/mixins.scss';
 
 .userPage {
-  width: 1136px;
+  max-width: 1136px;
+  min-height: 75vh;
 
   &__title {
     color: var(--primary-color);
@@ -10,47 +13,184 @@
     line-height: 56px;
     letter-spacing: -0.48px;
     margin-bottom: 38px;
+
+    @include onPhone {
+      font-size: 36px;
+    }
   }
 
   &__userInfo {
-    background-color: var(--card-border);
+    background-color: var(--user-bg-color);
     padding: 20px;
     border-radius: 10px;
     width: 40%;
+    height: 300px;
+
+    @include onTablet {
+      width: 100%;
+    }
+
+    @include onPhone {
+      height: 100%;
+    }
   }
 
   &__main {
     margin-bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+
+    @include onTablet {
+      gap: 50px;
+      flex-direction: column;
+    }
   }
 
   &__subTitle {
     font-size: 22px;
-    color: var(--btn);
+    color: var(--user-subTitle-color);
     margin-bottom: 8px;
+
+    @include onPhone {
+      font-size: 16px;
+    }
   }
 
   &__value {
-    font-size: 30px;
+    font-size: 20px;
     color: var(--primary-color);
     margin-bottom: 32px;
+
+    @include onPhone {
+      font-size: 16px;
+    }
   }
 
   &__button {
-    background-color: red;
+    background-color: var(--user-subTitle-color);
     border: none;
     color: white;
     display: flex;
     align-items: center;
+    text-decoration: none;
+    width: 170px;
     cursor: pointer;
     gap: 10px;
     border-radius: 20px;
     font-size: 20px;
-    border: 2px solid red;
+    border: 2px solid var(--user-subTitle-color);
     padding: 15px 30px;
+
+    @include onPhone {
+      padding: 5px 10px;
+      width: 100px;
+      font-size: 14px;
+    }
 
     &:hover {
       background-color: white;
-      color: red;
+      color: var(--user-subTitle-color);
+    }
+
+    &:hover .userPage__door {
+      fill: var(--user-subTitle-color);
+    }
+  }
+
+  &__dontHaveOrders {
+    @include onTablet {
+      margin: 0 auto;
+    }
+  }
+
+  &__door {
+    fill: white;
+    transition: none;
+  }
+
+  &__smileBlock {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__smile {
+    fill: var(--primary-color);
+    width: 200px;
+    height: 200px;
+  }
+
+  &__orders {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--user-bg-color);
+    padding: 30px;
+    border-radius: 10px;
+
+    @include onTablet {
+      justify-content: flex-start;
+    }
+  }
+
+  &__stroke {
+    stroke: var(--primary-color);
+  }
+
+  &__noOrdersText {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 40px;
+  }
+
+  &__ordersByDate {
+    @include ProductDetails-PseudoElement {
+      margin: 30px 0;
+    }
+  }
+
+  &__ordersDate {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__dateTitle {
+    color: var(--btn);
+    margin-bottom: 15px;
+  }
+
+  &__productItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &_image {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      pointer-events: none;
+
+      @include onPhone {
+        width: 60px;
+        height: 80px;
+      }
+    }
+
+    &_title {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+
+      @include onPhone {
+        font-size: 12px;
+      }
+    }
+
+    &_counter {
+      color: var(--primary-color);
+    }
+
+    &_price {
+      color: var(--primary-color);
     }
   }
 }

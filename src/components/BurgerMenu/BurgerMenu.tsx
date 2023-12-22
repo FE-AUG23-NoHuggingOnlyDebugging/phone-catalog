@@ -6,24 +6,24 @@ import CartIcon from '../CartIcon/CartIcon';
 import FavouriteIcon from '../FavouriteIcon/FavouriteIcon';
 import { useAppSelector } from '../../store/hooks';
 import { selectUser } from '../../store/userSlice';
+import disableScroll from 'disable-scroll';
 
 const isActiveLink = ({ isActive }: { isActive: boolean }) =>
   cn(styles.navbar__item, { [styles.navbar__highlight]: isActive });
 
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const user = useAppSelector(selectUser);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    const body = document.body;
-    if (body.style.overflow === 'scroll') {
-      body.style.overflow = 'hidden';
+
+    if (isOpen) {
+      disableScroll.off();
     } else {
-      body.style.overflow = 'scroll';
+      disableScroll.on();
     }
   };
-
-  const user = useAppSelector(selectUser);
 
   return (
     <>
@@ -74,6 +74,14 @@ const BurgerMenu = () => {
                     onClick={toggleMenu}
                   >
                     Accessories
+                  </NavLink>
+
+                  <NavLink
+                    to={user ? '/user' : '/login'}
+                    className={isActiveLink}
+                    onClick={toggleMenu}
+                  >
+                    {user ? 'User Profile' : 'Login'}
                   </NavLink>
                 </div>
               </div>

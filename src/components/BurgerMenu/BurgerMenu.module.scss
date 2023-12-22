@@ -27,7 +27,7 @@
 }
 
 .menu_items {
-  height: 568px;
+  height: calc(100vh - 48px);
   width: 100%;
   background-color: var(--card-bg);
   border: 1px solid var(--elements-color);
