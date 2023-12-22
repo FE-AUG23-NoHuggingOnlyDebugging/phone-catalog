@@ -1,6 +1,7 @@
 'use strict';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import cn from 'classnames';
 import { useSearchParams } from '../../utils/useSearchParams';
 import styles from './ProductPage.module.scss';
 import ProductList from '../../components/ProductList/ProductList';
@@ -11,6 +12,7 @@ import { useAppSelector } from '../../store/hooks';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import { useParams } from 'react-router-dom';
 import { CategoriesTypes } from '../../types/Categories';
+import { CheckoutModal } from '../../components/CheckoutModal';
 
 export const ProductPage = () => {
   const [total, setTotal] = useState(0);
@@ -21,6 +23,8 @@ export const ProductPage = () => {
   const products = useAppSelector(selectProducts);
   const { page, perPage, sort, setSearchParams } = useSearchParams();
   const { type } = useParams();
+
+  const [isModalShown, setIsModalShown] = useState(false);
 
   const API_URL = `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${type}`;
 
@@ -101,49 +105,68 @@ export const ProductPage = () => {
     return currenType;
   };
 
-  return (
-    <div className={`${styles.wrapper} ${styles.catalog}`}>
-      <section className={styles.catalog__info}>
-        <h2 className={styles.catalog__title}>{pageTitle(type)}</h2>
-        <p className={styles.catalog__modelCount}>
-          {!isLoading ? `${total} models` : 'Counting models...'}
-        </p>
-      </section>
+  const handleShowModal = () => {
+    setIsModalShown(true);
+  };
 
-      <section className={styles.catalog__filters}>
-        <div>
-          <p className={styles.catalog__filters_title}>Sort by</p>
-          <Dropdown
-            list={listSort}
-            currentItem={checkItem(sort || '', 'sort', listSort)}
-            setOn={'sort'}
-            onHandle={handleSearchParams}
+  const handleCloseClick = () => {
+    setIsModalShown(false);
+  };
+
+  return (
+    <>
+      <div
+        className={cn(styles.wrapper, styles.catalog, {
+          [styles.wrapper__isModal]: isModalShown,
+        })}>
+        <section className={styles.catalog__info}>
+          <h2 className={styles.catalog__title}>{pageTitle(type)}</h2>
+          <p className={styles.catalog__modelCount}>
+            {!isLoading ? `${total} models` : 'Counting models...'}
+          </p>
+        </section>
+
+        <section className={styles.catalog__filters}>
+          <div>
+            <p className={styles.catalog__filters_title}>Sort by</p>
+            <Dropdown
+              list={listSort}
+              currentItem={checkItem(sort || '', 'sort', listSort)}
+              setOn={'sort'}
+              onHandle={handleSearchParams}
+            />
+          </div>
+          <div>
+            <p className={styles.catalog__filters_title}>Items on page</p>
+            <Dropdown
+              list={listPerPage}
+              currentItem={checkItem(
+                perPage.toString() || '',
+                'perPage',
+                listPerPage,
+              )}
+              setOn={'perPage'}
+              onHandle={handleSearchParams}
+              rootClassName={'set-width'}
+            />
+          </div>
+        </section>
+        <section>
+          <ProductList
+            products={products}
+            infoPage={infoPage}
+            status={isLoading}
+            onStatus={setIsLoading}
+            showModal={handleShowModal}
           />
-        </div>
-        <div>
-          <p className={styles.catalog__filters_title}>Items on page</p>
-          <Dropdown
-            list={listPerPage}
-            currentItem={checkItem(
-              perPage.toString() || '',
-              'perPage',
-              listPerPage,
-            )}
-            setOn={'perPage'}
-            onHandle={handleSearchParams}
-            rootClassName={'set-width'}
-          />
-        </div>
-      </section>
-      <section>
-        <ProductList
-          products={products}
-          infoPage={infoPage}
-          status={isLoading}
-          onStatus={setIsLoading}
-        />
-      </section>
-      {isError && <p>Error...</p>}
-    </div>
+        </section>
+        {isError && <p>Error...</p>}
+      </div>
+
+      {isModalShown && <CheckoutModal
+        status='registerRequired'
+        handleCloseClick={handleCloseClick}
+      />}
+    </>
   );
 };

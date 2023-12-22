@@ -32,7 +32,7 @@ export const CartPage = () => {
   }
 
   const [isModalShown, setIsModalShown] = useState(false);
-  const [isOrderSuccessful, setIsOrderSuccessful] = useState(true);
+  const [orderState, setOrderState] = useState<'success' | 'failed' | 'registerRequired'>('success');
   const [isCheckoutDisabled, setIsCheckoutDisabled] = useState(false);
 
   const dispatch = useDispatch();
@@ -97,7 +97,7 @@ export const CartPage = () => {
         body: JSON.stringify({ order: cartStorageList }),
       },
     )
-      .catch(() => setIsOrderSuccessful(false))
+      .catch(() => setOrderState('failed'))
       .finally(() => {
         setIsModalShown(true);
 
@@ -109,7 +109,7 @@ export const CartPage = () => {
     setIsModalShown(false);
     setIsCheckoutDisabled(false);
 
-    if (isOrderSuccessful) {
+    if (orderState === 'success') {
       const cart = JSON.stringify({
         cart: [],
       });
@@ -187,7 +187,7 @@ export const CartPage = () => {
       </div>
       {isModalShown && (
         <CheckoutModal
-          success={isOrderSuccessful}
+          status={orderState}
           handleCloseClick={handleCloseClick}
         />
       )}

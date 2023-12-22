@@ -92,7 +92,6 @@
       margin: 21px 22px 0 0;
       position: relative;
 
-
       @include onlyForHeader {
         margin: 15px 16px 0 0;
       }
@@ -133,9 +132,9 @@
         &:hover {
           background-color: #313237ee;
         }
+      }
     }
   }
-}
 
   &__highlight {
     color: var(--primary-color);
@@ -164,7 +163,7 @@
 }
 
 [theme='dark'] {
-  .dark_theme_logo_color, 
+  .dark_theme_logo_color,
   .dark_theme_user_icon {
     filter: invert(100%);
   }
@@ -174,6 +173,6 @@
       &:hover {
         background-color: var(--btn-hover);
       }
-  }
+    }
   }
 }

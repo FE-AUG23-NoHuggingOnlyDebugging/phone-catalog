@@ -1,5 +1,5 @@
 import styles from './AddToCard.module.scss';
-import React from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames';
 import {
   addToCart,
@@ -9,14 +9,18 @@ import {
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { SyncUserDataWithServer } from '../../utils/helpers/SyncUserDataWithServer';
 import { selectUser } from '../../store/userSlice';
+import { CheckoutModal } from '../CheckoutModal';
 
 type Props = {
   added?: boolean;
   id: string;
   category: string;
+  showModal: () => void;
 };
 
-const AddToCard: React.FC<Props> = ({ added = false, id, category }) => {
+const AddToCard: React.FC<Props> = ({ added = false, id, category, showModal }) => {
+  const [isModalShown, setIsModalShown] = useState(false);
+
   const dispatcher = useAppDispatch();
   const cartInBrowser = useAppSelector(selectCartProducts);
 
@@ -46,22 +50,38 @@ const AddToCard: React.FC<Props> = ({ added = false, id, category }) => {
     SyncUserDataWithServer(cart, 'cart');
   };
 
-  return user ? (
-    <button
-      className={cn(styles.add_to_card, { [styles.add_to_card__added]: added })}
-      type="button"
-      onClick={added ? handleClickRemove : handleClickAdd}
-    >
-      {added ? 'Added to cart' : 'Add to cart'}
-    </button>
-  ) : (
-    <button
-      className={cn(styles.add_to_card, { [styles.add_to_card__added]: added })}
-      type="button"
-      onClick={() => alert('Login first')}
-    >
-      {added ? 'Added to cart' : 'Add to cart'}
-    </button>
+  const handleCloseClick = () => {
+    setIsModalShown(false);
+  };
+
+  return (
+    <>
+      {user ? (
+        <button
+          className={cn(styles.add_to_card, { [styles.add_to_card__added]: added })}
+          type="button"
+          onClick={added ? handleClickRemove : handleClickAdd}
+        >
+          {added ? 'Added to cart' : 'Add to cart'}
+        </button>
+      ) : (
+        <button
+          className={cn(styles.add_to_card, {
+            [styles.add_to_card__added]: added,
+          })}
+          type="button"
+          onClick={showModal}
+        >
+          {added ? 'Added to cart' : 'Add to cart'}
+        </button>
+      )}
+
+      {isModalShown && <CheckoutModal
+        status='registerRequired'
+        handleCloseClick={handleCloseClick}
+      />}
+    </>
   );
 };
+
 export default AddToCard;

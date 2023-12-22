@@ -5,6 +5,10 @@
 .features {
   width: 320px;
 
+  &__is_modal {
+    position: relative;
+  }
+
   @include onTablet {
     width: 50%;
   }

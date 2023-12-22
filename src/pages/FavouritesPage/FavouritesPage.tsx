@@ -8,12 +8,15 @@ import { selectFavoritesProducts } from '../../store/favoriteSlice';
 import styles from './FavouritesPage.module.scss';
 import { useAppSelector } from '../../store/hooks';
 import { Product } from '../../types/Product';
+import { CheckoutModal } from '../../components/CheckoutModal';
 
 export const FavouritesPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const elements = useAppSelector(selectFavoritesProducts);
+
+  const [isModalShown, setIsModalShown] = useState(false);
 
   useEffect(() => {
     const getCart = async () => {
@@ -37,24 +40,43 @@ export const FavouritesPage = () => {
     getCart();
   }, [elements]);
 
+  const handleShowModal = () => {
+    setIsModalShown(true);
+  };
+
+  const handleCloseClick = () => {
+    setIsModalShown(false);
+  };
+
   return (
-    <div
-      className={cn(styles.page, {
-        [styles.page__empty]: (products.length <= 1 || isError) && !isLoading,
-      })}
-    >
-      <div className={styles.favorites_info}>
-        <h1 className={styles.title}>Favourites Page</h1>
-        <p className={styles.modelCount}>{`${elements.length} items`}</p>
+    <>
+      <div
+        className={cn(styles.page, {
+          [styles.page__empty]: (products.length <= 1 || isError) && !isLoading,
+        })}
+      >
+        <div className={styles.favorites_info}>
+          <h1 className={styles.title}>Favourites Page</h1>
+          <p className={styles.modelCount}>{`${elements.length} items`}</p>
+        </div>
+
+        {isError && (
+          <p className={styles.error_message}>
+            An error occurred while receiving data
+          </p>
+        )}
+
+        <ProductList
+          products={products}
+          status={isLoading}
+          showModal={handleShowModal}
+        />
       </div>
 
-      {isError && (
-        <p className={styles.error_message}>
-          An error occurred while receiving data
-        </p>
-      )}
-
-      <ProductList products={products} status={isLoading} />
-    </div>
+      {isModalShown && <CheckoutModal
+        status='registerRequired'
+        handleCloseClick={handleCloseClick}
+      />}
+    </>
   );
 };
