@@ -1,14 +1,9 @@
 @import '../../../appScss/colors.scss';
 @import '../../../appScss/typography.scss';
-
-@mixin onDesktop {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
+@import '../../../appScss/mixins.scss';
 
 @mixin onTablet {
-  @media (min-width: 640px) {
+  @media (min-width: 700px) {
     @content;
   }
 }
