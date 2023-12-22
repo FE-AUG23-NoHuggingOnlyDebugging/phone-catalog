@@ -7,7 +7,15 @@ import { persistStore, persistReducer } from 'redux-persist';
 
 import thunk from 'redux-thunk';
 import productsSlice from './productsSlice';
+import recommendedSlice from './recommendedSlice';
 import userSlice from './userSlice';
+import paginationSlice from './paginationSlice';
+import productDetailSlice from './productDetailSlice';
+import productSortSlice from './productSortSlice';
+import productNewSlice from './productNewSlice';
+import productDiscountSlice from './productDiscountSlice';
+import carouselSlice from './carouselSlice';
+import categorySlice from './categorySlice';
 
 const persistConfigFavorite = {
   //add
@@ -27,7 +35,14 @@ const rootReducer = combineReducers({
   favorite: persistReducer(persistConfigFavorite, favoriteSlice),
   cart: persistReducer(persistConfigCart, cartSlice),
   products: productsSlice,
-  //any slice
+  recommended: recommendedSlice,
+  pagination: paginationSlice,
+  productDetail: productDetailSlice,
+  productSort: productSortSlice,
+  productNew: productNewSlice,
+  productDiscount: productDiscountSlice,
+  carousel: carouselSlice,
+  category: categorySlice,
 });
 
 export const store = configureStore({
