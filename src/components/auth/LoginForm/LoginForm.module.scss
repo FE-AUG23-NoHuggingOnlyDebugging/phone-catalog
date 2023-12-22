@@ -10,9 +10,7 @@
 .form {
   width: 400px;
   padding: 30px 40px;
-
   border: 2px solid rgba(0, 0, 0, 0.171);
-
   color: var(--primary-color);
   box-shadow: 10px 10px 8px 1px rgba(30, 30, 37, 0.192);
 
@@ -46,8 +44,6 @@
 
       background: transparent;
       color: var(--primary-color);
-
-      @include uppercase;
 
       &_error {
         border: 2px solid var(--red-color);

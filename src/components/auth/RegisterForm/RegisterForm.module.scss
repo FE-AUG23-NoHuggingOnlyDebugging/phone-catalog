@@ -41,8 +41,6 @@
       background: transparent;
       color: var(--primary-color);
 
-      @include uppercase;
-
       &_error {
         border: 2px solid var(--red-color);
 

@@ -7,10 +7,12 @@ import { MdEmail } from 'react-icons/md';
 import styles from './RegisterForm.module.scss';
 import cn from 'classnames';
 import { usePageError } from '../../../hooks/usePageError';
-
-/* type Err = {
-  error: string;
-}; */
+import { loadUserFavorites } from '../../../utils/helpers/loadUserFavorites';
+import { loadUserCart } from '../../../utils/helpers/loadUserCart';
+import { addUser } from '../../../store/userSlice';
+import { replaceCart } from '../../../store/cartSlice';
+import { addFavoritesFromDb } from '../../../store/favoriteSlice';
+import { useAppDispatch } from '../../../store/hooks';
 
 export const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -24,6 +26,7 @@ export const RegisterForm = () => {
   const [error, setError] = usePageError(null);
 
   const navigate = useNavigate();
+  const dispatcher = useAppDispatch();
 
   const reset = () => {
     setName('');
@@ -77,7 +80,18 @@ export const RegisterForm = () => {
         return;
       }
 
-      navigate('/login');
+      const userDataFromServer = await res.json();
+
+      const data = await loadUserFavorites();
+      const cart = await loadUserCart();
+
+      dispatcher(addUser(userDataFromServer));
+
+      dispatcher(replaceCart(cart));
+
+      dispatcher(addFavoritesFromDb(data));
+
+      navigate('/');
     } catch (error) {
       console.log((error as Error).message);
     } finally {
