@@ -6,6 +6,7 @@ import { MdEmail } from 'react-icons/md';
 
 import styles from './RegisterForm.module.scss';
 import cn from 'classnames';
+import { usePageError } from '../../../hooks/usePageError';
 
 export const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -16,6 +17,7 @@ export const RegisterForm = () => {
   const [hasEmailError, setHasEmailError] = useState(false);
   const [hasPassError, setHasPassError] = useState(false);
   const [isLoading, setIsloading] = useState(false);
+  const [error, setError] = usePageError(false);
 
   const navigate = useNavigate();
 
@@ -53,7 +55,7 @@ export const RegisterForm = () => {
     setIsloading(true);
 
     try {
-      await fetch(
+      const res = await fetch(
         'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signUp',
         {
           method: 'POST',
@@ -65,9 +67,16 @@ export const RegisterForm = () => {
         },
       );
 
+      if (res.status >= 400) {
+        setError(true);
+
+        return;
+      }
+
       navigate('/login');
     } catch (error) {
       console.log((error as Error).message);
+      setError(true);
     } finally {
       setIsloading(false);
     }
@@ -183,6 +192,10 @@ export const RegisterForm = () => {
           Have an account? <Link to="/login">Sign In</Link>
         </p>
       </div>
+      <p style={{ color: 'red', textAlign: 'center' }}>{error && 'Error'}</p>
+      <p style={{ color: 'green', textAlign: 'center' }}>
+        {isLoading && 'Sending...'}
+      </p>
     </form>
   );
 };

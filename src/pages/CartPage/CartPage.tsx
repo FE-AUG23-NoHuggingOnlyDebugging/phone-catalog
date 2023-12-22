@@ -118,7 +118,7 @@ export const CartPage = () => {
       dispatch(clearCart());
       setProducts([]);
 
-      window.history.back();
+      navigate('/');
     }
   };
 
