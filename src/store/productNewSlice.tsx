@@ -2,8 +2,8 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {Product} from '../types/Product';
-import {RootState} from './store';
+import { Product } from '../types/Product';
+import { RootState } from './store';
 
 export interface ProductNew {
   goods: Product[];
@@ -15,21 +15,17 @@ const initialState: ProductNew = {
   productNewStatus: 'loading',
 };
 
-export const fetchProductNew = createAsyncThunk(
-  'fetchProductNew',
-  async () => {
-    const response = await axios.get(
-      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/new',
-    );
-    return response.data.records; // Explicitly return the data from the axios call
-  }
-);
+export const fetchProductNew = createAsyncThunk('fetchProductNew', async () => {
+  const response = await axios.get(
+    'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/new',
+  );
+  return response.data.records; // Explicitly return the data from the axios call
+});
 
 export const productNewSlice = createSlice({
   name: 'productNew',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchProductNew.pending, (state) => {
@@ -42,11 +38,12 @@ export const productNewSlice = createSlice({
       .addCase(fetchProductNew.rejected, (state) => {
         state.productNewStatus = 'error';
       })
-      .addDefaultCase(() => { });
-  }
+      .addDefaultCase(() => {});
+  },
 });
 
 export const selectProductNew = (state: RootState) => state.productNew.goods;
-export const selectProductNewLoadingStatus = (state: RootState) => state.productNew.productNewStatus;
+export const selectProductNewLoadingStatus = (state: RootState) =>
+  state.productNew.productNewStatus;
 
 export default productNewSlice.reducer;

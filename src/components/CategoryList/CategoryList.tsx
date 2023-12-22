@@ -1,27 +1,22 @@
 import styles from './categoryList.module.scss';
 
 import CategoryItem from '../CategoryItem/CategoryItem';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Categories } from '../../types/Categories';
+import { useEffect } from 'react';
 import CategoryLoader from '../CategoryLoader/CategoryLoader';
+import { useAppSelector, useThunkDispatch } from '../../store/hooks';
+import {
+  fetchCategory,
+  selectCategory,
+  selectCategoryLoadingStatus,
+} from '../../store/categorySlice';
 
-const API_URL =
-  'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/categories';
 const CategoryList = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [category, setCategory] = useState<Categories[]>([]);
+  const dispatchCategory = useThunkDispatch();
+  const category = useAppSelector(selectCategory);
+  const categoryStatus = useAppSelector(selectCategoryLoadingStatus);
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}`)
-      .then((res) => {
-        setCategory(res.data);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        console.error('Сталася помилка при отриманні даних:', e);
-      });
+    dispatchCategory(fetchCategory());
   }, []);
 
   return (
@@ -29,7 +24,7 @@ const CategoryList = () => {
       <h2 className={styles.category_list__title}>Shop by category</h2>
 
       <ul className={styles.category_list__content}>
-        {!isLoading
+        {categoryStatus !== 'loading'
           ? category.map((info) => (
             <CategoryItem
               image={{

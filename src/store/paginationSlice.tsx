@@ -2,14 +2,14 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {Product} from '../types/Product';
-import {RootState} from './store';
-import {InfoPage} from '../types/InfoPage';
+import { Product } from '../types/Product';
+import { RootState } from './store';
+import { InfoPage } from '../types/InfoPage';
 
 export interface Pagination {
   goods: {
-    records: Product[],
-    info: InfoPage | null,
+    records: Product[];
+    info: InfoPage | null;
   };
   paginationLoadingStatus: 'idle' | 'loading' | 'error';
 }
@@ -17,27 +17,37 @@ export interface Pagination {
 const initialState: Pagination = {
   goods: {
     records: [],
-    info: null
+    info: null,
   },
   paginationLoadingStatus: 'loading',
 };
 
-const API_URL = 'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/';
+const API_URL =
+  'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/';
 export const fetchPagination = createAsyncThunk(
   'fetchPagination',
-  async ({ type, page = '1', perPage = '16', sort = '' }: { type: string, page: string | number; perPage: string | number; sort: string }) => {
+  async ({
+    type,
+    page = '1',
+    perPage = '16',
+    sort = '',
+  }: {
+    type: string;
+    page: string | number;
+    perPage: string | number;
+    sort: string;
+  }) => {
     const response = await axios.get(
       `${API_URL}${type}/?page=${page}&perPage=${perPage}&sort=${sort}`,
     );
     return response.data;
-  }
+  },
 );
 
 export const paginationSlice = createSlice({
   name: 'pagination',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchPagination.pending, (state) => {
@@ -50,11 +60,12 @@ export const paginationSlice = createSlice({
       .addCase(fetchPagination.rejected, (state) => {
         state.paginationLoadingStatus = 'error';
       })
-      .addDefaultCase(() => { });
-  }
+      .addDefaultCase(() => {});
+  },
 });
 
 export const selectPagination = (state: RootState) => state.pagination.goods;
-export const selectPaginationLoadingStatus = (state: RootState) => state.pagination.paginationLoadingStatus;
+export const selectPaginationLoadingStatus = (state: RootState) =>
+  state.pagination.paginationLoadingStatus;
 
 export default paginationSlice.reducer;

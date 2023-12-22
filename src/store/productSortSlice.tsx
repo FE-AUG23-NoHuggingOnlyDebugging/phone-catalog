@@ -2,8 +2,8 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {Product} from '../types/Product';
-import {RootState} from './store';
+import { Product } from '../types/Product';
+import { RootState } from './store';
 
 export interface ProductSort {
   goods: Product[];
@@ -22,14 +22,13 @@ export const fetchProductSort = createAsyncThunk(
       `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${sort}`,
     );
     return response.data; // Explicitly return the data from the axios call
-  }
+  },
 );
 
 export const productSortSlice = createSlice({
   name: 'productSort',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchProductSort.pending, (state) => {
@@ -42,11 +41,12 @@ export const productSortSlice = createSlice({
       .addCase(fetchProductSort.rejected, (state) => {
         state.productSortStatus = 'error';
       })
-      .addDefaultCase(() => { });
-  }
+      .addDefaultCase(() => {});
+  },
 });
 
 export const selectProductSort = (state: RootState) => state.productSort.goods;
-export const selectProductSortLoadingStatus = (state: RootState) => state.productSort.productSortStatus;
+export const selectProductSortLoadingStatus = (state: RootState) =>
+  state.productSort.productSortStatus;
 
 export default productSortSlice.reducer;

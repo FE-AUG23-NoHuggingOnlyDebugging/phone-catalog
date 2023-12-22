@@ -2,61 +2,60 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ProductDetails } from '../../types/ProductDetails';
 import style from './ProductDetailsPage.module.scss';
 import { Description } from './Components/DescriptionDetails/DescriptionDetails';
 import { Features } from './Components/FeaturesBlock/Features';
 import { Gallery } from './Components/GalleryBlock/Gallery';
-import axios from 'axios';
 import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 import ProductsSlider from '../../components/ProductsSlider/ProductsSlider';
-import { setProducts } from '../../store/productsSlice';
-import { useDispatch } from 'react-redux';
 import { ProductDetailsSkeleton } from '../../components/ProductDetailsSkeleton/ProductDetailsSkeleton';
 import { GoBackButton } from '../../components/GoBackButton';
-
+import {
+  fetchRecommended,
+  selectRecommended,
+  selectRecommendedLoadingStatus,
+} from '../../store/recommendedSlice';
+import { useAppSelector, useThunkDispatch } from '../../store/hooks';
+import {
+  fetchProductDetail,
+  selectProductDetail,
+  selectProductDetailLoadingStatus,
+} from '../../store/productDetailSlice';
 export const ProductDetailsPage = () => {
-  const { productId } = useParams();
-  const { type } = useParams();
-
-  const API_URL = `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${productId}/recommended`;
-  const [product, setProduct] = useState<ProductDetails | null>(null);
-  const [mainImage, setMainImage] = useState(product?.images[0]);
+  const { productId, type } = useParams();
   const [activeColor, setActiveColor] = useState<string | null>(null);
   const [activeMemory, setActiveMemory] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
-  const [isLoadingSlider, setIsLoadingSlider] = useState(true);
-  const dispatch = useDispatch();
+  const recommended = useAppSelector(selectRecommended);
+  const isLoadingSlider = useAppSelector(selectRecommendedLoadingStatus);
+  const dispatchRecommended = useThunkDispatch();
+
+  const product = useAppSelector(selectProductDetail);
+  const paginateLoadingStatus = useAppSelector(
+    selectProductDetailLoadingStatus,
+  );
+  const dispatchProductDetail = useThunkDispatch();
+
+  const [mainImage, setMainImage] = useState(product?.images[0]);
 
   useEffect(() => {
-    setIsError(false);
+    if (type && productId) {
+      const query = {
+        type: type || '',
+        id: productId || '',
+      };
+      dispatchProductDetail(fetchProductDetail(query));
 
-    axios
-      .get<ProductDetails>(
-        `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${type}/${productId}`,
-      )
-      .then((res) => {
-        setProduct(res.data);
-        setMainImage(res.data.images[0]);
-        setActiveColor(res.data.color);
-        setActiveMemory(res.data.capacity.toLocaleLowerCase());
-      })
-      .catch(() => setIsError(true))
-      .finally(() => setIsLoading(false));
+      setMainImage(product?.images[0] || '');
+      setActiveColor(product?.color || '');
+      setActiveMemory(product?.capacity.toLocaleLowerCase() || '');
+      setIsError(paginateLoadingStatus === 'error');
+    }
   }, [productId]);
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}`)
-      .then((res) => {
-        dispatch(setProducts(res.data));
-        setIsLoadingSlider(false);
-      })
-      .catch((e) => {
-        console.error('Сталася помилка при отриманні даних:', e);
-      });
+    dispatchRecommended(fetchRecommended(productId || ''));
   }, []);
 
   const specs = [
@@ -73,9 +72,9 @@ export const ProductDetailsPage = () => {
   return (
     <>
       <GoBackButton />
-      {isLoading && <ProductDetailsSkeleton />}
+      {paginateLoadingStatus === 'loading' && <ProductDetailsSkeleton />}
       {isError && <NotFoundPage />}
-      {product && !isError && !isLoading && (
+      {product && !isError && paginateLoadingStatus !== 'loading' && (
         <>
           <section className={style.product}>
             <div>
@@ -85,7 +84,7 @@ export const ProductDetailsPage = () => {
                 <Gallery
                   product={product}
                   setMainImage={setMainImage}
-                  mainImage={mainImage}
+                  mainImage={mainImage || product?.images[0]}
                 />
 
                 <Features
@@ -103,7 +102,11 @@ export const ProductDetailsPage = () => {
             </div>
           </section>
 
-          <ProductsSlider title="You may also like" status={isLoadingSlider} />
+          <ProductsSlider
+            title="You may also like"
+            products={recommended}
+            status={isLoadingSlider === 'loading'}
+          />
         </>
       )}
     </>

@@ -2,8 +2,8 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {Data} from '../types/SliderPromo';
-import {RootState} from './store';
+import { Data } from '../types/SliderPromo';
+import { RootState } from './store';
 
 export interface Carousel {
   goods: Data[];
@@ -15,21 +15,17 @@ const initialState: Carousel = {
   carouselStatus: 'loading',
 };
 
-export const fetchCarousel = createAsyncThunk(
-  'fetchCarousel',
-  async () => {
-    const response = await axios.get(
-      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/slider',
-    );
-    return response.data.images; // Explicitly return the data from the axios call
-  }
-);
+export const fetchCarousel = createAsyncThunk('fetchCarousel', async () => {
+  const response = await axios.get(
+    'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/slider',
+  );
+  return response.data.images; // Explicitly return the data from the axios call
+});
 
 export const carouselSlice = createSlice({
   name: 'carousel',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCarousel.pending, (state) => {
@@ -42,11 +38,12 @@ export const carouselSlice = createSlice({
       .addCase(fetchCarousel.rejected, (state) => {
         state.carouselStatus = 'error';
       })
-      .addDefaultCase(() => { });
-  }
+      .addDefaultCase(() => {});
+  },
 });
 
 export const selectCarousel = (state: RootState) => state.carousel.goods;
-export const selectCarouselLoadingStatus = (state: RootState) => state.carousel.carouselStatus;
+export const selectCarouselLoadingStatus = (state: RootState) =>
+  state.carousel.carouselStatus;
 
 export default carouselSlice.reducer;

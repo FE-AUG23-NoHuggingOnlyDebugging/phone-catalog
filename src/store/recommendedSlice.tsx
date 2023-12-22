@@ -2,8 +2,8 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {Product} from '../types/Product';
-import {RootState} from './store';
+import { Product } from '../types/Product';
+import { RootState } from './store';
 
 export interface Recommended {
   goods: Product[];
@@ -22,14 +22,13 @@ export const fetchRecommended = createAsyncThunk(
       `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/${id}/recommended`,
     );
     return response.data; // Explicitly return the data from the axios call
-  }
+  },
 );
 
 export const recommendedSlice = createSlice({
   name: 'recommended',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecommended.pending, (state) => {
@@ -42,11 +41,12 @@ export const recommendedSlice = createSlice({
       .addCase(fetchRecommended.rejected, (state) => {
         state.recommendedLoadingStatus = 'error';
       })
-      .addDefaultCase(() => { });
-  }
+      .addDefaultCase(() => {});
+  },
 });
 
 export const selectRecommended = (state: RootState) => state.recommended.goods;
-export const selectRecommendedLoadingStatus = (state: RootState) => state.recommended.recommendedLoadingStatus;
+export const selectRecommendedLoadingStatus = (state: RootState) =>
+  state.recommended.recommendedLoadingStatus;
 
 export default recommendedSlice.reducer;

@@ -2,8 +2,8 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {Product} from '../types/Product';
-import {RootState} from './store';
+import { Product } from '../types/Product';
+import { RootState } from './store';
 
 export interface ProductDiscount {
   goods: Product[];
@@ -22,14 +22,13 @@ export const fetchProductDiscount = createAsyncThunk(
       'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/discount',
     );
     return response.data.records;
-  }
+  },
 );
 
 export const productDiscountSlice = createSlice({
   name: 'productDiscount',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchProductDiscount.pending, (state) => {
@@ -42,11 +41,13 @@ export const productDiscountSlice = createSlice({
       .addCase(fetchProductDiscount.rejected, (state) => {
         state.productDiscountStatus = 'error';
       })
-      .addDefaultCase(() => { });
-  }
+      .addDefaultCase(() => {});
+  },
 });
 
-export const selectProductDiscount = (state: RootState) => state.productDiscount.goods;
-export const selectProductDiscountLoadingStatus = (state: RootState) => state.productDiscount.productDiscountStatus;
+export const selectProductDiscount = (state: RootState) =>
+  state.productDiscount.goods;
+export const selectProductDiscountLoadingStatus = (state: RootState) =>
+  state.productDiscount.productDiscountStatus;
 
 export default productDiscountSlice.reducer;
