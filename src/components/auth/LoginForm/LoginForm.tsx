@@ -34,9 +34,8 @@ export const LoginForm = () => {
   const user = useAppSelector(selectUser);
 
   if (user) {
-    navigate(location.state.from || '/');
+    navigate(location.state?.from || '/');
   }
-  console.log(location.state);
 
   const pattern = /^[^\W_]*$/;
 
