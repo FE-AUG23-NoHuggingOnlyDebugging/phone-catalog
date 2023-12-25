@@ -18,7 +18,7 @@ const Header = () => {
 
   let componentToRender;
 
-  if (windowWidth < 850) {
+  if (windowWidth < 800) {
     componentToRender = <NavMobile />;
   } else {
     componentToRender = <NavDesktop />;

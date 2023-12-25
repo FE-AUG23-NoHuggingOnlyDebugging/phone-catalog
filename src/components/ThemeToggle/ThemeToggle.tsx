@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import styles from './Switch.module.scss';
+import styles from './ThemeToggle.module.scss';
 
-export const Switch = () => {
+export const ThemeToggle = () => {
   const savedTheme = localStorage.getItem('theme') || 'light';
 
   const [theme, setTheme] = useState(savedTheme);

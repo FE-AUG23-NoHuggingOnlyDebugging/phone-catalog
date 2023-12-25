@@ -80,9 +80,13 @@
 
   &__li {
     display: inline-block;
+		padding: 0;
+		line-height: 12px;
+		height: 12px;
   }
 
   &__link {
+		display: inline-block;
     font-size: 12px;
     font-weight: 700;
     line-height: 11px;
@@ -100,9 +104,9 @@
     gap: 0 16px;
     align-items: center;
 
-    @include onlyForHeader {
-      padding: 18px 0;
-    }
+    // @include onlyForHeader {
+    //   padding: 18px 0;
+    // }
 
     @include onPhone() {
       margin-left: auto;
@@ -120,7 +124,7 @@
   &__action_up {
     width: 16px;
     height: 16px;
-    padding: 8px;
+    padding: 7px;
     background: transparent;
     border: 1px solid var(--icons-color);
     background-color: var(--additional-btn);

@@ -28,6 +28,40 @@ const ProductsSlider: React.FC<Props> = ({
 
   const [isModalShown, setIsModalShown] = useState(false);
 
+  const [prevX, setPrevX] = useState<number>(0);
+
+  const handleMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    // Отримуємо координати події (миша або тач)
+    const coordinates =
+      'touches' in event
+        ? (event as React.TouchEvent<HTMLDivElement>).touches[0]
+        : (event as React.MouseEvent<HTMLDivElement>);
+    const x = coordinates.clientX;
+
+    // Розрахунок абсолютної зміни координати X
+    const deltaX = Math.abs(x - prevX);
+
+    // Виводимо абсолютну зміну у консоль
+    console.log(`Absolute Change in X: ${deltaX}`);
+
+    // Оновлюємо попереднє значення координати X
+    setPrevX(x);
+
+    if (x - prevX < 0) {
+      setTranslateX((prevTranslateX) => {
+        const nextTranslateX = prevTranslateX + deltaX;
+        return nextTranslateX <= 0 ? nextTranslateX : 0;
+      });
+    }
+
+    if (x - prevX > 0) {
+      setTranslateX((prevTranslateX) => {
+        const nextTranslateX = prevTranslateX - deltaX;
+        return nextTranslateX > maxTranslateX ? nextTranslateX : maxTranslateX;
+      });
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       if (parentRef.current) {
@@ -89,7 +123,11 @@ const ProductsSlider: React.FC<Props> = ({
 
   return (
     <>
-      <section className={styles.product_slider} ref={parentRef}>
+      <section
+        className={styles.product_slider}
+        ref={parentRef}
+        onTouchMove={handleMove}
+      >
         <div className={styles.product_slider__header}>
           <h2 className={styles.product_slider__title}>{title}</h2>
 

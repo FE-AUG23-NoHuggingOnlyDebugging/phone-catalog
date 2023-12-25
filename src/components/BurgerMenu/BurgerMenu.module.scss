@@ -1,5 +1,11 @@
 @import '../../appScss/index.scss';
 
+@mixin onTablet {
+  @media (max-width: 640px) {
+    @content;
+  }
+}
+
 .burger_menu {
   width: 100%;
   position: fixed;
@@ -11,11 +17,17 @@
 }
 
 .burger_button {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
+
+	@include onTablet() {
+		width: 48px;
+		height: 48px;
+	}
+
   background: none;
   border: none;
-  font-size: 30px;
+  // font-size: 30px;
   cursor: pointer;
   border-left: 1px solid var(--elements-color);
 

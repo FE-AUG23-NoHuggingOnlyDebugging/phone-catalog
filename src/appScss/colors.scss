@@ -1,5 +1,5 @@
 $color__for_test: #ab9d4d;
-$skeleton-gradient-color: #e2e6e9;
+$skeleton-gradient-color: #0000001a;
 
 :root {
   --primary-color: #313237;
@@ -25,6 +25,8 @@ $skeleton-gradient-color: #e2e6e9;
   --teamMember-shadow-color: rgba(0, 0, 0, 0.75);
   --user-bg-color: #f1f2f9;
   --user-subTitle-color: #89939a;
+  --product-card-shadow: #00000010;
+	--header-element-hover: #0000000e;
 }
 
 [theme='dark'] {
@@ -51,4 +53,6 @@ $skeleton-gradient-color: #e2e6e9;
   --teamMember-shadow-color: rgba(144, 91, 255, 0.3);
   --user-bg-color: #161827;
   --user-subTitle-color: #905bff;
+  --product-card-shadow: #e2e6e932;
+  --header-element-hover: #e2e6e913;
 }
