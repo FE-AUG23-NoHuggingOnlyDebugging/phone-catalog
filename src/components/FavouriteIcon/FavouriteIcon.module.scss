@@ -1,5 +1,8 @@
+@import '../../appScss/index.scss';
+
 .favourite_icon {
   position: relative;
+	color: inherit;
   cursor: pointer;
 }
 
@@ -21,6 +24,10 @@
   line-height: 13px;
   font-size: 9px;
   text-align: center;
+}
+
+.icon_color {
+	color: var(--primary-color);
 }
 
 [theme='dark'] {

@@ -153,7 +153,7 @@ export const UserPage = () => {
                           className={style.userPage__productItem}
                         >
                           <p className={style.userPage__productItem_counter}>
-                            {`X${productItem.quantity}`}
+                            {`x${productItem.quantity}`}
                           </p>
                           <img
                             className={style.userPage__productItem_image}

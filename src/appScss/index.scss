@@ -27,12 +27,18 @@ main {
   margin-inline: auto;
 
   @include onDesktop {
-    max-width: 1136px;
+    width: 1136px;
   }
 
   @include onTablet {
-    width: calc(100% - 48px);
+    width: calc(100vw - 48px);
   }
+
+	max-width: 1136px;
+  // @include onTablet {
+  //   width: 1136px;
+  //   margin: 0 auto;
+  // }
 }
 
 button {

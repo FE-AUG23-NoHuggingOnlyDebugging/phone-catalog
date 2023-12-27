@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import BurgerMenu from '../../components/BurgerMenu/BurgerMenu';
-import { Switch } from '../../components/Switch/Switch';
+import { ThemeToggle } from '../../components/ThemeToggle';
 
 const NavMobile = () => {
   return (
@@ -22,10 +22,10 @@ const NavMobile = () => {
         </Link>
       </div>
 
-      <div className={styles.navbar__utility}>
-        <div className={styles.switch}>
-          <Switch />
-        </div>
+      <div className={styles.navbar__utilities}>
+        {/* <div className={styles.switch}> */}
+        <ThemeToggle />
+        {/* </div> */}
 
         <BurgerMenu />
       </div>

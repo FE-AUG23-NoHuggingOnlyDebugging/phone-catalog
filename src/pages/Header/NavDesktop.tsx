@@ -3,19 +3,23 @@ import styles from './Header.module.scss';
 import cn from 'classnames';
 import CartIcon from '../../components/CartIcon/CartIcon';
 import FavouriteIcon from '../../components/FavouriteIcon/FavouriteIcon';
-import { Switch } from '../../components/Switch/Switch';
 import { useAppSelector } from '../../store/hooks';
 import { selectUser } from '../../store/userSlice';
+import { ThemeToggle } from '../../components/ThemeToggle';
 
 const NavDesktop = () => {
   const isActiveLink = ({ isActive }: { isActive: boolean }) =>
     cn(styles.navbar__item, { [styles.navbar__highlight]: isActive });
 
   const isActiveUtility = ({ isActive }: { isActive: boolean }) =>
-    cn(styles.navbar__utilities, { [styles.navbar__highlight]: isActive });
+    cn(styles.navbar__utilitiesItem, {
+      [styles.navbar__utilitiesItem_active]: isActive,
+    });
 
-  const isActiveUtilityForBtn = ({ isActive }: { isActive: boolean }) =>
-    cn(styles.navbar__utilities_btn, { [styles.navbar__highlight]: isActive });
+  // const isActiveUtilityForBtn = ({ isActive }: { isActive: boolean }) =>
+  //   cn(styles.navbar__utilitiesItem_btn, {
+  //     [styles.navbar__highlight]: isActive,
+  //   });
 
   const user = useAppSelector(selectUser);
 
@@ -55,19 +59,16 @@ const NavDesktop = () => {
         </div>
       </div>
 
-      <div className={styles.navbar__utility}>
-        <div className={styles.switch}>
-          <Switch />
-        </div>
+      <div className={styles.navbar__utilities}>
+        {/* <div className={styles.switch}> */}
+        <ThemeToggle />
+        {/* </div> */}
 
         <NavLink to="/favourites" className={isActiveUtility}>
           <FavouriteIcon />
         </NavLink>
 
-        <NavLink
-          to={'/cart'}
-          className={user ? isActiveUtility : styles.navbar__utilities}
-        >
+        <NavLink to={'/cart'} className={isActiveUtility}>
           <CartIcon />
         </NavLink>
 
@@ -80,11 +81,18 @@ const NavDesktop = () => {
             />
           </NavLink>
         ) : (
-          <NavLink to="/login" className={isActiveUtilityForBtn}>
-            <div className={styles.signIn}>
-              <button className={styles.signIn__btn}>Sign In</button>
-            </div>
+          <NavLink to="/login" className={isActiveUtility}>
+            <img
+              className={`${styles.dark_theme_user_icon} ${styles.user_icon}`}
+              src={process.env.PUBLIC_URL + '/img/icons/login.png'}
+              alt="user"
+            />
           </NavLink>
+          // <NavLink to="/login" className={isActiveUtilityForBtn}>
+          //   <div className={styles.signIn}>
+          //     <button className={styles.signIn__btn}>Sign In</button>
+          //   </div>
+          // </NavLink>
         )}
       </div>
     </nav>

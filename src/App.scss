@@ -9,6 +9,11 @@
   transition: all 0.5s;
 }
 
+::after, ::before {
+	box-sizing: border-box;
+	transition: all 0.5s;
+}
+
 [theme='dark'] {
   background-color: var(--bg-color);
 }
@@ -31,13 +36,20 @@ html {
   overflow-y: scroll;
 }
 
-main {
-  @include onTablet {
-    width: 1136px;
-    margin: 0 auto;
-  }
-}
+// main {
+// 	width: 1136px;
+//   // @include onTablet {
+//   //   width: 1136px;
+//   //   margin: 0 auto;
+//   // }
+// }
 
 .color {
   color: $color__for_test;
+}
+
+.page__grid {
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 }

@@ -77,6 +77,14 @@ const BurgerMenu = () => {
                   </NavLink>
 
                   <NavLink
+                    to="/contacts"
+                    className={isActiveLink}
+                    onClick={toggleMenu}
+                  >
+                    Contacts
+                  </NavLink>
+
+                  <NavLink
                     to={user ? '/user' : '/login'}
                     className={isActiveLink}
                     onClick={toggleMenu}
@@ -87,16 +95,25 @@ const BurgerMenu = () => {
               </div>
             </nav>
             <div className={styles.navbar__bottom}>
-              <div className={styles.navbar__bottom_block}>
-                <NavLink to="/favourites" onClick={toggleMenu}>
-                  <FavouriteIcon />
-                </NavLink>
-              </div>
-              <div className={styles.navbar__bottom_block}>
-                <NavLink to={user ? '/cart' : '/login'} onClick={toggleMenu}>
-                  <CartIcon />
-                </NavLink>
-              </div>
+              {/* <div className={styles.navbar__bottom_block}> */}
+              <NavLink
+                to="/favourites"
+                onClick={toggleMenu}
+                className={styles.navbar__bottom_block}
+              >
+                <FavouriteIcon />
+              </NavLink>
+              {/* </div> */}
+              <div className={styles.navbar__bottom_separator}></div>
+              {/* <div className={styles.navbar__bottom_block}> */}
+              <NavLink
+                to={user ? '/cart' : '/login'}
+                onClick={toggleMenu}
+                className={styles.navbar__bottom_block}
+              >
+                <CartIcon />
+              </NavLink>
+              {/* </div> */}
             </div>
           </div>
         )}
