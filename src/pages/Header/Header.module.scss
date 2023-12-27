@@ -88,7 +88,8 @@
 		&:hover,
 		&:focus,
 		&:active {
-			background-color: var(--product-card-shadow);
+			// background-color: var(--product-card-shadow);
+			color: var(--primary-color);
 		}
   }
 
@@ -114,6 +115,7 @@
     padding: 24px;
 		position: relative;
     border-left: 1px solid var(--elements-color);
+		color: var(--secondary-color);
 
 		&:hover {
 			background-color: var(--product-card-shadow);
@@ -138,6 +140,7 @@
     .user_icon {
       width: 16px;
       height: 16px;
+			color: var(--primary-color);
     }
   }
 

@@ -93,9 +93,9 @@
     letter-spacing: 0.48px;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--footer-text-color);
+    color: var(--secondary-color);
     &:hover {
-      color: #313237;
+      color: var(--primary-color);
     }
   }
 
