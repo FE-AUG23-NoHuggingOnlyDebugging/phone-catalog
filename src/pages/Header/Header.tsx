@@ -6,6 +6,9 @@ import NavDesktop from './NavDesktop';
 const Header = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);

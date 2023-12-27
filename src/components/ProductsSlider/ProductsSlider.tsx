@@ -31,35 +31,29 @@ const ProductsSlider: React.FC<Props> = ({
   const [prevX, setPrevX] = useState<number>(0);
 
   const handleMove = (event: React.TouchEvent<HTMLDivElement>) => {
-    // Отримуємо координати події (миша або тач)
     const coordinates =
       'touches' in event
         ? (event as React.TouchEvent<HTMLDivElement>).touches[0]
         : (event as React.MouseEvent<HTMLDivElement>);
+
     const x = coordinates.clientX;
-
-    // Розрахунок абсолютної зміни координати X
-    const deltaX = Math.abs(x - prevX);
-
-    // Виводимо абсолютну зміну у консоль
-    console.log(`Absolute Change in X: ${deltaX}`);
-
-    // Оновлюємо попереднє значення координати X
+    // const deltaX = Math.abs(x + prevX);
     setPrevX(x);
 
-    if (x - prevX < 0) {
+    if (x - prevX > 0) {
       setTranslateX((prevTranslateX) => {
-        const nextTranslateX = prevTranslateX + deltaX;
+        const nextTranslateX = prevTranslateX + 5;
         return nextTranslateX <= 0 ? nextTranslateX : 0;
       });
     }
 
-    if (x - prevX > 0) {
+    if (x - prevX < 0) {
       setTranslateX((prevTranslateX) => {
-        const nextTranslateX = prevTranslateX - deltaX;
+        const nextTranslateX = prevTranslateX - 5;
         return nextTranslateX > maxTranslateX ? nextTranslateX : maxTranslateX;
       });
     }
+    console.log({ translateX, x: x - prevX });
   };
 
   useEffect(() => {

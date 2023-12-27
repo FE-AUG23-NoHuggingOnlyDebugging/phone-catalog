@@ -19,14 +19,15 @@
     box-shadow: 0px 3px 13px 0px (rgba(23, 32, 49, 0.4));
   }
 
+	@include onPhone {
+		font-size: 11px;
+	}
+	
   &__added {
     border: 1px solid var(--elements-color);
     color: var(--added-color);
     background: var(--additional-btn);
 
-    @include onPhone {
-      font-size: 11px;
-    }
   }
 }
 

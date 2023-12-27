@@ -85,7 +85,9 @@
     text-decoration: none;
     border-bottom: 3px solid transparent;
 
-		&:hover {
+		&:hover,
+		&:focus,
+		&:active {
 			background-color: var(--product-card-shadow);
 		}
   }

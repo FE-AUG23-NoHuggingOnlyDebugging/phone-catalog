@@ -164,10 +164,10 @@ export const LoginForm = () => {
         {passErrorMessages()}
 
         <div className={styles.additional_options}>
-          <label>
+          {/* <label>
             <input type="checkbox" />
             Remember me
-          </label>
+          </label> */}
           <p onClick={() => setIsModal(true)}>Forgot password</p>
         </div>
 
