@@ -57,7 +57,7 @@ export const LoginForm = () => {
     setIsloading(true);
     try {
       const response = await fetch(
-        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signIn',
+        'https://phone-catalog-api-docker.onrender.com/auth/signIn',
         {
           method: 'POST',
           headers: {

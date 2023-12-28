@@ -19,7 +19,7 @@ export const fetchProductDetail = createAsyncThunk(
   'fetchProductDetail',
   async ({ type, id }: { type: string; id: string }) => {
     const response = await axios.get(
-      `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${type}/${id}`,
+      `https://phone-catalog-api-docker.onrender.com/${type}/${id}`,
     );
     return response.data; // Explicitly return the data from the axios call
   },

@@ -17,7 +17,7 @@ const initialState: ProductNew = {
 
 export const fetchProductNew = createAsyncThunk('fetchProductNew', async () => {
   const response = await axios.get(
-    'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/new',
+    'https://phone-catalog-api-docker.onrender.com/products/new',
   );
   return response.data.records; // Explicitly return the data from the axios call
 });

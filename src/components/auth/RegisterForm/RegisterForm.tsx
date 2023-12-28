@@ -63,7 +63,7 @@ export const RegisterForm = () => {
 
     try {
       const res = await fetch(
-        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signUp',
+        'https://phone-catalog-api-docker.onrender.com/auth/signUp',
         {
           method: 'POST',
           headers: {

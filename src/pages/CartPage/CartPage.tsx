@@ -38,7 +38,7 @@ export const CartPage = () => {
       try {
         const requests = cartStorageList.map((item) => {
           return axios.get<ProductDetails>(
-            `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${item.category}/${item.name}`,
+            `https://phone-catalog-api-docker.onrender.com/${item.category}/${item.name}`,
           );
         });
 
@@ -81,17 +81,14 @@ export const CartPage = () => {
   const handleCheckoutButtonClick = () => {
     setIsCheckoutDisabled(true);
 
-    fetch(
-      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/orders',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ order: cartStorageList }),
+    fetch('https://phone-catalog-api-docker.onrender.com/user/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
       },
-    )
+      credentials: 'include',
+      body: JSON.stringify({ order: cartStorageList }),
+    })
       .catch(() => setOrderState('failed'))
       .finally(() => {
         setIsModalShown(true);
