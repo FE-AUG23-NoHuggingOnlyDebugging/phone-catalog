@@ -22,8 +22,7 @@ const initialState: Pagination = {
   paginationLoadingStatus: 'loading',
 };
 
-const API_URL =
-  'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/';
+const API_URL = 'https://phone-catalog-api-docker.onrender.com/products/';
 export const fetchPagination = createAsyncThunk(
   'fetchPagination',
   async ({

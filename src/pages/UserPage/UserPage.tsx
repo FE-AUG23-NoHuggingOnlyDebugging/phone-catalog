@@ -22,7 +22,7 @@ export const UserPage = () => {
     const getData = async () => {
       try {
         const data = await fetch(
-          'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/orders',
+          'https://phone-catalog-api-docker.onrender.com/user/orders',
           {
             method: 'GET',
             headers: {
@@ -47,7 +47,7 @@ export const UserPage = () => {
   const signOut = async () => {
     try {
       await fetch(
-        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signOut',
+        'https://phone-catalog-api-docker.onrender.com/auth/signOut',
         {
           method: 'POST',
           headers: {

@@ -17,7 +17,7 @@ const initialState: Category = {
 
 export const fetchCategory = createAsyncThunk('fetchCategory', async () => {
   const response = await axios.get(
-    'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/static/categories',
+    'https://phone-catalog-api-docker.onrender.com/static/categories',
   );
   return response.data; // Explicitly return the data from the axios call
 });

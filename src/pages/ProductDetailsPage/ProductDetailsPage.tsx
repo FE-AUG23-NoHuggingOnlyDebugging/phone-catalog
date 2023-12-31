@@ -38,7 +38,7 @@ export const ProductDetailsPage = () => {
 
     axios
       .get<ProductDetails>(
-        `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${type}/${productId}`,
+        `https://phone-catalog-api-docker.onrender.com/${type}/${productId}`,
       )
       .then((res) => {
         setProduct(res.data);

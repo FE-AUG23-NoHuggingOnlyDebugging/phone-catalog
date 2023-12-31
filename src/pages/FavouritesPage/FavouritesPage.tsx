@@ -25,7 +25,7 @@ export const FavouritesPage = () => {
         console.log(itemsIds);
 
         const request = await axios.get<Product[]>(
-          `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/favorites/get?itemsIds=${itemsIds}`,
+          `https://phone-catalog-api-docker.onrender.com/products/favorites/get?itemsIds=${itemsIds}`,
         );
 
         setProducts(request.data);

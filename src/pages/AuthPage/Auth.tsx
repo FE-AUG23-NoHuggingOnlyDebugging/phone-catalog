@@ -24,7 +24,7 @@ const AuthPage = () => {
 
       try {
         const response = await fetch(
-          'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/checkIfAuthorized',
+          'https://phone-catalog-api-docker.onrender.com/auth/checkIfAuthorized',
           {
             method: 'POST',
             headers: {
