@@ -3,7 +3,7 @@
 export const loadUserCart = async () => {
   try {
     const res = await fetch(
-      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/cart',
+      'https://phone-catalog-api-docker.onrender.com/user/cart',
       {
         method: 'GET',
         headers: {
@@ -14,8 +14,6 @@ export const loadUserCart = async () => {
     );
 
     const data = await res.json();
-
-    console.log(data);
 
     return data;
   } catch (error) {

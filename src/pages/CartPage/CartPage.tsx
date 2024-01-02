@@ -11,7 +11,6 @@ import axios from 'axios';
 import { CartSkeletonLoader } from '../../components/CartSkeletonLoader';
 
 import { useNavigate } from 'react-router-dom';
-import { selectUser } from '../../store/userSlice';
 
 import { CheckoutModal } from '../../components/CheckoutModal';
 import { useDispatch } from 'react-redux';
@@ -25,14 +24,10 @@ export const CartPage = () => {
 
   const navigate = useNavigate();
 
-  const user = useAppSelector(selectUser);
-
-  if (!user) {
-    navigate('/login', { state: { from: '/cart' } });
-  }
-
   const [isModalShown, setIsModalShown] = useState(false);
-  const [isOrderSuccessful, setIsOrderSuccessful] = useState(true);
+  const [orderState, setOrderState] = useState<
+    'success' | 'failed' | 'registerRequired'
+  >('success');
   const [isCheckoutDisabled, setIsCheckoutDisabled] = useState(false);
 
   const dispatch = useDispatch();
@@ -43,7 +38,7 @@ export const CartPage = () => {
       try {
         const requests = cartStorageList.map((item) => {
           return axios.get<ProductDetails>(
-            `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/${item.category}/${item.name}`,
+            `https://phone-catalog-api-docker.onrender.com/${item.category}/${item.name}`,
           );
         });
 
@@ -86,18 +81,15 @@ export const CartPage = () => {
   const handleCheckoutButtonClick = () => {
     setIsCheckoutDisabled(true);
 
-    fetch(
-      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/orders',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ order: cartStorageList }),
+    fetch('https://phone-catalog-api-docker.onrender.com/user/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
       },
-    )
-      .catch(() => setIsOrderSuccessful(false))
+      credentials: 'include',
+      body: JSON.stringify({ order: cartStorageList }),
+    })
+      .catch(() => setOrderState('failed'))
       .finally(() => {
         setIsModalShown(true);
 
@@ -109,7 +101,7 @@ export const CartPage = () => {
     setIsModalShown(false);
     setIsCheckoutDisabled(false);
 
-    if (isOrderSuccessful) {
+    if (orderState === 'success') {
       const cart = JSON.stringify({
         cart: [],
       });
@@ -189,7 +181,7 @@ export const CartPage = () => {
       </div>
       {isModalShown && (
         <CheckoutModal
-          success={isOrderSuccessful}
+          status={orderState}
           handleCloseClick={handleCloseClick}
         />
       )}

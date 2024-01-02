@@ -6,7 +6,7 @@ export const SyncUserDataWithServer = async (
 ) => {
   try {
     await fetch(
-      `https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/${type}`,
+      `https://phone-catalog-api-docker.onrender.com/user/${type}`,
       {
         method: 'PATCH',
         headers: {

@@ -1,17 +1,36 @@
+@mixin onTablet {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
 $nightBtn: #905bff;
 $dayBtn: #313237;
 
 .dayNight {
   cursor: pointer;
+	display: inline-block;
+	// padding: 10px;
+	padding: 16px;
+
+	@include onTablet() {
+		padding: 24px;
+	}
+
+	&:hover {
+		background-color: var(--product-card-shadow);
+	}
+
+	border-left: 1px solid var(--elements-color);
 
   input {
     display: none;
 
     & + div {
       border-radius: 50%;
-      width: 22px;
+      width: 16px;
       /* Reduced width */
-      height: 22px;
+      height: 16px;
       /* Reduced height */
       position: relative;
       box-shadow: inset 8px -8px 0 0 $nightBtn;

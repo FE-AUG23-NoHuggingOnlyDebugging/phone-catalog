@@ -34,7 +34,7 @@ export const LoginForm = () => {
   const user = useAppSelector(selectUser);
 
   if (user) {
-    navigate(location.state.from || '/');
+    navigate(location.state?.from || '/');
   }
 
   const pattern = /^[^\W_]*$/;
@@ -57,7 +57,7 @@ export const LoginForm = () => {
     setIsloading(true);
     try {
       const response = await fetch(
-        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signIn',
+        'https://phone-catalog-api-docker.onrender.com/auth/signIn',
         {
           method: 'POST',
           headers: {
@@ -164,10 +164,10 @@ export const LoginForm = () => {
         {passErrorMessages()}
 
         <div className={styles.additional_options}>
-          <label>
+          {/* <label>
             <input type="checkbox" />
             Remember me
-          </label>
+          </label> */}
           <p onClick={() => setIsModal(true)}>Forgot password</p>
         </div>
 
@@ -188,6 +188,7 @@ export const LoginForm = () => {
           </div>
         )}
         <p style={{ color: 'red', textAlign: 'center' }}>{error?.error}</p>
+
         <p style={{ color: 'green', textAlign: 'center' }}>
           {isLoading && 'Sending...'}
         </p>

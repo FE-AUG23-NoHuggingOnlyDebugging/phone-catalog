@@ -4,7 +4,7 @@
 
 .userPage {
   max-width: 1136px;
-  min-height: 75vh;
+  // min-height: 75vh;
 
   &__title {
     color: var(--primary-color);
@@ -22,7 +22,6 @@
   &__userInfo {
     background-color: var(--user-bg-color);
     padding: 20px;
-    border-radius: 10px;
     width: 40%;
     height: 300px;
 
@@ -76,7 +75,6 @@
     width: 170px;
     cursor: pointer;
     gap: 10px;
-    border-radius: 20px;
     font-size: 20px;
     border: 2px solid var(--user-subTitle-color);
     padding: 15px 30px;
@@ -125,7 +123,6 @@
     align-items: center;
     background-color: var(--user-bg-color);
     padding: 30px;
-    border-radius: 10px;
 
     @include onTablet {
       justify-content: flex-start;

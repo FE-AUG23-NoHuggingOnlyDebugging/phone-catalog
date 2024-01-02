@@ -16,42 +16,38 @@ import {
   selectRecommendedLoadingStatus,
 } from '../../store/recommendedSlice';
 import { useAppSelector, useThunkDispatch } from '../../store/hooks';
-import {
-  fetchProductDetail,
-  selectProductDetail,
-  selectProductDetailLoadingStatus,
-} from '../../store/productDetailSlice';
+import axios from 'axios';
+import { ProductDetails } from '../../types/ProductDetails';
 export const ProductDetailsPage = () => {
   const { productId, type } = useParams();
   const [activeColor, setActiveColor] = useState<string | null>(null);
   const [activeMemory, setActiveMemory] = useState<string | null>(null);
+
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [product, setProduct] = useState<ProductDetails>();
 
   const recommended = useAppSelector(selectRecommended);
   const isLoadingSlider = useAppSelector(selectRecommendedLoadingStatus);
   const dispatchRecommended = useThunkDispatch();
 
-  const product = useAppSelector(selectProductDetail);
-  const paginateLoadingStatus = useAppSelector(
-    selectProductDetailLoadingStatus,
-  );
-  const dispatchProductDetail = useThunkDispatch();
-
   const [mainImage, setMainImage] = useState(product?.images[0]);
 
   useEffect(() => {
-    if (type && productId) {
-      const query = {
-        type: type || '',
-        id: productId || '',
-      };
-      dispatchProductDetail(fetchProductDetail(query));
+    setIsError(false);
 
-      setMainImage(product?.images[0] || '');
-      setActiveColor(product?.color || '');
-      setActiveMemory(product?.capacity.toLocaleLowerCase() || '');
-      setIsError(paginateLoadingStatus === 'error');
-    }
+    axios
+      .get<ProductDetails>(
+        `https://phone-catalog-api-docker.onrender.com/${type}/${productId}`,
+      )
+      .then((res) => {
+        setProduct(res.data);
+        setMainImage(res.data.images[0]);
+        setActiveColor(res.data.color);
+        setActiveMemory(res.data.capacity.toLocaleLowerCase());
+      })
+      .catch(() => setIsError(true))
+      .finally(() => setIsLoading(false));
   }, [productId]);
 
   useEffect(() => {
@@ -72,9 +68,9 @@ export const ProductDetailsPage = () => {
   return (
     <>
       <GoBackButton />
-      {paginateLoadingStatus === 'loading' && <ProductDetailsSkeleton />}
+      {isLoading && <ProductDetailsSkeleton />}
       {isError && <NotFoundPage />}
-      {product && !isError && paginateLoadingStatus !== 'loading' && (
+      {product && !isError && !isLoading && (
         <>
           <section className={style.product}>
             <div>

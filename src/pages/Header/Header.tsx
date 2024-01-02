@@ -6,6 +6,9 @@ import NavDesktop from './NavDesktop';
 const Header = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -18,7 +21,7 @@ const Header = () => {
 
   let componentToRender;
 
-  if (windowWidth < 850) {
+  if (windowWidth < 800) {
     componentToRender = <NavMobile />;
   } else {
     componentToRender = <NavDesktop />;

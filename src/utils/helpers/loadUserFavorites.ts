@@ -3,7 +3,7 @@
 export const loadUserFavorites = async () => {
   try {
     const res = await fetch(
-      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/user/favorites',
+      'https://phone-catalog-api-docker.onrender.com/user/favorites',
       {
         method: 'GET',
         headers: {
@@ -14,8 +14,6 @@ export const loadUserFavorites = async () => {
     );
 
     const data = await res.json();
-
-    console.log(data);
 
     return data;
   } catch (error) {

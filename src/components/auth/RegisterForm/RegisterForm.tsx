@@ -7,10 +7,12 @@ import { MdEmail } from 'react-icons/md';
 import styles from './RegisterForm.module.scss';
 import cn from 'classnames';
 import { usePageError } from '../../../hooks/usePageError';
-
-/* type Err = {
-  error: string;
-}; */
+import { loadUserFavorites } from '../../../utils/helpers/loadUserFavorites';
+import { loadUserCart } from '../../../utils/helpers/loadUserCart';
+import { addUser } from '../../../store/userSlice';
+import { replaceCart } from '../../../store/cartSlice';
+import { addFavoritesFromDb } from '../../../store/favoriteSlice';
+import { useAppDispatch } from '../../../store/hooks';
 
 export const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -24,6 +26,7 @@ export const RegisterForm = () => {
   const [error, setError] = usePageError(null);
 
   const navigate = useNavigate();
+  const dispatcher = useAppDispatch();
 
   const reset = () => {
     setName('');
@@ -60,7 +63,7 @@ export const RegisterForm = () => {
 
     try {
       const res = await fetch(
-        'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/auth/signUp',
+        'https://phone-catalog-api-docker.onrender.com/auth/signUp',
         {
           method: 'POST',
           headers: {
@@ -77,7 +80,18 @@ export const RegisterForm = () => {
         return;
       }
 
-      navigate('/login');
+      const userDataFromServer = await res.json();
+
+      const data = await loadUserFavorites();
+      const cart = await loadUserCart();
+
+      dispatcher(addUser(userDataFromServer));
+
+      dispatcher(replaceCart(cart));
+
+      dispatcher(addFavoritesFromDb(data));
+
+      navigate('/');
     } catch (error) {
       console.log((error as Error).message);
     } finally {
@@ -115,8 +129,8 @@ export const RegisterForm = () => {
             [styles.login_box__field_error]: hasNameError,
           })}
           type="text"
-          placeholder="enter your name"
-          autoComplete="on"
+          placeholder="Enter your name"
+          // autoComplete="on"
           value={name}
           onChange={(e) => {
             setName(e.target.value);
@@ -138,8 +152,8 @@ export const RegisterForm = () => {
             [styles.login_box__field_error]: hasEmailError,
           })}
           type="email"
-          placeholder="enter your email"
-          autoComplete="on"
+          placeholder="Enter your email"
+          // autoComplete="on"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
@@ -163,8 +177,8 @@ export const RegisterForm = () => {
             [styles.login_box__field_error]: hasPassError,
           })}
           type="password"
-          placeholder="enter your password"
-          autoComplete="on"
+          placeholder="Enter your password"
+          // autoComplete="on"
           value={pass}
           onChange={(e) => {
             setPass(e.target.value);

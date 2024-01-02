@@ -7,7 +7,7 @@
 .page {
   width: 1136px;
   margin-inline: auto;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
   min-height: calc(100vh - 88px - 61px - 98px - 80px);
 
   @include onTablet {

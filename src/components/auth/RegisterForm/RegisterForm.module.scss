@@ -2,7 +2,7 @@
 @import '../../../appScss/typography.scss';
 
 .form {
-  width: 400px;
+  width: 600px;
   padding: 30px 40px;
 
   border: 2px solid rgba(12, 12, 12, 0.171);
@@ -40,8 +40,6 @@
 
       background: transparent;
       color: var(--primary-color);
-
-      @include uppercase;
 
       &_error {
         border: 2px solid var(--red-color);

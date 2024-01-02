@@ -1,1 +1,1 @@
-export * from './CheckoutModal';
+export * from './Modal';

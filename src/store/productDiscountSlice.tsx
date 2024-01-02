@@ -19,7 +19,7 @@ export const fetchProductDiscount = createAsyncThunk(
   'fetchProductDiscount',
   async () => {
     const response = await axios.get(
-      'https://fe-aug23-nohuggingonlydebugging-phone.onrender.com/products/discount',
+      'https://phone-catalog-api-docker.onrender.com/products/discount',
     );
     return response.data.records;
   },

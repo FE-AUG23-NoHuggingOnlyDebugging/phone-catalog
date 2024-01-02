@@ -4,12 +4,13 @@
 @import '../../appScss/typography.scss';
 
 .modal {
-  position: absolute;
+  position: fixed;
   top: calc(50% - 102px);
   left: calc(50% - 200px);
   width: 400px;
   height: 204px;
   background-color: var(--white-color);
+  z-index: 2;
 
   @include onPhone {
     top: calc(50% - 84px);
@@ -40,8 +41,10 @@
 
   &_body {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 20px;
     padding: 16px;
     height: calc(100% - 48px);
 
@@ -53,6 +56,11 @@
       }
 
       text-align: center;
+    }
+
+    &_link1 {
+      text-decoration: none;
+      color: var(--primary-color);
     }
   }
 

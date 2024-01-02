@@ -6,8 +6,10 @@ type Err = {
 };
 
 export const usePageError = (
+
   initial: Err | null,
 ): [Err | null, (b: Err | null) => void] => {
+
   const [error, setError] = useState(initial);
 
   useEffect(() => {

@@ -38,7 +38,7 @@ export const SliderPromo = () => {
   };
 
   useEffect(() => {
-    const showSlider = setInterval(() => goForward(), 5000);
+    const showSlider: NodeJS.Timeout = setInterval(() => goForward(), 5000);
 
     return () => clearInterval(showSlider);
   }, [goForward]);

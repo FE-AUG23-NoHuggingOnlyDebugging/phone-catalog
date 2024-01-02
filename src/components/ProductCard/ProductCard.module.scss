@@ -2,6 +2,7 @@
 @import '../../appScss/typography';
 @import '../../appScss/link';
 @import '../../appScss/mixins';
+@import '../../appScss/colors';
 
 .product_card {
   display: flex;
@@ -40,7 +41,7 @@
   }
 
   &:hover {
-    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 16px 0px var(--product-card-shadow);
   }
 
   &__info {

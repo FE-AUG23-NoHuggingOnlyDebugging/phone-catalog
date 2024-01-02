@@ -7,6 +7,7 @@ import ProductLoader from '../ProductLoader/ProductLoader';
 import { Product } from '../../types/Product';
 import { useAppSelector } from '../../store/hooks';
 import { selectProducts } from '../../store/productsSlice';
+import { CheckoutModal } from '../CheckoutModal';
 
 type Props = {
   title: string;
@@ -24,6 +25,36 @@ const ProductsSlider: React.FC<Props> = ({
   const [translateX, setTranslateX] = useState(0);
   const productSlice = useAppSelector(selectProducts);
   const getProduct = products || productSlice;
+
+  const [isModalShown, setIsModalShown] = useState(false);
+
+  const [prevX, setPrevX] = useState<number>(0);
+
+  const handleMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    const coordinates =
+      'touches' in event
+        ? (event as React.TouchEvent<HTMLDivElement>).touches[0]
+        : (event as React.MouseEvent<HTMLDivElement>);
+
+    const x = coordinates.clientX;
+    // const deltaX = Math.abs(x + prevX);
+    setPrevX(x);
+
+    if (x - prevX > 0) {
+      setTranslateX((prevTranslateX) => {
+        const nextTranslateX = prevTranslateX + 5;
+        return nextTranslateX <= 0 ? nextTranslateX : 0;
+      });
+    }
+
+    if (x - prevX < 0) {
+      setTranslateX((prevTranslateX) => {
+        const nextTranslateX = prevTranslateX - 5;
+        return nextTranslateX > maxTranslateX ? nextTranslateX : maxTranslateX;
+      });
+    }
+    console.log({ translateX, x: x - prevX });
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -76,54 +107,76 @@ const ProductsSlider: React.FC<Props> = ({
     });
   };
 
+  const handleShowModal = () => {
+    setIsModalShown(true);
+  };
+
+  const handleCloseClick = () => {
+    setIsModalShown(false);
+  };
+
   return (
-    <section className={styles.product_slider} ref={parentRef}>
-      <div className={styles.product_slider__header}>
-        <h2 className={styles.product_slider__title}>{title}</h2>
+    <>
+      <section
+        className={styles.product_slider}
+        ref={parentRef}
+        onTouchMove={handleMove}
+      >
+        <div className={styles.product_slider__header}>
+          <h2 className={styles.product_slider__title}>{title}</h2>
 
-        <div className={styles.swiper}>
-          <button
-            type="button"
-            className={cn(styles.swiper__button, {
-              [styles.swiper__disabled]: translateX === 0,
-            })}
-            onClick={handleBack}
-            disabled={translateX === 0}
-          >
-            <img
-              src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-              alt="Left Arrow"
-              className={styles.arrow__left}
-            />
-          </button>
+          <div className={styles.swiper}>
+            <button
+              type="button"
+              className={cn(styles.swiper__button, {
+                [styles.swiper__disabled]: translateX === 0,
+              })}
+              onClick={handleBack}
+              disabled={translateX === 0}
+            >
+              <img
+                src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
+                alt="Left Arrow"
+                className={styles.arrow__left}
+              />
+            </button>
 
-          <button
-            type="button"
-            className={cn(styles.swiper__button, {
-              [styles.swiper__disabled]: translateX === maxTranslateX,
-            })}
-            onClick={handleNext}
-            disabled={translateX === maxTranslateX}
-          >
-            <img
-              src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
-              alt="Right Arrow"
-              className={styles.arrow__right}
-            />
-          </button>
+            <button
+              type="button"
+              className={cn(styles.swiper__button, {
+                [styles.swiper__disabled]: translateX === maxTranslateX,
+              })}
+              onClick={handleNext}
+              disabled={translateX === maxTranslateX}
+            >
+              <img
+                src={process.env.PUBLIC_URL + '/img/icons/arrow.png'}
+                alt="Right Arrow"
+                className={styles.arrow__right}
+              />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {status ? (
-        <ProductLoader type="slider" />
-      ) : (
-        <ProductList
-          products={getProduct}
-          type="slider"
-          translateX={translateX}
+        {status ? (
+          <ProductLoader type="slider" />
+        ) : (
+          <ProductList
+            products={getProduct}
+            type="slider"
+            translateX={translateX}
+            showModal={handleShowModal}
+          />
+        )}
+      </section>
+
+      {isModalShown && (
+        <CheckoutModal
+          status="registerRequired"
+          handleCloseClick={handleCloseClick}
         />
       )}
-    </section>
+    </>
   );
 };
 

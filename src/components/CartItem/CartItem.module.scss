@@ -4,6 +4,7 @@
 @import '../../appScss/typography.scss';
 
 .card {
+	width: max-content;
   box-sizing: border-box;
   display: flex;
   padding: 24px;
